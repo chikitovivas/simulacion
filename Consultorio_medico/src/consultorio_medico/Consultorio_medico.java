@@ -5,6 +5,9 @@
  */
 package consultorio_medico;
 
+import BD.ConexionBD;
+import Login.Init_login;
+
 /**
  *
  * @author Nico
@@ -15,7 +18,10 @@ public class Consultorio_medico {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+       ConexionBD con= new ConexionBD();
+       con.Conexion("prueba_consultorio", "root", "");
+       Init_login log=new Init_login();
+       log.setVisible(true);
     }
     
 }
