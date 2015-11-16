@@ -6,22 +6,21 @@
 package consultorio_medico;
 
 import BD.ConexionBD;
-import Login.Init_login;
+import Login.Ventana_login;
+import java.sql.Connection;
 
 /**
  *
  * @author Nico
  */
-public class Consultorio_medico {
-
-    /**
-     * @param args the command line arguments
-     */
+public class Proyecto {
+   
+    static public ConexionBD con=new ConexionBD();
     public static void main(String[] args) {
-       ConexionBD con= new ConexionBD();
-       con.Conexion("prueba_consultorio", "root", "");
-       Init_login log=new Init_login();
+        con.Conexion("prueba_consultorio", "root", "");        
+       Ventana_login log=new Ventana_login();
        log.setVisible(true);
+       
     }
     
 }
