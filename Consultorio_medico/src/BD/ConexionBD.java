@@ -84,5 +84,24 @@ public class ConexionBD {
         return 0;
     }
     
+   
+    public int contar_filas(ResultSet rs){
+        int i=0;
     
+        try {            
+            while(rs.next()){
+            i++;  
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            try {          
+                rs.beforeFirst();
+            } catch (SQLException ex) {
+                Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    return i;
+    };
 }
