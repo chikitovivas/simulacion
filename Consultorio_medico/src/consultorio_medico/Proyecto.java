@@ -6,7 +6,7 @@
 package consultorio_medico;
 
 import BD.ConexionBD;
-import Login.Ventana_login;
+import Login.Ven_login;
 import java.sql.Connection;
 
 /**
@@ -18,7 +18,7 @@ public class Proyecto {
     static public ConexionBD con=new ConexionBD();
     public static void main(String[] args) {
         con.Conexion("prueba_consultorio", "root", "");        
-       Ventana_login log=new Ventana_login();
+       Ven_login log=new Ven_login();
        log.setVisible(true);
        
     }

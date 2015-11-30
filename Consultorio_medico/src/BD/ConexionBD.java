@@ -72,10 +72,10 @@ public class ConexionBD {
     }
     
     
-    public int select_user(String nick,String pass){
+    public int iniciar_user(String nick,String pass){
         try {
-            s=connection.createStatement();
-            rs=s.executeQuery("select buscar_usuarios('"+nick+"','"+pass+"');");
+            reiniciar_statement();
+            rs=s.executeQuery("select iniciar_usuario('"+nick+"','"+pass+"');");
             rs.next();
             System.out.println(rs.getInt(1));
         } catch (SQLException ex) {

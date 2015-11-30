@@ -9,6 +9,7 @@ package Login;
 
 import BD.ConexionBD;
 import consultorio_medico.Proyecto;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,11 +20,9 @@ import javax.swing.JOptionPane;
  *
  * @author Nico
  */
-public class Codigo_login {
+public class Cod_login {
     
-    public void Buscar_usuario(String nick,String pass) {
-        
-    }
+   
     
     
     
