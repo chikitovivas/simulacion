@@ -5,18 +5,26 @@
  */
 package simulacion;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author Usuario
  */
 public class Simulacion {
 
-    /**
-     * @param args the command line arguments
-     */
+    static Home VentanaPrincipal = new Home();
+    
+    
     public static void main(String[] args) {
-        // TODO code application logic here
-        //Puedo cambiar
+        try {
+            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());  
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Simulacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        VentanaPrincipal.setVisible(true);
     }
     
 }
