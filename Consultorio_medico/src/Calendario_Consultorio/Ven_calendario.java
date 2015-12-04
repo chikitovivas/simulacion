@@ -5,18 +5,23 @@
  */
 package Calendario_Consultorio;
 
+import java.awt.event.MouseEvent;
+import java.util.Date;
+
+
+
 /**
  *
  * @author Nico
  */
-public class Ven_calendario extends javax.swing.JPanel {
+public class Ven_calendario extends javax.swing.JFrame {
 
     /**
-     * Creates new form Ventana_calendario
+     * Creates new form NewJFrame
      */
     public Ven_calendario() {
         initComponents();
-        //JCalendar1.;
+       
     }
 
     /**
@@ -28,47 +33,145 @@ public class Ven_calendario extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Borde = new javax.swing.JPanel();
-        JCalendar1 = new com.toedter.calendar.JCalendar();
+        Panel = new javax.swing.JPanel();
+        Calen1 = new com.toedter.calendar.JCalendar();
+        jButton1 = new javax.swing.JButton();
 
-        javax.swing.GroupLayout BordeLayout = new javax.swing.GroupLayout(Borde);
-        Borde.setLayout(BordeLayout);
-        BordeLayout.setHorizontalGroup(
-            BordeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BordeLayout.createSequentialGroup()
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        Calen1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Calen1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Calen1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
+        Panel.setLayout(PanelLayout);
+        PanelLayout.setHorizontalGroup(
+            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(JCalendar1, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
+                .addComponent(Calen1, javax.swing.GroupLayout.DEFAULT_SIZE, 963, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        BordeLayout.setVerticalGroup(
-            BordeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BordeLayout.createSequentialGroup()
+        PanelLayout.setVerticalGroup(
+            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(JCalendar1, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+                .addComponent(Calen1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        jButton1.setText("Seleccionar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Borde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Borde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    void pruebacalen(){
+    Date aux=Calen1.getDate();
+    String day="";
+        System.out.println(aux);
+        
+        /*switch(aux.getDay()){
+            case 0: day="Domingo";break;
+            case 1: day="Lunes";break;
+            case 2: day="Martes";break;
+            case 3: day="Miercoles";break;
+            case 4: day="Jueves";break;
+            case 5: day="Viernes";break;
+            case 6: day="Sabado";break;
+            case 7: day="Domingo";break;        
+        }       
+        */        
+        // Ven_dia auxdia= new Ven_dia(aux.getDate(),aux.getMonth(),day);   // Inicializando Ventana Patricia 
+        
+        //System.out.println(aux.getDate());
+        //System.out.println(aux.getMonth()); //Los meses empiezan desde 0->enero
+       
+        
+       
+    
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        pruebacalen();    
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void Calen1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Calen1MouseClicked
+        pruebacalen();    
+    }//GEN-LAST:event_Calen1MouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Ven_calendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Ven_calendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Ven_calendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Ven_calendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Ven_calendario().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Borde;
-    private com.toedter.calendar.JCalendar JCalendar1;
+    private com.toedter.calendar.JCalendar Calen1;
+    private javax.swing.JPanel Panel;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

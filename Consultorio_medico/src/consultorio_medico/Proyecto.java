@@ -6,6 +6,7 @@
 package consultorio_medico;
 
 import BD.ConexionBD;
+import Calendario_Consultorio.Ven_calendario;
 import Login.Ven_login;
 import java.sql.Connection;
 
@@ -17,10 +18,12 @@ public class Proyecto {
    
     static public ConexionBD con=new ConexionBD();
     public static void main(String[] args) {
-        con.Conexion("prueba_consultorio", "root", "");        
-       Ven_login log=new Ven_login();
-       log.setVisible(true);
-       
+        //con.Conexion("prueba_consultorio", "root", "");        
+       //Ven_login log=new Ven_login();
+       //log.setVisible(true);
+        
+        new Ven_calendario().setVisible(true);
+        
     }
     
 }
