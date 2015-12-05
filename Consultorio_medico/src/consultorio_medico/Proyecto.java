@@ -22,7 +22,7 @@ public class Proyecto {
        //Ven_login log=new Ven_login();
        //log.setVisible(true);
         
-        new Ven_calendario().setVisible(true);
+        new Ven_calendario(null).setVisible(true);
         
     }
     

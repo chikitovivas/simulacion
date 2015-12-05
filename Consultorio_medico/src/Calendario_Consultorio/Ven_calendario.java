@@ -19,9 +19,10 @@ public class Ven_calendario extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public Ven_calendario() {
+    Cod_calendario logica;
+    public Ven_calendario(Object citas) {
         initComponents();
-       
+       logica=new Cod_calendario(citas);
     }
 
     /**
@@ -164,7 +165,7 @@ public class Ven_calendario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ven_calendario().setVisible(true);
+                new Ven_calendario(null).setVisible(true);
             }
         });
     }
