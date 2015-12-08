@@ -20,9 +20,13 @@ public class Ven_calendario extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     Cod_calendario logica;
-    public Ven_calendario(Object citas) {
+    public Ven_calendario(Object citas) {               
         initComponents();
        logica=new Cod_calendario(citas);
+       
+  
+       
+       
     }
 
     /**
@@ -119,10 +123,7 @@ public class Ven_calendario extends javax.swing.JFrame {
         // Ven_dia auxdia= new Ven_dia(aux.getDate(),aux.getMonth(),day);   // Inicializando Ventana Patricia 
         
         //System.out.println(aux.getDate());
-        //System.out.println(aux.getMonth()); //Los meses empiezan desde 0->enero
-       
-        
-       
+        //System.out.println(aux.getMonth()); //Los meses empiezan desde 0->enero       
     
     }
     

@@ -7,22 +7,22 @@ package consultorio_medico;
 
 import BD.ConexionBD;
 import Calendario_Consultorio.Ven_calendario;
-import Login.Ven_login;
-import java.sql.Connection;
+import Calendario_Consultorio.Ven_switch;
 
 /**
  *
  * @author Nico
  */
 public class Proyecto {
-   
+    static Ven_switch Switch;
+    
     static public ConexionBD con=new ConexionBD();
+    
     public static void main(String[] args) {
-        //con.Conexion("prueba_consultorio", "root", "");        
-       //Ven_login log=new Ven_login();
-       //log.setVisible(true);
         
-        new Ven_calendario(null).setVisible(true);
+       Switch= new Ven_switch();
+       Switch.setVisible(true);
+       Switch.cambiar_vent(new Ven_calendario(null));
         
     }
     
