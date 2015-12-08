@@ -7,7 +7,6 @@ package consultorio_medico;
 
 import BD.ConexionBD;
 import Calendario_Consultorio.Ven_calendario;
-import Calendario_Consultorio.Ven_switch;
 
 /**
  *
