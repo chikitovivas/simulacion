@@ -27,24 +27,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
+              <Component id="JLtitulo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="69" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="JLnombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="JLci" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="JLtelefono" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="JLemail" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="JTnombre" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JTci" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JTtelefono" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JTemail" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="BotonCancelar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
@@ -52,13 +42,25 @@
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="BotonCrear" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="JLtelefono" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="JLemail" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="JLnombre" min="-2" max="-2" attributes="0"/>
+                          <Component id="JLci" min="-2" max="-2" attributes="0"/>
+                          <Component id="JLapellido" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="JTnombre" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JTci" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JTtelefono" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JTemail" alignment="0" pref="190" max="32767" attributes="0"/>
+                          <Component id="JTapellido" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
-              <Component id="JLtitulo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,27 +69,32 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Component id="JLtitulo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="40" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JLnombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTnombre" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace pref="42" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="JLci" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JTci" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JLtelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JTnombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JLnombre" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="JTapellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JLapellido" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="JTtelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JLtelefono" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JLemail" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTemail" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="JLemail" min="-2" max="-2" attributes="0"/>
+                  <Component id="JTemail" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BotonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BotonLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -107,14 +114,19 @@
         <Property name="text" type="java.lang.String" value="Datos Paciente"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="JLnombre">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Nombre paciente:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="JLci">
       <Properties>
         <Property name="text" type="java.lang.String" value="C.I:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="JLnombre">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nombre:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="JLapellido">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Apellido:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="JLtelefono">
@@ -127,12 +139,14 @@
         <Property name="text" type="java.lang.String" value="Email:"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JTextField" name="JTci">
+    </Component>
     <Component class="javax.swing.JTextField" name="JTnombre">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTnombreActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="JTci">
+    <Component class="javax.swing.JTextField" name="JTapellido">
     </Component>
     <Component class="javax.swing.JTextField" name="JTtelefono">
     </Component>

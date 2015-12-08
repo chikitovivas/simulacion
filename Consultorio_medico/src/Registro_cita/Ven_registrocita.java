@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 package Registro_cita;
+import consultorio_medico.Proyecto;
 import java.awt.BorderLayout;
-
+import javax.swing.JOptionPane;
 /**
  *
- * @author Administrador
+ * @author Pat
  */
 public class Ven_registrocita extends javax.swing.JFrame {
 
@@ -29,12 +30,14 @@ public class Ven_registrocita extends javax.swing.JFrame {
     private void initComponents() {
 
         JLtitulo = new javax.swing.JLabel();
-        JLnombre = new javax.swing.JLabel();
         JLci = new javax.swing.JLabel();
+        JLnombre = new javax.swing.JLabel();
+        JLapellido = new javax.swing.JLabel();
         JLtelefono = new javax.swing.JLabel();
         JLemail = new javax.swing.JLabel();
-        JTnombre = new javax.swing.JTextField();
         JTci = new javax.swing.JTextField();
+        JTnombre = new javax.swing.JTextField();
+        JTapellido = new javax.swing.JTextField();
         JTtelefono = new javax.swing.JTextField();
         JTemail = new javax.swing.JTextField();
         BotonCancelar = new javax.swing.JButton();
@@ -52,9 +55,11 @@ public class Ven_registrocita extends javax.swing.JFrame {
         JLtitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         JLtitulo.setText("Datos Paciente");
 
-        JLnombre.setText("Nombre paciente:");
-
         JLci.setText("C.I:");
+
+        JLnombre.setText("Nombre:");
+
+        JLapellido.setText("Apellido:");
 
         JLtelefono.setText("Télefono:");
 
@@ -97,55 +102,61 @@ public class Ven_registrocita extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(JLtitulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(69, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JLnombre)
-                            .addComponent(JLci)
-                            .addComponent(JLtelefono)
-                            .addComponent(JLemail))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JTnombre)
-                            .addComponent(JTci)
-                            .addComponent(JTtelefono)
-                            .addComponent(JTemail, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BotonCancelar)
                         .addGap(41, 41, 41)
                         .addComponent(BotonLimpiar)
                         .addGap(37, 37, 37)
-                        .addComponent(BotonCrear)))
+                        .addComponent(BotonCrear))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JLtelefono)
+                            .addComponent(JLemail)
+                            .addComponent(JLnombre)
+                            .addComponent(JLci)
+                            .addComponent(JLapellido))
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JTnombre)
+                            .addComponent(JTci)
+                            .addComponent(JTtelefono)
+                            .addComponent(JTemail, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addComponent(JTapellido))))
                 .addGap(63, 63, 63))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(JLtitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(JLtitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLnombre)
-                    .addComponent(JTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLci)
                     .addComponent(JTci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLtelefono)
-                    .addComponent(JTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                    .addComponent(JTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLnombre))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JTapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLapellido))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLtelefono))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JLemail)
                     .addComponent(JTemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonCancelar)
                     .addComponent(BotonLimpiar)
@@ -168,9 +179,9 @@ public class Ven_registrocita extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Fondo_Formulariopaciente AplicarFondo = new Fondo_Formulariopaciente();
         
-        this.add (AplicarFondo , BorderLayout.SOUTH);
+        this.add (AplicarFondo, BorderLayout.SOUTH);
         AplicarFondo.repaint();
-    
+   
     }//GEN-LAST:event_formWindowOpened
 
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
@@ -181,14 +192,40 @@ public class Ven_registrocita extends javax.swing.JFrame {
     private void BotonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLimpiarActionPerformed
         JTnombre.setText("") ; 
         JTci.setText("");
-        JTci.setText( "" ) ; 
-        JTemail.setText( "" ) ; 
+        JTapellido.setText("");
+        JTtelefono.setText("") ; 
+        JTemail.setText("") ; 
     }//GEN-LAST:event_BotonLimpiarActionPerformed
 
     private void BotonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCrearActionPerformed
+        String datos[] = new String [4];
+        
+        if (JTci.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor ingrese cedula del paciente");
+        }else{
+            datos[0] = JTci.getText();
+        }
+        
+        if (JTnombre.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor ingrese Nombre del paciente");
+        }else{
+            datos[1] = JTnombre.getText();
+        }
+        
+        if (JTapellido.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor ingrese Apellido del paciente");
+        }else{
+            datos[2] = JTapellido.getText();
+        }
+        
+        if (JTtelefono.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor ingrese Telefono del paciente");
+        }else{
+            datos[3]= JTtelefono.getText();
+        }        
         
         
-        
+        Cod_registrocita(datos);
         
     }//GEN-LAST:event_BotonCrearActionPerformed
 
@@ -231,14 +268,20 @@ public class Ven_registrocita extends javax.swing.JFrame {
     private javax.swing.JButton BotonCancelar;
     private javax.swing.JButton BotonCrear;
     private javax.swing.JButton BotonLimpiar;
+    private javax.swing.JLabel JLapellido;
     private javax.swing.JLabel JLci;
     private javax.swing.JLabel JLemail;
     private javax.swing.JLabel JLnombre;
     private javax.swing.JLabel JLtelefono;
     private javax.swing.JLabel JLtitulo;
+    private javax.swing.JTextField JTapellido;
     private javax.swing.JTextField JTci;
     private javax.swing.JTextField JTemail;
     private javax.swing.JTextField JTnombre;
     private javax.swing.JTextField JTtelefono;
     // End of variables declaration//GEN-END:variables
+
+    private void Cod_registrocita(String[] datos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

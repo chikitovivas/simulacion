@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Administrador
+ * @author Pat
  */
 public class Fondo_Formulariopaciente  extends javax.swing.JPanel { 
     public Fondo_Formulariopaciente(){
