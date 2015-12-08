@@ -5,7 +5,6 @@
  */
 package consultorio_medico;
 
-import BD.Clase_resultset;
 import Calendario_Consultorio.Ven_calendario;
 
 /**
@@ -15,7 +14,7 @@ import Calendario_Consultorio.Ven_calendario;
 public class Proyecto {
     static Ven_switch Switch;
     
-    static public Clase_resultset con=new Clase_resultset();
+   
     
     public static void main(String[] args) {
         

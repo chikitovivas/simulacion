@@ -20,14 +20,14 @@ public class Ven_calendario extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     Cod_calendario logica;
+    
     public Ven_calendario(Object citas) {               
         initComponents();
-       logica=new Cod_calendario(citas);
-       
-  
-       
+      // logica=new Cod_calendario(citas);               
        
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
