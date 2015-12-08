@@ -8,6 +8,7 @@ import JSON.JSON;
 import consultorio_medico.Proyecto;
 import java.awt.BorderLayout;
 import java.io.IOException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,10 +22,26 @@ public class Ven_registrocita extends javax.swing.JFrame {
     /**
      * Creates new form Ven_registrocita
      */
-    public Ven_registrocita() {
-        initComponents();
+    Date fechahora;
+    
+    public Ven_registrocita(Date fecha_hora) {
+       
+                fechahora=fecha_hora;
+        
+        initComponents();               
+        
+        
     }
-
+    
+     /*  public Ven_registrocita(Date fecha_hora, String[] datos ) {
+        Date jk = new Date();
+                jk=fecha_hora;
+        
+        initComponents();               
+        
+        
+    }*/
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,6 +86,12 @@ public class Ven_registrocita extends javax.swing.JFrame {
         JLtelefono.setText("Télefono:");
 
         JLemail.setText("Email:");
+
+        JTci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTciActionPerformed(evt);
+            }
+        });
 
         JTnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,9 +226,10 @@ public class Ven_registrocita extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonLimpiarActionPerformed
 
     private void BotonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCrearActionPerformed
-        
-            String datos[] = new String [4];
-            String titulo_datos[] = new String [4];
+                        
+        try {
+            String datos[] = new String [5];
+            String titulo_datos[] = new String [5];
             
             if (JTci.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Por favor ingrese cedula del paciente");
@@ -236,20 +260,27 @@ public class Ven_registrocita extends javax.swing.JFrame {
             titulo_datos[1]= "nombre";                     
             titulo_datos[2]= "apellido";
             titulo_datos[3]= "telefono";
-
-        try {
+            titulo_datos[4]= "fechahora";
+             datos[4]= this.fechahora.toString(); //dd-mm-aaaa 24:00
+             System.out.println("fwe");
+            System.out.println(datos[4]);
+            System.out.println("gdgd");
             
             JSON.JSON_agregar(titulo_datos, datos, 4, "http://miconsultoriocal.no-ip.org:8000/hacercita");
         
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(Ven_registrocita.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JSONException ex) {
-            Logger.getLogger(Ven_registrocita.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }  
+        
+
         
     
         
     }//GEN-LAST:event_BotonCrearActionPerformed
+
+    private void JTciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTciActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTciActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,7 +312,9 @@ public class Ven_registrocita extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ven_registrocita().setVisible(true);
+                Date fecha = new Date();
+               
+                new Ven_registrocita(fecha).setVisible(true);
             }
         });
     }
