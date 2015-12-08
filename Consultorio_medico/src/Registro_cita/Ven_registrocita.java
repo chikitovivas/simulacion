@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package Registro_cita;
+import JSON.JSON;
 import consultorio_medico.Proyecto;
 import java.awt.BorderLayout;
-import javax.swing.JFrame;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.shaper.StandardButtonShaper;
 /**
  *
  * @author Pat
@@ -21,12 +22,6 @@ public class Ven_registrocita extends javax.swing.JFrame {
      */
     public Ven_registrocita() {
         initComponents();
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");      
-        this.BotonCrear.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-        this.BotonLimpiar.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-        this.BotonCancelar.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-
     }
 
     /**
@@ -207,34 +202,46 @@ public class Ven_registrocita extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonLimpiarActionPerformed
 
     private void BotonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCrearActionPerformed
-        String datos[] = new String [4];
-        
-        if (JTci.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Por favor ingrese cedula del paciente");
-        }else{
-            datos[0] = JTci.getText();
+        try {
+            String datos[] = new String [4];
+            String titulo_datos[] = new String [4];
+            
+            if (JTci.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Por favor ingrese cedula del paciente");
+            }else{
+                datos[0] = JTci.getText();
+            }
+            
+            if (JTnombre.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Por favor ingrese Nombre del paciente");
+            }else{
+                datos[1] = JTnombre.getText();
+            }
+            
+            if (JTapellido.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Por favor ingrese Apellido del paciente");
+            }else{
+                datos[2] = JTapellido.getText();
+            }
+            
+            if (JTtelefono.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Por favor ingrese Telefono del paciente");
+            }else{
+                datos[3]= JTtelefono.getText();
+            }
+            
+            
+            
+            titulo_datos[0]= "ci";
+            titulo_datos[1]= "nombre";                     
+            titulo_datos[2]= "apellido";
+            titulo_datos[3]= "telefono";
+
+            JSON.JSON_agregar(titulo_datos, datos, 4, "http://miconsultoriocal.no-ip.org:8000/hacercita");
+        } catch (IOException ex) {
+            Logger.getLogger(Ven_registrocita.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if (JTnombre.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Por favor ingrese Nombre del paciente");
-        }else{
-            datos[1] = JTnombre.getText();
-        }
-        
-        if (JTapellido.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Por favor ingrese Apellido del paciente");
-        }else{
-            datos[2] = JTapellido.getText();
-        }
-        
-        if (JTtelefono.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Por favor ingrese Telefono del paciente");
-        }else{
-            datos[3]= JTtelefono.getText();
-        }        
-        
-        
-        Cod_registrocita(datos);
+    
         
     }//GEN-LAST:event_BotonCrearActionPerformed
 
@@ -294,3 +301,4 @@ public class Ven_registrocita extends javax.swing.JFrame {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
+
