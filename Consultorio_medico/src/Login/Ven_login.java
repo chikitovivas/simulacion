@@ -146,7 +146,7 @@ public class Ven_login extends javax.swing.JFrame {
     }//GEN-LAST:event_L_olvidoMouseEntered
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Proyecto.con.iniciar_user(T_nick.getText(), T_pass.getText());
+        //Proyecto.con.iniciar_user(T_nick.getText(), T_pass.getText());
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

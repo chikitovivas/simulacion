@@ -7,7 +7,7 @@ package Login;
 
 //import consultorio_medico.Proyecto;
 
-import BD.ConexionBD;
+import BD.Clase_resultset;
 import consultorio_medico.Proyecto;
 import java.sql.Connection;
 import java.sql.SQLException;
