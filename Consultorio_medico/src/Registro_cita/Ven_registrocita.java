@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.json.JSONException;
 /**
  *
  * @author Pat
@@ -202,7 +203,7 @@ public class Ven_registrocita extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonLimpiarActionPerformed
 
     private void BotonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCrearActionPerformed
-        try {
+        
             String datos[] = new String [4];
             String titulo_datos[] = new String [4];
             
@@ -230,17 +231,22 @@ public class Ven_registrocita extends javax.swing.JFrame {
                 datos[3]= JTtelefono.getText();
             }
             
-            
-            
+                        
             titulo_datos[0]= "ci";
             titulo_datos[1]= "nombre";                     
             titulo_datos[2]= "apellido";
             titulo_datos[3]= "telefono";
 
+        try {
+            
             JSON.JSON_agregar(titulo_datos, datos, 4, "http://miconsultoriocal.no-ip.org:8000/hacercita");
+        
         } catch (IOException ex) {
             Logger.getLogger(Ven_registrocita.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException ex) {
+            Logger.getLogger(Ven_registrocita.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     
         
     }//GEN-LAST:event_BotonCrearActionPerformed
