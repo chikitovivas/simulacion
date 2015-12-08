@@ -6,6 +6,8 @@
 package consultorio_medico;
 
 import Calendario_Consultorio.Ven_calendario;
+import javax.swing.JFrame;
+import org.jvnet.substance.SubstanceLookAndFeel;
 
 /**
  *
@@ -18,9 +20,20 @@ public class Proyecto {
     
     public static void main(String[] args) {
         
-       Switch= new Ven_switch();
-       Switch.setVisible(true);
-       Switch.cambiar_vent(new Ven_calendario(null));
+       
+       java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+
+                JFrame.setDefaultLookAndFeelDecorated(true);
+
+              SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
+            Switch= new Ven_switch();
+            Switch.setVisible(true);
+            Switch.cambiar_vent(new Ven_calendario(null));
+               
+            }
+        });
         
     }
     
