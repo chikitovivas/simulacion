@@ -5,6 +5,7 @@
  */
 package Calendario_Consultorio;
 
+import consultorio_medico.Proyecto;
 import java.awt.event.MouseEvent;
 import java.util.Date;
 
@@ -24,7 +25,7 @@ public class Ven_calendario extends javax.swing.JFrame {
     public Ven_calendario(Object citas) {               
         initComponents();
       // logica=new Cod_calendario(citas);               
-       
+        
     }
     
     
@@ -59,14 +60,14 @@ public class Ven_calendario extends javax.swing.JFrame {
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Calen1, javax.swing.GroupLayout.DEFAULT_SIZE, 963, Short.MAX_VALUE)
+                .addComponent(Calen1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
                 .addContainerGap())
         );
         PanelLayout.setVerticalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Calen1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                .addComponent(Calen1, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

@@ -12,7 +12,7 @@ import Calendario_Consultorio.Ven_calendario;
  * @author Nico
  */
 public class Proyecto {
-    static Ven_switch Switch;
+    public static Ven_switch Switch;
     
    
     
