@@ -51,30 +51,42 @@ public class Cod_calendario {
             return null;
         int dist=0;
         Date[] aux=new Date[fil];
-        
+        Date[]aux2;
         
         int[] auxdicc=new int[fil];
         
         aux[dist]=(Date)citas[0][0];
         auxdicc[0]=dist++;
         
-        for(int i=1;i<fil;i++){
-            if(aux[i-1]!=citas[i][0]){
+        
+        
+        for(int i=1;i<fil;i++){           
+            if(aux[dist-1].compareTo((Date)citas[i][0])!=0){                
                 aux[dist]=(Date)citas[i][0]; //moviendo filas                
-                auxdicc[dist++]=i;
-                System.out.println(i);
+                auxdicc[dist++]=i;                                
               }                         
         }
-          
-        Diccionario=auxdicc; //inicializando diccionario
         
-    return aux;
+        aux2=new Date[dist];  
+        Diccionario=new int[dist];
+        
+        for(int i=0;i<dist;i++){
+            aux2[i]=aux[i];
+            Diccionario[i]=auxdicc[i];
+        }
+        
+        
+    return aux2;
     }
         
 
     
     public Object[][] procesar_cita(int dia,int mes, int anyo){
         int max=puntos.length;
+        //System.out.println(max+" tamano de puntos");
+        if(max<=0)
+            return null;
+        
         int pos_ini; //posicion incial de la fecha requerida
         int aaaaaja=-1;
         for(pos_ini=0;pos_ini<max;pos_ini++){
@@ -125,7 +137,7 @@ public class Cod_calendario {
         // PRUEBA COD CALENDARIO
          public static void main(String args[]) {
              Object[][] tuplas=null;
-             int col=3,fil=5; //valores iniciales
+             int col=3,fil=40; //valores iniciales
                           
              Calendar calendario = Calendar.getInstance();
              
@@ -147,13 +159,28 @@ public class Cod_calendario {
         }
          
         private static Object[][] llenar_prueba(int fil,int col, Object[][] tuplas, Date fecha){
+                       Date fecha2=new Date();
+                       Date fecha3=new Date();
+                       Date fecha4=new Date();
+                       fecha2.setDate(5);
+                       fecha3.setMonth(5);
+                       fecha4.setYear(116);
+                       System.out.println("Fecha 1 "+fecha+" Fecha 2 "+fecha2+" Fecha 3 "+fecha3+" Fecha 4 "+fecha4);
+                       
+                       int F=fil-1;
                        
             for(int i=0;i<fil;i++){
                  for(int j=0;j<col;j++){
                      //agregando fecha
                      
                      if(j==0){                        
-                         tuplas[i][j]=fecha;                                                                           
+                         switch(i){
+                            case 0: tuplas[i][j]=fecha3;break;
+                            case 1: tuplas[i][j]=fecha2;break;
+                            case 2: tuplas[i][j]=fecha;break;                            
+                            default: tuplas[i][j]=fecha; if(i==fil-1)tuplas[i][j]=fecha4;break;            
+                        }       
+                        // tuplas[i][j]=fecha;                                                                           
                      }else{
                          tuplas[i][j]="MIERDA";                     
                      }                                          
@@ -189,12 +216,12 @@ public class Cod_calendario {
             System.out.println("Vector puntos");
             for(int i=0;i<puntos.length;i++)
                System.out.println(puntos[i]);
-            
+            /*
             if(puntos[0].compareTo(puntos[1])==-1)
                 System.out.println("el anterior es menor");
             else 
                 System.out.println("el anterior NO es menor "+puntos[0].compareTo(puntos[1]));
-                        
+             */           
         }   
          
 }
