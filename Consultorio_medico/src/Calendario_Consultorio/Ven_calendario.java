@@ -122,7 +122,7 @@ public class Ven_calendario extends javax.swing.JFrame {
         //System.out.println(aux.getDate());
         //System.out.println(aux.getMonth()); //Los meses empiezan desde 0->enero       
         
-        Object[][] mierda_para_cabral=logica.procesar_cita(aux.getDate(), aux.getMonth(), aux.getYear());
+        Object[][] mierda_para_cabral=logica.procesar_cita(aux);
         
         Ven_registrocita_1 toma_tu_mierda_cabral= new Ven_registrocita_1(day,aux.getDate(),aux.getMonth(),aux.getYear(),mierda_para_cabral);
         
