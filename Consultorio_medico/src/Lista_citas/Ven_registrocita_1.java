@@ -33,6 +33,10 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         initComponents();
     }
 
+    public Ven_registrocita_1(String day, int date, int month, int year, Object[][] mierda_para_cabral) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
