@@ -26,7 +26,6 @@ public class Cod_registrocita {
             titulo_datos[5]= "fechahora";
              
             
-
             //Datos para el JSON
             JSON.JSON_agregar(titulo_datos, datos, 6, "http://miconsultoriocal.no-ip.org:8000/hacercita");
         
