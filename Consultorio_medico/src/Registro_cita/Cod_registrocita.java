@@ -7,6 +7,8 @@ package Registro_cita;
 import JSON.JSON;
 import java.io.IOException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
 /**
@@ -15,7 +17,7 @@ import org.json.JSONException;
  */
 public class Cod_registrocita {
     
-    Cod_registrocita(String[] datos) throws IOException, ClientProtocolException, JSONException{
+    Cod_registrocita(String[] datos) {
          String titulo_datos[] = new String [6];
         
             titulo_datos[0]= "ciPaciente";
@@ -26,11 +28,18 @@ public class Cod_registrocita {
             titulo_datos[5]= "fechahora";
              
             
+        try {
             //Datos para el JSON
-          //  JSON.JSON_agregar(titulo_datos, datos, 6, "http://miconsultoriocal.no-ip.org:8000/hacercita");
-              JSON.JSON_agregar(titulo_datos, datos, 6, "http://169.254.105.188:8000/hacercita");
-           // JSON.JSON_agregar(titulo_datos, datos, 6, "http://localhost:8000/hacercita");
-        
+
+            //JSON.JSON_agregar(titulo_datos, datos, 6, "http://miconsultoriocal.no-ip.org:8000/hacercita");
+            JSON.JSON_agregar(titulo_datos, datos, 6, "hacerCita");
+        } catch (IOException ex) {
+            Logger.getLogger(Cod_registrocita.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException ex) {
+            Logger.getLogger(Cod_registrocita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     
             
     }
