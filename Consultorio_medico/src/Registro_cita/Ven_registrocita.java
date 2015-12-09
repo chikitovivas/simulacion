@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.json.JSONException;
+import Registro_cita.Cod_registrocita;
 /**
  *
  * @author Pat
@@ -22,24 +23,20 @@ public class Ven_registrocita extends javax.swing.JFrame {
     /**
      * Creates new form Ven_registrocita
      */
-    Date fechahora;
+    Date fechahoraG;
     
     public Ven_registrocita(Date fecha_hora) {
        
-                fechahora=fecha_hora;
+        fechahoraG=fecha_hora;
         
-        initComponents();               
-        
-        
+        initComponents(); 
     }
     
      /*  public Ven_registrocita(Date fecha_hora, String[] datos ) {
         Date jk = new Date();
                 jk=fecha_hora;
         
-        initComponents();               
-        
-        
+        initComponents();     
     }*/
     
     /**
@@ -133,16 +130,16 @@ public class Ven_registrocita extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(135, 135, 135)
                 .addComponent(JLtitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(69, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BotonCancelar)
                         .addGap(41, 41, 41)
                         .addComponent(BotonLimpiar)
-                        .addGap(37, 37, 37)
-                        .addComponent(BotonCrear))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addComponent(BotonCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(JLtelefono)
@@ -227,9 +224,8 @@ public class Ven_registrocita extends javax.swing.JFrame {
 
     private void BotonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCrearActionPerformed
                         
-        try {
-            String datos[] = new String [5];
-            String titulo_datos[] = new String [5];
+            String datos[] = new String [6];
+            
             
             if (JTci.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Por favor ingrese cedula del paciente");
@@ -255,26 +251,11 @@ public class Ven_registrocita extends javax.swing.JFrame {
                 datos[3]= JTtelefono.getText();
             }
             
-                        
-            titulo_datos[0]= "ci";
-            titulo_datos[1]= "nombre";                     
-            titulo_datos[2]= "apellido";
-            titulo_datos[3]= "telefono";
-            titulo_datos[4]= "fechahora";
-             datos[4]= this.fechahora.toString(); //dd-mm-aaaa 24:00
-             System.out.println("fwe");
-            System.out.println(datos[4]);
-            System.out.println("gdgd");
+            datos[4]= "25620021";
+            datos[5]= fechahoraG.toString(); //dd-mm-aaaa 24:00   
             
-            JSON.JSON_agregar(titulo_datos, datos, 4, "http://miconsultoriocal.no-ip.org:8000/hacercita");
+            Cod_registrocita(datos);
         
-        } catch (Exception ex) {
-            Logger.getLogger(Ven_registrocita.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-        
-
-        
-    
         
     }//GEN-LAST:event_BotonCrearActionPerformed
 
