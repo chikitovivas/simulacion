@@ -5,6 +5,7 @@
  */
 package Calendario_Consultorio;
 
+import Lista_citas.Ven_registrocita_1;
 import consultorio_medico.Proyecto;
 import java.awt.event.MouseEvent;
 import java.util.Date;
