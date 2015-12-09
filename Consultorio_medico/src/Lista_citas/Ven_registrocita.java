@@ -303,3 +303,4 @@ public class Ven_registrocita extends javax.swing.JFrame {
     }
 }
 
+//s;
