@@ -48,11 +48,6 @@ public class Ven_calendario extends javax.swing.JFrame {
         Panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         Calen1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Calen1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Calen1MouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
         Panel.setLayout(PanelLayout);
@@ -131,10 +126,6 @@ public class Ven_calendario extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         pruebacalen();    
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void Calen1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Calen1MouseClicked
-        pruebacalen();    
-    }//GEN-LAST:event_Calen1MouseClicked
 
     /**
      * @param args the command line arguments

@@ -5,14 +5,10 @@
  */
 package Calendario_Consultorio;
 
-import consultorio_medico.Proyecto;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -21,8 +17,8 @@ import java.util.logging.Logger;
 
 public class Cod_calendario {
  
-    Date[] puntos;
-    int[] Diccionario;
+    public Date[] puntos;    
+    public int[] Diccionario=null;
     int col,fil;    
     Object[][] tuplas;
     
@@ -54,19 +50,23 @@ public class Cod_calendario {
         if (citas==null)
             return null;
         int dist=0;
-        Object[] aux=new Object[fil];
+        Date[] aux=new Date[fil];
         
-        aux[dist++]=citas[0][0];
-        Diccionario[0]=dist++;
+        
+        int[] auxdicc=new int[fil];
+        
+        aux[dist]=(Date)citas[0][0];
+        auxdicc[0]=dist++;
         
         for(int i=1;i<fil;i++){
-            if(aux[i-1]!=citas[0][i]){
-                aux[dist++]=citas[0][i]; //moviendo filas
-                Diccionario[dist++]=i;
-            }                         
+            if(aux[i-1]!=citas[i][0]){
+                aux[dist]=(Date)citas[i][0]; //moviendo filas                
+                auxdicc[dist++]=i;
+                System.out.println(i);
+              }                         
         }
           
-        
+        Diccionario=auxdicc; //inicializando diccionario
         
     return aux;
     }
@@ -121,4 +121,83 @@ public class Cod_calendario {
     
     
    
+            
+        // PRUEBA COD CALENDARIO
+         public static void main(String args[]) {
+             Object[][] tuplas=null;
+             int col=3,fil=5; //valores iniciales
+                          
+             Calendar calendario = Calendar.getInstance();
+             
+             Date fecha=calendario.getTime();
+             
+             
+             
+             //fecha.setDate(0); fecha.setHours(0); fecha.setMinutes(0); fecha.setMonth(0); fecha.setSeconds(0); fecha.setYear(0);
+             
+             tuplas=new Object[fil][col]; 
+             
+             tuplas=llenar_prueba(fil,col,tuplas,fecha);
+             imprimir_prueba(fil,col,tuplas);
+             
+             Cod_calendario calen= new Cod_calendario(col,fil,tuplas);
+             imprimir_puntos_diccionario(calen.col, calen.fil, calen.puntos, calen.Diccionario);
+             
+             
+        }
+         
+        private static Object[][] llenar_prueba(int fil,int col, Object[][] tuplas, Date fecha){
+                       
+            for(int i=0;i<fil;i++){
+                 for(int j=0;j<col;j++){
+                     //agregando fecha
+                     
+                     if(j==0){                        
+                         tuplas[i][j]=fecha;                                                                           
+                     }else{
+                         tuplas[i][j]="MIERDA";                     
+                     }                                          
+                 }             
+             }
+            
+            
+            return tuplas;
+        }
+         
+        private static void imprimir_prueba(int fil,int col, Object[][] tuplas){
+            for(int i=0;i<fil;i++){
+                for (int j=0;j<col;j++){
+                    System.out.print(tuplas[i][j]+" ");                
+                }
+                System.out.println();
+            
+            }
+        
+        
+        
+        }
+         
+         
+        private static void imprimir_puntos_diccionario(int fil,int col,Date[] puntos, int[] diccionario){            
+            System.out.println();System.out.println();
+            System.out.println("Vector Diccionario");
+            for(int i=0;i<diccionario.length;i++)
+               System.out.println(diccionario[i]);
+            
+            
+            System.out.println();System.out.println();
+            System.out.println("Vector puntos");
+            for(int i=0;i<puntos.length;i++)
+               System.out.println(puntos[i]);
+            
+            if(puntos[0].compareTo(puntos[1])==-1)
+                System.out.println("el anterior es menor");
+            else 
+                System.out.println("el anterior NO es menor "+puntos[0].compareTo(puntos[1]));
+                        
+        }   
+         
 }
+
+
+

@@ -85,9 +85,6 @@
               </Border>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Calen1MouseClicked"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
