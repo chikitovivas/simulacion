@@ -36,7 +36,7 @@ public class PruebaJsonNico {
         HttpClient client = new DefaultHttpClient();
         int id=1;
         String dirLAN="169.254.105.188";// con router nico NO WIFI
-          //HttpGet get = new HttpGet("http://miconsultoriocal.no-ip.org:8000/cita");
+          //HttpGet get = new HttpGet("http://miconsultoriocal.no-ip.org:8000/cita/"+ci);
           //HttpGet get = new HttpGet("http://localhost:8000/cita");   //para pedir toda la tabla cita
           HttpGet get = new HttpGet("http://"+dirLAN+":8000/cita/"+ci);
 
