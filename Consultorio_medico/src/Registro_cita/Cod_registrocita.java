@@ -27,7 +27,9 @@ public class Cod_registrocita {
              
             
             //Datos para el JSON
-            JSON.JSON_agregar(titulo_datos, datos, 6, "http://miconsultoriocal.no-ip.org:8000/hacercita");
+          //  JSON.JSON_agregar(titulo_datos, datos, 6, "http://miconsultoriocal.no-ip.org:8000/hacercita");
+              JSON.JSON_agregar(titulo_datos, datos, 6, "http://169.254.105.188:8000/hacercita");
+           // JSON.JSON_agregar(titulo_datos, datos, 6, "http://localhost:8000/hacercita");
         
     
             
