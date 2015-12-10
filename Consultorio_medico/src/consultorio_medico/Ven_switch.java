@@ -28,6 +28,8 @@ public class Ven_switch extends javax.swing.JFrame {
     }   
 
     public void cambiar_vent(JFrame aux){
+       JFrame.setDefaultLookAndFeelDecorated(true);
+       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
        this.getContentPane().removeAll();       
        this.setBounds(aux.getBounds());       
        this.setContentPane(aux.getContentPane());    
