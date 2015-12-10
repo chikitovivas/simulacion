@@ -224,7 +224,7 @@ public class Ven_registrocita extends javax.swing.JFrame {
 
     private void BotonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCrearActionPerformed
                         
-            String datos[] = new String [6];
+            String datos[] = new String [7];
             
             
             if (JTci.getText().equals("")){
@@ -250,9 +250,15 @@ public class Ven_registrocita extends javax.swing.JFrame {
             }else{
                 datos[3]= JTtelefono.getText();
             }
+            if (JTemail.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Por favor ingrese Telefono del paciente");
+            }else{
+                datos[4]= JTemail.getText();
+            }
             
-            datos[4]= "25620021";
-            datos[5]= fechahoraG.toString(); //dd-mm-aaaa 24:00   
+            
+            datos[5]= "25620021";
+            datos[6]= fechahoraG.toString(); //dd-mm-aaaa 24:00   
             
             Cod_registrocita(datos);
         
