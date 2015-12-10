@@ -120,9 +120,9 @@ public class PruebaJsonNico {
                     case 0:aux[i][j]=crear_date(json.getJSONObject(i).get(keys.getString(j)));break;
                     default: aux[i][j]=json.getJSONObject(i).get(keys.getString(j));break;                
                 }
-                System.out.print(aux[i][j]+" ");
+                //System.out.print(aux[i][j]+" ");
             }                           
-           System.out.println();
+           //System.out.println();
         }
                                          
         
