@@ -5,6 +5,10 @@
  */
 package Login;
 
+import javax.swing.JFrame;
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.shaper.StandardButtonShaper;
+
 /**
  *
  * @author Nico
@@ -16,6 +20,12 @@ public class Ven_desconectar extends javax.swing.JFrame {
      */
     public Ven_desconectar() {
         initComponents();
+        
+         JFrame.setDefaultLookAndFeelDecorated(true);
+       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
+        
+        this.jButton1.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        this.jButton2.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
     }
 
     /**

@@ -6,6 +6,8 @@
 package consultorio_medico;
 
 import javax.swing.JFrame;
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.shaper.StandardButtonShaper;
 
 /**
  *
@@ -19,8 +21,11 @@ public class Ven_switch extends javax.swing.JFrame {
      * Creates new form Ven_cambiable
      */
     public Ven_switch() {
-        initComponents();    
-    }
+        initComponents();   
+        JFrame.setDefaultLookAndFeelDecorated(true);
+       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
+        
+    }   
 
     public void cambiar_vent(JFrame aux){
        this.getContentPane().removeAll();
@@ -45,7 +50,8 @@ public class Ven_switch extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(650, 300));
+        setMinimumSize(new java.awt.Dimension(400, 309));
+        setPreferredSize(new java.awt.Dimension(410, 315));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

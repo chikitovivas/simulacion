@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Registro_cita;
+
 import JSON.JSON;
 import consultorio_medico.Proyecto;
 import java.awt.BorderLayout;
@@ -14,6 +15,10 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.json.JSONException;
 import Registro_cita.Cod_registrocita;
+import javax.swing.JFrame;
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.shaper.StandardButtonShaper;
+
 /**
  *
  * @author Pat
@@ -24,21 +29,27 @@ public class Ven_registrocita extends javax.swing.JFrame {
      * Creates new form Ven_registrocita
      */
     Date fechahoraG;
-    
+
     public Ven_registrocita(Date fecha_hora) {
-       
-        fechahoraG=fecha_hora;
+
+        fechahoraG = fecha_hora;
+
+        initComponents();
+
+        JFrame.setDefaultLookAndFeelDecorated(true);
+       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
         
-        initComponents(); 
+        this.BotonCrear.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        this.BotonCancelar.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        this.BotonLimpiar.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
     }
-    
-     /*  public Ven_registrocita(Date fecha_hora, String[] datos ) {
-        Date jk = new Date();
-                jk=fecha_hora;
+
+    /*  public Ven_registrocita(Date fecha_hora, String[] datos ) {
+     Date jk = new Date();
+     jk=fecha_hora;
         
-        initComponents();     
-    }*/
-    
+     initComponents();     
+     }*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -194,7 +205,7 @@ public class Ven_registrocita extends javax.swing.JFrame {
 
 
     private void JTnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTnombreActionPerformed
-       // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_JTnombreActionPerformed
 
     private void JTemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTemailActionPerformed
@@ -203,66 +214,64 @@ public class Ven_registrocita extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Fondo_Formulariopaciente AplicarFondo = new Fondo_Formulariopaciente();
-        
-        this.add (AplicarFondo, BorderLayout.SOUTH);
+
+        this.add(AplicarFondo, BorderLayout.SOUTH);
         AplicarFondo.repaint();
-   
+
     }//GEN-LAST:event_formWindowOpened
 
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
         // TODO add your handling code here:
-        this.dispose ( ) ;
+        this.dispose();
     }//GEN-LAST:event_BotonCancelarActionPerformed
 
     private void BotonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLimpiarActionPerformed
-        JTnombre.setText("") ; 
+        JTnombre.setText("");
         JTci.setText("");
         JTapellido.setText("");
-        JTtelefono.setText("") ; 
-        JTemail.setText("") ; 
+        JTtelefono.setText("");
+        JTemail.setText("");
     }//GEN-LAST:event_BotonLimpiarActionPerformed
 
     private void BotonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCrearActionPerformed
-                        
-            String datos[] = new String [7];
-            
-            
-            if (JTci.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Por favor ingrese cedula del paciente");
-            }else{
-                datos[0] = JTci.getText();
-            }
-            
-            if (JTnombre.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Por favor ingrese Nombre del paciente");
-            }else{
-                datos[1] = JTnombre.getText();
-            }
-            
-            if (JTapellido.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Por favor ingrese Apellido del paciente");
-            }else{
-                datos[2] = JTapellido.getText();
-            }
-            
-            if (JTtelefono.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Por favor ingrese Telefono del paciente");
-            }else{
-                datos[3]= JTtelefono.getText();
-            }
-            if (JTemail.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Por favor ingrese Email del paciente");
-            }else{
-                datos[4]= JTemail.getText();
-            }
-            
-            
-            datos[5]= "25620021";
-            datos[6]= fechahoraG.toString(); //dd-mm-aaaa 24:00   
-            
-            Cod_registrocita(datos);
-        
-        
+
+        String datos[] = new String[7];
+
+        if (JTci.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese cedula del paciente");
+        } else {
+            datos[0] = JTci.getText();
+        }
+
+        if (JTnombre.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese Nombre del paciente");
+        } else {
+            datos[1] = JTnombre.getText();
+        }
+
+        if (JTapellido.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese Apellido del paciente");
+        } else {
+            datos[2] = JTapellido.getText();
+        }
+
+        if (JTtelefono.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese Telefono del paciente");
+        } else {
+            datos[3] = JTtelefono.getText();
+        }
+        if (JTemail.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese Email del paciente");
+        } else {
+            datos[4] = JTemail.getText();
+        }
+
+        datos[5] = "25620021";
+        datos[6] = fechahoraG.toString(); //dd-mm-aaaa 24:00   
+
+        Cod_registrocita(datos);
+
+
     }//GEN-LAST:event_BotonCrearActionPerformed
 
     private void JTciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTciActionPerformed
@@ -300,7 +309,7 @@ public class Ven_registrocita extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Date fecha = new Date();
-               
+
                 new Ven_registrocita(fecha).setVisible(true);
             }
         });
@@ -327,4 +336,3 @@ public class Ven_registrocita extends javax.swing.JFrame {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
-

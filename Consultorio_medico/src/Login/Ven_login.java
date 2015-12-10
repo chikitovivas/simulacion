@@ -7,7 +7,10 @@ package Login;
 
 
 import consultorio_medico.Proyecto;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.shaper.StandardButtonShaper;
 
 /**
  *
@@ -18,7 +21,15 @@ public class Ven_login extends javax.swing.JFrame {
     Cod_login log;
     public Ven_login() {
         this.log = new Cod_login();
-        initComponents();        
+        initComponents();     
+        
+        
+        JFrame.setDefaultLookAndFeelDecorated(true);
+       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
+       this.jButton1.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+       this.jButton2.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+       this.jButton3.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        
         L_olvido.setText("<HTML><U>"+L_olvido.getText()+"</U></HTML>");                 
     }
 

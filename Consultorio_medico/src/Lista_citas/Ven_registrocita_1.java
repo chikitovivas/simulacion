@@ -11,9 +11,12 @@ import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.shaper.StandardButtonShaper;
 /**
  *
  * @author Pat
@@ -31,6 +34,11 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         casita=  new String[]{"a","b","c"};
         
         initComponents();
+       JFrame.setDefaultLookAndFeelDecorated(true);
+       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
+        
+        this.BotonCrear.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+       
     }
 
     public Ven_registrocita_1(String day, int date, int month, int year, Object[][] mierda_para_cabral) {

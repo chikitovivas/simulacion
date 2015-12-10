@@ -7,6 +7,9 @@ package consultorio_medico;
 
 import Calendario_Consultorio.Ven_calendario;
 import JSON.Crearjsoncalendario;
+import javax.swing.JFrame;
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.shaper.StandardButtonShaper;
 
 /**
  *
@@ -19,6 +22,12 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        JFrame.setDefaultLookAndFeelDecorated(true);
+       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
+        
+        this.JBcalendario.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        this.JTconfiguracion.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        this.JThistorial.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
     }
 
     /**

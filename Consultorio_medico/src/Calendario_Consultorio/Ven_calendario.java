@@ -9,6 +9,9 @@ import Lista_citas.Ven_registrocita_1;
 import consultorio_medico.Proyecto;
 import java.awt.event.MouseEvent;
 import java.util.Date;
+import javax.swing.JFrame;
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.shaper.StandardButtonShaper;
 
 
 
@@ -25,6 +28,13 @@ public class Ven_calendario extends javax.swing.JFrame {
     
     public Ven_calendario(int fil,int col,Object[][] citas) {               
         initComponents();
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
+        
+      
+        
+        this.jButton1.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        
        logica=new Cod_calendario(fil,col,citas);               
         
     }
