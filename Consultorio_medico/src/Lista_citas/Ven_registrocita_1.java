@@ -9,14 +9,12 @@ import Registro_cita.Fondo_Formulariopaciente;
 import consultorio_medico.Proyecto;
 import java.awt.BorderLayout;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.shaper.StandardButtonShaper;
 /**
  *
  * @author Pat
@@ -31,18 +29,13 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
      */
     public Ven_registrocita_1() {
         
-        casita=  new String[]{"a","b","c"};
+    //    Ven_registrocita_1(day,aux.getDate(),aux.getMonth(),aux.getYear(),mierda_para_cabral);
+        
+        String [] imprimir = new String [5];
+        
+        casita= imprimir;
         
         initComponents();
-       JFrame.setDefaultLookAndFeelDecorated(true);
-       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
-        
-        this.BotonCrear.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-       
-    }
-
-    public Ven_registrocita_1(String day, int date, int month, int year, Object[][] mierda_para_cabral) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -152,9 +145,12 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
         //set text on right here
         String ss = (String) jList1.getSelectedValue();
-    //    String s = ;
+         char[] s = new char[5];
+        ss.getChars(0, 5, s, 0);
         
-        System.out.println(ss);
+        
+         
+        System.out.println(Arrays.toString(s));
         
         /* 
         
