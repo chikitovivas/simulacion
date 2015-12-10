@@ -140,9 +140,9 @@ public class Cod_calendario {
    
             
         // PRUEBA COD CALENDARIO
-         public static void main(String args[]) {
+         public static Cod_calendario main(String args[]) {
              Object[][] tuplas=null;
-             int col=10,fil=7; //valores iniciales
+             int col=6,fil=10; //valores iniciales
                           
              Calendar calendario = Calendar.getInstance();
              
@@ -162,14 +162,14 @@ public class Cod_calendario {
              //System.out.println("Fecha 1 "+fecha+" Fecha 2 "+fecha2+" Fecha 3 "+fecha3+" Fecha 4 "+fecha4);
              tuplas=llenar_prueba(fil,col,tuplas,fecha,fecha2,fecha3,fecha4);             
              
-             Cod_calendario calen= new Cod_calendario(col,fil,tuplas);
+             Cod_calendario calen= new Cod_calendario(fil,col,tuplas);
              
              System.out.println();System.out.println();             
              
              
              calen.procesar_cita(fecha4);
              
-             
+             return calen;
         }
          
         private static Object[][] llenar_prueba(int fil,int col, Object[][] tuplas, Date fecha,Date fecha2,Date fecha3,Date fecha4){

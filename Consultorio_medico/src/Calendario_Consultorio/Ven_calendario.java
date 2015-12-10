@@ -32,6 +32,11 @@ public class Ven_calendario extends javax.swing.JFrame {
         logica=new Cod_calendario(fil,col,citas);                       
     }
     
+    public Ven_calendario(){    //SOLO PARA PRUEBA
+        initComponents();
+        this.jButton1.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        logica=Cod_calendario.main(null);
+    }
     
 
     /**
@@ -177,7 +182,7 @@ public class Ven_calendario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ven_calendario(0,0,null).setVisible(true);                
+                new Ven_calendario().setVisible(true);                
             }
         });
     }
