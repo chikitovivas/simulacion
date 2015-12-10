@@ -12,12 +12,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.shaper.StandardButtonShaper;
 /**
  *
  * @author Pat
@@ -27,24 +24,52 @@ import org.jvnet.substance.shaper.StandardButtonShaper;
 
 public class Ven_registrocita_1 extends javax.swing.JFrame {
      String[] casita;
+     String fecha_mostrar;
+     String fecha_pato;
+     
+     String [] horario;
+     String [][] casex;
+     
     /**
      * Creates new form Ven_registrocita
      */
-    public Ven_registrocita_1() {
+    public Ven_registrocita_1( /*String sday, int day, int moth, int year, Object ocus_pocus */ ) {
+        
+        horario= new String[] {"08","09","10","11","12","13","14","15","16","17","18"};
+        
+  //      fecha_mostrar= sday + "  " + Integer.toString(day) +  "/" + Integer.toString(moth) + "/" + Integer.toString(year);
+  //      fecha_pato= Integer.toString(year) + "-" + Integer.toString(moth) + "-" + Integer.toString(day) + " ";
+        
+        casex = new String [][] {{"08","29.192.559","papa","sales","9202992-0414","@jodete"}, {"11","30.123.333","mama","sales","0414","@sasdas"}};
+        
+        
+        for(int zi=0; zi<=horario.length; zi++) {
+            for(int zy=0; zy<=horario.length; zy++) {
+                if (horario[zi].equals(casex[zy][0])) {              // (Date)casex[i][0].getHour
+                   String [] auxstring= horario;
+                   horario= new String[] {};
+                   
+                }
+            }  
+        }
+        
+          
+        
         
     //    Ven_registrocita_1(day,aux.getDate(),aux.getMonth(),aux.getYear(),mierda_para_cabral);
         
-        String [] imprimir = new String [5];
+        String [] imprimir = new String [] {horario[1]+ "", horario [2]};
+        
         
         casita= imprimir;
         
         initComponents();
-    
-        
-        this.BotonCrear.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-        
     }
 
+/*    private Ven_registrocita_1() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,6 +85,7 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
+        JLtitulo2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("formulariopaciente");
@@ -80,7 +106,7 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         });
 
         JLtitulo1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        JLtitulo1.setText("Citas");
+        JLtitulo1.setText(fecha_mostrar);
 
         jList1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jList1.setModel(new javax.swing.AbstractListModel() {
@@ -102,39 +128,44 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
 
         jButton1.setText("jButton1");
 
+        JLtitulo2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        JLtitulo2.setText("Personas");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(BotonCrear))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(BotonCrear))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(JLtitulo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JLtitulo1)
-                        .addGap(105, 105, 105)))
+                .addContainerGap()
+                .addComponent(jScrollPane1)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(JLtitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JLtitulo2)
+                .addGap(154, 154, 154))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(243, 243, 243)
+                .addComponent(JLtitulo1)
+                .addContainerGap(237, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JLtitulo1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLtitulo)
-                    .addComponent(JLtitulo1))
+                    .addComponent(JLtitulo2)
+                    .addComponent(JLtitulo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotonCrear)
-                .addContainerGap())
+                .addComponent(BotonCrear))
         );
 
         pack();
@@ -205,6 +236,7 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Ven_registrocita_1().setVisible(true);
             }
@@ -215,6 +247,7 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
     private javax.swing.JButton BotonCrear;
     private javax.swing.JLabel JLtitulo;
     private javax.swing.JLabel JLtitulo1;
+    private javax.swing.JLabel JLtitulo2;
     private javax.swing.JButton jButton1;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;

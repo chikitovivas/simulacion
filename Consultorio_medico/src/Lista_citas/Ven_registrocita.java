@@ -11,9 +11,7 @@ import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import org.jvnet.substance.SubstanceLookAndFeel;
 /**
  *
  * @author Pat
@@ -25,8 +23,6 @@ public class Ven_registrocita extends javax.swing.JFrame {
      */
     public Ven_registrocita() {
         initComponents();
-        JFrame.setDefaultLookAndFeelDecorated(true);
-       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
     }
 
     /**
