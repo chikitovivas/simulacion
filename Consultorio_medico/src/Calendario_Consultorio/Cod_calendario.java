@@ -113,21 +113,21 @@ public class Cod_calendario {
         Object[][] aux=null;            
         
         if (pos_ini+1==max){ // si estas parado en la ult tupla
-            aux=new Object[1][col-1];//solo guarda una tupla
+            aux=new Object[1][col];//solo guarda una tupla
             pos_ini=Diccionario[pos_ini];                        
             
-            for(int j=1;j<col;j++)//empezando despues de las fechas
-                aux[0][j-1]=tuplas[pos_ini][j];        
+            for(int j=0;j<col;j++)//empezando despues de las fechas
+                aux[0][j]=tuplas[pos_ini][j];        
         return aux;
 
         }else{ //no estas en la ult tupla
                                 
             int pos_fin=Diccionario[pos_ini+1]; //indice de la tuplas en la posicion final
             pos_ini=Diccionario[pos_ini];   //indice de las tuplas en la posicion incial            
-            aux=new Object[pos_fin-pos_ini][col-1];
+            aux=new Object[pos_fin-pos_ini][col];
             for(int i=0;i<pos_fin-pos_ini;i++){
-                for(int j=1;j<col;j++){
-                    aux[i][j-1]=tuplas[pos_ini+i][j];                
+                for(int j=0;j<col;j++){
+                    aux[i][j]=tuplas[pos_ini+i][j];                
                 }                        
             }            
         }

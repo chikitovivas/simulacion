@@ -115,16 +115,17 @@ public class Ven_calendario extends javax.swing.JFrame {
             case 7: day="Domingo";break;            
         }       
         
-        //Object[][] mierda_para_cabral=logica.procesar_cita(aux);        
-        System.out.println(aux);
-        Object[][] al=logica.procesar_cita(aux);
-        for(int i=0;i<al.length;i++){
-            for(int j=0;j<al[0].length;j++){
-                System.out.print(al[i][j]+" ");
+        try{
+            Object[][] mierda_para_cabral=logica.procesar_cita(aux);        
+            //System.out.println(aux);
+
+            for(int i=0;i<mierda_para_cabral.length;i++){
+                for(int j=0;j<mierda_para_cabral[0].length;j++){
+                    System.out.print(mierda_para_cabral[i][j]+" ");
+                }
+            System.out.println();
             }
-        System.out.println();
-        }
-        
+
         /*
         Ven_registrocita_1 toma_tu_mierda_cabral= new Ven_registrocita_1(day,           //el dia si te pierdes puede mirar arriba cabron
                                                                          aux.getDate(), // numero del dia
@@ -132,6 +133,10 @@ public class Ven_calendario extends javax.swing.JFrame {
                                                                          aux.getYear()+1900,// numero del año
                                                                          mierda_para_cabral);// tabla con las tuplas que te importan         
         */
+        }catch(Exception e){
+            System.err.println("No hay citas en esa fecha");
+        }
+ 
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
