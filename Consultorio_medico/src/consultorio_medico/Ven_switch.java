@@ -28,11 +28,9 @@ public class Ven_switch extends javax.swing.JFrame {
     }   
 
     public void cambiar_vent(JFrame aux){
-       this.getContentPane().removeAll();
-       this.setContentPane(aux.getContentPane());
-    
-    
-    
+       this.getContentPane().removeAll();       
+       this.setBounds(aux.getBounds());       
+       this.setContentPane(aux.getContentPane());    
     }
         
     
