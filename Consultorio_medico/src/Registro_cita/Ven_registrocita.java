@@ -251,7 +251,7 @@ public class Ven_registrocita extends javax.swing.JFrame {
                 datos[3]= JTtelefono.getText();
             }
             if (JTemail.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Por favor ingrese Telefono del paciente");
+                JOptionPane.showMessageDialog(null, "Por favor ingrese Email del paciente");
             }else{
                 datos[4]= JTemail.getText();
             }
