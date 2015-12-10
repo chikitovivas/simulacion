@@ -27,8 +27,8 @@ public class Proyecto {
 
                 JFrame.setDefaultLookAndFeelDecorated(true);
 
-              SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
-            Switch= new Ven_switch();
+            SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
+            Switch= new Ven_switch(" UCAB   -   Consultotio Médico");
             Switch.setVisible(true);
             Menu men=new Menu();
             Switch.cambiar_vent(men);

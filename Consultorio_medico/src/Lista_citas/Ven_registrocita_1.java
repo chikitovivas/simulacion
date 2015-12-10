@@ -12,9 +12,12 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.shaper.StandardButtonShaper;
 /**
  *
  * @author Pat
@@ -36,6 +39,10 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         casita= imprimir;
         
         initComponents();
+    
+        
+        this.BotonCrear.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        
     }
 
     /**

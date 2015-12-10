@@ -5,6 +5,7 @@
  */
 package consultorio_medico;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.shaper.StandardButtonShaper;
@@ -17,10 +18,10 @@ public class Ven_switch extends javax.swing.JFrame {
     
   
     
-    /**
-     * Creates new form Ven_cambiable
-     */
-    public Ven_switch() {
+    
+    public Ven_switch(String titulo) {
+        super (titulo);
+//         setIconImage(new ImageIcon(getClass().getResource("/Registro_cita.imagenes/fondorosa.png")).getImage());
         initComponents();   
         JFrame.setDefaultLookAndFeelDecorated(true);
        SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
@@ -98,7 +99,7 @@ public class Ven_switch extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ven_switch().setVisible(true);
+                new Ven_switch("Consultorio Médico").setVisible(true);
             }
         });
     }

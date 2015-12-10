@@ -23,9 +23,10 @@ public class Ven_login extends javax.swing.JFrame {
         this.log = new Cod_login();
         initComponents();     
         
-        
-        JFrame.setDefaultLookAndFeelDecorated(true);
-       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
+//        
+//        JFrame.setDefaultLookAndFeelDecorated(true);
+//       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
+       
        this.jButton1.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
        this.jButton2.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
        this.jButton3.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());

@@ -17,7 +17,7 @@ import org.json.JSONException;
  */
 public class Cod_registrocita {
     
-    Cod_registrocita(String[] datos) {
+    public Cod_registrocita(String[] datos) {
          String titulo_datos[] = new String [6];
         
             titulo_datos[0]= "ciPaciente";
