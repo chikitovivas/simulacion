@@ -25,7 +25,7 @@ public class Ven_calendario extends javax.swing.JFrame {
     
     public Ven_calendario(int fil,int col,Object[][] citas) {               
         initComponents();
-       //logica=new Cod_calendario(fil,col,citas);               
+       logica=new Cod_calendario(fil,col,citas);               
         
     }
     
@@ -103,9 +103,7 @@ public class Ven_calendario extends javax.swing.JFrame {
     
     void pruebacalen(){
     Date aux=Calen1.getDate();
-    String day="";
-        System.out.println(aux);
-        
+    String day="";                
         switch(aux.getDay()){
             case 0: day="Domingo";break;
             case 1: day="Lunes";break;
@@ -114,19 +112,26 @@ public class Ven_calendario extends javax.swing.JFrame {
             case 4: day="Jueves";break;
             case 5: day="Viernes";break;
             case 6: day="Sabado";break;
-            case 7: day="Domingo";break;        
+            case 7: day="Domingo";break;            
         }       
-                        
         
-        System.out.println(aux.getDate());
-        System.out.println(aux.getMonth()+1); //Los meses empiezan desde 0->enero       
-        System.out.println(aux.getYear()+1900); // Los años empiezan a partir de 1900
-
-        Object[][] mierda_para_cabral=logica.procesar_cita(aux);
+        //Object[][] mierda_para_cabral=logica.procesar_cita(aux);        
+        System.out.println(aux);
+        Object[][] al=logica.procesar_cita(aux);
+        for(int i=0;i<al.length;i++){
+            for(int j=0;j<al[0].length;j++){
+                System.out.print(al[i][j]+" ");
+            }
+        System.out.println();
+        }
         
-        Ven_registrocita_1 toma_tu_mierda_cabral= new Ven_registrocita_1(day,aux.getDate(),aux.getMonth()+1,aux.getYear()+1900,mierda_para_cabral);
-        
-        
+        /*
+        Ven_registrocita_1 toma_tu_mierda_cabral= new Ven_registrocita_1(day,           //el dia si te pierdes puede mirar arriba cabron
+                                                                         aux.getDate(), // numero del dia
+                                                                         aux.getMonth()+1, // numero del mes
+                                                                         aux.getYear()+1900,// numero del año
+                                                                         mierda_para_cabral);// tabla con las tuplas que te importan         
+        */
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

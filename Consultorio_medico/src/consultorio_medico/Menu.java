@@ -5,12 +5,15 @@
  */
 package consultorio_medico;
 
+import Calendario_Consultorio.Ven_calendario;
+import JSON.PruebaJsonNico;
+
 /**
  *
  * @author Administrador
  */
 public class Menu extends javax.swing.JFrame {
-
+    Ven_calendario calendario;    
     /**
      * Creates new form Menu
      */
@@ -108,7 +111,12 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBcalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcalendarioActionPerformed
-        // TODO add your handling code here:
+        PruebaJsonNico prueba=new PruebaJsonNico(25620021);        
+        this.calendario=new Ven_calendario(
+                prueba.fil,
+                prueba.col,
+                prueba.tuplas);
+        Proyecto.Switch.cambiar_vent(calendario);
     }//GEN-LAST:event_JBcalendarioActionPerformed
 
     private void JTconfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTconfiguracionActionPerformed

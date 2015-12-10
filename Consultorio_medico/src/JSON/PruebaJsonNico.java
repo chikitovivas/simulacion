@@ -24,8 +24,16 @@ import org.json.JSONException;
  */
 public class PruebaJsonNico {
         
-    PruebaJsonNico(){
-    
+    public int fil;
+    public int col;
+    public Object[][] tuplas;
+    public PruebaJsonNico(int ci){
+        this.tuplas = null;
+        this.col = 0;
+        this.fil = 0;
+        
+        this.Peticion_Citas(ci);
+        
     
     }
     
@@ -50,7 +58,7 @@ public class PruebaJsonNico {
             String content = EntityUtils.toString(entity);
             
              JSONArray json = new JSONArray(content);      //JSON                       
-             crear_matriz(json);
+             this.tuplas=crear_matriz(json);
              
         } catch (Exception ex) {
             Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, null, ex);
@@ -107,8 +115,8 @@ public class PruebaJsonNico {
         {"fecha_nac":"1989-12-06","nombrePaciente":"Marilu","ciPaciente":12144908,"fechahora":"2015-12-24 12:00:00","apellidoPaciente":"Machado","numero":"04140944678"}
         ]        
         */
-        int fil=json.length()
-           ,col=json.getJSONObject(0).length();
+            this.fil=json.length();
+            this.col=json.getJSONObject(0).length();
         aux=new Object[fil][col];
         JSONArray keys=json.getJSONObject(0).names();        
         keys=ordenar_json(keys);
@@ -124,21 +132,25 @@ public class PruebaJsonNico {
             }                           
            //System.out.println();
         }
-                                         
-        
-        
-        
-        
-        
+                                                                                
         return aux;
     }
     
     
+    public void imprimir_datos(){
+        System.out.println("filas "+this.fil+" columnas "+this.col);
+        for(int i=0;i<this.fil;i++){
+            for(int j=0;j<this.col;j++){
+                System.out.print(this.tuplas[i][j]+" ");            
+            }
+            System.out.println();
+        }
     
+    }
     
     
     public static void main(String args[]) {
-        PruebaJsonNico pru=new PruebaJsonNico();
+        PruebaJsonNico pru=new PruebaJsonNico(25620021);
         pru.Peticion_Citas(0);
         
     }

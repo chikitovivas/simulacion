@@ -30,7 +30,7 @@ public class Cod_calendario {
  * @param tam_fil numero de filas de las tuplas
  * @param tuplas vector bidimensional con las tuplas
  */
-    Cod_calendario(int tam_col,int tam_fil,Object[][] tuplas){    //constructor
+    Cod_calendario(int tam_fil,int tam_col,Object[][] tuplas){    //constructor
         this.tuplas=tuplas;
         this.col=tam_col;
         this.fil=tam_fil;
@@ -84,17 +84,25 @@ public class Cod_calendario {
      * retorna las tuplas de una fecha en especifico 
      */
     public Object[][] procesar_cita(Date fech){
-        int max=puntos.length;
-        
+        int max=puntos.length;        
         if(max<=0)
             return null;
         
         int pos_ini; //posicion incial de la fecha requerida
         int aaaaaja=-1;
         for(pos_ini=0;pos_ini<max;pos_ini++){
-            if(puntos[pos_ini].compareTo(fech)==0){
+          /*  if(puntos[pos_ini].compareTo(fech)==0){     // comparando fechas           
                         aaaaaja=1;    
                         break; //cortar la iteracion                                             
+            }*/
+            
+            if(puntos[pos_ini].getDate()==fech.getDate()){
+                if(puntos[pos_ini].getMonth()==fech.getMonth()){
+                    if(puntos[pos_ini].getYear()==fech.getYear()){
+                        aaaaaja=1;
+                        break; //cortar la iteracion                    
+                    }                
+                }
             }
         }
                           
