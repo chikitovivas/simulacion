@@ -85,7 +85,7 @@ public class Cod_calendario {
      */
     public Object[][] procesar_cita(Date fech){
         int max=puntos.length;
-        //System.out.println(max+" tamano de puntos");
+        
         if(max<=0)
             return null;
         
@@ -105,14 +105,11 @@ public class Cod_calendario {
         Object[][] aux=null;            
         
         if (pos_ini+1==max){ // si estas parado en la ult tupla
-            aux=new Object[0][col-1];//solo guarda una tupla
-            pos_ini=Diccionario[pos_ini];
-            
-            System.out.println(aux[0].length); //MIERDA NO FUNK
+            aux=new Object[1][col-1];//solo guarda una tupla
+            pos_ini=Diccionario[pos_ini];                        
             
             for(int j=1;j<col;j++)//empezando despues de las fechas
-                aux[0][1]=tuplas[pos_ini][j];
-        imprimir_prueba(fil, col, aux);
+                aux[0][j-1]=tuplas[pos_ini][j];        
         return aux;
 
         }else{ //no estas en la ult tupla
@@ -137,7 +134,7 @@ public class Cod_calendario {
         // PRUEBA COD CALENDARIO
          public static void main(String args[]) {
              Object[][] tuplas=null;
-             int col=3,fil=7; //valores iniciales
+             int col=10,fil=7; //valores iniciales
                           
              Calendar calendario = Calendar.getInstance();
              
@@ -154,12 +151,13 @@ public class Cod_calendario {
              
              tuplas=new Object[fil][col]; 
              
+             //System.out.println("Fecha 1 "+fecha+" Fecha 2 "+fecha2+" Fecha 3 "+fecha3+" Fecha 4 "+fecha4);
              tuplas=llenar_prueba(fil,col,tuplas,fecha,fecha2,fecha3,fecha4);             
              
              Cod_calendario calen= new Cod_calendario(col,fil,tuplas);
-             imprimir_puntos_diccionario(calen.col, calen.fil, calen.puntos, calen.Diccionario);
-             System.out.println();System.out.println();
-             //imprimir_prueba(calen.fil, calen.col,calen.tuplas);
+             
+             System.out.println();System.out.println();             
+             
              
              calen.procesar_cita(fecha4);
              
@@ -168,7 +166,7 @@ public class Cod_calendario {
          
         private static Object[][] llenar_prueba(int fil,int col, Object[][] tuplas, Date fecha,Date fecha2,Date fecha3,Date fecha4){
 
-                       System.out.println("Fecha 1 "+fecha+" Fecha 2 "+fecha2+" Fecha 3 "+fecha3+" Fecha 4 "+fecha4);
+                      
                        
                        int F=fil-1;
                        
@@ -185,7 +183,7 @@ public class Cod_calendario {
                         }       
                         // tuplas[i][j]=fecha;                                                                           
                      }else{
-                         tuplas[i][j]="MIERDA";                     
+                         tuplas[i][j]="Columna "+j;                     
                      }                                          
                  }             
              }
@@ -219,12 +217,7 @@ public class Cod_calendario {
             System.out.println("Vector puntos");
             for(int i=0;i<puntos.length;i++)
                System.out.println(puntos[i]);
-            /*
-            if(puntos[0].compareTo(puntos[1])==-1)
-                System.out.println("el anterior es menor");
-            else 
-                System.out.println("el anterior NO es menor "+puntos[0].compareTo(puntos[1]));
-             */           
+            
         }   
          
 }

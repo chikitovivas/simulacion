@@ -30,7 +30,7 @@ public class Proyecto {
               SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
             Switch= new Ven_switch();
             Switch.setVisible(true);
-            Switch.cambiar_vent(new Ven_calendario(null));
+            Switch.cambiar_vent(new Ven_calendario(0,0,null));
                
             }
         });

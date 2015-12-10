@@ -23,9 +23,9 @@ public class Ven_calendario extends javax.swing.JFrame {
      */
     Cod_calendario logica;
     
-    public Ven_calendario(Object citas) {               
+    public Ven_calendario(int fil,int col,Object[][] citas) {               
         initComponents();
-      // logica=new Cod_calendario(citas);               
+       //logica=new Cod_calendario(fil,col,citas);               
         
     }
     
@@ -106,7 +106,7 @@ public class Ven_calendario extends javax.swing.JFrame {
     String day="";
         System.out.println(aux);
         
-        /*switch(aux.getDay()){
+        switch(aux.getDay()){
             case 0: day="Domingo";break;
             case 1: day="Lunes";break;
             case 2: day="Martes";break;
@@ -116,15 +116,15 @@ public class Ven_calendario extends javax.swing.JFrame {
             case 6: day="Sabado";break;
             case 7: day="Domingo";break;        
         }       
-        */        
-        // Ven_dia auxdia= new Ven_dia(aux.getDate(),aux.getMonth(),day);   // Inicializando Ventana Patricia 
+                        
         
-        //System.out.println(aux.getDate());
-        //System.out.println(aux.getMonth()); //Los meses empiezan desde 0->enero       
-        
+        System.out.println(aux.getDate());
+        System.out.println(aux.getMonth()+1); //Los meses empiezan desde 0->enero       
+        System.out.println(aux.getYear()+1900); // Los años empiezan a partir de 1900
+
         Object[][] mierda_para_cabral=logica.procesar_cita(aux);
         
-        Ven_registrocita_1 toma_tu_mierda_cabral= new Ven_registrocita_1(day,aux.getDate(),aux.getMonth(),aux.getYear(),mierda_para_cabral);
+        Ven_registrocita_1 toma_tu_mierda_cabral= new Ven_registrocita_1(day,aux.getDate(),aux.getMonth()+1,aux.getYear()+1900,mierda_para_cabral);
         
         
     }
@@ -164,7 +164,7 @@ public class Ven_calendario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ven_calendario(null).setVisible(true);
+                new Ven_calendario(0,0,null).setVisible(true);                
             }
         });
     }
