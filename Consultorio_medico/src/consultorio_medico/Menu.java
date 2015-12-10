@@ -6,7 +6,7 @@
 package consultorio_medico;
 
 import Calendario_Consultorio.Ven_calendario;
-import JSON.PruebaJsonNico;
+import JSON.Crearjsoncalendario;
 
 /**
  *
@@ -111,7 +111,7 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBcalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcalendarioActionPerformed
-        PruebaJsonNico prueba=new PruebaJsonNico(25620021);        
+        Crearjsoncalendario prueba=new Crearjsoncalendario(25620021);        
         this.calendario=new Ven_calendario(
                 prueba.fil,
                 prueba.col,

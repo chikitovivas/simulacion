@@ -22,12 +22,12 @@ import org.json.JSONException;
  *
  * @author Nico
  */
-public class PruebaJsonNico {
+public class Crearjsoncalendario {
         
     public int fil;
     public int col;
     public Object[][] tuplas;
-    public PruebaJsonNico(int ci){
+    public Crearjsoncalendario(int ci){
         this.tuplas = null;
         this.col = 0;
         this.fil = 0;
@@ -150,7 +150,7 @@ public class PruebaJsonNico {
     
     
     public static void main(String args[]) {
-        PruebaJsonNico pru=new PruebaJsonNico(25620021);
+        Crearjsoncalendario pru=new Crearjsoncalendario(25620021);
         pru.Peticion_Citas(0);
         
     }
