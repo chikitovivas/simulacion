@@ -50,7 +50,7 @@ public class Crearjsoncalendario {
  
         
           HttpGet get = new HttpGet("http://"+dirLAN+":8000/cita/"+ci);
-                  
+        //          
         
         try {
             HttpResponse response = client.execute(get);
