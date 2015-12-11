@@ -32,11 +32,13 @@ public class Ven_registrocita extends javax.swing.JFrame {
      */
     
     Object[] arreglo_datos;
-    int i;
-    Date fechahoraG;
-    Ven_registrocita_1 aux;
+    String sday;
+    int day;
+    int moth; 
+    int year;
+    String fechahoraG;
     
-    
+  /*  
     public Ven_registrocita(Date fecha_hora) {
         this.fechahoraG = fecha_hora;
 
@@ -49,15 +51,18 @@ public class Ven_registrocita extends javax.swing.JFrame {
         this.BotonLimpiar.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         this.JBback.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
     }
-
+*/
         
 
 
- public Ven_registrocita(Object[][] arreglo_datos, String sday,int day, int moth, int year, Date fecha_hora) {
-       this.fechahoraG = fecha_hora;
-        this.i=i;
-        this.arreglo_datos=arreglo_datos;
-        this.aux = aux;
+ public Ven_registrocita(Object[][] arreglo_datos, String sday,int day, int moth, int year, String fecha_hora) {
+       
+     this.fechahoraG = fecha_hora;  
+     this.arreglo_datos=arreglo_datos;  
+     this.sday=sday;
+     this.day=day;
+     this.moth=moth; 
+     this.year=year;
         
         initComponents();
 
@@ -321,7 +326,7 @@ public class Ven_registrocita extends javax.swing.JFrame {
         }
 
         datos[5] = "25620021";
-        datos[6] = fechahoraG.toString(); //dd-mm-aaaa 24:00   
+        datos[6] = fechahoraG; //dd-mm-aaaa 24:00   
 
         Cod_registrocita(datos);
 
@@ -336,7 +341,7 @@ public class Ven_registrocita extends javax.swing.JFrame {
         // TODO add your handling code here:
         
       //  Llamada a Carlos;
-        Proyecto.Switch.cambiar_vent(new Menu());
+      // Proyecto.Switch.cambiar_vent(new Menu());
         
     }//GEN-LAST:event_JBbackActionPerformed
 
@@ -372,7 +377,7 @@ public class Ven_registrocita extends javax.swing.JFrame {
             public void run() {
                 Date fecha = new Date();
 
-                new Ven_registrocita(fecha).setVisible(true);
+                new Ven_registrocita(null,null,0, 0,0, null).setVisible(true);
             }
         });
     }

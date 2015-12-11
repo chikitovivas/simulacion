@@ -35,9 +35,7 @@ public class Menu extends javax.swing.JFrame {
         
         this.JBcalendario.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         this.JTconfiguracion.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-        this.JThistorial.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-        this.JBregistro_Citas.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-    }
+      }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,8 +49,6 @@ public class Menu extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         JLtitulo = new javax.swing.JLabel();
         JBcalendario = new javax.swing.JButton();
-        JBregistro_Citas = new javax.swing.JButton();
-        JThistorial = new javax.swing.JButton();
         JTconfiguracion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,24 +62,6 @@ public class Menu extends javax.swing.JFrame {
         JBcalendario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBcalendarioActionPerformed(evt);
-            }
-        });
-
-        JBregistro_Citas.setFont(new java.awt.Font("Gisha", 0, 14)); // NOI18N
-        JBregistro_Citas.setDefaultCapable(false);
-        JBregistro_Citas.setLabel("Registro de Citas");
-        JBregistro_Citas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBregistro_CitasActionPerformed(evt);
-            }
-        });
-
-        JThistorial.setFont(new java.awt.Font("Gisha", 0, 14)); // NOI18N
-        JThistorial.setText("Historial Paciente");
-        JThistorial.setDefaultCapable(false);
-        JThistorial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JThistorialActionPerformed(evt);
             }
         });
 
@@ -106,12 +84,9 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(JLtitulo))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(158, 158, 158)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(JBregistro_Citas)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(JBcalendario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(JTconfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(JThistorial, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JBcalendario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JTconfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -121,13 +96,9 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(JLtitulo)
                 .addGap(72, 72, 72)
                 .addComponent(JBcalendario)
-                .addGap(18, 18, 18)
-                .addComponent(JThistorial)
-                .addGap(18, 18, 18)
-                .addComponent(JBregistro_Citas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JTconfiguracion)
-                .addGap(38, 38, 38))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -158,31 +129,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_JBcalendarioActionPerformed
 
     private void JTconfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTconfiguracionActionPerformed
-       Proyecto.Switch.cambiar_vent(new Ven_registrocita_1());
-        
-    }//GEN-LAST:event_JTconfiguracionActionPerformed
-
-    private void JThistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JThistorialActionPerformed
        
         
-//        Object[][] arreglo_object; 
-        int i=0;
-//        Ven_VerHistorial hist = new Ven_VerHistorial(arreglo_object, i);  
-        this.historial=new Ven_VerHistorial(null,i);
-        Proyecto.Switch.cambiar_vent(historial);
-        
-        
-    }//GEN-LAST:event_JThistorialActionPerformed
-
-    private void JBregistro_CitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBregistro_CitasActionPerformed
-//      String datos[] = new String [6];
-//        Cod_registrocita rcita = new Cod_registrocita (datos);
-        this.registroCita = new Ven_registrocita(null);
-        Proyecto.Switch.cambiar_vent(registroCita);
-        
-        
-// TODO add your handling code here:
-    }//GEN-LAST:event_JBregistro_CitasActionPerformed
+    }//GEN-LAST:event_JTconfiguracionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,10 +170,8 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBcalendario;
-    private javax.swing.JButton JBregistro_Citas;
     private javax.swing.JLabel JLtitulo;
     private javax.swing.JButton JTconfiguracion;
-    private javax.swing.JButton JThistorial;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

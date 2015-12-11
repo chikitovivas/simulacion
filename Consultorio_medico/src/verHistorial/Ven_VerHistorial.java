@@ -13,14 +13,30 @@ import java.util.Date;
  */
 public class Ven_VerHistorial extends javax.swing.JFrame {
 
+    
+    Object[] arreglo_datos;
+    String sday;
+    int day;
+    int moth; 
+    int year;
+    Date fechahoraG;
+    
     /**
      * Creates new form Ven_VerHistorial
      * @param arreglo_datos
      */
 public Ven_VerHistorial(Object[][] arreglo_datos, int i,String sday, int day, int moth, int year) {
         
+      
+     this.arreglo_datos=arreglo_datos;  
+     this.sday=sday;
+     this.day=day;
+     this.moth=moth; 
+     this.year=year;
+    
+    
         initComponents();
-        String y=Integer.toString(i);
+        String y=Integer.toString(i); //En otra versiones hay que poner horas minutos y segundos
         
         for(int j=0;j<arreglo_datos.length;i++){
             if(y.equals(String.valueOf(((Date)arreglo_datos[j][0]).getHours()))){
@@ -196,6 +212,10 @@ public Ven_VerHistorial(Object[][] arreglo_datos, int i,String sday, int day, in
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        //Aqui se llama a cabral
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
