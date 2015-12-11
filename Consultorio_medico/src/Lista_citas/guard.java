@@ -254,15 +254,16 @@ public class guard extends javax.swing.JFrame {
         String ss = (String) jList1.getSelectedValue();
          char[] s = new char[13];
         ss.getChars(0, 13, s, 0);
+        ss= new String(s);
         
         if (15<=ss.length()){
                    //Ven_VerHistorial rafa = new Ven_VerHistorial (ocus_magnus, dday);
                    //Proyecto.Switch.cambiar_vent(rafa);
-                   System.out.println(Arrays.toString(s));
+                   System.out.printf("listo");
         }  else {  Ven_registrocita pato = new Ven_registrocita ();
                    //Proyecto.Switch.cambiar_vent(pato);
-                   System.out.println(Arrays.toString(s));
-                   System.out.println(Arrays.toString(s));
+                   System.out.printf(ss);
+                   System.out.printf(ss);
            }
     }
     
