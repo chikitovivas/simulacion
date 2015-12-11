@@ -19,6 +19,7 @@ import org.jvnet.substance.shaper.StandardButtonShaper;
  */
 public class MenuPru extends javax.swing.JPanel {
    Panel_calendario calendario;  
+   Ven_calendario vcan;
 
     /**
      * Creates new form NewJPanel
@@ -98,7 +99,7 @@ public class MenuPru extends javax.swing.JPanel {
        
         Crearjsoncalendario prueba=new Crearjsoncalendario(25620021);
 
-        Ven_calendario vcan=new Ven_calendario(
+        vcan=new Ven_calendario(
             prueba.fil,
             prueba.col,
             prueba.tuplas);                
