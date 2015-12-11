@@ -124,7 +124,7 @@ public class Ven_calendario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    
+
     void pruebacalen(){
     Date aux=Calen1.getDate();
     String day="";                
@@ -140,9 +140,12 @@ public class Ven_calendario extends javax.swing.JFrame {
         }       
         Object[][] mierda_para_cabral=null;
         try{
-            mierda_para_cabral=logica.procesar_cita(aux);   
-       
-
+            mierda_para_cabral=logica.procesar_cita(aux); 
+            
+        }catch(Exception ex){
+            System.err.println("No hay citas en esa fecha "+ex);             
+        }
+llamar_cabral(day, aux,mierda_para_cabral);
             //System.out.println(aux);
 
             /*for(int i=0;i<mierda_para_cabral.length;i++){  //imprimir fechas que le paso a cabral            
@@ -152,8 +155,12 @@ public class Ven_calendario extends javax.swing.JFrame {
             System.out.println();
             }
             */
-              
+                             
         
+    }
+    
+        private void llamar_cabral(String day, Date aux, Object[][] mierda_para_cabral) {
+//            Proyecto.Switch.cambiar_vent(new Ven_registrocita_1());
             Proyecto.Switch.cambiar_vent(new Ven_registrocita_1(  //Constructor que debemos utilizar
                                                                          day,           //el dia si te pierdes puede mirar arriba cabron
                                                                          aux.getDate(), // numero del dia
@@ -161,12 +168,8 @@ public class Ven_calendario extends javax.swing.JFrame {
                                                                          aux.getYear()+1900,// numero del año
                                                                          mierda_para_cabral)// tabla con las tuplas que te importan         
                                         );
-        
-        }catch(Exception ex){
-            System.err.println("No hay citas en esa fecha "+ex);             
         }
-        
-    }
+    
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         pruebacalen();           
@@ -214,4 +217,6 @@ public class Ven_calendario extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
+
+
 }
