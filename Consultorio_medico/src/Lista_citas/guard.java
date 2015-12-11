@@ -256,7 +256,7 @@ public class guard extends javax.swing.JFrame {
         ss.getChars(0, 13, s, 0);
         
         if (15<=ss.length()){
-                   Ven_VerHistorial rafa = new Ven_VerHistorial (ocus_magnus, dday);
+                   //Ven_VerHistorial rafa = new Ven_VerHistorial (ocus_magnus, dday);
                    //Proyecto.Switch.cambiar_vent(rafa);
                    System.out.println(Arrays.toString(s));
         }  else {  Ven_registrocita pato = new Ven_registrocita ();

@@ -4,10 +4,16 @@
  * and open the template in the editor.
  */
 package Lista_citas;
+import JSON.JSON;
 import Registro_cita.Fondo_Formulariopaciente;
+import consultorio_medico.Proyecto;
 import java.awt.BorderLayout;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import verHistorial.Ven_VerHistorial;
@@ -28,23 +34,41 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
      String [] imprimir;
      
      Object[][] ocus_magnus;
+     int dhour;
      int dday;
+     int dmouth;
+     int dyear;
+     String cass;
      
     /**
      * Creates new form Ven_registrocita
      */
      
+     
      //Primer Constructor de prueba para llorar :c
-    public Ven_registrocita_1() {
-        
-        ocus_magnus=new Object[5][5];
-        dday=31;
+        public Ven_registrocita_1() {
+            
+        dhour=15;
         fecha_mostrar= "31-12-2015 LLororo";
         horario= new String[] {"08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"};
-        casex = new String [][] {{"08:00","29.192.559","papa","sales","9202992-0414","@jodete"}, {"11:00","30.123.333","mama","sales","0414","@sasdas"}};
+        String[][] casex1;
+        casex1 = new String [][] {{"12:00","29.192.559","papa","sales","9202992-0414","@jodete"}, {"11:00","30.123.333","mama","sales","0414","@sasdas"}};
         
-        
-        
+        Object[][] ocus_pocus=casex1;
+        ocus_magnus= ocus_pocus;
+  
+         
+        casex = new String [ocus_pocus.length][];
+        for(int zi=0; zi<=ocus_pocus.length-1; zi++) {
+           casex[zi]= new String [ocus_pocus[zi].length-1];                     //No cuento la fecha de nacimiento
+           casex[zi][0]= ((String)ocus_pocus[zi][0]); //String.valueOf(((Date)ocus_pocus[zi][0]).getHours());
+           casex[zi][0]=  casex[zi][0] +"";           //casex[zi][0]+ ":";
+           casex[zi][0]=  casex[zi][0];               //casex[zi][0]+String.valueOf(((Date)ocus_pocus[zi][0]).getMinutes());
+              for(int zxz=1; zxz<=ocus_pocus[zi].length-2; zxz++) {                //   No llego hasta la fecha de nacimiento
+                  casex[zi][zxz]=((String)ocus_pocus[zi][zxz]);    
+              }
+        }
+         
         imprimir= new String [horario.length];
         for(int zi=0; zi<=horario.length-1; zi++) {
             for(int zy=0; zy<=casex.length-1; zy++) {
@@ -58,14 +82,15 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         
         casita= imprimir;
         initComponents();
-
     }
-
+    
+    
+    
     
     //Segundo Constructor y es el que se va a usar "normalmente"                        sigh :c
     public Ven_registrocita_1(String sday, int day, int moth, int year, Object[][] ocus_pocus) {
         ocus_magnus=ocus_pocus;
-        dday=day;
+        dday=day; dmouth=moth; dyear=year; this.cass=sday;
         horario= new String[] {"08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"};
         
       fecha_mostrar= sday + "  " + Integer.toString(day) +  "/" + Integer.toString(moth) + "/" + Integer.toString(year);
@@ -218,8 +243,9 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
          char[] s = new char[5];
         ss.getChars(0, 5, s, 0);
         
+        
         if (7<=ss.length()){
-                   Ven_VerHistorial rafa = new Ven_VerHistorial (ocus_magnus, dday);
+                   //Ven_VerHistorial rafa = new Ven_VerHistorial (ocus_magnus, dhour, cass, dday, dmouth, dyear);
                    //Proyecto.Switch.cambiar_vent(rafa);
                    System.out.println(Arrays.toString(s));
         }  else {  Ven_registrocita pato = new Ven_registrocita ();
