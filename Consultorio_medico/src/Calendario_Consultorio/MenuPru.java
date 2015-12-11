@@ -5,36 +5,29 @@
  */
 package Calendario_Consultorio;
 
-import consultorio_medico.*;
-import verHistorial.Ven_VerHistorial;
+
+import static Calendario_Consultorio.SwitchPru.PanelPrincipal;
 import JSON.Crearjsoncalendario;
-import Lista_citas.Ven_registrocita_1;
-import Registro_cita.Ven_registrocita;
+import java.awt.BorderLayout;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.shaper.StandardButtonShaper;
 
-
 /**
  *
- * @author Administrador
+ * @author Nico
  */
-public class MenuPru extends javax.swing.JFrame {
-    Ven_calendario calendario;  
-    Ven_VerHistorial historial;
-    Ven_registrocita registroCita;
-    
-    
+public class MenuPru extends javax.swing.JPanel {
+   Panel_calendario calendario;  
+
     /**
-     * Creates new form Menu
+     * Creates new form NewJPanel
      */
     public MenuPru() {
-        initComponents();
-       
-        
+        initComponents();                 
         this.JBcalendario.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-        this.JTconfiguracion.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        //this.JTconfiguracion.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         this.JThistorial.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-        this.JBregistro_Citas.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        //this.JBregistro_Citas.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
     }
 
     /**
@@ -46,14 +39,9 @@ public class MenuPru extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Panel = new javax.swing.JPanel();
         JLtitulo = new javax.swing.JLabel();
         JBcalendario = new javax.swing.JButton();
-        JBregistro_Citas = new javax.swing.JButton();
         JThistorial = new javax.swing.JButton();
-        JTconfiguracion = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         JLtitulo.setFont(new java.awt.Font("Gisha", 1, 24)); // NOI18N
         JLtitulo.setText("Consultorio Medico");
@@ -67,15 +55,6 @@ public class MenuPru extends javax.swing.JFrame {
             }
         });
 
-        JBregistro_Citas.setFont(new java.awt.Font("Gisha", 0, 14)); // NOI18N
-        JBregistro_Citas.setDefaultCapable(false);
-        JBregistro_Citas.setLabel("Registro de Citas");
-        JBregistro_Citas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBregistro_CitasActionPerformed(evt);
-            }
-        });
-
         JThistorial.setFont(new java.awt.Font("Gisha", 0, 14)); // NOI18N
         JThistorial.setText("Historial Paciente");
         JThistorial.setDefaultCapable(false);
@@ -85,147 +64,60 @@ public class MenuPru extends javax.swing.JFrame {
             }
         });
 
-        JTconfiguracion.setFont(new java.awt.Font("Gisha", 0, 14)); // NOI18N
-        JTconfiguracion.setText("Configuración");
-        JTconfiguracion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTconfiguracionActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
-        Panel.setLayout(PanelLayout);
-        PanelLayout.setHorizontalGroup(
-            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelLayout.createSequentialGroup()
-                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelLayout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(JLtitulo))
-                    .addGroup(PanelLayout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(JBregistro_Citas)
-                            .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(JBcalendario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(JTconfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(JThistorial, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                .addContainerGap(125, Short.MAX_VALUE))
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JLtitulo)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JBcalendario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JThistorial, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
-        PanelLayout.setVerticalGroup(
-            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(49, 49, 49)
                 .addComponent(JLtitulo)
                 .addGap(72, 72, 72)
                 .addComponent(JBcalendario)
                 .addGap(18, 18, 18)
                 .addComponent(JThistorial)
-                .addGap(18, 18, 18)
-                .addComponent(JBregistro_Citas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(JTconfiguracion)
-                .addGap(38, 38, 38))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBcalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcalendarioActionPerformed
-        Crearjsoncalendario prueba=new Crearjsoncalendario(25620021);        
-        this.calendario=new Ven_calendario(
-                prueba.fil,
-                prueba.col,
-                prueba.tuplas);
-        Proyecto.Switch.cambiar_vent(calendario);
+        Crearjsoncalendario prueba=new Crearjsoncalendario(25620021);
+        this.calendario=new Panel_calendario(
+            prueba.fil,
+            prueba.col,
+            prueba.tuplas);
+        ProyectoPru.Switch.cambiar_vent(calendario);
     }//GEN-LAST:event_JBcalendarioActionPerformed
 
-    private void JTconfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTconfiguracionActionPerformed
-       Proyecto.Switch.cambiar_vent(new Ven_registrocita_1());
-        
-    }//GEN-LAST:event_JTconfiguracionActionPerformed
-
     private void JThistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JThistorialActionPerformed
-       
-        
-//        Object[][] arreglo_object; 
-        int i=0;
-//        Ven_VerHistorial hist = new Ven_VerHistorial(arreglo_object, i);  
-        this.historial=new Ven_VerHistorial(null,i);
-        Proyecto.Switch.cambiar_vent(historial);
-        
+
+        Prueba aux=new Prueba();        
+                        
+        aux.setSize(PanelPrincipal.getSize());
+        aux.setLocation(PanelPrincipal.getLocation());        
+        PanelPrincipal.removeAll();
+        PanelPrincipal.add(aux,BorderLayout.CENTER);        
+        PanelPrincipal.revalidate();
+        PanelPrincipal.repaint();        
         
     }//GEN-LAST:event_JThistorialActionPerformed
 
-    private void JBregistro_CitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBregistro_CitasActionPerformed
-//      String datos[] = new String [6];
-//        Cod_registrocita rcita = new Cod_registrocita (datos);
-        this.registroCita = new Ven_registrocita(null);
-        Proyecto.Switch.cambiar_vent(registroCita);
-        
-        
-// TODO add your handling code here:
-    }//GEN-LAST:event_JBregistro_CitasActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPru.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPru.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPru.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPru.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuPru().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBcalendario;
-    private javax.swing.JButton JBregistro_Citas;
     private javax.swing.JLabel JLtitulo;
-    private javax.swing.JButton JTconfiguracion;
     private javax.swing.JButton JThistorial;
-    private javax.swing.JPanel Panel;
     // End of variables declaration//GEN-END:variables
 }

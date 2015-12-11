@@ -9,11 +9,13 @@ import java.util.Date;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.shaper.StandardButtonShaper;
 
+
 /**
  *
- * @author Nico
+ * @author Rafael
  */
-public class Ven_calendarioPanel extends javax.swing.JPanel {
+public class Panel_calendario extends javax.swing.JPanel {
+
 
     /**
      * Creates new form Ven_calendarioPanel
@@ -21,13 +23,13 @@ public class Ven_calendarioPanel extends javax.swing.JPanel {
         Cod_calendario logica;
     
    
-    public Ven_calendarioPanel(int fil,int col,Object[][] citas) {               
+    public Panel_calendario(int fil,int col,Object[][] citas) {               
         initComponents();               
         this.jButton1.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());        
         logica=new Cod_calendario(fil,col,citas);                       
     }
     
-    public Ven_calendarioPanel(){    //SOLO PARA PRUEBA
+    public Panel_calendario(){    //SOLO PARA PRUEBA
         initComponents();          
         this.jButton1.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         logica=Cod_calendario.main(null);
@@ -97,12 +99,19 @@ public class Ven_calendarioPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Calen1 = new com.toedter.calendar.JCalendar();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        Calen1 = new com.toedter.calendar.JCalendar();
 
-        Calen1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton3.setText("jButton3");
+
+        jButton1.setText("Seleccionar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jButton2.setText("Calendario");
@@ -114,14 +123,7 @@ public class Ven_calendarioPanel extends javax.swing.JPanel {
         jButton2.setSelected(true);
         jButton2.setVerifyInputWhenFocusTarget(false);
 
-        jButton1.setText("Seleccionar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("jButton3");
+        Calen1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -130,7 +132,7 @@ public class Ven_calendarioPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Calen1, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
+                    .addComponent(Calen1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
