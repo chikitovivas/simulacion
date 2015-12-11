@@ -5,8 +5,6 @@
  */
 package Calendario_Consultorio;
 
-import Lista_citas.Ven_registrocita_1;
-import consultorio_medico.Proyecto;
 import java.util.Date;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.shaper.StandardButtonShaper;
@@ -70,6 +68,13 @@ public class Ven_calendario extends javax.swing.JFrame {
         jButton2.setSelected(true);
         jButton2.setVerifyInputWhenFocusTarget(false);
 
+        jButton1.setText("Seleccionar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
         Panel.setLayout(PanelLayout);
         PanelLayout.setHorizontalGroup(
@@ -78,25 +83,22 @@ public class Ven_calendario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Calen1, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         PanelLayout.setVerticalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Calen1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(Calen1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1))
         );
-
-        jButton1.setText("Seleccionar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,18 +108,13 @@ public class Ven_calendario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(755, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1))
+                .addContainerGap())
         );
 
         pack();
@@ -145,7 +142,7 @@ public class Ven_calendario extends javax.swing.JFrame {
         }catch(Exception ex){
             System.err.println("No hay citas en esa fecha "+ex);             
         }
-llamar_cabral(day, aux,mierda_para_cabral);
+        llamar_cabral(day, aux,mierda_para_cabral);
             //System.out.println(aux);
 
             /*for(int i=0;i<mierda_para_cabral.length;i++){  //imprimir fechas que le paso a cabral            
@@ -159,15 +156,26 @@ llamar_cabral(day, aux,mierda_para_cabral);
         
     }
     
-        private void llamar_cabral(String day, Date aux, Object[][] mierda_para_cabral) {
+    private void llamar_cabral(String day, Date aux, Object[][] mierda_para_cabral) {
 //            Proyecto.Switch.cambiar_vent(new Ven_registrocita_1());
-            Proyecto.Switch.cambiar_vent(new Ven_registrocita_1(  //Constructor que debemos utilizar
+           /* Proyecto.Switch.cambiar_vent(new Ven_registrocita_1(  //Constructor que debemos utilizar
                                                                          day,           //el dia si te pierdes puede mirar arriba cabron
                                                                          aux.getDate(), // numero del dia
                                                                          aux.getMonth()+1, // numero del mes
                                                                          aux.getYear()+1900,// numero del año
                                                                          mierda_para_cabral)// tabla con las tuplas que te importan         
                                         );
+            
+            Prueba pru= new Prueba(  //Constructor que debemos utilizar
+                                                                         day,           //el dia si te pierdes puede mirar arriba cabron
+                                                                         aux.getDate(), // numero del dia
+                                                                         aux.getMonth()+1, // numero del mes
+                                                                         aux.getYear()+1900,// numero del año
+                                                                         mierda_para_cabral// tabla con las tuplas que te importan         
+                                        );*/
+            
+
+            
         }
     
     
