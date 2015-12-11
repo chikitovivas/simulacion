@@ -16,12 +16,12 @@ import javax.swing.JOptionPane;
  *
  * @author Pat
  */
-public class Ven_registrocita extends javax.swing.JFrame {
+public class Venin extends javax.swing.JFrame {
 
     /**
      * Creates new form Ven_registrocita
      */
-    public Ven_registrocita() {
+    public Venin() {
         initComponents();
     }
 
@@ -240,7 +240,7 @@ public class Ven_registrocita extends javax.swing.JFrame {
 
             JSON.JSON_agregar(titulo_datos, datos, 4, "http://miconsultoriocal.no-ip.org:8000/hacercita");
         } catch (Exception ex) {
-            Logger.getLogger(Ven_registrocita.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Venin.class.getName()).log(Level.SEVERE, null, ex);
         }
     
         
@@ -263,20 +263,21 @@ public class Ven_registrocita extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ven_registrocita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Venin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ven_registrocita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Venin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ven_registrocita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Venin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ven_registrocita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Venin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ven_registrocita().setVisible(true);
+                new Venin().setVisible(true);
             }
         });
     }

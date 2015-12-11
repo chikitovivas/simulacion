@@ -6,11 +6,13 @@
 package Lista_citas;
 import JSON.JSON;
 import Registro_cita.Fondo_Formulariopaciente;
+import Registro_cita.Ven_registrocita;
 import consultorio_medico.Proyecto;
 import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -51,25 +53,39 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         dday=15; dmouth=01; dyear=2024; cass="domingo";
         
         fecha_mostrar= "31-12-2015 LLororo";
-        horario= new String[] {"08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"};
+        horario= new String[] {"08:00","09:33","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"};
         String[][] casex1;
         casex1 = new String [][] {{"12:00","29.192.559","papa","sales","9202992-0414","@jodete"}, {"11:00","30.123.333","mama","sales","0414","@sasdas"}};
         
-        Object[][] ocus_pocus=casex1;
+        Object[][] ocus_pocus = new Object[casex1.length][];
+        
+        for(int zi=0; zi<=ocus_pocus.length-1; zi++) {
+            ocus_pocus[zi] = new Object[casex1[zi].length];
+            for(int zz=1; zz<=casex1[zi].length-1; zz++) {
+               ocus_pocus[zi][zz]=casex1[zi][zz];
+            }
+        }
+            ocus_pocus[0][0]= new Date(1220277800L * 1000);
+            ocus_pocus[1][0]= new Date(1220278900L * 1000);
+            //System.out.printf( String.valueOf( ((Date)ocus_pocus[0][0]).getHours() ) );
+            
         ocus_magnus= ocus_pocus;
   
-         
         casex = new String [ocus_pocus.length][];
         for(int zi=0; zi<=ocus_pocus.length-1; zi++) {
            casex[zi]= new String [ocus_pocus[zi].length-1];                     //No cuento la fecha de nacimiento
-           casex[zi][0]= ((String)ocus_pocus[zi][0]); //String.valueOf(((Date)ocus_pocus[zi][0]).getHours());
-           casex[zi][0]=  casex[zi][0] +"";           //casex[zi][0]+ ":";
-           casex[zi][0]=  casex[zi][0];               //casex[zi][0]+String.valueOf(((Date)ocus_pocus[zi][0]).getMinutes());
+           if (Integer.valueOf( ((Date)ocus_pocus[zi][0]).getHours() )<=9 ) {
+               casex[zi][0]= "0"+String.valueOf(((Date)ocus_pocus[zi][0]).getHours());
+           }   else {
+               casex[zi][0]= String.valueOf(((Date)ocus_pocus[zi][0]).getHours());
+               }
+           casex[zi][0]= casex[zi][0]+ ":";
+           casex[zi][0]= casex[zi][0]+String.valueOf(((Date)ocus_pocus[zi][0]).getMinutes());
               for(int zxz=1; zxz<=ocus_pocus[zi].length-2; zxz++) {                //   No llego hasta la fecha de nacimiento
                   casex[zi][zxz]=((String)ocus_pocus[zi][zxz]);    
               }
         }
-         
+          
         imprimir= new String [horario.length];
         for(int zi=0; zi<=horario.length-1; zi++) {
             for(int zy=0; zy<=casex.length-1; zy++) {
@@ -100,14 +116,18 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         casex = new String [ocus_pocus.length][];
         for(int zi=0; zi<=ocus_pocus.length-1; zi++) {
            casex[zi]= new String [ocus_pocus[zi].length-1];                     //No cuento la fecha de nacimiento
-           casex[zi][0]=  String.valueOf(((Date)ocus_pocus[zi][0]).getHours());
+           if (Integer.valueOf( ((Date)ocus_pocus[zi][0]).getHours() )<=9 ) {
+               casex[zi][0]= "0"+String.valueOf(((Date)ocus_pocus[zi][0]).getHours());
+           }   else {
+               casex[zi][0]= String.valueOf(((Date)ocus_pocus[zi][0]).getHours());
+               }
            casex[zi][0]= casex[zi][0]+ ":";
            casex[zi][0]= casex[zi][0]+String.valueOf(((Date)ocus_pocus[zi][0]).getMinutes());
               for(int zxz=1; zxz<=ocus_pocus[zi].length-2; zxz++) {                //   No llego hasta la fecha de nacimiento
                   casex[zi][zxz]=((String)ocus_pocus[zi][zxz]);    
               }
         }
-         
+          
         imprimir= new String [horario.length];
         for(int zi=0; zi<=horario.length-1; zi++) {
             for(int zy=0; zy<=casex.length-1; zy++) {
@@ -119,7 +139,6 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
             }  
         }
         
-    //    Ven_registrocita_1(day,aux.getDate(),aux.getMonth(),aux.getYear(),mierda_para_cabral);
         casita= imprimir;
         initComponents();
     }
@@ -248,14 +267,13 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         
         fecha_pato= String.valueOf(dyear)+"-"+String.valueOf(dmouth)+"-"+String.valueOf(dday)+" "+hora_min+":00";
         
-        
         if (7<=liststring.length()){
                    //Ven_VerHistorial rafa = new Ven_VerHistorial (ocus_magnus, dhour, cass, dday, dmouth, dyear);
                    //Proyecto.Switch.cambiar_vent(rafa);
                    System.out.println(hora_min);    //System.out.println(dhour);
                    
-        }  else {  Ven_registrocita pato = new Ven_registrocita ();
-                   //Proyecto.Switch.cambiar_vent(pato);
+        }  else {  //Ven_registrocita pato = new Ven_registrocita(ocus_magnus, cass, dday, dmouth, dyear, fecha_pato);
+                  // Proyecto.Switch.cambiar_vent(pato);
                    System.out.println(fecha_pato);   //fecha_pato
            }
     }
@@ -282,13 +300,13 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ven_registrocita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Venin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ven_registrocita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Venin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ven_registrocita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Venin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ven_registrocita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Venin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
