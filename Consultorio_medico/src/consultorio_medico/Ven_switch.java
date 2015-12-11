@@ -5,38 +5,37 @@
  */
 package consultorio_medico;
 
-import javax.swing.ImageIcon;
+import Lista_citas.Ven_registrocita_1;
 import javax.swing.JFrame;
 import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.shaper.StandardButtonShaper;
 
 /**
  *
  * @author Nico
  */
 public class Ven_switch extends javax.swing.JFrame {
-    
-  
-    
+       
     
     public Ven_switch(String titulo) {
         super (titulo);
-//         setIconImage(new ImageIcon(getClass().getResource("/Registro_cita.imagenes/fondorosa.png")).getImage());
-        initComponents();   
-        JFrame.setDefaultLookAndFeelDecorated(true);
-       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
-        
+        initComponents();                 
     }   
 
     public void cambiar_vent(JFrame aux){
-       JFrame.setDefaultLookAndFeelDecorated(true);
-       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
-       this.getContentPane().removeAll();       
+       initComponents();                            
+        JFrame.setDefaultLookAndFeelDecorated(true);
+       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin"); 
+       
+       this.getContentPane().removeAll();     
+       this.setRootPane(aux.getRootPane());
+       this.getRootPane().setContentPane(aux.getContentPane());      
        this.setBounds(aux.getBounds());       
-       this.setContentPane(aux.getContentPane());    
+       this.setContentPane(aux.getContentPane());   
+       
+       aux.dispose();
+       
     }
-        
-    
+           
     
     
     

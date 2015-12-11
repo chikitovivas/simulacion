@@ -8,6 +8,7 @@ package consultorio_medico;
 import Calendario_Consultorio.Ven_calendario;
 import verHistorial.Ven_VerHistorial;
 import JSON.Crearjsoncalendario;
+import Lista_citas.Ven_registrocita_1;
 import Registro_cita.Cod_registrocita;
 import Registro_cita.Ven_registrocita;
 import javax.swing.JFrame;
@@ -88,7 +89,6 @@ public class Menu extends javax.swing.JFrame {
 
         JTconfiguracion.setFont(new java.awt.Font("Gisha", 0, 14)); // NOI18N
         JTconfiguracion.setText("Configuración");
-        JTconfiguracion.setEnabled(false);
         JTconfiguracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTconfiguracionActionPerformed(evt);
@@ -158,7 +158,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_JBcalendarioActionPerformed
 
     private void JTconfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTconfiguracionActionPerformed
-       
+       Proyecto.Switch.cambiar_vent(new Ven_registrocita_1());
         
     }//GEN-LAST:event_JTconfiguracionActionPerformed
 

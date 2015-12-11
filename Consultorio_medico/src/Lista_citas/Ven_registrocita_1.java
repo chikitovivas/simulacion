@@ -4,16 +4,10 @@
  * and open the template in the editor.
  */
 package Lista_citas;
-import JSON.JSON;
 import Registro_cita.Fondo_Formulariopaciente;
-import consultorio_medico.Proyecto;
 import java.awt.BorderLayout;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import verHistorial.Ven_VerHistorial;
@@ -50,6 +44,7 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         casex = new String [][] {{"08:00","29.192.559","papa","sales","9202992-0414","@jodete"}, {"11:00","30.123.333","mama","sales","0414","@sasdas"}};
         
         
+        
         imprimir= new String [horario.length];
         for(int zi=0; zi<=horario.length-1; zi++) {
             for(int zy=0; zy<=casex.length-1; zy++) {
@@ -60,8 +55,10 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
                     } 
             }  
         }
+        
         casita= imprimir;
         initComponents();
+
     }
 
     

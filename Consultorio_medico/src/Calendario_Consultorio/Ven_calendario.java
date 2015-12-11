@@ -7,9 +7,7 @@ package Calendario_Consultorio;
 
 import Lista_citas.Ven_registrocita_1;
 import consultorio_medico.Proyecto;
-import java.awt.event.MouseEvent;
 import java.util.Date;
-import javax.swing.JFrame;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.shaper.StandardButtonShaper;
 
@@ -25,6 +23,7 @@ public class Ven_calendario extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     Cod_calendario logica;
+    
     
     public Ven_calendario(int fil,int col,Object[][] citas) {               
         initComponents();
@@ -72,11 +71,6 @@ public class Ven_calendario extends javax.swing.JFrame {
         jButton2.setRolloverEnabled(false);
         jButton2.setSelected(true);
         jButton2.setVerifyInputWhenFocusTarget(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
         Panel.setLayout(PanelLayout);
@@ -146,38 +140,42 @@ public class Ven_calendario extends javax.swing.JFrame {
             case 6: day="Sabado";break;
             case 7: day="Domingo";break;            
         }       
-        
+        Object[][] mierda_para_cabral=null;
         try{
-            Object[][] mierda_para_cabral=logica.procesar_cita(aux);        
+            mierda_para_cabral=logica.procesar_cita(aux);   
+       
+        }catch(Exception ex){
+            System.err.println("No hay citas en esa fecha "+ex);           
+        }
             //System.out.println(aux);
 
-            for(int i=0;i<mierda_para_cabral.length;i++){
+            /*for(int i=0;i<mierda_para_cabral.length;i++){  //imprimir fechas que le paso a cabral            
                 for(int j=0;j<mierda_para_cabral[0].length;j++){
                     System.out.print(mierda_para_cabral[i][j]+" ");
                 }
             System.out.println();
             }
-
-        /*
-        Ven_registrocita_1 toma_tu_mierda_cabral= new Ven_registrocita_1(day,           //el dia si te pierdes puede mirar arriba cabron
+            */
+              
+        
+               Proyecto.Switch.cambiar_vent(new Ven_registrocita_1(  //Constructor que debemos utilizar
+                                                                         day,           //el dia si te pierdes puede mirar arriba cabron
                                                                          aux.getDate(), // numero del dia
                                                                          aux.getMonth()+1, // numero del mes
                                                                          aux.getYear()+1900,// numero del año
-                                                                         mierda_para_cabral);// tabla con las tuplas que te importan         
-        */
-        }catch(Exception e){
-            System.err.println("No hay citas en esa fecha");
-        }
+                                                                         mierda_para_cabral)// tabla con las tuplas que te importan         
+                                            );
+        
+       
+        
+        //Proyecto.Switch.cambiar_vent(toma_tu_mierda_cabral);
+        //Proyecto.Switch.cambiar_vent(new Ven_registrocita_1());               
  
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        pruebacalen();    
+        pruebacalen();           
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
