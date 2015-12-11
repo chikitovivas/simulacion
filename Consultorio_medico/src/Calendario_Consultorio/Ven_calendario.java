@@ -147,8 +147,8 @@ public class Ven_calendario extends javax.swing.JFrame {
             mierda_para_cabral=logica.procesar_cita(aux); 
             
       
-        //llamar_cabral(day, aux,mierda_para_cabral);
-            System.out.println("LLEGO");
+ 
+            
 
             for(int i=0;i<mierda_para_cabral.length;i++){  //imprimir fechas que le paso a cabral            
                 for(int j=0;j<mierda_para_cabral[0].length;j++){
@@ -159,24 +159,24 @@ public class Ven_calendario extends javax.swing.JFrame {
             
         }catch(Exception ex){
             System.err.println("No hay citas en esa fecha "+ex);             
-        }                
+        }       
+               llamar_cabral(day, aux,mierda_para_cabral);
         
     }
     
     private void llamar_cabral(String day, Date aux, Object[][] mierda_para_cabral) {
-//          
-            Proyecto.Switch.cambiar_vent(new Ven_registrocita_1(  //Constructor que debemos utilizar
+        Ven_registrocita_1 cabral;
+        
+        cabral=new Ven_registrocita_1(  //Constructor que debemos utilizar
                                                                          day,           //el dia si te pierdes puede mirar arriba cabron
                                                                          aux.getDate(), // numero del dia
                                                                          aux.getMonth()+1, // numero del mes
                                                                          aux.getYear()+1900,// numero del año
-                                                                         mierda_para_cabral)// tabla con las tuplas que te importan         
+                                                                         mierda_para_cabral// tabla con las tuplas que te importan         
                                         );
-            
-            
-            
-
-            
+        
+        //cabral=new Ven_registrocita_1 (); 
+        cabral.setVisible(true);
         }
     
     
