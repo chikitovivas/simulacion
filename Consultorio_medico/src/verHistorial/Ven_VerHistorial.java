@@ -5,6 +5,8 @@
  */
 package verHistorial;
 
+import java.util.Date;
+
 /**
  *
  * @author Rafael
@@ -15,17 +17,26 @@ public class Ven_VerHistorial extends javax.swing.JFrame {
      * Creates new form Ven_VerHistorial
      * @param arreglo_datos
      */
-    public Ven_VerHistorial(Object[][] arreglo_datos, int i) {
-        initComponents();
-        jTextField1.setText("25620021");
-        jTextField2.setText("Rafael Rivero");
-        jTextField3.setText("rafaelarturo16@gmail.com");
-        jTextField4.setText("04249127303");
-        jTextField1.setEditable(false);
-        jTextField2.setEditable(false);
-        jTextField3.setEditable(false);
-        jTextField4.setEditable(false);
+public Ven_VerHistorial(Object[][] arreglo_datos, int i,String sday, int day, int moth, int year) {
         
+        initComponents();
+        String y=Integer.toString(i);
+        
+        for(int j=0;j<arreglo_datos.length;i++){
+            if(y.equals(String.valueOf(((Date)arreglo_datos[j][0]).getHours()))){
+         jTextField1.setText(arreglo_datos[j][1].toString());
+         jTextField2.setText(arreglo_datos[j][2].toString()+" "+ arreglo_datos[j][3].toString());
+         jTextField3.setText(arreglo_datos[j][5].toString());
+         jTextField4.setText(arreglo_datos[j][4].toString());
+       
+            }
+        }
+        
+    
+         jTextField1.setEditable(false);
+         jTextField2.setEditable(false);
+         jTextField3.setEditable(false);
+         jTextField4.setEditable(false);
     }
 
     /**
@@ -217,7 +228,7 @@ public class Ven_VerHistorial extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ven_VerHistorial(null,0).setVisible(true);
+                new Ven_VerHistorial(null,0,null,0,0,0).setVisible(true);
             }
         });
     }

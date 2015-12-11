@@ -51,8 +51,10 @@ public class Ven_registrocita extends javax.swing.JFrame {
     }
 
         
-    public Ven_registrocita(Object[] arreglo_datos, int i, Date fecha_hora, Ven_registrocita_1 aux) {
-        this.fechahoraG = fecha_hora;
+
+
+ public Ven_registrocita(Object[][] arreglo_datos, String sday,int day, int moth, int year, Date fecha_hora) {
+       this.fechahoraG = fecha_hora;
         this.i=i;
         this.arreglo_datos=arreglo_datos;
         this.aux = aux;
