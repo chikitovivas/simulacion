@@ -45,8 +45,8 @@ public class Crearjsoncalendario {
         HttpClient client = new DefaultHttpClient();
         int id=1;
         String dirLAN=
-                //"169.254.105.188";// con router nico NO WIFI
-                "miconsultoriocal.no-ip.org"; //Router remoto rafa
+                "169.254.105.188";// con router nico NO WIFI
+                //"miconsultoriocal.no-ip.org"; //Router remoto rafa
  
         
           HttpGet get = new HttpGet("http://"+dirLAN+":8000/cita/"+ci);

@@ -22,7 +22,6 @@ public class SwitchPru extends javax.swing.JFrame {
     public SwitchPru(String titulo) {
         super (titulo);
         initComponents();
-        
         cambiar_vent(new MenuPru());
        this.setSize(men.getSize());
         
@@ -31,7 +30,7 @@ public class SwitchPru extends javax.swing.JFrame {
     public void cambiar_vent(JPanel aux){                           
         aux.setSize(PanelPrincipal.getSize());
         aux.setLocation(PanelPrincipal.getLocation());
-        aux.setLocation(5, 5);
+        //aux.setLocation(5, 5);
         PanelPrincipal.removeAll();
         PanelPrincipal.add(aux);
         PanelPrincipal.revalidate();
@@ -111,69 +110,7 @@ public class SwitchPru extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(SwitchPru.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

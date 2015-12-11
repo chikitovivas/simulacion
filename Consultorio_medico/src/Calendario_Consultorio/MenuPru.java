@@ -8,6 +8,7 @@ package Calendario_Consultorio;
 
 import static Calendario_Consultorio.SwitchPru.PanelPrincipal;
 import JSON.Crearjsoncalendario;
+import consultorio_medico.Proyecto;
 import java.awt.BorderLayout;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.shaper.StandardButtonShaper;
@@ -28,6 +29,7 @@ public class MenuPru extends javax.swing.JPanel {
         //this.JTconfiguracion.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         this.JThistorial.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         //this.JBregistro_Citas.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+
     }
 
     /**
@@ -93,12 +95,17 @@ public class MenuPru extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBcalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcalendarioActionPerformed
+       
         Crearjsoncalendario prueba=new Crearjsoncalendario(25620021);
-        this.calendario=new Panel_calendario(
+
+        Ven_calendario vcan=new Ven_calendario(
             prueba.fil,
             prueba.col,
-            prueba.tuplas);
-        ProyectoPru.Switch.cambiar_vent(calendario);
+            prueba.tuplas);                
+        vcan.setVisible(true);
+        ProyectoPru.Switch.setVisible(false);        
+         //this.setVisible(true);
+                                   
     }//GEN-LAST:event_JBcalendarioActionPerformed
 
     private void JThistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JThistorialActionPerformed
@@ -108,9 +115,10 @@ public class MenuPru extends javax.swing.JPanel {
         aux.setSize(PanelPrincipal.getSize());
         aux.setLocation(PanelPrincipal.getLocation());        
         PanelPrincipal.removeAll();
-        PanelPrincipal.add(aux,BorderLayout.CENTER);        
+        PanelPrincipal.add(aux,BorderLayout.CENTER);               
         PanelPrincipal.revalidate();
         PanelPrincipal.repaint();        
+        
         
     }//GEN-LAST:event_JThistorialActionPerformed
 

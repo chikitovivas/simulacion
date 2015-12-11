@@ -5,8 +5,6 @@
  */
 package Calendario_Consultorio;
 
-import consultorio_medico.*;
-import Calendario_Consultorio.Ven_calendario;
 import javax.swing.JFrame;
 import org.jvnet.substance.SubstanceLookAndFeel;
 
@@ -30,7 +28,8 @@ public class ProyectoPru {
 
             SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
             Switch= new SwitchPru(" UCAB   -   Consultotio Médico");
-            Switch.setVisible(true);  
+            Switch.setVisible(true);
+            
                
             }
         });
