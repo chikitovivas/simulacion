@@ -28,8 +28,8 @@ import verHistorial.Ven_VerHistorial;
 
 public class Ven_registrocita_1 extends javax.swing.JFrame {
      String[] casita;
-     String fecha_mostrar;
-     String fecha_pato;
+     String fecha_mostrar;      String esp="";
+     String fecha_pato;         String asp="      ";
      
      String [] horario;
      String [][] casex;
@@ -52,7 +52,7 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
             
         dday=15; dmouth=01; dyear=2024; cass="domingo";
         
-        fecha_mostrar= "31-12-2015 LLororo";
+        fecha_mostrar= "31-12-2015 "+cass;
         horario= new String[] {"08:00","09:33","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"};
         String[][] casex1;
         casex1 = new String [][] {{"12:00","29.192.559","papa","sales","9202992-0414","@jodete"}, {"11:00","30.123.333","mama","sales","0414","@sasdas"}};
@@ -90,9 +90,9 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         for(int zi=0; zi<=horario.length-1; zi++) {
             for(int zy=0; zy<=casex.length-1; zy++) {
                if (horario[zi].equals(casex[zy][0])) {
-                    imprimir[zi]= horario[zi]+" "+casex[zy][2]+" "+casex[zy][3]; 
+                    imprimir[zi]= esp+horario[zi]+asp+casex[zy][2]+" "+casex[zy][3]; 
                     zy=horario.length;
-                }   else {  imprimir[zi]=horario[zi];
+                }   else {  imprimir[zi]=esp+horario[zi];
                     } 
             }  
         }
@@ -132,9 +132,9 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         for(int zi=0; zi<=horario.length-1; zi++) {
             for(int zy=0; zy<=casex.length-1; zy++) {
                if (horario[zi].equals(casex[zy][0])) {
-                    imprimir[zi]= horario[zi]+" "+casex[zy][2]+" "+casex[zy][3]; 
+                    imprimir[zi]= esp+horario[zi]+asp+casex[zy][2]+" "+casex[zy][3]; 
                     zy=horario.length;
-                }   else {  imprimir[zi]=horario[zi];
+                }   else {  imprimir[zi]=esp+horario[zi];
                     } 
             }  
         }
@@ -260,14 +260,14 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
         //set text on right here
         String liststring = (String) jList1.getSelectedValue();
-         char[] s = new char[5];
-        liststring.getChars(0, 5, s, 0);
+         char[] s = new char[5+esp.length()];
+        liststring.getChars(esp.length(), 5, s, 0);
         String hora_min=new String(s);
         //dhour=  Integer.valueOf(ss.substring(0, 2));
         
         fecha_pato= String.valueOf(dyear)+"-"+String.valueOf(dmouth)+"-"+String.valueOf(dday)+" "+hora_min+":00";
         
-        if (7<=liststring.length()){
+        if ((esp.length()+7)<=liststring.length()){
                    //Ven_VerHistorial rafa = new Ven_VerHistorial (ocus_magnus, dhour, cass, dday, dmouth, dyear);
                    //Proyecto.Switch.cambiar_vent(rafa);
                    System.out.println(hora_min);    //System.out.println(dhour);
