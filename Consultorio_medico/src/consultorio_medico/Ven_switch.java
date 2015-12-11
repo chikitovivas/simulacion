@@ -36,9 +36,8 @@ public class Ven_switch extends javax.swing.JFrame {
        
     }
            
-    public void cambiar_vent(JFrame viejo,JFrame nuevo){
-        nuevo.setVisible(true);
-        viejo.dispose();
+    public void cambiar_vent(Ven_registrocita_1 aux){
+            System.out.println("NO SE");
     
     }
     

@@ -273,7 +273,7 @@ public class Ven_registrocita extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
         this.dispose();
     }//GEN-LAST:event_BotonCancelarActionPerformed
 

@@ -34,9 +34,7 @@ public class Ven_calendario extends javax.swing.JFrame {
     }
     
     public Ven_calendario(){    //SOLO PARA PRUEBA
-        initComponents();
-        
-  
+        initComponents();          
         this.jButton1.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         logica=Cod_calendario.main(null);
     }
@@ -156,7 +154,7 @@ public class Ven_calendario extends javax.swing.JFrame {
             */
               
         
-            Proyecto.Switch.cambiar_vent(this,new Ven_registrocita_1(  //Constructor que debemos utilizar
+            Proyecto.Switch.cambiar_vent(new Ven_registrocita_1(  //Constructor que debemos utilizar
                                                                          day,           //el dia si te pierdes puede mirar arriba cabron
                                                                          aux.getDate(), // numero del dia
                                                                          aux.getMonth()+1, // numero del mes
