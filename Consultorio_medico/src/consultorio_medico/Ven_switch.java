@@ -5,6 +5,7 @@
  */
 package consultorio_medico;
 
+import Calendario_Consultorio.Ven_calendario;
 import Lista_citas.Ven_registrocita_1;
 import javax.swing.JFrame;
 import org.jvnet.substance.SubstanceLookAndFeel;
@@ -21,9 +22,8 @@ public class Ven_switch extends javax.swing.JFrame {
         initComponents();                 
     }   
 
-    public void cambiar_vent(JFrame aux){
-       initComponents();                            
-        JFrame.setDefaultLookAndFeelDecorated(true);
+    public void cambiar_vent(JFrame aux){                           
+       JFrame.setDefaultLookAndFeelDecorated(true);
        SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin"); 
        
        this.getContentPane().removeAll();     
@@ -36,7 +36,11 @@ public class Ven_switch extends javax.swing.JFrame {
        
     }
            
+    public void cambiar_vent(JFrame viejo,JFrame nuevo){
+        nuevo.setVisible(true);
+        viejo.dispose();
     
+    }
     
     
     

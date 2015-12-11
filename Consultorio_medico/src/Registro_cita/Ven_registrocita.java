@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.json.JSONException;
 import Registro_cita.Cod_registrocita;
+import consultorio_medico.Menu;
 import javax.swing.JFrame;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.shaper.StandardButtonShaper;
@@ -333,7 +334,7 @@ public class Ven_registrocita extends javax.swing.JFrame {
         // TODO add your handling code here:
         
       //  Llamada a Carlos;
-        Proyecto.Switch.cambiar_vent(aux);
+        Proyecto.Switch.cambiar_vent(new Menu());
         
     }//GEN-LAST:event_JBbackActionPerformed
 
