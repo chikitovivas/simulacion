@@ -24,7 +24,7 @@ import verHistorial.Ven_VerHistorial;
 
 
 
-public class Ven_registrocita_1 extends javax.swing.JFrame {
+public class guard extends javax.swing.JFrame {
      String[] casita;
      String fecha_mostrar;
      String fecha_pato;
@@ -37,11 +37,11 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
      int dday;
      
     /**
-     * Creates new form Ven_registrocita
+     * Creates new form thelist
      */
      
      //Primer Constructor de prueba para llorar :c
-    public Ven_registrocita_1() {
+    public guard() {
         
         ocus_magnus=new Object[5][5];
         dday=31;
@@ -49,14 +49,17 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         horario= new String[] {"08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"};
         casex = new String [][] {{"08:00","29.192.559","papa","sales","9202992-0414","@jodete"}, {"11:00","30.123.333","mama","sales","0414","@sasdas"}};
         
+        String esp= "        ";
+        String esp1= "                                        ";
+        
         
         imprimir= new String [horario.length];
         for(int zi=0; zi<=horario.length-1; zi++) {
             for(int zy=0; zy<=casex.length-1; zy++) {
                if (horario[zi].equals(casex[zy][0])) {
-                    imprimir[zi]= horario[zi]+" "+casex[zy][2]+" "+casex[zy][3]; 
+                    imprimir[zi]= esp+horario[zi]+esp1+casex[zy][2]+"   "+casex[zy][3]; 
                     zy=horario.length;
-                }   else {  imprimir[zi]=horario[zi];
+                }   else {  imprimir[zi]=esp+horario[zi];
                     } 
             }  
         }
@@ -66,7 +69,10 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
 
     
     //Segundo Constructor y es el que se va a usar "normalmente"                        sigh :c
-    public Ven_registrocita_1(String sday, int day, int moth, int year, Object[][] ocus_pocus) {
+    public guard(String sday, int day, int moth, int year, Object[][] ocus_pocus) {
+        String esp= "        ";
+        
+        
         ocus_magnus=ocus_pocus;
         dday=day;
         horario= new String[] {"08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"};
@@ -89,14 +95,12 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         for(int zi=0; zi<=horario.length-1; zi++) {
             for(int zy=0; zy<=casex.length-1; zy++) {
                if (horario[zi].equals(casex[zy][0])) {
-                    imprimir[zi]= horario[zi]+" "+casex[zy][2]+" "+casex[zy][3]; 
+                    imprimir[zi]= esp+horario[zi]+" "+casex[zy][2]+" "+casex[zy][3]; 
                     zy=horario.length;
-                }   else {  imprimir[zi]=horario[zi];
+                }   else {  imprimir[zi]=esp+horario[zi];
                     } 
             }  
         }
-        
-    //    Ven_registrocita_1(day,aux.getDate(),aux.getMonth(),aux.getYear(),mierda_para_cabral);
         casita= imprimir;
         initComponents();
     }
@@ -112,21 +116,31 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        JLtitulo1 = new javax.swing.JLabel();
+        JLtitulo2 = new javax.swing.JLabel();
         JLtitulo = new javax.swing.JLabel();
         BotonCrear = new javax.swing.JButton();
-        JLtitulo1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
-        JLtitulo2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("formulariopaciente");
+        setBackground(new java.awt.Color(255, 102, 102));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
+
+        jPanel1.setBackground(new java.awt.Color(102, 255, 204));
+
+        JLtitulo1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        JLtitulo1.setText(fecha_mostrar);
+
+        JLtitulo2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        JLtitulo2.setText("Personas");
 
         JLtitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         JLtitulo.setText("Horas");
@@ -138,17 +152,18 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
             }
         });
 
-        JLtitulo1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        JLtitulo1.setText(fecha_mostrar);
+        jButton1.setText("jButton1");
 
-        jList1.setBackground(new java.awt.Color(0, 204, 204));
-        jList1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 102)));
+        jList1.setBackground(new java.awt.Color(0, 153, 153));
+        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 1, 14))); // NOI18N
         jList1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jList1.setForeground(new java.awt.Color(0, 51, 51));
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = casita;
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        jList1.setInheritsPopupMenu(true);
         jScrollPane1.setViewportView(jList1);
         jList1.addListSelectionListener (
             new ListSelectionListener() {
@@ -161,46 +176,65 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
             }
         );
 
-        jButton1.setText("jButton1");
-
-        JLtitulo2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        JLtitulo2.setText("Personas");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(JLtitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JLtitulo2)
+                .addGap(103, 103, 103))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(197, 197, 197)
+                .addComponent(JLtitulo1)
+                .addContainerGap(242, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BotonCrear)))
+                .addGap(19, 19, 19))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 207, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 458, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(JLtitulo1)
+                .addGap(2, 2, 2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JLtitulo2)
+                    .addComponent(JLtitulo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BotonCrear)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 137, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 320, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(BotonCrear))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(JLtitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JLtitulo2)
-                .addGap(154, 154, 154))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(243, 243, 243)
-                .addComponent(JLtitulo1)
-                .addContainerGap(237, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JLtitulo1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLtitulo2)
-                    .addComponent(JLtitulo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotonCrear))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -218,10 +252,10 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
         //set text on right here
         String ss = (String) jList1.getSelectedValue();
-         char[] s = new char[5];
-        ss.getChars(0, 5, s, 0);
+         char[] s = new char[13];
+        ss.getChars(0, 13, s, 0);
         
-        if (7<=ss.length()){
+        if (15<=ss.length()){
                    Ven_VerHistorial rafa = new Ven_VerHistorial (ocus_magnus, dday);
                    //Proyecto.Switch.cambiar_vent(rafa);
                    System.out.println(Arrays.toString(s));
@@ -268,7 +302,7 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Ven_registrocita_1().setVisible(true);
+                new guard().setVisible(true);
             }
         });
     }
@@ -280,6 +314,7 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
     private javax.swing.JLabel JLtitulo2;
     private javax.swing.JButton jButton1;
     private javax.swing.JList jList1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
@@ -287,3 +322,4 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
+
