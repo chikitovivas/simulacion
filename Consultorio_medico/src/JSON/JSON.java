@@ -39,7 +39,7 @@ public class JSON {
               
         HttpClient client = new DefaultHttpClient(); // cliente
 
-        HttpPost post = new HttpPost("http://miconsultoriocal.no-ip.org:8000/"+url);// aqui ponen el url que necesiten lo unico que tiene que cambiar es el /notes ponen el que quieran por ejemplo /crearusuario
+        HttpPost post = new HttpPost("http://169.254.105.188:8000/"+url);// aqui ponen el url que necesiten lo unico que tiene que cambiar es el /notes ponen el que quieran por ejemplo /crearusuario
 
 
         JSONObject json = new JSONObject(); // crean el objeto json

@@ -122,9 +122,14 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
                casex[zi][0]= String.valueOf(((Date)ocus_pocus[zi][0]).getHours());
                }
            casex[zi][0]= casex[zi][0]+ ":";
-           casex[zi][0]= casex[zi][0]+String.valueOf(((Date)ocus_pocus[zi][0]).getMinutes());
+           if (Integer.valueOf( ((Date)ocus_pocus[zi][0]).getMinutes())<=9 ) {
+               casex[zi][0]= casex[zi][0]+String.valueOf(((Date)ocus_pocus[zi][0]).getMinutes())+"0";
+           }   else {
+               casex[zi][0]= String.valueOf(((Date)ocus_pocus[zi][0]).getMinutes());
+               }
               for(int zxz=1; zxz<=ocus_pocus[zi].length-2; zxz++) {                //   No llego hasta la fecha de nacimiento
-                  casex[zi][zxz]=((String)ocus_pocus[zi][zxz]);    
+                  casex[zi][zxz]=(ocus_pocus[zi][zxz].toString()); 
+                  System.out.printf(casex[zi][zxz]);
               }
         }
           
@@ -263,18 +268,23 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
          char[] s = new char[5+esp.length()];
         liststring.getChars(esp.length(), 5, s, 0);
         String hora_min=new String(s);
-        //dhour=  Integer.valueOf(ss.substring(0, 2));
+        dhour=  Integer.valueOf(hora_min.substring(0, 2));
         
         fecha_pato= String.valueOf(dyear)+"-"+String.valueOf(dmouth)+"-"+String.valueOf(dday)+" "+hora_min+":00";
         
         if ((esp.length()+7)<=liststring.length()){
-                   //Ven_VerHistorial rafa = new Ven_VerHistorial (ocus_magnus, dhour, cass, dday, dmouth, dyear);
-                   //Proyecto.Switch.cambiar_vent(rafa);
+                   Ven_VerHistorial rafa = new Ven_VerHistorial (ocus_magnus, dhour, cass, dday, dmouth, dyear);
+                   rafa.setVisible(true);
+                   this.setVisible(false);
                    System.out.println(hora_min);    //System.out.println(dhour);
                    
-        }  else {  //Ven_registrocita pato = new Ven_registrocita(ocus_magnus, cass, dday, dmouth, dyear, fecha_pato);
+        }  else {  //System.out.print("penemalditoansias");
+                   //Ven_registrocita pato = new Ven_registrocita(ocus_magnus, cass, dday, dmouth, dyear, fecha_pato);
+                    Ven_registrocita pato = new Ven_registrocita(fecha_pato);
+                  pato.setVisible(true);
+                  this.setVisible(false);
                   // Proyecto.Switch.cambiar_vent(pato);
-                   System.out.println(fecha_pato);   //fecha_pato
+                   //System.out.println(fecha_pato);   //fecha_pato
            }
     }
     

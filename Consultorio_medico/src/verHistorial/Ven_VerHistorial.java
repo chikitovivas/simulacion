@@ -38,8 +38,21 @@ public Ven_VerHistorial(Object[][] arreglo_datos, int i,String sday, int day, in
         initComponents();
         String y=Integer.toString(i); //En otra versiones hay que poner horas minutos y segundos
         
-        for(int j=0;j<arreglo_datos.length;i++){
-            if(y.equals(String.valueOf(((Date)arreglo_datos[j][0]).getHours()))){
+        
+        
+        
+        for(int j=0;j<arreglo_datos.length;j++){
+        System.out.println(i);
+        System.out.println(i);
+        System.out.println(y);
+        System.out.println (Integer.valueOf((((Date)arreglo_datos[j][0]).getHours())) );
+       
+        
+       
+       
+        
+            if(  Integer.valueOf(i).equals(Integer.valueOf((((Date)arreglo_datos[j][0]).getHours())))  ){
+                System.out.println(y);
          jTextField1.setText(arreglo_datos[j][1].toString());
          jTextField2.setText(arreglo_datos[j][2].toString()+" "+ arreglo_datos[j][3].toString());
          jTextField3.setText(arreglo_datos[j][5].toString());

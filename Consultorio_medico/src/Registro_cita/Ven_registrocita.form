@@ -147,10 +147,19 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="JTapellido">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="asdsd"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="JTtelefono">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="3454653"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="JTemail">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="dghfgjgfnjh"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTemailActionPerformed"/>
           </Events>
@@ -205,11 +214,17 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="JTci">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="2020020"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTciActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="JTnombre">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="wasd"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTnombreActionPerformed"/>
           </Events>

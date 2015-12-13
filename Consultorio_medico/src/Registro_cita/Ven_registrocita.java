@@ -38,8 +38,8 @@ public class Ven_registrocita extends javax.swing.JFrame {
     int year;
     String fechahoraG;
     
-  /*  
-    public Ven_registrocita(Date fecha_hora) {
+   
+    public Ven_registrocita(String fecha_hora) {
         this.fechahoraG = fecha_hora;
 
         initComponents();
@@ -51,12 +51,14 @@ public class Ven_registrocita extends javax.swing.JFrame {
         this.BotonLimpiar.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         this.JBback.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
     }
-*/
+
         
 
 
  public Ven_registrocita(Object[][] arreglo_datos, String sday,int day, int moth, int year, String fecha_hora) {
        
+     
+     
      this.fechahoraG = fecha_hora;  
      this.arreglo_datos=arreglo_datos;  
      this.sday=sday;
@@ -73,6 +75,7 @@ public class Ven_registrocita extends javax.swing.JFrame {
         this.BotonCrear.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         this.BotonCancelar.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         this.BotonLimpiar.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        System.out.println("llego al construcotr");
     }
     
     
@@ -113,6 +116,11 @@ public class Ven_registrocita extends javax.swing.JFrame {
         JLtitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         JLtitulo.setText("Datos Paciente");
 
+        JTapellido.setText("asdsd");
+
+        JTtelefono.setText("3454653");
+
+        JTemail.setText("dghfgjgfnjh");
         JTemail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTemailActionPerformed(evt);
@@ -150,12 +158,14 @@ public class Ven_registrocita extends javax.swing.JFrame {
 
         JLemail.setText("Email:");
 
+        JTci.setText("2020020");
         JTci.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTciActionPerformed(evt);
             }
         });
 
+        JTnombre.setText("wasd");
         JTnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTnombreActionPerformed(evt);
@@ -328,7 +338,7 @@ public class Ven_registrocita extends javax.swing.JFrame {
         datos[5] = "25620021";
         datos[6] = fechahoraG; //dd-mm-aaaa 24:00   
 
-        Cod_registrocita(datos);
+        new Cod_registrocita(datos);
 
 
     }//GEN-LAST:event_BotonCrearActionPerformed
@@ -401,7 +411,5 @@ public class Ven_registrocita extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-    private void Cod_registrocita(String[] datos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 }
