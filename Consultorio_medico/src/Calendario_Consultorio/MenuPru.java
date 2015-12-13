@@ -28,7 +28,7 @@ public class MenuPru extends javax.swing.JPanel {
         initComponents();                 
         this.JBcalendario.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         //this.JTconfiguracion.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-        this.JThistorial.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
+        //this.JThistorial.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         //this.JBregistro_Citas.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
 
     }
@@ -44,7 +44,6 @@ public class MenuPru extends javax.swing.JPanel {
 
         JLtitulo = new javax.swing.JLabel();
         JBcalendario = new javax.swing.JButton();
-        JThistorial = new javax.swing.JButton();
 
         JLtitulo.setFont(new java.awt.Font("Gisha", 1, 24)); // NOI18N
         JLtitulo.setText("Consultorio Medico");
@@ -58,15 +57,6 @@ public class MenuPru extends javax.swing.JPanel {
             }
         });
 
-        JThistorial.setFont(new java.awt.Font("Gisha", 0, 14)); // NOI18N
-        JThistorial.setText("Historial Paciente");
-        JThistorial.setDefaultCapable(false);
-        JThistorial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JThistorialActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,9 +67,7 @@ public class MenuPru extends javax.swing.JPanel {
                     .addComponent(JLtitulo)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JBcalendario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JThistorial, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addComponent(JBcalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(90, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -89,9 +77,7 @@ public class MenuPru extends javax.swing.JPanel {
                 .addComponent(JLtitulo)
                 .addGap(72, 72, 72)
                 .addComponent(JBcalendario)
-                .addGap(18, 18, 18)
-                .addComponent(JThistorial)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -109,24 +95,9 @@ public class MenuPru extends javax.swing.JPanel {
                                    
     }//GEN-LAST:event_JBcalendarioActionPerformed
 
-    private void JThistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JThistorialActionPerformed
-
-        Prueba aux=new Prueba();        
-                        
-        aux.setSize(PanelPrincipal.getSize());
-        aux.setLocation(PanelPrincipal.getLocation());        
-        PanelPrincipal.removeAll();
-        PanelPrincipal.add(aux,BorderLayout.CENTER);               
-        PanelPrincipal.revalidate();
-        PanelPrincipal.repaint();        
-        
-        
-    }//GEN-LAST:event_JThistorialActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBcalendario;
     private javax.swing.JLabel JLtitulo;
-    private javax.swing.JButton JThistorial;
     // End of variables declaration//GEN-END:variables
 }
