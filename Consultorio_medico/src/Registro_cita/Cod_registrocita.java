@@ -32,8 +32,8 @@ public class Cod_registrocita {
         try {
             //Datos para el JSON
 
-            //JSON.JSON_agregar(titulo_datos, datos, 6, "http://miconsultoriocal.no-ip.org:8000/hacercita");
-            JSON.JSON_agregar(titulo_datos, datos, 7, "hacerCita");
+            JSON.JSON_agregar(titulo_datos, datos, 6, "http://miconsultoriocal.no-ip.org:8000/hacercita");
+            //JSON.JSON_agregar(titulo_datos, datos, 7, "hacerCita");
         } catch (IOException ex) {
             Logger.getLogger(Cod_registrocita.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JSONException ex) {
