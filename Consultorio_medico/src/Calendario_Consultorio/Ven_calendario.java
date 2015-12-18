@@ -6,8 +6,11 @@
 package Calendario_Consultorio;
 
 import Lista_citas.Ven_registrocita_1;
+import com.toedter.calendar.JDayChooser;
 import consultorio_medico.Proyecto;
+import java.awt.Color;
 import java.util.Date;
+import javax.swing.JPanel;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.shaper.StandardButtonShaper;
 
@@ -27,8 +30,8 @@ public class Ven_calendario extends javax.swing.JFrame {
     
     public Ven_calendario(int fil,int col,Object[][] citas) {               
         initComponents();
+ 
         
-       
         this.jButton1.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());        
         logica=new Cod_calendario(fil,col,citas);                       
     }
@@ -37,6 +40,17 @@ public class Ven_calendario extends javax.swing.JFrame {
         initComponents();          
         this.jButton1.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         logica=Cod_calendario.main(null);
+        
+        JDayChooser aux=((JDayChooser)Calen1.getComponent(1));
+        aux.setForeground(Color.green);       
+        
+        
+        
+        System.out.println(
+                (
+                     aux.getDayPanel().getComponent(10).getClass()
+                )
+        );
     }
     
 
@@ -131,7 +145,8 @@ public class Ven_calendario extends javax.swing.JFrame {
 
     void pruebacalen(){
     Date aux=Calen1.getDate();
-    String day="";                
+    String day="";  
+   
         switch(aux.getDay()){
             case 0: day="Domingo";break;
             case 1: day="Lunes";break;

@@ -5,37 +5,23 @@
  */
 package consultorio_medico;
 
-import Calendario_Consultorio.Ven_calendario;
-import verHistorial.Ven_VerHistorial;
-import JSON.Crearjsoncalendario;
-import Lista_citas.Ven_registrocita_1;
-import Registro_cita.Cod_registrocita;
-import Registro_cita.Ven_registrocita;
-import javax.swing.JFrame;
-import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.shaper.StandardButtonShaper;
-
-
 /**
  *
- * @author Administrador
+ * @author Rafael
  */
-public class Menu extends javax.swing.JFrame {
-    Ven_calendario calendario;  
-    Ven_VerHistorial historial;
-    Ven_registrocita registroCita;
-    
-    
+public class PruebaDePanel extends javax.swing.JFrame {
+
+    PanelPrincipal panelPrin;
     /**
-     * Creates new form Menu
+     * Creates new form PruebaDePanel
      */
-    public Menu() {
-        initComponents();
+    public PruebaDePanel() {
        
-        
-        this.JBcalendario.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-        this.JTconfiguracion.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-      }
+      
+         initComponents();
+         
+         
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,17 +33,19 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        JLtitulo = new javax.swing.JLabel();
         JBcalendario = new javax.swing.JButton();
-        JTconfiguracion = new javax.swing.JButton();
+        JLtitulo = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 640));
 
-        JLtitulo.setFont(new java.awt.Font("Gisha", 1, 24)); // NOI18N
-        JLtitulo.setText("Consultorio Medico");
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
 
         JBcalendario.setFont(new java.awt.Font("Gisha", 0, 14)); // NOI18N
-        JBcalendario.setText("Calendario");
+        JBcalendario.setText("Inicio");
         JBcalendario.setDefaultCapable(false);
         JBcalendario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,41 +53,39 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        JTconfiguracion.setFont(new java.awt.Font("Gisha", 0, 14)); // NOI18N
-        JTconfiguracion.setText("Configuración");
-        JTconfiguracion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTconfiguracionActionPerformed(evt);
-            }
-        });
+        JLtitulo.setFont(new java.awt.Font("Gisha", 1, 24)); // NOI18N
+        JLtitulo.setText("Consultorio Medico");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(310, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(JLtitulo)
-                        .addGap(99, 99, 99))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JTconfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JBcalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(155, 155, 155))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(298, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(JBcalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))
+                    .addComponent(JLtitulo))
+                .addGap(275, 275, 275))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
+                .addGap(205, 205, 205)
                 .addComponent(JLtitulo)
                 .addGap(18, 18, 18)
                 .addComponent(JBcalendario)
-                .addGap(18, 18, 18)
-                .addComponent(JTconfiguracion)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addContainerGap(323, Short.MAX_VALUE))
         );
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,31 +93,26 @@ public class Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 400, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBcalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcalendarioActionPerformed
-        Crearjsoncalendario prueba=new Crearjsoncalendario(25620021);        
-        this.calendario=new Ven_calendario(
-                prueba.fil,
-                prueba.col,
-                prueba.tuplas);
-        Proyecto.Switch.cambiar_vent(calendario);
+        jPanel1.setVisible(false);
+        panelPrin = new PanelPrincipal();
+        panelPrin.setVisible(true);
+        panelPrin.setBounds(0, 40,800 ,600);
+        this.add(panelPrin);
+     
     }//GEN-LAST:event_JBcalendarioActionPerformed
-
-    private void JTconfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTconfiguracionActionPerformed
-       
-        
-    }//GEN-LAST:event_JTconfiguracionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,20 +131,20 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PruebaDePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PruebaDePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PruebaDePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PruebaDePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                new PruebaDePanel().setVisible(true);
             }
         });
     }
@@ -171,7 +152,9 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBcalendario;
     private javax.swing.JLabel JLtitulo;
-    private javax.swing.JButton JTconfiguracion;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
