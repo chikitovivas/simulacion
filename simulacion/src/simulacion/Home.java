@@ -23,11 +23,11 @@ public class Home extends javax.swing.JFrame {
     private int inven_inicial;
     private int Q;
     private int R;
-    
+      
     /**
      * Creates new form Home
      */
-    public Home() {
+    public Home(/*double[][] matriz_demandas, double[][] matriz_entregas, double[][] matriz_esperas, */) {
         initComponents();
         DefaultTableModel model = new DefaultTableModel();
         DefaultTableModel model1 = new DefaultTableModel();
@@ -77,8 +77,7 @@ public class Home extends javax.swing.JFrame {
             data.add(matriz_espera[i][1]);
             model2.addColumn((int)matriz_espera[i][0], data.toArray());
             data.clear();
-        }        
-        
+        }                
         demanda_table.setModel(model);
         entrega_table.setModel(model1);
         espera_table.setModel(model2); 
@@ -387,11 +386,11 @@ public class Home extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+     /*   java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Home().setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
