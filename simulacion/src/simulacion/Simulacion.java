@@ -59,6 +59,7 @@ public class Simulacion {
             if (i==0){
                 if (aleatorio<=compare[i][1])
                     System.out.println((int)compare[i][0]);
+                    //
             }
             else{
                 if ((aleatorio>compare[i-1][1]) &&  (aleatorio<=compare[i][1]))
