@@ -23,7 +23,22 @@ public class Home extends javax.swing.JFrame {
     private int inven_inicial;
     private int Q;
     private int R;
-      
+    /*
+    Variables de la simulacion
+    */
+    private int demanda_diaria;
+    private int inventario_ini;
+    private int inventario_fin;
+    private int faltante;
+    private int inventario_promedio;
+    private int tiempo_entrega;
+    private int tiempo_espera;
+    private int numero_orden=0;
+    private double aleatorio_demanda;
+    private double[][] matriz_demanda;
+    private double[][] matriz_entrega ;
+    private double[][] matriz_espera;
+
     /**
      * Creates new form Home
      */
@@ -36,7 +51,7 @@ public class Home extends javax.swing.JFrame {
         /*
         Ejemplo
         */
-        double[][] matriz_demanda = new double[][]{
+        matriz_demanda = new double[][]{
             new double[] { 25, .02},
             new double[] { 26, .04},
             new double[] { 27, .06},
@@ -48,13 +63,13 @@ public class Home extends javax.swing.JFrame {
             new double[] { 33, .05},
             new double[] { 34, .02},    
         };     
-        double[][] matriz_entrega = new double[][]{
+        matriz_entrega = new double[][]{
             new double[] { 1, .2},
             new double[] { 2, .3},
             new double[] { 3, .25},
             new double[] { 4, .25},            
         }; 
-        double[][] matriz_espera = new double[][]{
+        matriz_espera = new double[][]{
             new double[] { 0, .4},
             new double[] { 1, .2},
             new double[] { 2, .15},
@@ -340,21 +355,86 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
-        costo_unidad = Integer.parseInt(costo_inventario.getText());
-        costo_pedido =  Integer.parseInt(costo_orden.getText());    
-        costo_f_cliente = Integer.parseInt(costo_espera.getText());
-        costo_sf_cliente = Integer.parseInt(costo_nespera.getText()); 
-        inven_inicial =  Integer.parseInt(inventario_inicial.getText()); 
-        
-        if(costo_sf_cliente != 0 && costo_pedido != 0 && costo_f_cliente != 0 && costo_unidad != 0 && inven_inicial != 0 && costo_f_cliente != 0){
+       
+       /* if(costo_sf_cliente != 0 && costo_pedido != 0 && costo_f_cliente != 0 && costo_unidad != 0 && inven_inicial != 0 && costo_f_cliente != 0){
             
                /* Random rnd = new Random(0);
                 for(int i = 0; i < 15; i++){
                     System.out.println((int)(rnd.nextDouble() * 100));
                 }*/
-                
-        }else{
+
+       /* }else{
             JOptionPane.showMessageDialog(null, "Llenar los campos requeridos /n");
+        }*/
+        double[][] matriz_acum_demanda = new double[matriz_demanda.length][matriz_demanda[0].length];
+        double[][] matriz_acum_entrega= new double[matriz_entrega.length][matriz_entrega[0].length];
+        double[][] matriz_acum_espera;
+        
+        /* llenado de la matriz acumulada de probabilidad de demandas  */
+        for(int i = 0; i<matriz_demanda.length; i++){
+                matriz_acum_demanda[i][0] = matriz_demanda[i][0];
+            if(i==0){
+                matriz_acum_demanda[i][1] = matriz_demanda[i][1];
+            }else{
+                matriz_acum_demanda[i][1] = matriz_acum_demanda[i-1][1] +  matriz_demanda[i][1];
+            }
+        }
+        /* llenado de la matriz acumulada de probabilidades de entrega de pedido */
+        for(int i = 0; i<matriz_entrega.length; i++){
+                matriz_acum_entrega[i][0] = matriz_entrega[i][0];
+            if(i==0){
+                matriz_acum_entrega[i][1] = matriz_entrega[i][1];
+            }else{
+                matriz_acum_entrega[i][1] = matriz_acum_entrega[i-1][1] +  matriz_entrega[i][1];
+            }    
+        }
+        /* Random*/
+        Random rnd = new Random(0);
+        /* Titulos */
+        System.out.printf("Dia\t|Inv.ini|No.Al D|Demanda|Inv.Fin|Inv.prm|Faltant|No.Ordn|No.AleE|T.entrga|No.Ale es|T.espera %n");
+         
+        /* Inicializacion de variables para simulacion*/
+        inventario_ini = Integer.parseInt(inventario_inicial.getText());
+        double[] array = Funciones.fread_aleatorios();
+        int dia_orden=0;
+        /* dias de simulacion*/
+        for(int i = 1 ; i <= 15; i++){  
+            /* if para ver si ya la orden llego*/
+            if(tiempo_espera + dia_orden < i && dia_orden != 0){
+                inventario_ini = inventario_ini + Q;
+                dia_orden = 0;
+            }
+            /* aleatorio demanda*/
+            aleatorio_demanda = (double)(rnd.nextDouble() * 100)/100;
+            //demanda_diaria = Funciones.fcompare(aleatorio_demanda,matriz_acum_demanda);
+            /* demanda_diaria */
+            demanda_diaria = Funciones.fcompare(array[i-1],matriz_acum_demanda);
+            /* inventario final */
+            inventario_fin = (int)inventario_ini - demanda_diaria;
+            /* si inventario es negativo, es decir, hay faltante */
+            if(inventario_fin < 0){
+                faltante = Math.abs(inventario_fin);
+                inventario_fin = 0;
+            }
+            /* inventario_promedio */
+            inventario_promedio = (inventario_ini + inventario_fin) / 2;
+            
+            /* si el inventario final es menor al punto de Reorden y no hay una orden puesta, pide una orden y muestra */
+            if(inventario_fin <= R && dia_orden == 0){
+                /* pide el tiempo de espera de la proxima orden */
+                tiempo_espera = Funciones.fcompare(aleatorio_demanda, matriz_acum_entrega);
+                /* la cantidad de ordenes*/
+                numero_orden++;
+                /* dia en el que se pidio la orden */
+                dia_orden = i;
+                System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera);
+                
+            }else{
+                System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante);
+            }
+            /* inventario inicial del proximo dia */
+            inventario_ini = inventario_fin;
+            
         }
     }//GEN-LAST:event_startActionPerformed
 

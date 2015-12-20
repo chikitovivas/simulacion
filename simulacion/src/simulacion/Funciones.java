@@ -16,12 +16,12 @@ import java.io.IOException;
 public class Funciones {
     
 
-public static void fread_aleatorios() {
+public static double[] fread_aleatorios() {
                
         String content = null;//contenido del fichero
-        File file = new File("C:\\Users\\Administrador\\Documents\\NetBeansProjects\\Lecturaarchivos\\src\\lecturaarchivos\\aleatorios.txt"); //ruta completa al fichero que deseamos leer
+       // File file = new File("C:\\Users\\Administrador\\Documents\\NetBeansProjects\\Lecturaarchivos\\src\\lecturaarchivos\\aleatorios.txt"); //ruta completa al fichero que deseamos leer
+        File file = new File("C:\\xampp\\htdocs\\simulacion\\simulacion\\src\\simulacion\\aleatorios.txt");
         try {
-            //Abrir el archivo
             FileReader reader = new FileReader(file);
             char[] chars = new char[(int) file.length()];
             //Lectura del archivo
@@ -40,11 +40,11 @@ public static void fread_aleatorios() {
                 array_num[i] = Double.parseDouble(array_string[i]);
                 //System.out.println(array_num[i]);
              }
-                        
+             return array_num;           
         } catch (IOException e) {
                 e.printStackTrace();
         }
-        
+        return null;
     }
     
     public static int fcompare(double aleatorio, double[][] compare){
