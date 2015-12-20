@@ -64,7 +64,13 @@ public static void fread_aleatorios() {
         return -1;
     }  
     
+    public static double[][] fnumacumulado(double[][] compare){
+        for (int i=1; i<compare.length; i++){
+            compare[i][1]=compare[i][1]+compare[i-1][1];
+        }
+        return compare;
     
+    }  
     
     public static double fsalida(double cfaltante_CE, double cfaltante_SE, double corden, double cinventarioD, int cantfaltante_CE, int cantfaltante_SE, int cantordenes){
           /*double cfaltante_CE: costo faltante con espera de cliente (Dato ingresado por el usuario)
