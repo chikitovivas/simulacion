@@ -51,14 +51,16 @@ public static void fread_aleatorios() {
             
         for (int i=0; i< compare.length; i++) {          
             if (i==0){
-                if (aleatorio<=compare[i][1])
+                if (aleatorio<=compare[i][1]){
                    // System.out.println((int)compare[i][0]);
                     return (int) compare[i][0];
+                }
             }
             else{
-                if ((aleatorio>compare[i-1][1]) &&  (aleatorio<=compare[i][1]))
+                if ((aleatorio>compare[i-1][1]) &&  (aleatorio<=compare[i][1])){
                    // System.out.println((int)compare[i][0]);
                     return (int)compare[i][0];
+                }
             }
        }
         return -1;
