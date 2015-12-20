@@ -366,19 +366,10 @@ public class Home extends javax.swing.JFrame {
        /* }else{
             JOptionPane.showMessageDialog(null, "Llenar los campos requeridos /n");
         }*/
-        double[][] matriz_acum_demanda = new double[matriz_demanda.length][matriz_demanda[0].length];
+        double[][] matriz_acum_demanda = Funciones.fnumacumulado(matriz_demanda);
         double[][] matriz_acum_entrega= new double[matriz_entrega.length][matriz_entrega[0].length];
         double[][] matriz_acum_espera;
         
-        /* llenado de la matriz acumulada de probabilidad de demandas  */
-        for(int i = 0; i<matriz_demanda.length; i++){
-                matriz_acum_demanda[i][0] = matriz_demanda[i][0];
-            if(i==0){
-                matriz_acum_demanda[i][1] = matriz_demanda[i][1];
-            }else{
-                matriz_acum_demanda[i][1] = matriz_acum_demanda[i-1][1] +  matriz_demanda[i][1];
-            }
-        }
         /* llenado de la matriz acumulada de probabilidades de entrega de pedido */
         for(int i = 0; i<matriz_entrega.length; i++){
                 matriz_acum_entrega[i][0] = matriz_entrega[i][0];
