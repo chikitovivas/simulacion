@@ -16,11 +16,6 @@ import javax.swing.table.DefaultTableModel;
  * @author Usuario
  */
 public class Home extends javax.swing.JFrame {
-    private int costo_unidad;
-    private int costo_pedido;
-    private int costo_f_cliente;
-    private int costo_sf_cliente;
-    private int inven_inicial;
     private int Q;
     private int R;
     /*
@@ -379,7 +374,13 @@ public class Home extends javax.swing.JFrame {
         inventario_ini = Integer.parseInt(inventario_inicial.getText());
         double[] array = Funciones.fread_aleatorios();
         int dia_orden=0;
-        
+        int costo_faltante = 0;
+        int costoOrden = Integer.parseInt(costo_orden.getText());
+        int costoInventario = 0;
+        int costo_total;
+        int dia=0;
+        //int[][] array_clientes;
+        List<double[]> lista_clientes = new ArrayList<double[]>();
         /* dias de simulacion*/
         for(int i = 1 ; i <= 15; i++){  
             /* if para ver si ya la orden llego*/
@@ -397,28 +398,50 @@ public class Home extends javax.swing.JFrame {
             /* si inventario es negativo, es decir, hay faltante */
             if(inventario_fin < 0){
                 faltante = Math.abs(inventario_fin);
+                //costo_faltante = costo_faltante + faltante;
+                lista_clientes.add(new double[] {Funciones.fcompare(aleatorio_demanda,matriz_acum_espera),faltante});
                 inventario_fin = 0;
-            }
-            /* inventario_promedio */
-            inventario_promedio = (inventario_ini + inventario_fin) / 2;
-            
-            /* si el inventario final es menor al punto de Reorden y no hay una orden puesta, pide una orden y muestra */
-            if(inventario_fin <= R && dia_orden == 0){
-                /* pide el tiempo de espera de la proxima orden */
-                tiempo_espera = Funciones.fcompare(aleatorio_demanda, matriz_acum_entrega);
-                /* la cantidad de ordenes*/
-                numero_orden++;
-                /* dia en el que se pidio la orden */
-                dia_orden = i;
-                System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera);
-                
+                /* inventario_promedio */
+                inventario_promedio = (inventario_ini + inventario_fin) / 2;
+                costoInventario = costoInventario + inventario_promedio;
+                /* si el inventario final es menor al punto de Reorden y no hay una orden puesta, pide una orden y muestra */
+                if(inventario_fin <= R && dia_orden == 0){
+                    /* pide el tiempo de espera de la proxima orden */
+                    tiempo_espera = Funciones.fcompare(aleatorio_demanda, matriz_acum_entrega);
+                    /* la cantidad de ordenes*/
+                    numero_orden++;
+                    /* dia en el que se pidio la orden */
+                    dia_orden = i;
+                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%.2f\t|%d\t %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
+
+                }else{
+                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t| %.2f\t| %d\t %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
+                }
             }else{
-                System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante);
+                /* inventario_promedio */
+                inventario_promedio = (inventario_ini + inventario_fin) / 2;
+                costoInventario = costoInventario + inventario_promedio;
+                /* si el inventario final es menor al punto de Reorden y no hay una orden puesta, pide una orden y muestra */
+                if(inventario_fin <= R && dia_orden == 0){
+                    /* pide el tiempo de espera de la proxima orden */
+                    tiempo_espera = Funciones.fcompare(aleatorio_demanda, matriz_acum_entrega);
+                    /* la cantidad de ordenes*/
+                    numero_orden++;
+                    /* dia en el que se pidio la orden */
+                    dia_orden = i;
+                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera);
+
+                }else{
+                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante);
+                }
             }
+
             /* inventario inicial del proximo dia */
             inventario_ini = inventario_fin;
-            
+            dia = i;
         }
+        costoInventario = costoInventario * Integer.parseInt(costo_inventario.getText());
+        costoOrden = dia * costoOrden;
     }//GEN-LAST:event_startActionPerformed
 
     /**
