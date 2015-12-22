@@ -367,18 +367,9 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Llenar los campos requeridos /n");
         }*/
         double[][] matriz_acum_demanda = Funciones.fnumacumulado(matriz_demanda);
-        double[][] matriz_acum_entrega= new double[matriz_entrega.length][matriz_entrega[0].length];
-        double[][] matriz_acum_espera;
+        double[][] matriz_acum_entrega = Funciones.fnumacumulado(matriz_entrega);
+        double[][] matriz_acum_espera = Funciones.fnumacumulado(matriz_espera);
         
-        /* llenado de la matriz acumulada de probabilidades de entrega de pedido */
-        for(int i = 0; i<matriz_entrega.length; i++){
-                matriz_acum_entrega[i][0] = matriz_entrega[i][0];
-            if(i==0){
-                matriz_acum_entrega[i][1] = matriz_entrega[i][1];
-            }else{
-                matriz_acum_entrega[i][1] = matriz_acum_entrega[i-1][1] +  matriz_entrega[i][1];
-            }    
-        }
         /* Random*/
         Random rnd = new Random(0);
         /* Titulos */
@@ -388,6 +379,7 @@ public class Home extends javax.swing.JFrame {
         inventario_ini = Integer.parseInt(inventario_inicial.getText());
         double[] array = Funciones.fread_aleatorios();
         int dia_orden=0;
+        
         /* dias de simulacion*/
         for(int i = 1 ; i <= 15; i++){  
             /* if para ver si ya la orden llego*/
