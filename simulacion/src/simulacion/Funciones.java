@@ -140,6 +140,7 @@ public static double[] fread_aleatorios() {
                 lista_clientes.remove(i);
             }  
             //incremento el indice de ubicacion de la lista
+            
             i++;
             
         }
