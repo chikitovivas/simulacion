@@ -386,9 +386,9 @@ public class Home extends javax.swing.JFrame {
         for(int i = 1 ; i <= 15; i++){  
             /* if para ver si ya la orden llego*/
             if(tiempo_espera + dia_orden < i && dia_orden != 0){
-                //clase = Funciones.fllegada_pedidos(lista_clientes,Q)
-                //inventario_ini = clase.getQ;
-                //lista_clientes = clase.getList;
+                clase = Funciones.fllegada_pedidos(lista_clientes,Q);
+                inventario_ini = clase.getQ();
+                lista_clientes = clase.getList();
                 dia_orden = 0;
             }
             /* aleatorio demanda*/
@@ -415,8 +415,8 @@ public class Home extends javax.swing.JFrame {
                     /* dia en el que se pidio la orden */
                     dia_orden = i;
                     
-                    //clase = Funciones.fespera_clientes(lista_clientes);
-                    //lista_clientes = clase.getList;
+                    clase = Funciones.fespera_clientes(lista_clientes);
+                    lista_clientes = clase.getList;
                     
                     System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%.2f\t|%d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
 
@@ -435,6 +435,10 @@ public class Home extends javax.swing.JFrame {
                     numero_orden++;
                     /* dia en el que se pidio la orden */
                     dia_orden = i;
+                    
+                    clase = Funciones.fespera_clientes(lista_clientes);
+                    lista_clientes = clase.getList;
+                    
                     System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera);
 
                 }else{
