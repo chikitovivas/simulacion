@@ -381,7 +381,7 @@ public class Home extends javax.swing.JFrame {
         double costo_total = 0;
         int dia=0;
         Clase_retorno clase;
-        
+        //int[
         int Qminima;
         int Qmaxima;
         int Rminima;
