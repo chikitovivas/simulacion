@@ -381,7 +381,12 @@ public class Home extends javax.swing.JFrame {
         double costo_total = 0;
         int dia=0;
         Clase_retorno clase;
-        double[] array_entrega = new double[5];
+        
+        int Qminima;
+        int Qmaxima;
+        int Rminima;
+        int Rmaxima;
+        /**/double[] array_entrega = new double[5];
         double[] array_espera = new double[2];
         array_entrega[0] = 0.22;
         array_entrega[1] = 0.43;
