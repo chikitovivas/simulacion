@@ -170,14 +170,14 @@ public static double[] fread_aleatorios() {
               dia, por lo que el tiempo de espera queda en 0, lo que nos lleva a remover el elemento, 
               tomando su faltante y sumando al costo por faltate sin espera del cliente (costoSE)
             */
-            if (var[0]==1){
+            if (var[0]==0){
                 cantSE=cantSE+var[1];
                 lista_clientes.remove(i);
             
            /* Si la posicion 0 del arreglo es diferente a 1, le resto -1 al tiempo de espera 
               y reemplazo el elemento de la lista por el elemento -1
            */     
-            }else if (var[0]!=1){
+            }else if (var[0]>0){
                 var[0]=var[0]-1;
                 lista_clientes.set(i, var);
             }  
@@ -217,6 +217,18 @@ public static double[] fread_aleatorios() {
     
     }
     
+    
+    /*
+        fcosto_faltante (double costoSE, double costoCE):
+            permite calcular el costo faltante total de la simulacion
+            recibe: costo sin espera del cliente y el costo con espera del cliente
+            retorno: retorna el valor total del costo faltante, la multiplicacion del 
+                    costo sin espera por la cantidad + el costo con espera por la cantidad
+    */
+    
+    public static double fcosto_faltante (double costoSE, double costoCE){
+        return ((costoSE*cantSE)+(costoCE*cantCE));
+    }
     
     
     public static double fsalida(double cfaltante_CE, double cfaltante_SE, double corden, double cinventarioD, int cantfaltante_CE, int cantfaltante_SE, int cantordenes){
