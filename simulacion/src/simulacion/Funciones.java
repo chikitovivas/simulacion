@@ -168,13 +168,13 @@ public static double[] fread_aleatorios() {
             recibe: k: costo por ordenar, d: demanda, h: costo de inventario, s: costo de faltante sin espera de cliente
             retorna: un arreglo double, donde en la posicion 0 se encuentra q y en la 1 r
     */
-    public static double[] fcalculo_q_r (double k, int d, double h, double s, int l){
-        double[] valor_retorno = new double[2];
-        double q=0,r=0,aux=0;
+    public static int[] fcalculo_q_r (double k, int d, double h, double s, int l){
+        int[] valor_retorno = new int[2];
+        int q=0,r=0; double aux=0;
         
         //calculo de q por la formula del modelo estatico con escasez
             aux =((2*k*d*(h+s))/(h*s));
-            q = Math.sqrt(aux);
+            q = (int) Math.sqrt(aux);
            
         //calculo del punto de reorden
             r=l*d;
