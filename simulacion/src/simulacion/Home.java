@@ -37,12 +37,33 @@ public class Home extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
-    public Home(/*double[][] matriz_demandas, double[][] matriz_entregas, double[][] matriz_esperas, */) {
+    public Home(){
         initComponents();
+    }
+    
+    public Home(double[][] matriz_demanda, double[][] matriz_entrega, 
+            double[][] matriz_acum_demanda,double[][] matriz_acum_entrega,double[][] matriz_acum_espera,
+            double costo_inventario, double costo_orden, int inventario_ini, double costo_nespera, double costo_espera) {
+        
+        initComponents();
+        
         DefaultTableModel model = new DefaultTableModel();
         DefaultTableModel model1 = new DefaultTableModel();
         DefaultTableModel model2 = new DefaultTableModel();
        
+        /*
+        matriz_acumulada_demanda
+        matriz_acum_espera
+        matriz_acum_entrega
+        matriz_demanda
+        matriz_entrega
+        costo_inventario
+        costo_orden
+        inventario_ini
+        costo_nespera
+        costo_espera
+        */
+        
         /*
         Ejemplo
         */
@@ -381,11 +402,13 @@ public class Home extends javax.swing.JFrame {
         double costo_total = 0;
         int dia=0;
         Clase_retorno clase;
-        //int[
-        int Qminima;
-        int Qmaxima;
-        int Rminima;
-        int Rmaxima;
+      /*  int[] minima = Funciones.fcalculo_q_r(Integer.parseInt(costo_orden.getText()), (int)matriz_demanda[0][0], Integer.parseInt(costo_inventario.getText()), Double.parseDouble(costo_nespera.getText()), (int)matriz_espera[0][0]);
+        int[] maxima = Funciones.fcalculo_q_r(Integer.parseInt(costo_orden.getText()), (int)matriz_demanda[matriz_demanda.length-1][0], Integer.parseInt(costo_inventario.getText()), Double.parseDouble(costo_nespera.getText()), (int)matriz_espera[matriz_espera.length-1][0]);
+        int Qminima = minima[0];
+        int Qmaxima = maxima[0];
+        int Rminima = minima[1];
+        int Rmaxima = maxima[1];
+        System.out.println(" Qminima: "+Qminima+" Qmaxima: "+Qmaxima+" Rminima: "+Rminima+" Rmaxima: "+Rmaxima);*/
         /**/double[] array_entrega = new double[5];
         double[] array_espera = new double[2];
         array_entrega[0] = 0.22;
