@@ -25,7 +25,11 @@ public class Funciones {
     
     
     
+    /*
+        fread_aleatorios()
+        permite la lectura del archivo de numeros aleatorios
     
+    */
     
 public static double[] fread_aleatorios() {
         String content = null;//contenido del fichero
@@ -57,6 +61,14 @@ public static double[] fread_aleatorios() {
         return null;
     }
     
+    
+    /*fcompare(double aleatorio, double[][] compare)
+     * permite saber en que intervalo de la matriz se encuentra el numero aleatorio dado
+       recibe: numero aleatorio y matriz a comparar
+       retorna: el numero de la posicion del intervalo
+     */
+
+
     public static int fcompare(double aleatorio, double[][] compare){
             
         for (int i=0; i< compare.length; i++) {          
