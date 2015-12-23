@@ -379,6 +379,7 @@ public class Home extends javax.swing.JFrame {
         int costoInventario = 0;
         int costo_total;
         int dia=0;
+        Clase_retorno clase;
         //int[][] array_clientes;
         List<double[]> lista_clientes = new ArrayList<double[]>();
         /* dias de simulacion*/
@@ -400,7 +401,7 @@ public class Home extends javax.swing.JFrame {
                 faltante = Math.abs(inventario_fin);
                 //costo_faltante = costo_faltante + faltante;
                 lista_clientes.add(new double[] {Funciones.fcompare(aleatorio_demanda,matriz_acum_espera) , faltante});
-
+                //clase = Funciones.fespera_clientes(lista_clientes);
                 inventario_fin = 0;
                 /* inventario_promedio */
                 inventario_promedio = (inventario_ini + inventario_fin) / 2;
