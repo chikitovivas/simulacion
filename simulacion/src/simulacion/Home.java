@@ -361,6 +361,7 @@ public class Home extends javax.swing.JFrame {
        /* }else{
             JOptionPane.showMessageDialog(null, "Llenar los campos requeridos /n");
         }*/
+
         double[][] matriz_acum_demanda = Funciones.fnumacumulado(matriz_demanda);
         double[][] matriz_acum_entrega = Funciones.fnumacumulado(matriz_entrega);
         double[][] matriz_acum_espera = Funciones.fnumacumulado(matriz_espera);
@@ -380,7 +381,16 @@ public class Home extends javax.swing.JFrame {
         double costo_total = 0;
         int dia=0;
         Clase_retorno clase;
-        //int[][] array_clientes;
+        double[] array_entrega = new double[4];
+        double[] array_espera = new double[2];
+        array_entrega[0] = 0.22;
+        array_entrega[1] = 0.43;
+        array_entrega[2] = 0.29;
+        array_entrega[3] = 0.76;
+        array_espera[0] = 0.64;
+        array_espera[1] = 0.06;
+        int acum_entrega = 0;
+        int acum_espera = 0;
         List<double[]> lista_clientes = new ArrayList<double[]>();
         /* dias de simulacion*/
         for(int i = 1 ; i <= 15; i++){  
