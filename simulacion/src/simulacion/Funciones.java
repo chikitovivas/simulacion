@@ -116,33 +116,30 @@ public static double[] fread_aleatorios() {
     
     */
     
+    
+    // Hola soy Luis Jose y tengo sordera selectiva y no me gusta bañarme    
     public static Clase_retorno fllegada_pedidos (List<double[]> lista_clientes, double q){
-        
-        
         Iterator <double[]> list = lista_clientes.iterator();
         double[] var= new double[2];
         int i=0;
-        
         
         while (list.hasNext()) {
             //Se obtiene en var el arreglo que se encuentra en la posicion i de la lista
             var = lista_clientes.get(i);
             
-            
-            if (var[0]==1){
-                cantSE=cantSE+var[1];
+            if ((var[0]>0) &&(q>=var[1])){
+                q=q-var[1];
+                cantCE=cantCE+var[1];
                 lista_clientes.remove(i);
-            
-            
-            }else if (var[0]!=1){
-                var[0]=var[0]-1;
-                lista_clientes.set(i, var);
+            }else if ((var[0]>0) &&(q<var[1])){
+                cantSE=cantSE+(var[1]-q);
+                cantCE=cantCE+q;
+                lista_clientes.remove(i);
             }  
             //incremento el indice de ubicacion de la lista
             i++;
-                
+            
         }
-        
         return new Clase_retorno(lista_clientes, q);
         
     }
@@ -208,7 +205,7 @@ public static double[] fread_aleatorios() {
             q = Math.sqrt(aux);
            
         //calculo del punto de reorden
-            
+            //falta aqui la formula
         
         valor_retorno[0] = q;
         valor_retorno[1] = r;
@@ -225,7 +222,6 @@ public static double[] fread_aleatorios() {
             retorno: retorna el valor total del costo faltante, la multiplicacion del 
                     costo sin espera por la cantidad + el costo con espera por la cantidad
     */
-    
     public static double fcosto_faltante (double costoSE, double costoCE){
         return ((costoSE*cantSE)+(costoCE*cantCE));
     }
