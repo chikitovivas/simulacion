@@ -381,12 +381,14 @@ public class Home extends javax.swing.JFrame {
         double costo_total = 0;
         int dia=0;
         Clase_retorno clase;
-        double[] array_entrega = new double[4];
+        double[] array_entrega = new double[5];
         double[] array_espera = new double[2];
         array_entrega[0] = 0.22;
         array_entrega[1] = 0.43;
-        array_entrega[2] = 0.29;
-        array_entrega[3] = 0.76;
+        array_entrega[2] = 0.19;
+        array_entrega[3] = 0.29;
+        array_entrega[4] = 0.76;
+        
         array_espera[0] = 0.64;
         array_espera[1] = 0.06;
         int acum_entrega = 0;
@@ -396,7 +398,8 @@ public class Home extends javax.swing.JFrame {
         for(int i = 1 ; i <= 15; i++){  
             /* if para ver si ya la orden llego*/
             if(tiempo_espera + dia_orden < i && dia_orden != 0){
-                clase = Funciones.fllegada_pedidos(lista_clientes,Q);
+                inventario_ini = inventario_ini + Q;
+                clase = Funciones.fllegada_pedidos(lista_clientes,inventario_ini);
                 inventario_ini = clase.getQ();
                 lista_clientes = clase.getList();
                 dia_orden = 0;
@@ -411,7 +414,8 @@ public class Home extends javax.swing.JFrame {
             /* si inventario es negativo, es decir, hay faltante */
             if(inventario_fin < 0){
                 faltante = Math.abs(inventario_fin);
-                lista_clientes.add(new double[] {Funciones.fcompare(aleatorio_demanda,matriz_acum_espera) , faltante});
+                /**/lista_clientes.add(new double[] {Funciones.fcompare(array_espera[acum_espera],matriz_acum_espera) , faltante});
+                /**/acum_espera++;
                 inventario_fin = 0;
                 /* inventario_promedio */
                 inventario_promedio = (inventario_ini + inventario_fin) / 2;
@@ -419,13 +423,14 @@ public class Home extends javax.swing.JFrame {
                 /* si el inventario final es menor al punto de Reorden y no hay una orden puesta, pide una orden y muestra */
                 if(inventario_fin <= R && dia_orden == 0){
                     /* pide el tiempo de espera de la proxima orden */
-                    tiempo_espera = Funciones.fcompare(aleatorio_demanda, matriz_acum_entrega);
+                    /**/tiempo_espera = Funciones.fcompare(array_entrega[acum_entrega], matriz_acum_entrega);
+                    /**/acum_entrega++;
                     /* la cantidad de ordenes*/
                     numero_orden++;
                     /* dia en el que se pidio la orden */
                     dia_orden = i;
                     
-                    //lista_clientes = Funciones.fespera_clientes(lista_clientes);
+                    lista_clientes = Funciones.fespera_clientes(lista_clientes);
                     
                     System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%.2f\t|%d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
 
@@ -439,13 +444,14 @@ public class Home extends javax.swing.JFrame {
                 /* si el inventario final es menor al punto de Reorden y no hay una orden puesta, pide una orden y muestra */
                 if(inventario_fin <= R && dia_orden == 0){
                     /* pide el tiempo de espera de la proxima orden */
-                    tiempo_espera = Funciones.fcompare(aleatorio_demanda, matriz_acum_entrega);
+                    /**/tiempo_espera = Funciones.fcompare(array_entrega[acum_entrega], matriz_acum_entrega);
+                    /**/acum_entrega++;
                     /* la cantidad de ordenes*/
                     numero_orden++;
                     /* dia en el que se pidio la orden */
                     dia_orden = i;
                     
-                    //lista_clientes = Funciones.fespera_clientes(lista_clientes);
+                    lista_clientes = Funciones.fespera_clientes(lista_clientes);
                     
                     System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera);
 
@@ -461,7 +467,7 @@ public class Home extends javax.swing.JFrame {
         /* Costos */
         System.out.println("Costos Inventario = " + costoInventario);
         costoInventario = costoInventario * (Double.parseDouble(costo_inventario.getText()) / 365 );
-        costoOrden = dia * costoOrden;
+        costoOrden = numero_orden * costoOrden;
         costo_faltante = Funciones.fcosto_faltante(Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText()) );
         costo_total = costoInventario + costoOrden + costo_faltante;
                 
