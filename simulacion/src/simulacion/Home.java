@@ -368,7 +368,7 @@ public class Home extends javax.swing.JFrame {
         /* Random*/
         Random rnd = new Random(0);
         /* Titulos */
-        System.out.printf("Dia\t|Inv.ini|No.Al D|Demanda|Inv.Fin|Inv.prm|Faltant|No.Ordn|No.AleE|T.entrga|No.Ale es|T.espera %n");
+        System.out.printf("Dia\t|Inv.ini|No.Al D|Demanda|Inv.Fin|Inv.prm|Faltant|No.Ordn|No.AleE|T.ntrga|No.Ales|T.espera %n");
          
         /* Inicializacion de variables para simulacion*/
         inventario_ini = Integer.parseInt(inventario_inicial.getText());
@@ -399,7 +399,8 @@ public class Home extends javax.swing.JFrame {
             if(inventario_fin < 0){
                 faltante = Math.abs(inventario_fin);
                 //costo_faltante = costo_faltante + faltante;
-                lista_clientes.add(new double[] {Funciones.fcompare(aleatorio_demanda,matriz_acum_espera),faltante});
+                lista_clientes.add(new double[] {Funciones.fcompare(aleatorio_demanda,matriz_acum_espera) , faltante});
+
                 inventario_fin = 0;
                 /* inventario_promedio */
                 inventario_promedio = (inventario_ini + inventario_fin) / 2;
@@ -412,10 +413,10 @@ public class Home extends javax.swing.JFrame {
                     numero_orden++;
                     /* dia en el que se pidio la orden */
                     dia_orden = i;
-                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%.2f\t|%d\t %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
+                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%.2f\t|%d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
 
                 }else{
-                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t| %.2f\t| %d\t %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
+                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t| %.2f\t| %d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
                 }
             }else{
                 /* inventario_promedio */
@@ -429,10 +430,10 @@ public class Home extends javax.swing.JFrame {
                     numero_orden++;
                     /* dia en el que se pidio la orden */
                     dia_orden = i;
-                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera);
+                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera);
 
                 }else{
-                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante);
+                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante);
                 }
             }
 
@@ -440,8 +441,12 @@ public class Home extends javax.swing.JFrame {
             inventario_ini = inventario_fin;
             dia = i;
         }
-        costoInventario = costoInventario * Integer.parseInt(costo_inventario.getText());
+        costoInventario = costoInventario * (Integer.parseInt(costo_inventario.getText()) / 365 );
         costoOrden = dia * costoOrden;
+        
+        costo_total = costoInventario + costoOrden + costo_faltante;
+        
+        System.out.println("Costo total = " + costo_total);
     }//GEN-LAST:event_startActionPerformed
 
     /**
