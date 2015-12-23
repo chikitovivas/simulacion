@@ -415,8 +415,7 @@ public class Home extends javax.swing.JFrame {
                     /* dia en el que se pidio la orden */
                     dia_orden = i;
                     
-                    clase = Funciones.fespera_clientes(lista_clientes);
-                    lista_clientes = clase.getList;
+                    lista_clientes = Funciones.fespera_clientes(lista_clientes);
                     
                     System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%.2f\t|%d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
 
@@ -436,8 +435,7 @@ public class Home extends javax.swing.JFrame {
                     /* dia en el que se pidio la orden */
                     dia_orden = i;
                     
-                    clase = Funciones.fespera_clientes(lista_clientes);
-                    lista_clientes = clase.getList;
+                    lista_clientes = Funciones.fespera_clientes(lista_clientes);
                     
                     System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera);
 
