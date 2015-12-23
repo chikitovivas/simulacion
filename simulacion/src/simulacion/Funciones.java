@@ -157,11 +157,10 @@ public static double[] fread_aleatorios() {
     
     public static List<double[]> fespera_clientes (List<double[]> lista_clientes){
         
-        Iterator <double[]> list = lista_clientes.iterator();
         double[] var= new double[2];
         int i=0;
         
-        while (list.hasNext()) {
+        while (i < lista_clientes.size()) {
             //Se obtiene en var el arreglo que se encuentra en la posicion i de la lista
             var = lista_clientes.get(i);
             
