@@ -120,7 +120,7 @@ public static double[] fread_aleatorios() {
     // Hola soy Luis Jose y tengo sordera selectiva y no me gusta bañarme    
     
     // y soy un estupido
-    public static Clase_retorno fllegada_pedidos (List<double[]> lista_clientes, double q){
+    public static Clase_retorno fllegada_pedidos (List<double[]> lista_clientes, int q){
         Iterator <double[]> list = lista_clientes.iterator();
         double[] var= new double[2];
         int i=0;
@@ -130,7 +130,7 @@ public static double[] fread_aleatorios() {
             var = lista_clientes.get(i);
             
             if ((var[0]>0) &&(q>=var[1])){
-                q=q-var[1];
+                q=q-(int)var[1];
                 cantCE=cantCE+var[1];
                 lista_clientes.remove(i);
             }else if ((var[0]>0) &&(q<var[1])){
