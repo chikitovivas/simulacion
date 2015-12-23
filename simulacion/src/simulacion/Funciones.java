@@ -22,8 +22,12 @@ public class Funciones {
     //cantCE: cantidad de faltante con espera de cliente
     public static double cantSE, cantCE;
 
+    
+    
+    
+    
+    
 public static double[] fread_aleatorios() {
-               
         String content = null;//contenido del fichero
        // File file = new File("C:\\Users\\Administrador\\Documents\\NetBeansProjects\\Lecturaarchivos\\src\\lecturaarchivos\\aleatorios.txt"); //ruta completa al fichero que deseamos leer
         File file = new File("C:\\xampp\\htdocs\\simulacion\\simulacion\\src\\simulacion\\aleatorios.txt");
@@ -72,6 +76,12 @@ public static double[] fread_aleatorios() {
         return -1;
     }  
     
+    
+    /*fnumacumulado(double[][] compare)
+      permite realizar el acumulado de las probabilidades,
+      recibe: una matriz de double
+      retorna: la matriz con las probabilidades acumuladas
+    */
     public static double[][] fnumacumulado(double[][] compare){
         for (int i=1; i<compare.length; i++){
             compare[i][1]=compare[i][1]+compare[i-1][1];
@@ -80,46 +90,11 @@ public static double[] fread_aleatorios() {
     
     }  
     
-    
-    
-    
+  
     /*
-    final class Clase_retorno {
-            private final List<double[]> lista_clientes;
-            private final double q;
-
-            public Clase_retorno(List<double[]> lista_clientes, double q) {
-                this.lista_clientes = lista_clientes;
-                this.q = q;
-            }
-
-            public List<double[]> getList() {
-                return lista_clientes;
-            }
-
-            public double getQ() {
-                return q;
-            }
-    }
-*/
     
-    /*
-    EN PROCESO
-    */
-/*
-    public Clase_retorno something(List<double[]> lista_clientes, double q) {
-    int number1 = 1;
-    int number2 = 2;
-    
-    return new Clase_retorno(lista_clientes, q);
-}
     
     */
-    
-    
-    // Hola soy Luis Jose y tengo sordera selectiva y no me gusta bañarme    
-    
-    // y soy un estupido
     public static Clase_retorno fllegada_pedidos (List<double[]> lista_clientes, int q){
         double[] var= new double[2];
         int i=0;
@@ -145,16 +120,13 @@ public static double[] fread_aleatorios() {
         return new Clase_retorno(lista_clientes, q);
         
     }
-    
-    
+  
     
     /* fespera_clientes  
         metodo que permite revisar a diario el tiempo de espera de los clientes, si su tiempo llega a 0, se remueve de la lista de clientes.
             recibe: lista de clientes (List<double[]> lista_clientes)
             salida: lista de clientes modificada List<double[]>
     */
-    
-    
     public static List<double[]> fespera_clientes (List<double[]> lista_clientes){
         
         double[] var= new double[2];
@@ -196,8 +168,7 @@ public static double[] fread_aleatorios() {
             recibe: k: costo por ordenar, d: demanda, h: costo de inventario, s: costo de faltante sin espera de cliente
             retorna: un arreglo double, donde en la posicion 0 se encuentra q y en la 1 r
     */
-    
-    public static double[] fcalculo_q_r (double k, double d, double h, double s){
+    public static double[] fcalculo_q_r (double k, int d, double h, double s, int l){
         double[] valor_retorno = new double[2];
         double q=0,r=0,aux=0;
         
@@ -206,7 +177,7 @@ public static double[] fread_aleatorios() {
             q = Math.sqrt(aux);
            
         //calculo del punto de reorden
-            //falta aqui la formula
+            r=l*d;
         
         valor_retorno[0] = q;
         valor_retorno[1] = r;
@@ -226,29 +197,6 @@ public static double[] fread_aleatorios() {
     public static double fcosto_faltante (double costoSE, double costoCE){
         return ((costoSE*cantSE)+(costoCE*cantCE));
     }
-    
-    
-    public static double fsalida(double cfaltante_CE, double cfaltante_SE, double corden, double cinventarioD, int cantfaltante_CE, int cantfaltante_SE, int cantordenes){
-          /*double cfaltante_CE: costo faltante con espera de cliente (Dato ingresado por el usuario)
-            double cfaltante_SE:  costo faltante sin espera de cliente
-            double corden: costo de orden
-            double cinventarioD:  costo de inventario diario por unidad
-            int cantfaltante_CE: cantidad de faltantes con espera de clientes
-            int cantfaltante_SE: cantidad de flantantes sin espera de clientes
-            int cantordenes: cantidad de ordenes realizadas
-          */
-          
-        double cfaltante=0, ctotalorden=0, ctotal=0, ctotalinventario=0; 
-                
-        cfaltante = (cantfaltante_CE*cfaltante_CE) + (cantfaltante_SE*cfaltante_SE);
-        ctotalorden = cantordenes * corden;
-	//ctotalinventario= SInv.Prom.diariodia=15dia=1 * cinventarioD;
-	ctotal= cfaltante+ctotalorden+ctotalinventario;
-    
-        return ctotal;
-    }
-    
-    
     
 
  }  
