@@ -174,7 +174,7 @@ public static double[] fread_aleatorios() {
         
         //calculo de q por la formula del modelo estatico con escasez
             aux =((2*k*d*(h+s))/(h*s));
-            q = (int) Math.sqrt(aux);
+            q = (int) Math.rint( Math.sqrt(aux));
            
         //calculo del punto de reorden
             r=l*d;
