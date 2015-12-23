@@ -121,11 +121,10 @@ public static double[] fread_aleatorios() {
     
     // y soy un estupido
     public static Clase_retorno fllegada_pedidos (List<double[]> lista_clientes, int q){
-        Iterator <double[]> list = lista_clientes.iterator();
         double[] var= new double[2];
         int i=0;
         
-        while (list.hasNext()) {
+        while (i < lista_clientes.size()) {
             //Se obtiene en var el arreglo que se encuentra en la posicion i de la lista
             var = lista_clientes.get(i);
             
@@ -142,7 +141,6 @@ public static double[] fread_aleatorios() {
             //incremento el indice de ubicacion de la lista
             
             i++;
-            list.next();
         }
         return new Clase_retorno(lista_clientes, q);
         
