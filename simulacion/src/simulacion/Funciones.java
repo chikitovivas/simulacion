@@ -142,7 +142,7 @@ public static double[] fread_aleatorios() {
             //incremento el indice de ubicacion de la lista
             
             i++;
-            
+            list.next();
         }
         return new Clase_retorno(lista_clientes, q);
         
