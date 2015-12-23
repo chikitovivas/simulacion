@@ -13,9 +13,9 @@ import java.util.List;
  */
 public class Clase_retorno {
             public static List<double[]> lista_clientes;
-            public static double q;
+            public static int q;
 
-            public Clase_retorno(List<double[]> lista_clientes, double q) {
+            public Clase_retorno(List<double[]> lista_clientes, int q) {
                 this.lista_clientes = lista_clientes;
                 this.q = q;
             }
@@ -24,7 +24,7 @@ public class Clase_retorno {
                 return lista_clientes;
             }
 
-            public static double getQ() {
+            public static int getQ() {
                 return q;
             }
 }
