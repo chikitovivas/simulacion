@@ -16,7 +16,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Buscador_archivos {
     static Menu menu = new Menu();
-    
+    static Home home = new Home();
     
     
     
@@ -146,6 +146,11 @@ public class Buscador_archivos {
                 
                 System.out.println("llamamos a home");
                 //llamada a home al constructor con parametros
+                //home (matriz_demanda,matriz_entrega,matriz_acum_demanda, matriz_acum_entrega, matriz_acum_espera,costo_inventario, 
+                 //       costo_ordenar, inventario_inicial, costo_nespera, costo_espera);
+                
+                
+                
 	}//FIn metodo leer_archivo
     
     
