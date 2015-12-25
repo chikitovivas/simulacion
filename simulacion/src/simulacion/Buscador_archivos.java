@@ -6,6 +6,7 @@
 package simulacion;
 
 import java.io.File;
+import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -15,6 +16,139 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Buscador_archivos {
     static Menu menu = new Menu();
+    
+    
+    
+    
+    public static void leer_archivo(String arch){
+		// Fichero del que queremos leer
+		File fichero = new File(arch);
+		Scanner s = null;
+                
+                
+                double[][] matriz_demanda;
+                double[][] matriz_entrega; 
+                double[][] matriz_espera;
+                
+                double costo_inventario;//Costo de inventario
+                double costo_ordenar;//Costo de ordenar
+                double costo_faltanteCE;//Costo de faltante con espera de cliente
+                double costo_faltanteSE;//Costo de faltante sin espera del cliente
+                double inventario_inicial;//Inventario inicial
+                
+		try {
+			// Leemos el contenido del fichero
+			s = new Scanner(fichero);
+
+			// Leemos linea a linea el fichero
+                        int j=1;
+			while (s.hasNextLine()) {
+				String linea = s.nextLine(); 	// Guardamos la linea en un String
+				//System.out.println(linea);      // Imprimimos la linea
+                                String[] array_string = linea.split(" - ");
+                                String[] array_string1;
+                                String[] array_string2;
+                                
+                                //System.out.println(array_string[0]); //titulo del dato que se esta guardando
+                                
+                                switch ( j ) {
+                                 case 1://Demanda diaria y probabilidad
+                                    array_string1 = array_string[1].split(",");
+                                    array_string2 = array_string[2].split(",");
+                                    
+                                    matriz_demanda = new double[array_string1.length][2];
+                                    
+                                    for(int i = 0; i < array_string1.length;i++){
+                                        matriz_demanda[i][0] = Double.parseDouble(array_string1[i]);
+                                        //System.out.println(matriz_demanda[i][0]);
+                                     }
+                                    for(int i = 0; i < array_string1.length;i++){
+                                        matriz_demanda[i][1] = Double.parseDouble(array_string2[i]);
+                                        //System.out.println(matriz_demanda[i][1]);
+                                     }
+                                    
+                                    break;
+                                    
+                                 case 2://Tiempo de entrega y probabilidad
+                                    
+                                    array_string1 = array_string[1].split(",");
+                                    array_string2 = array_string[2].split(",");
+                                    matriz_entrega = new double[array_string1.length][2];
+                                    
+                                    for(int i = 0; i < array_string1.length;i++){
+                                        matriz_entrega[i][0] = Double.parseDouble(array_string1[i]);
+                                        //System.out.println(matriz_entrega[i][0]);
+                                     }
+                                    for(int i = 0; i < array_string1.length;i++){
+                                        matriz_entrega[i][1] = Double.parseDouble(array_string2[i]);
+                                        //System.out.println(matriz_entrega[i][1]);
+                                     }
+                                    
+                                    break;
+                                 
+                                 case 3://Tiempo de espera del cliente por el artículo y probabilidad
+                                    
+                                    array_string1 = array_string[1].split(",");
+                                    array_string2 = array_string[2].split(",");
+                                    matriz_espera = new double[array_string1.length][2];
+                                    
+                                    for(int i = 0; i < array_string1.length;i++){
+                                        matriz_espera[i][0] = Double.parseDouble(array_string1[i]);
+                                        //System.out.println(matriz_espera[i][0]);
+                                     }
+                                    for(int i = 0; i < array_string1.length;i++){
+                                        matriz_espera[i][1] = Double.parseDouble(array_string2[i]);
+                                        //System.out.println(matriz_espera[i][1]);
+                                     }
+                                    
+                                      break;
+                                 case 4://Costo de inventario
+                                    costo_inventario= Double.parseDouble(array_string[1]);
+                                    //System.out.println(costo_inventario);    
+                                      break;
+                                 case 5://Costo de ordenar
+                                    costo_ordenar= Double.parseDouble(array_string[1]);
+                                    //System.out.println(costo_ordenar);    
+                                      break;
+                                      
+                                 case 6://Costo de faltante con espera de cliente
+                                    costo_faltanteCE= Double.parseDouble(array_string[1]);
+                                    //System.out.println(costo_faltanteCE);    
+                                      break;
+                                      
+                                 case 7://Costo de faltante sin espera del cliente
+                                    costo_faltanteSE= Double.parseDouble(array_string[1]);
+                                    //System.out.println(costo_faltanteSE);    
+                                      break;
+                                      
+                                 case 8:// Inventario inicial
+                                    inventario_inicial= Double.parseDouble(array_string[1]);
+                                    //System.out.println(inventario_inicial);     
+                                      break;
+
+                                 }              
+                                
+                                j++;
+
+			}
+		} catch (Exception ex) {
+			System.out.println("Mensaje: " + ex.getMessage());
+		} 
+                finally {
+			// Cerramos el fichero tanto si la lectura ha sido correcta o no
+			try {
+				if (s != null)
+					s.close();
+			} catch (Exception ex2) {
+				System.out.println("Mensaje 2: " + ex2.getMessage());
+			}
+		}
+                
+                System.out.println("llamamos a home");
+                //llamada a home al constructor con parametros
+	}//FIn metodo leer_archivo
+    
+    
     
     public static void archivo(){
 
@@ -33,7 +167,8 @@ public class Buscador_archivos {
                  File fichero = fileChooser.getSelectedFile();
                 //obtenemos la ruta
                 adr = fichero.getAbsolutePath();
-                System.out.println(adr);
+                //System.out.println(adr);
+                leer_archivo(adr);
              break;
 
             case JFileChooser.CANCEL_OPTION:
