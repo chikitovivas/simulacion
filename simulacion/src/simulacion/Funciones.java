@@ -5,12 +5,11 @@
  */
 package simulacion;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.io.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.*;
+
 import simulacion.Clase_retorno;
 
 /**
@@ -24,14 +23,31 @@ public class Funciones {
 
     
     
+    /*
+        fwrite_aleatorio()
+        permite la creacion de un arreglo de numeros aleatorios
+        retorna: un arreglo tipo double
+    
+    */
+    public static double [] fwrite_aleatorio(){
+        double[] aleatorios = new double[100];
+        Random rnd = new Random(0);
+        
+        DecimalFormat format =new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
+                
+        for (int i = 0; i < aleatorios.length; i++) {
+            aleatorios[i] = Double.valueOf(format.format((rnd.nextDouble() * 100)/100));
+            System.out.println(aleatorios[i]);
+        }
+        return aleatorios;
+}    
     
     /*
         fread_aleatorios()
         permite la lectura del archivo de numeros aleatorios
     
     */
-    
-public static double[] fread_aleatorios() {
+    public static double[] fread_aleatorios() {
         String content = null;//contenido del fichero
        // File file = new File("C:\\Users\\Administrador\\Documents\\NetBeansProjects\\Lecturaarchivos\\src\\lecturaarchivos\\aleatorios.txt"); //ruta completa al fichero que deseamos leer
         File file = new File("C:\\xampp\\htdocs\\simulacion\\simulacion\\src\\simulacion\\aleatorios.txt");

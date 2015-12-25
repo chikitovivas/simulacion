@@ -5,6 +5,12 @@
  */
 package simulacion;
 
+import java.awt.MenuBar;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import static simulacion.Simulacion.VentanaPrincipal;
+
 /**
  *
  * @author Administrador
@@ -14,8 +20,31 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
+    static Home VentanaPrincipal = new Home();
+    static Buscador_archivos buscador = new Buscador_archivos();
+    
+    
     public Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setSize(500,400);
+        
+        
+        
+        
+ 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
     /**
@@ -28,27 +57,33 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        JB_datosarchivo = new javax.swing.JButton();
+        JB_datospantalla = new javax.swing.JButton();
+        JCB_mostrarevents = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Menú"));
+        jPanel1.setPreferredSize(new java.awt.Dimension(500, 400));
 
-        jButton1.setText("Cargar datos desde archivo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        JB_datosarchivo.setText("Cargar datos desde archivo");
+        JB_datosarchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                JB_datosarchivoActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cargar datos por pantalla");
-
-        jCheckBox1.setText("Mostrar tabla de eventos");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        JB_datospantalla.setText("Cargar datos por pantalla");
+        JB_datospantalla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                JB_datospantallaActionPerformed(evt);
+            }
+        });
+
+        JCB_mostrarevents.setText("Mostrar tabla de eventos");
+        JCB_mostrarevents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCB_mostrareventsActionPerformed(evt);
             }
         });
 
@@ -57,30 +92,36 @@ public class Menu extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(JB_datospantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(JCB_mostrarevents, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JB_datosarchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jCheckBox1)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE)
+                .addComponent(JB_datosarchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(JB_datospantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(JCB_mostrarevents)
+                .addGap(97, 97, 97))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,13 +133,20 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void JCB_mostrareventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCB_mostrareventsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_JCB_mostrareventsActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void JB_datosarchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_datosarchivoActionPerformed
+        this.dispose();
+        buscador.archivo();
+        
+    }//GEN-LAST:event_JB_datosarchivoActionPerformed
+
+    private void JB_datospantallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_datospantallaActionPerformed
+        this.dispose();
+        VentanaPrincipal.setVisible(true);
+    }//GEN-LAST:event_JB_datospantallaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,9 +184,9 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JButton JB_datosarchivo;
+    private javax.swing.JButton JB_datospantalla;
+    private javax.swing.JCheckBox JCB_mostrarevents;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

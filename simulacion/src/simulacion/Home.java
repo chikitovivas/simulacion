@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Usuario
  */
 public class Home extends javax.swing.JFrame {
+    static Menu menu = new Menu();
     private int Q;
     private int R;
     /*
@@ -37,6 +38,7 @@ public class Home extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
+    
     public Home(){
         initComponents();
     }
@@ -150,9 +152,10 @@ public class Home extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         inventario_inicial = new javax.swing.JTextField();
         start = new javax.swing.JButton();
-        leer = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cargar Datos");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
@@ -337,7 +340,12 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        leer.setText("Leer archivo");
+        back.setText("Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -349,7 +357,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(leer)
+                .addComponent(back)
                 .addGap(18, 18, 18)
                 .addComponent(start)
                 .addGap(22, 22, 22))
@@ -361,7 +369,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(leer)
+                    .addComponent(back)
                     .addComponent(start))
                 .addContainerGap())
         );
@@ -506,6 +514,11 @@ public class Home extends javax.swing.JFrame {
         System.out.println("Costo total = " + costo_total);
     }//GEN-LAST:event_startActionPerformed
 
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        this.dispose();
+        menu.setVisible(true);
+    }//GEN-LAST:event_backActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -542,6 +555,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JTextField costo_espera;
     private javax.swing.JTextField costo_inventario;
     private javax.swing.JTextField costo_nespera;
@@ -566,7 +580,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JButton leer;
     private javax.swing.JButton start;
     // End of variables declaration//GEN-END:variables
 }
