@@ -16,7 +16,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Buscador_archivos {
     static Menu menu = new Menu();
-    static Home home = new Home();
+   
     
     
     
@@ -34,7 +34,7 @@ public class Buscador_archivos {
                 double costo_ordenar=0;//Costo de ordenar
                 double costo_faltanteCE=0;//Costo de faltante con espera de cliente
                 double costo_faltanteSE=0;//Costo de faltante sin espera del cliente
-                double inventario_inicial=0;//Inventario inicial
+                int inventario_inicial=0;//Inventario inicial
                 
 		try {
 			// Leemos el contenido del fichero
@@ -122,7 +122,7 @@ public class Buscador_archivos {
                                       break;
                                       
                                  case 8:// Inventario inicial
-                                    inventario_inicial= Double.parseDouble(array_string[1]);
+                                    inventario_inicial= Integer.parseInt(array_string[1]);
                                     //System.out.println(inventario_inicial);     
                                       break;
 
@@ -133,9 +133,11 @@ public class Buscador_archivos {
 			}
                 System.out.println("llamamos a home");
                 //llamada a home al constructor con parametros
-                //home (matriz_demanda,matriz_entrega,matriz_acum_demanda, matriz_acum_entrega, matriz_acum_espera,costo_inventario, 
-                 //       costo_ordenar, inventario_inicial, costo_nespera, costo_espera);
-                       
+                
+                Home home = new Home(matriz_demanda,matriz_entrega,matriz_espera,costo_inventario,costo_ordenar, 
+                                    costo_faltanteCE, costo_faltanteSE, inventario_inicial);
+                home.setVisible(true);
+                
                         
 		}//fin del try
                 catch (Exception ex) {
