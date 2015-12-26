@@ -43,9 +43,8 @@ public class Home extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Home(double[][] matriz_demanda, double[][] matriz_entrega, 
-            double[][] matriz_acum_demanda,double[][] matriz_acum_entrega,double[][] matriz_acum_espera,
-            double costo_inventario, double costo_orden, int inventario_ini, double costo_nespera, double costo_espera) {
+    public Home(double[][] matriz_demanda, double[][] matriz_entrega, double[][] matriz_espera,
+            double costo_inventario, double costo_orden, double costo_espera, double costo_nespera, int inventario_ini) {
         
         initComponents();
         
@@ -53,23 +52,20 @@ public class Home extends javax.swing.JFrame {
         DefaultTableModel model1 = new DefaultTableModel();
         DefaultTableModel model2 = new DefaultTableModel();
        
-        /*
-        matriz_acumulada_demanda
-        matriz_acum_espera
-        matriz_acum_entrega
-        matriz_demanda
-        matriz_entrega
-        costo_inventario
-        costo_orden
-        inventario_ini
-        costo_nespera
-        costo_espera
-        */
         
+        this.matriz_demanda = matriz_demanda;
+        this.matriz_entrega = matriz_entrega;
+        this.matriz_espera = matriz_espera;
+        this.costo_inventario.setText(""+costo_inventario);
+        this.costo_orden.setText(""+costo_orden);
+        this.costo_espera.setText(""+costo_espera);
+        this.costo_nespera.setText(""+costo_nespera);      
+        this.inventario_inicial.setText(""+inventario_ini);
+
         /*
         Ejemplo
         */
-        matriz_demanda = new double[][]{
+      /*  matriz_demanda = new double[][]{
             new double[] { 25, .02},
             new double[] { 26, .04},
             new double[] { 27, .06},
@@ -93,20 +89,20 @@ public class Home extends javax.swing.JFrame {
             new double[] { 2, .15},
             new double[] { 3, .15},
             new double[] { 4, .1},          
-        };    
+        };    */
         
         List data = new ArrayList();
-        for(int i=0;i<matriz_demanda.length;i++){
+        for(int i=0;i<this.matriz_demanda.length;i++){
             data.add(matriz_demanda[i][1]);
             model.addColumn((int)matriz_demanda[i][0], data.toArray());
             data.clear();
         }
-        for(int i=0;i<matriz_entrega.length;i++){
+        for(int i=0;i<this.matriz_entrega.length;i++){
             data.add(matriz_entrega[i][1]);
             model1.addColumn((int)matriz_entrega[i][0], data.toArray());
             data.clear();
         }
-        for(int i=0;i<matriz_espera.length;i++){
+        for(int i=0;i<this.matriz_espera.length;i++){
             data.add(matriz_espera[i][1]);
             model2.addColumn((int)matriz_espera[i][0], data.toArray());
             data.clear();
