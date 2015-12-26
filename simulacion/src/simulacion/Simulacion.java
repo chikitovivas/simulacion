@@ -15,7 +15,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Simulacion {
 
-    static Home VentanaPrincipal = new Home();
+    static Menu VentanaPrincipal = new Menu();
     
     
     public static void main(String[] args) {
