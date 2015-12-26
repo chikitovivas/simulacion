@@ -26,15 +26,15 @@ public class Buscador_archivos {
 		Scanner s = null;
                 
                 
-                double[][] matriz_demanda;
-                double[][] matriz_entrega; 
-                double[][] matriz_espera;
+                double[][] matriz_demanda=null;
+                double[][] matriz_entrega=null; 
+                double[][] matriz_espera=null;
                 
-                double costo_inventario;//Costo de inventario
-                double costo_ordenar;//Costo de ordenar
-                double costo_faltanteCE;//Costo de faltante con espera de cliente
-                double costo_faltanteSE;//Costo de faltante sin espera del cliente
-                double inventario_inicial;//Inventario inicial
+                double costo_inventario=0;//Costo de inventario
+                double costo_ordenar=0;//Costo de ordenar
+                double costo_faltanteCE=0;//Costo de faltante con espera de cliente
+                double costo_faltanteSE=0;//Costo de faltante sin espera del cliente
+                double inventario_inicial=0;//Inventario inicial
                 
 		try {
 			// Leemos el contenido del fichero
@@ -46,8 +46,8 @@ public class Buscador_archivos {
 				String linea = s.nextLine(); 	// Guardamos la linea en un String
 				//System.out.println(linea);      // Imprimimos la linea
                                 String[] array_string = linea.split(" - ");
-                                String[] array_string1;
-                                String[] array_string2;
+                                String[] array_string1=null;
+                                String[] array_string2=null;
                                 
                                 //System.out.println(array_string[0]); //titulo del dato que se esta guardando
                                 
@@ -131,7 +131,14 @@ public class Buscador_archivos {
                                 j++;
 
 			}
-		} catch (Exception ex) {
+                System.out.println("llamamos a home");
+                //llamada a home al constructor con parametros
+                //home (matriz_demanda,matriz_entrega,matriz_acum_demanda, matriz_acum_entrega, matriz_acum_espera,costo_inventario, 
+                 //       costo_ordenar, inventario_inicial, costo_nespera, costo_espera);
+                       
+                        
+		}//fin del try
+                catch (Exception ex) {
 			System.out.println("Mensaje: " + ex.getMessage());
 		} 
                 finally {
@@ -144,10 +151,6 @@ public class Buscador_archivos {
 			}
 		}
                 
-                System.out.println("llamamos a home");
-                //llamada a home al constructor con parametros
-                //home (matriz_demanda,matriz_entrega,matriz_acum_demanda, matriz_acum_entrega, matriz_acum_espera,costo_inventario, 
-                 //       costo_ordenar, inventario_inicial, costo_nespera, costo_espera);
                 
                 
                 
@@ -173,6 +176,7 @@ public class Buscador_archivos {
                 //obtenemos la ruta
                 adr = fichero.getAbsolutePath();
                 //System.out.println(adr);
+                //Abrir de ventana de cargando archivo
                 leer_archivo(adr);
              break;
 
