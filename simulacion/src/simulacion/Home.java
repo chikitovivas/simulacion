@@ -44,8 +44,7 @@ public class Home extends javax.swing.JFrame {
     }
     
     public Home(double[][] matriz_demanda, double[][] matriz_entrega, double[][] matriz_espera,
-            double costo_inventario, double costo_orden, double costo_espera, double costo_nespera, int inventario_ini, 
-            boolean evento) {
+            double costo_inventario, double costo_orden, double costo_espera, double costo_nespera, int inventario_ini) {
         
         initComponents();
         
