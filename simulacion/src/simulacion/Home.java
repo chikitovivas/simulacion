@@ -44,7 +44,8 @@ public class Home extends javax.swing.JFrame {
     }
     
     public Home(double[][] matriz_demanda, double[][] matriz_entrega, double[][] matriz_espera,
-            double costo_inventario, double costo_orden, double costo_espera, double costo_nespera, int inventario_ini) {
+            double costo_inventario, double costo_orden, double costo_espera, double costo_nespera, int inventario_ini, 
+            boolean evento) {
         
         initComponents();
         
@@ -201,9 +202,8 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(jLabel1)
-                        .addGap(12, 12, 12))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
