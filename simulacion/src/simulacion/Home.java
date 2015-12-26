@@ -93,18 +93,18 @@ public class Home extends javax.swing.JFrame {
         
         List data = new ArrayList();
         for(int i=0;i<this.matriz_demanda.length;i++){
-            data.add(matriz_demanda[i][1]);
-            model.addColumn((int)matriz_demanda[i][0], data.toArray());
+            data.add(this.matriz_demanda[i][1]);
+            model.addColumn((int)this.matriz_demanda[i][0], data.toArray());
             data.clear();
         }
         for(int i=0;i<this.matriz_entrega.length;i++){
-            data.add(matriz_entrega[i][1]);
-            model1.addColumn((int)matriz_entrega[i][0], data.toArray());
+            data.add(this.matriz_entrega[i][1]);
+            model1.addColumn((int)this.matriz_entrega[i][0], data.toArray());
             data.clear();
         }
         for(int i=0;i<this.matriz_espera.length;i++){
-            data.add(matriz_espera[i][1]);
-            model2.addColumn((int)matriz_espera[i][0], data.toArray());
+            data.add(this.matriz_espera[i][1]);
+            model2.addColumn((int)this.matriz_espera[i][0], data.toArray());
             data.clear();
         }                
         demanda_table.setModel(model);
