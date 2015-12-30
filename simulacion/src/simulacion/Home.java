@@ -145,8 +145,8 @@ public class Home extends javax.swing.JFrame {
         costo_nespera = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         inventario_inicial = new javax.swing.JTextField();
+        evento = new javax.swing.JCheckBox();
         start = new javax.swing.JButton();
         back = new javax.swing.JButton();
 
@@ -185,15 +185,14 @@ public class Home extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
                 .addGap(40, 40, 40)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,20 +203,22 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel2))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel2)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
                         .addComponent(jLabel3)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Costos"));
@@ -277,7 +278,12 @@ public class Home extends javax.swing.JFrame {
 
         jLabel8.setText("Inventario inicial:");
 
-        jLabel9.setText("Presentacion o no de tabla de eventos?");
+        evento.setText("Tabla de eventos");
+        evento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -290,7 +296,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
                         .addComponent(inventario_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel9))
+                    .addComponent(evento))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -301,8 +307,8 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(inventario_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(evento)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -400,10 +406,9 @@ public class Home extends javax.swing.JFrame {
         double[] array = Funciones.fread_aleatorios();
         int dia_orden=0;
         double costo_faltante = 0;
-        int costoOrden = Integer.parseInt(costo_orden.getText());
+        double costoOrden = Double.parseDouble(costo_orden.getText());
         double costoInventario = 0;
         double costo_total = 0;
-        int dia=0;
         Clase_retorno clase;
       /*  int[] minima = Funciones.fcalculo_q_r(Integer.parseInt(costo_orden.getText()), (int)matriz_demanda[0][0], Integer.parseInt(costo_inventario.getText()), Double.parseDouble(costo_nespera.getText()), (int)matriz_espera[0][0]);
         int[] maxima = Funciones.fcalculo_q_r(Integer.parseInt(costo_orden.getText()), (int)matriz_demanda[matriz_demanda.length-1][0], Integer.parseInt(costo_inventario.getText()), Double.parseDouble(costo_nespera.getText()), (int)matriz_espera[matriz_espera.length-1][0]);
@@ -418,8 +423,7 @@ public class Home extends javax.swing.JFrame {
         array_entrega[1] = 0.43;
         array_entrega[2] = 0.19;
         array_entrega[3] = 0.29;
-        array_entrega[4] = 0.76;
-        
+        array_entrega[4] = 0.76;      
         array_espera[0] = 0.64;
         array_espera[1] = 0.06;
         int acum_entrega = 0;
@@ -493,10 +497,9 @@ public class Home extends javax.swing.JFrame {
 
             /* inventario inicial del proximo dia */
             inventario_ini = inventario_fin;
-            dia = i;
         }
         /* Costos */
-        System.out.println("Costos Inventario = " + costoInventario);
+        //System.out.println("Costos Inventario = " + costoInventario);
         costoInventario = costoInventario * (Double.parseDouble(costo_inventario.getText()) / 365 );
         costoOrden = numero_orden * costoOrden;
         costo_faltante = Funciones.fcosto_faltante(Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText()) );
@@ -513,6 +516,10 @@ public class Home extends javax.swing.JFrame {
         this.dispose();
         menu.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
+
+    private void eventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eventoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -558,6 +565,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable demanda_table;
     private javax.swing.JTable entrega_table;
     private javax.swing.JTable espera_table;
+    private javax.swing.JCheckBox evento;
     private javax.swing.JTextField inventario_inicial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -567,7 +575,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
