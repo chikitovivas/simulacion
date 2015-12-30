@@ -196,16 +196,16 @@ public class Funciones {
             recibe: k: costo por ordenar, d: demanda, h: costo de inventario, s: costo de faltante sin espera de cliente
             retorna: un arreglo double, donde en la posicion 0 se encuentra q y en la 1 r
     */
-    public static int[] fcalculo_q_r (double k, int d, double h, double s, int l){
+    public static int[] fcalculo_q_r (double k, double d, double h, double s, double l, int cantdias){
         int[] valor_retorno = new int[2];
         int q=0,r=0; double aux=0;
         
         //calculo de q por la formula del modelo estatico con escasez
-            aux =((2*k*d*(h+s))/(h*s));
+            aux =((2*k*(d*cantdias)*(h+s))/(h*s));
             q = (int) Math.rint( Math.sqrt(aux));
            
         //calculo del punto de reorden
-            r=l*d;
+            r=(int) ((l/cantdias)*(d*cantdias));
         
         valor_retorno[0] = q;
         valor_retorno[1] = r;
