@@ -59,7 +59,6 @@ public class Menu extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         JB_datosarchivo = new javax.swing.JButton();
         JB_datospantalla = new javax.swing.JButton();
-        JCB_mostrarevents = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,13 +79,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        JCB_mostrarevents.setText("Mostrar tabla de eventos");
-        JCB_mostrarevents.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JCB_mostrareventsActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -98,11 +90,7 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(JB_datospantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(133, 133, 133)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(JCB_mostrarevents, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(JB_datosarchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(JB_datosarchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(180, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -112,9 +100,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(JB_datosarchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(JB_datospantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(JCB_mostrarevents)
-                .addGap(97, 97, 97))
+                .addGap(146, 146, 146))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -132,10 +118,6 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void JCB_mostrareventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCB_mostrareventsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JCB_mostrareventsActionPerformed
 
     private void JB_datosarchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_datosarchivoActionPerformed
         this.dispose();
@@ -186,7 +168,6 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JB_datosarchivo;
     private javax.swing.JButton JB_datospantalla;
-    private javax.swing.JCheckBox JCB_mostrarevents;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
