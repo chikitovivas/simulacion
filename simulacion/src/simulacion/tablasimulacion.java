@@ -20,6 +20,7 @@ public class tablasimulacion extends javax.swing.JFrame {
     public tablasimulacion() {
         super("Simulación");
         //this.setLocationRelativeTo(null);
+        this.setLocation(200, 150);
         this.setSize(1200,600);
          
         /* Creo una instancia de la clase Vector llamada 'columnas' */
@@ -83,6 +84,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                 tbl.getColumnModel().getColumn(2).setPreferredWidth(120);
                 tbl.getColumnModel().getColumn(3).setPreferredWidth(60);
                 tbl.getColumnModel().getColumn(4).setPreferredWidth(50);
+                tbl.getColumnModel().getColumn(5).setPreferredWidth(60);
                 tbl.getColumnModel().getColumn(6).setPreferredWidth(50);
                 tbl.getColumnModel().getColumn(7).setPreferredWidth(60);
                 tbl.getColumnModel().getColumn(8).setPreferredWidth(160);
@@ -101,7 +103,8 @@ public class tablasimulacion extends javax.swing.JFrame {
                 
         /* Por ultimo agrego ese objeto de JScrollPane al contenedor de la ventana */
         this.getContentPane().add(panel);
-         
+        
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
     }
 
@@ -161,6 +164,7 @@ public class tablasimulacion extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new tablasimulacion().setVisible(true);
+                
             }
         });
     }
