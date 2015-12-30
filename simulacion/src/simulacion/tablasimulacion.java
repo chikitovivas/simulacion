@@ -59,6 +59,7 @@ public class tablasimulacion extends javax.swing.JFrame {
         fila.add("Z");
    
         /* Agrego la fila al vector que contiene todas las filas */
+        //aqui se añade todas las filas
         filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);
         filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);
         filas.add(fila); filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);
