@@ -484,13 +484,13 @@ public class Home extends javax.swing.JFrame {
             for(int r = Rminima; r <= Rmaxima ; r++){
                 /* Inicializacion en cada cambio de r */
                 costoInventario = 0;
-                List<double[]> lista_clientes = new ArrayList<>();
-                numero_orden = 0;
-                dia_orden = 0;
-                tiempo_espera = 0;
-                inventario_ini = Integer.parseInt(inventario_inicial.getText());
-                Funciones func = new Funciones();
-                double costoOrden = Double.parseDouble(costo_orden.getText());
+                List<double[]> lista_clientes = new ArrayList<>(); //lista clientes
+                numero_orden = 0;   //numero de ordenes
+                dia_orden = 0;      //dia en el que se pidio la orden
+                tiempo_espera = 0;  //tiempo de espera
+                inventario_ini = Integer.parseInt(inventario_inicial.getText()); //inventario inicial
+                Funciones func = new Funciones(); //funciones
+                double costoOrden = Double.parseDouble(costo_orden.getText()); //costo de orden
                 /* dias de simulacion*/
                 for(int i = 1, ale = 0 ; i <= 365; i++){  
                     /* if para ver si ya la orden llego*/                    
