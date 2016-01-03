@@ -555,7 +555,7 @@ public class Home extends javax.swing.JFrame {
                 costo_faltante = func.fcosto_faltante(Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText()) ); //costo faltante
                 
                 costo_total = costoInventario + costoOrden + costo_faltante; //costo total 
-                System.out.println("costo total : "+costo_total);
+                //System.out.println("costo total : "+costo_total);
                 
                 /* si el costo total actual es menor que el mejor costo, se actualiza*/
                 if(costo_total < mejor_costo){

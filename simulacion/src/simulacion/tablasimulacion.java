@@ -8,6 +8,7 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 import java.util.Vector;
+import java.util.List;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -47,25 +48,25 @@ public class tablasimulacion extends javax.swing.JFrame {
             columnas de la tabla.
         */
         
-            columnas.add("Dia");
-            columnas.add("Inv. Ini");
-            columnas.add("No. Alea. demanda");
-            columnas.add("Demanda");
-            columnas.add("Inv Final");
-            columnas.add("Inv Prom.");
-            columnas.add("Faltante");
-            columnas.add("No. Orden");
-            columnas.add("No. Alea. tiempo entrega");
-            columnas.add("Tiempo de entrega");
-            columnas.add("No. Alea. tiempo espera");
-            columnas.add("Tiempo Espera");
+
         
             /* 
             Creo una instancia de la clase Vector llamada 'filas' , este vector
             tendrá todas las filas de la tabla.
         */
         DefaultTableModel filas = new DefaultTableModel();
-         
+            filas.addColumn("Dia");
+            filas.addColumn("Inv. Ini");
+            filas.addColumn("No. Alea. demanda");
+            filas.addColumn("Demanda");
+            filas.addColumn("Inv Final");
+            filas.addColumn("Inv Prom.");
+            filas.addColumn("Faltante");
+            filas.addColumn("No. Orden");
+            filas.addColumn("No. Alea. tiempo entrega");
+            filas.addColumn("Tiempo de entrega");
+            filas.addColumn("No. Alea. tiempo espera");
+            filas.addColumn("Tiempo Espera");
         //Vector filas = new Vector()
         /*
             Creo otro objeto de la clase Vector llamado 'fila', esto representará a
@@ -74,7 +75,8 @@ public class tablasimulacion extends javax.swing.JFrame {
          */
         
         //java.util.List fila = new ArrayList();
-        Vector fila = new Vector();
+
+        List fila = new ArrayList();
         
         java.util.List<double[]> lista_clientes = new ArrayList<>();    
            
@@ -204,10 +206,10 @@ public class tablasimulacion extends javax.swing.JFrame {
                     
                     /* Agrego la fila al vector que contiene todas las filas */
                     //aqui se añade todas las filas
-                    filas.addRow(fila);
-                    fila.removeAllElements();
+
+                    filas.addRow(fila.toArray());
+                    fila.clear();
                 }   
-            
             
             
         /* 
@@ -215,7 +217,8 @@ public class tablasimulacion extends javax.swing.JFrame {
                 -filas
                 -columnas   
          */
-        JTable tbl = new JTable(null,columnas);
+
+        JTable tbl = new JTable();       
         
         tbl.setModel(filas);
         
@@ -240,7 +243,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                 /* Para centrar las celdas*/        
                 DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer();
                 modelocentrar.setHorizontalAlignment(SwingConstants.CENTER);
-                for (int i=0; i<12; i++){
+                for (int i=1; i<12; i++){
                     tbl.getColumnModel().getColumn(i).setCellRenderer(modelocentrar); 
                     
                 }
