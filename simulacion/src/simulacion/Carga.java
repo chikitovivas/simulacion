@@ -56,6 +56,7 @@ public class Carga extends JPanel{
                           pbar.setStringPainted(true); //String del porcentaje                          
                           frame.setSize(300, 100); //tamaño del frame
                           pbar.setBorder(border); //borde
+                          frame.repaint();
                          // pbar.setSize(200, 50);//tamaño de la barra
                           SwingUtilities.invokeLater(new Runnable() {
                             public void run() {  
@@ -64,7 +65,7 @@ public class Carga extends JPanel{
                           });
                         java.lang.Thread.sleep(50);
                         
-                        frame.repaint();
+                        
                       
                       } catch (InterruptedException e) {
                         ;
