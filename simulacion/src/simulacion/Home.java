@@ -432,12 +432,16 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Llenar los campos requeridos /n");
         }*/
 
-        double[][] matriz_acum_demanda = Funciones.fnumacumulado(Funciones.table_to_matriz(demanda_table));
-        double[][] matriz_acum_entrega = Funciones.fnumacumulado(Funciones.table_to_matriz(entrega_table));
-        double[][] matriz_acum_espera = Funciones.fnumacumulado(Funciones.table_to_matriz(espera_table));
+        matriz_demanda = Funciones.table_to_matriz(demanda_table);
+        matriz_entrega = Funciones.table_to_matriz(entrega_table);
+        matriz_espera = Funciones.table_to_matriz(espera_table);
         
-        /* Random*/
-        Random rnd = new Random(0);
+        double[][] matriz_acum_demanda = Funciones.fnumacumulado(matriz_demanda);
+        double[][] matriz_acum_entrega = Funciones.fnumacumulado(matriz_entrega);
+        double[][] matriz_acum_espera = Funciones.fnumacumulado(matriz_espera);
+        
+        
+        
         /* Titulos */
         System.out.printf("Dia\t|Inv.ini|No.Al D|Demanda|Inv.Fin|Inv.prm|Faltant|No.Ordn|No.AleE|T.ntrga|No.Ales|T.espera %n");
          

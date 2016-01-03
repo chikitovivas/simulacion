@@ -40,7 +40,7 @@ public class Funciones {
                 
         for (int i = 0; i < aleatorios.length; i++) {
             aleatorios[i] = Double.valueOf(format.format((rnd.nextDouble() * 100)/100));
-            System.out.println(aleatorios[i]);
+            //System.out.println(aleatorios[i]);
         }
         return aleatorios;
 }    
@@ -237,12 +237,20 @@ public class Funciones {
         TableModel model = table.getModel();
         
         double[][] matriz = new double[model.getColumnCount()][2];      
-        
-        for(int i=0; i < model.getColumnCount(); i++){
-            matriz[i][0] = (double)model.getValueAt(0, i);
-            matriz[i][1] = (double)model.getValueAt(1, i);
+        int i;
+        for(i=0; i < model.getColumnCount() && model.getValueAt(0, i) != null; i++){
+                matriz[i][0] = Double.parseDouble(""+model.getValueAt(0, i).toString());
+                matriz[i][1] = Double.parseDouble(""+model.getValueAt(1, i).toString());
         }
-        return matriz;
+        
+        double[][] matriz_fix = new double[i][2];
+        
+        for(int j=0; j < i; j++){
+                matriz_fix[j][0] = matriz[j][0];
+                matriz_fix[j][1] = matriz[j][1];
+        }
+        
+        return matriz_fix;
     }
     
  }  
