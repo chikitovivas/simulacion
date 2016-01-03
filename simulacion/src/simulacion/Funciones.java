@@ -161,40 +161,37 @@ public class Funciones {
         metodo que permite revisar a diario el tiempo de espera de los clientes, si su tiempo llega a 0, se remueve de la lista de clientes.
             recibe: lista de clientes (List<double[]> lista_clientes)
             salida: lista de clientes modificada List<double[]>
-    */
-    public static List<double[]> fespera_clientes (List<double[]> lista_clientes){
+    */      
+        public static List<double[]> fespera_clientes (List<double[]> lista_clientes){
         
         double[] var= new double[2];
         int i=0;
-        
+
         while (i < lista_clientes.size()) {
             //Se obtiene en var el arreglo que se encuentra en la posicion i de la lista
             var = lista_clientes.get(i);
-            
             /*si en la posicion 0 de var (el tiempo de espera del cliente), es igual que 1,se resta un 
               dia, por lo que el tiempo de espera queda en 0, lo que nos lleva a remover el elemento, 
               tomando su faltante y sumando al costo por faltate sin espera del cliente (costoSE)
             */
-            if (var[0]==0){
+            if ((int)var[0] == 0){
                 cantSE=cantSE+var[1];
                 lista_clientes.remove(i);
-                System.out.println("boorro");
             
            /* Si la posicion 0 del arreglo es diferente a 1, le resto -1 al tiempo de espera 
               y reemplazo el elemento de la lista por el elemento -1
            */     
-            }else if (var[0]>0){
+            }else if ((int)var[0]>0){
                 var[0]=var[0]-1;
                 lista_clientes.set(i, var);
-                System.out.println("menos1");
+                i++;
             }  
             //incremento el indice de ubicacion de la lista
-            i++;
+            
                 
         }
         return lista_clientes;
     } 
-    
     public static void reanudar(){
         cantSE = 0;
         cantCE = 0;

@@ -27,7 +27,7 @@ public class tablasimulacion extends javax.swing.JFrame {
     int inventario_promedio;
     int numero_orden=0;
     double naleatorio_demanda=0,naleatorio_entrega=0, naleatorio_espera=0;
-    
+    int acum_inventario=0;
     /**
      * Creates new form tablasimulacion
      */
@@ -107,7 +107,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                         inventario_fin = 0;
                         /* inventario_promedio */
                         inventario_promedio = (inventario_ini + inventario_fin) / 2;
-                        costoInventario = costoInventario + inventario_promedio;
+                        acum_inventario = acum_inventario + inventario_promedio;
                         /* si el inventario final es menor al punto de Reorden y no hay una orden puesta, pide una orden y muestra */
                         if(inventario_fin <= r && dia_orden == 0){
                             /* pide el tiempo de espera de la proxima orden */
@@ -156,7 +156,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                     }else{
                         /* inventario_promedio */
                         inventario_promedio = (inventario_ini + inventario_fin) / 2;
-                        costoInventario = costoInventario + inventario_promedio;
+                        acum_inventario = acum_inventario + inventario_promedio;
                         /* si el inventario final es menor al punto de Reorden y no hay una orden puesta, pide una orden y muestra */
                         if(inventario_fin <= r && dia_orden == 0){
                             /* pide el tiempo de espera de la proxima orden */
@@ -212,7 +212,13 @@ public class tablasimulacion extends javax.swing.JFrame {
                     filas.addRow(fila.toArray());
                     fila.clear();
                 }   
-            
+                costoInventario = acum_inventario * ((costoInventario) / 365 ); //costo de inventario
+                costoOrden = numero_orden * costoOrden; //costo de orden
+                double costo_faltante = func.fcosto_faltante(costo_sin_espera,costo_con_espera); //costo faltante
+                
+                double costo_total = costoInventario + costoOrden + costo_faltante; //costo total
+                
+                System.out.println("Costo total: "+costo_total);
             
         /* 
             Creo una instancia de JTable y le paso como parametro los dos Vectores:

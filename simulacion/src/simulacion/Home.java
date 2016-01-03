@@ -521,7 +521,6 @@ public class Home extends javax.swing.JFrame {
                             numero_orden++; //cantidad de ordenes aumenta
                             dia_orden = i;  //dia en el que se pidio la orden
                             /* disminuye la cantidad de dias de espera de los clientes en la lista, si llegan a 0 la cantidad de dias de espera de una cliente, se elimina ese cliente */
-                            lista_clientes = func.fespera_clientes(lista_clientes);
 
                             //System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%.2f\t|%d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
 
@@ -538,7 +537,6 @@ public class Home extends javax.swing.JFrame {
                             numero_orden++;     //cantidad de ordenes aumenta
                             dia_orden = i;      //dia en el que se pidio la orden
                             /* disminuye la cantidad de dias de espera de los clientes en la lista, si llegan a 0 la cantidad de dias de espera de una cliente, se elimina ese cliente */                                
-                            lista_clientes = func.fespera_clientes(lista_clientes);
 
                            // System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera);
 
@@ -546,6 +544,7 @@ public class Home extends javax.swing.JFrame {
                             //System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante);
                         }
                     }
+                    lista_clientes = func.fespera_clientes(lista_clientes);
                     inventario_ini = inventario_fin; //inventario inicial del proximo dia 
                 } 
                 costo_total = 0;    //se inicializa costo total
