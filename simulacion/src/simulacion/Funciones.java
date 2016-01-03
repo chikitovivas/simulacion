@@ -36,6 +36,26 @@ public class Funciones {
         double[] aleatorios = new double[1200];
         Random rnd = new Random(0);
         
+        aleatorios[0] = .69; aleatorios[1] = .22 ;aleatorios[2] = .37;aleatorios[3] = .64;aleatorios[4] = .75;aleatorios[5] = .06;
+        aleatorios[6] = .60;aleatorios[7] = .43;aleatorios[8] = .54;aleatorios[9] = .47;aleatorios[10] = .79;aleatorios[11] = .10; aleatorios[12] = .96;
+        aleatorios[13] = .42;aleatorios[14] = .98;aleatorios[15] = .29;aleatorios[16] = .15;aleatorios[17] = .59;aleatorios[18] = .37;
+        aleatorios[19] = .25;aleatorios[20] = .76;aleatorios[21] = .14;
+        
+        
+        DecimalFormat format =new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
+                
+        for (int i = 22; i < 1200; i++) {
+            aleatorios[i] = Double.valueOf(format.format((rnd.nextDouble() * 100)/100));
+            //System.out.println(aleatorios[i]);
+        }
+        return aleatorios;
+}   
+    
+   /* //La perfect
+    public static double [] fwrite_aleatorio(){
+        double[] aleatorios = new double[1200];
+        Random rnd = new Random(0);
+        
         DecimalFormat format =new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
                 
         for (int i = 0; i < aleatorios.length; i++) {
@@ -43,7 +63,9 @@ public class Funciones {
             //System.out.println(aleatorios[i]);
         }
         return aleatorios;
-}    
+    } */
+    
+    
     
     /*
         fread_aleatorios()

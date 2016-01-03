@@ -572,7 +572,7 @@ public class Home extends javax.swing.JFrame {
         System.out.println("Mejor Q = " + mejor_q);
         System.out.println("Mejor R = " + mejor_r);
         /* simulacion del mejor */
-        tablasimulacion mejor  = new tablasimulacion(mejor_q,mejor_r,matriz_acum_demanda,matriz_acum_entrega,
+        tablasimulacion mejor  = new tablasimulacion(100,75,matriz_acum_demanda,matriz_acum_entrega,
                 matriz_acum_espera,Double.parseDouble(costo_inventario.getText()),Double.parseDouble(costo_orden.getText())
                 ,Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText())
                 ,Integer.parseInt(inventario_inicial.getText()), aleatorios);
