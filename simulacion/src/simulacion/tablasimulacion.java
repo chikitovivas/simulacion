@@ -139,7 +139,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                             fila.add(Integer.toString(inventario_fin));
                             fila.add(Integer.toString(inventario_promedio));
                             fila.add(Integer.toString(faltante));
-                            fila.add(Integer.toString(numero_orden));
+                            fila.add("-");
                             fila.add("-");
                             fila.add("-");
                             fila.add(Double.toString(naleatorio_espera));
