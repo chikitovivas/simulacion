@@ -36,6 +36,8 @@ public class Home extends javax.swing.JFrame {
     private double[][] matriz_demanda;
     private double[][] matriz_entrega ;
     private double[][] matriz_espera;
+    private double aleatorio_espera;
+    private double aleatorio_entrega;
 
     /**
      * Creates new form Home
@@ -444,18 +446,23 @@ public class Home extends javax.swing.JFrame {
         double[] array = Funciones.fread_aleatorios();
         int dia_orden=0;
         double costo_faltante = 0;
-        double costoOrden = Double.parseDouble(costo_orden.getText());
         double costoInventario = 0;
         double costo_total = 0;
         Clase_retorno clase;
-      /*  int[] minima = Funciones.fcalculo_q_r(Integer.parseInt(costo_orden.getText()), (int)matriz_demanda[0][0], Integer.parseInt(costo_inventario.getText()), Double.parseDouble(costo_nespera.getText()), (int)matriz_espera[0][0]);
-        int[] maxima = Funciones.fcalculo_q_r(Integer.parseInt(costo_orden.getText()), (int)matriz_demanda[matriz_demanda.length-1][0], Integer.parseInt(costo_inventario.getText()), Double.parseDouble(costo_nespera.getText()), (int)matriz_espera[matriz_espera.length-1][0]);
+        /* Calculo Q y R */
+        int[] minima = Funciones.fcalculo_q_r(Double.parseDouble(costo_orden.getText()), matriz_demanda[0][0], Double.parseDouble(costo_inventario.getText()), Double.parseDouble(costo_nespera.getText()),matriz_entrega[0][0],365);
+        int[] maxima = Funciones.fcalculo_q_r(Double.parseDouble(costo_orden.getText()), matriz_demanda[matriz_demanda.length-1][0], Double.parseDouble(costo_inventario.getText()), Double.parseDouble(costo_espera.getText()),matriz_entrega[matriz_entrega.length-1][0],365);
         int Qminima = minima[0];
         int Qmaxima = maxima[0];
         int Rminima = minima[1];
         int Rmaxima = maxima[1];
-        System.out.println(" Qminima: "+Qminima+" Qmaxima: "+Qmaxima+" Rminima: "+Rminima+" Rmaxima: "+Rmaxima);*/
-        /**/double[] array_entrega = new double[5];
+        /* Aleatorios */
+        double[] aleatorios = Funciones.fwrite_aleatorio();
+        /* Costos */
+        double mejor_costo = 9999999;
+        double mejor_q = 0;
+        double mejor_r = 0;
+        /*double[] array_entrega = new double[5];
         double[] array_espera = new double[2];
         array_entrega[0] = 0.22;
         array_entrega[1] = 0.43;
@@ -463,91 +470,113 @@ public class Home extends javax.swing.JFrame {
         array_entrega[3] = 0.29;
         array_entrega[4] = 0.76;      
         array_espera[0] = 0.64;
-        array_espera[1] = 0.06;
-        int acum_entrega = 0;
-        int acum_espera = 0;
-        List<double[]> lista_clientes = new ArrayList<double[]>();
-        /* dias de simulacion*/
-        for(int i = 1 ; i <= 15; i++){  
-            /* if para ver si ya la orden llego*/
-            if(tiempo_espera + dia_orden < i && dia_orden != 0){
-                inventario_ini = inventario_ini + Q;
-                clase = Funciones.fllegada_pedidos(lista_clientes,inventario_ini);
-                inventario_ini = clase.getQ();
-                lista_clientes = clase.getList();
-                dia_orden = 0;
-            }
-            /* aleatorio demanda*/
-            aleatorio_demanda = (double)(rnd.nextDouble() * 100)/100;
-            //demanda_diaria = Funciones.fcompare(aleatorio_demanda,matriz_acum_demanda);
-            /* demanda_diaria */
-            demanda_diaria = Funciones.fcompare(array[i-1],matriz_acum_demanda);
-            /* inventario final */
-            inventario_fin = (int)inventario_ini - demanda_diaria;
-            /* si inventario es negativo, es decir, hay faltante */
-            if(inventario_fin < 0){
-                faltante = Math.abs(inventario_fin);
-                /**/lista_clientes.add(new double[] {Funciones.fcompare(array_espera[acum_espera],matriz_acum_espera) , faltante});
-                /**/acum_espera++;
-                inventario_fin = 0;
-                /* inventario_promedio */
-                inventario_promedio = (inventario_ini + inventario_fin) / 2;
-                costoInventario = costoInventario + inventario_promedio;
-                /* si el inventario final es menor al punto de Reorden y no hay una orden puesta, pide una orden y muestra */
-                if(inventario_fin <= R && dia_orden == 0){
-                    /* pide el tiempo de espera de la proxima orden */
-                    /**/tiempo_espera = Funciones.fcompare(array_entrega[acum_entrega], matriz_acum_entrega);
-                    /**/acum_entrega++;
-                    /* la cantidad de ordenes*/
-                    numero_orden++;
-                    /* dia en el que se pidio la orden */
-                    dia_orden = i;
-                    
-                    lista_clientes = Funciones.fespera_clientes(lista_clientes);
-                    
-                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%.2f\t|%d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
+        array_espera[1] = 0.06;*/
 
-                }else{
-                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t| %.2f\t| %d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
-                }
-            }else{
-                /* inventario_promedio */
-                inventario_promedio = (inventario_ini + inventario_fin) / 2;
-                costoInventario = costoInventario + inventario_promedio;
-                /* si el inventario final es menor al punto de Reorden y no hay una orden puesta, pide una orden y muestra */
-                if(inventario_fin <= R && dia_orden == 0){
-                    /* pide el tiempo de espera de la proxima orden */
-                    /**/tiempo_espera = Funciones.fcompare(array_entrega[acum_entrega], matriz_acum_entrega);
-                    /**/acum_entrega++;
-                    /* la cantidad de ordenes*/
-                    numero_orden++;
-                    /* dia en el que se pidio la orden */
-                    dia_orden = i;
-                    
-                    lista_clientes = Funciones.fespera_clientes(lista_clientes);
-                    
-                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera);
-
-                }else{
-                    System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante);
-                }
-            }
-
-            /* inventario inicial del proximo dia */
-            inventario_ini = inventario_fin;
-        }
-        /* Costos */
-        //System.out.println("Costos Inventario = " + costoInventario);
-        costoInventario = costoInventario * (Double.parseDouble(costo_inventario.getText()) / 365 );
-        costoOrden = numero_orden * costoOrden;
-        costo_faltante = Funciones.fcosto_faltante(Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText()) );
-        costo_total = costoInventario + costoOrden + costo_faltante;
-                
-        System.out.println("Costos Inventario = " + costoInventario);
-        System.out.println("Costos Orden = " + costoOrden);
-        System.out.println("Costos Faltante = " + costo_faltante);
         
-        System.out.println("Costo total = " + costo_total);
+        /* Variacion en cantidad de articulos por orden */
+        for(int q = Qminima; q <= Qmaxima ; q++){
+            /* Variacion en cantidad de puntos de reorden */
+            for(int r = Rminima; r <= Rmaxima ; r++){
+                /* Inicializacion en cada cambio de r */
+                costoInventario = 0;
+                List<double[]> lista_clientes = new ArrayList<>();
+                numero_orden = 0;
+                dia_orden = 0;
+                tiempo_espera = 0;
+                inventario_ini = Integer.parseInt(inventario_inicial.getText());
+                Funciones func = new Funciones();
+                double costoOrden = Double.parseDouble(costo_orden.getText());
+                /* dias de simulacion*/
+                for(int i = 1, ale = 0 ; i <= 365; i++){  
+                    /* if para ver si ya la orden llego*/                    
+                    if(tiempo_espera + dia_orden < i && dia_orden != 0){
+                        inventario_ini = inventario_ini + q;
+                        clase = func.fllegada_pedidos(lista_clientes,inventario_ini);
+                        inventario_ini = clase.getQ();
+                        lista_clientes = clase.getList();
+                        dia_orden = 0;
+                    }
+                    /* aleatorio demanda*/
+                    demanda_diaria = Funciones.fcompare(aleatorios[ale],matriz_acum_demanda);
+                    ale++;
+                    /* demanda_diaria */
+                    //demanda_diaria = Funciones.fcompare(array[i-1],matriz_acum_demanda);
+                    /* inventario final */
+                    inventario_fin = (int)inventario_ini - demanda_diaria;
+                    /* si inventario es negativo, es decir, hay faltante */
+                    if(inventario_fin < 0){
+                        faltante = Math.abs(inventario_fin);
+                        lista_clientes.add(new double[] {Funciones.fcompare(aleatorios[ale],matriz_acum_espera) , faltante});
+                        ale++;
+                        inventario_fin = 0;
+                        /* inventario_promedio */
+                        inventario_promedio = (inventario_ini + inventario_fin) / 2;
+                        costoInventario = costoInventario + inventario_promedio;
+                        /* si el inventario final es menor al punto de Reorden y no hay una orden puesta, pide una orden y muestra */
+                        if(inventario_fin <= r && dia_orden == 0){
+                            /* pide el tiempo de espera de la proxima orden */
+                            tiempo_espera = Funciones.fcompare(aleatorios[ale], matriz_acum_entrega);
+                            ale++;
+                            /* la cantidad de ordenes*/
+                            numero_orden++;
+                            /* dia en el que se pidio la orden */
+                            dia_orden = i;
+
+                            lista_clientes = func.fespera_clientes(lista_clientes);
+
+                            //System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%.2f\t|%d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
+
+                        }else{
+                           // System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t| %.2f\t| %d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
+                        }
+                    }else{
+                        /* inventario_promedio */
+                        inventario_promedio = (inventario_ini + inventario_fin) / 2;
+                        costoInventario = costoInventario + inventario_promedio;
+                        /* si el inventario final es menor al punto de Reorden y no hay una orden puesta, pide una orden y muestra */
+                        if(inventario_fin <= r && dia_orden == 0){
+                            /* pide el tiempo de espera de la proxima orden */
+                            tiempo_espera = Funciones.fcompare(aleatorios[ale], matriz_acum_entrega);
+                            ale++;
+                            /* la cantidad de ordenes*/
+                            numero_orden++;
+                            /* dia en el que se pidio la orden */
+                            dia_orden = i;
+
+                            lista_clientes = func.fespera_clientes(lista_clientes);
+
+                           // System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera);
+
+                        }else{
+                            //System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante);
+                        }
+                    }
+
+                    /* inventario inicial del proximo dia */
+                    inventario_ini = inventario_fin;
+                } 
+                costo_total = 0;
+                costoInventario = costoInventario * (Double.parseDouble(costo_inventario.getText()) / 365 );
+                costoOrden = numero_orden * costoOrden;
+                costo_faltante = func.fcosto_faltante(Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText()) );
+                
+                 costo_total = costoInventario + costoOrden + costo_faltante;
+                 System.out.println("costo total : "+costo_total);
+
+                 if(costo_total < mejor_costo){
+                     mejor_costo = costo_total;
+                     mejor_q = q;
+                     mejor_r = r;
+                 }
+                 func.reanudar();
+            }
+        }
+
+        /* Costos */  
+        System.out.println("Mejor Costo = " + mejor_costo);
+        System.out.println("Mejor Q = " + mejor_q);
+        System.out.println("Mejor R = " + mejor_r);
+        
     }//GEN-LAST:event_startActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed

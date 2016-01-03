@@ -33,7 +33,7 @@ public class Funciones {
     
     */
     public static double [] fwrite_aleatorio(){
-        double[] aleatorios = new double[100];
+        double[] aleatorios = new double[1200];
         Random rnd = new Random(0);
         
         DecimalFormat format =new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
@@ -189,7 +189,10 @@ public class Funciones {
         return lista_clientes;
     } 
     
-    
+    public static void reanudar(){
+        cantSE = 0;
+        cantCE = 0;
+    }
     
     /*
         fcalculo_q_r (double k, double d, double h, double s)
