@@ -5,7 +5,7 @@
  */
 package simulacion;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import javax.swing.*;
 import java.util.Vector;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -17,6 +17,13 @@ public class tablasimulacion extends javax.swing.JFrame {
     int demanda_diaria;
     int tiempo_espera;
     int dia_orden=0;
+    int faltante;
+    int inventario_fin;
+    Clase_retorno clase;
+    Funciones func = new Funciones();
+    int inventario_promedio;
+    int numero_orden=0;
+    
     /**
      * Creates new form tablasimulacion
      */
@@ -50,7 +57,21 @@ public class tablasimulacion extends javax.swing.JFrame {
             columnas.add("No. Alea. tiempo espera");
             columnas.add("Tiempo Espera");
         
-            
+            /* 
+            Creo una instancia de la clase Vector llamada 'filas' , este vector
+            tendrá todas las filas de la tabla.
+        */
+        Vector filas = new Vector();
+         
+        /*
+            Creo otro objeto de la clase Vector llamado 'fila', esto representará a
+            una fila en particular y cada elemento que agregue a este vector
+            será una celda.
+         */
+        Vector fila = new Vector();
+        
+        
+        
         java.util.List<double[]> lista_clientes = new ArrayList<>();    
            
          /* dias de simulacion*/
@@ -126,24 +147,6 @@ public class tablasimulacion extends javax.swing.JFrame {
             
             
             
-            
-            
-            
-            
-            
-            
-            /* 
-            Creo una instancia de la clase Vector llamada 'filas' , este vector
-            tendrá todas las filas de la tabla.
-        */
-        Vector filas = new Vector();
-         
-        /*
-            Creo otro objeto de la clase Vector llamado 'fila', esto representará a
-            una fila en particular y cada elemento que agregue a este vector
-            será una celda.
-         */
-        Vector fila = new Vector();
          
         fila.add("X");
         fila.add("Y");
