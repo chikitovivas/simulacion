@@ -5,11 +5,13 @@
  */
 package simulacion;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -41,6 +43,12 @@ public class Home extends javax.swing.JFrame {
     
     public Home(){
         initComponents();
+        JTableHeader header = demanda_table.getTableHeader();
+        header.setPreferredSize(new Dimension(0, 0));
+        JTableHeader header1 = entrega_table.getTableHeader();
+        header1.setPreferredSize(new Dimension(0, 0));
+        JTableHeader header2 = espera_table.getTableHeader();
+        header2.setPreferredSize(new Dimension(0, 0));
     }
     
     public Home(double[][] matriz_demanda, double[][] matriz_entrega, double[][] matriz_espera,
@@ -93,23 +101,35 @@ public class Home extends javax.swing.JFrame {
         
         List data = new ArrayList();
         for(int i=0;i<this.matriz_demanda.length;i++){
+            data.add((int)this.matriz_demanda[i][0]);
             data.add(this.matriz_demanda[i][1]);
-            model.addColumn((int)this.matriz_demanda[i][0], data.toArray());
+            model.addColumn('-', data.toArray());
             data.clear();
         }
         for(int i=0;i<this.matriz_entrega.length;i++){
+            data.add((int)this.matriz_entrega[i][0]);
             data.add(this.matriz_entrega[i][1]);
-            model1.addColumn((int)this.matriz_entrega[i][0], data.toArray());
+            model1.addColumn('-', data.toArray());
             data.clear();
         }
         for(int i=0;i<this.matriz_espera.length;i++){
+            data.add((int)this.matriz_espera[i][0]);
             data.add(this.matriz_espera[i][1]);
-            model2.addColumn((int)this.matriz_espera[i][0], data.toArray());
+            model2.addColumn('-', data.toArray());
             data.clear();
         }                
+        
         demanda_table.setModel(model);
+        JTableHeader header = demanda_table.getTableHeader();
+        header.setPreferredSize(new Dimension(0, 0));
+        
         entrega_table.setModel(model1);
+        JTableHeader header1 = entrega_table.getTableHeader();
+        header1.setPreferredSize(new Dimension(0, 0));
+        
         espera_table.setModel(model2); 
+        JTableHeader header2 = espera_table.getTableHeader();
+        header2.setPreferredSize(new Dimension(0, 0));
         Q = 100;
         R = 75;
     }
@@ -165,16 +185,35 @@ public class Home extends javax.swing.JFrame {
 
         demanda_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-
+                "", "", "", "", "", "", "", "", "", ""
             }
         ));
         jScrollPane3.setViewportView(demanda_table);
 
+        espera_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "", "", "", "", "", "", "", "", "", ""
+            }
+        ));
         jScrollPane4.setViewportView(espera_table);
 
+        entrega_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "", "", "", "", "", "", "", "", "", ""
+            }
+        ));
         jScrollPane5.setViewportView(entrega_table);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -184,41 +223,40 @@ public class Home extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
                     .addComponent(jLabel1)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel2))
                 .addGap(40, 40, 40)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(71, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel1)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel2)))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel3))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel3)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Costos"));
