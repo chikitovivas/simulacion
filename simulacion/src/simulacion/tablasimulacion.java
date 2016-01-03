@@ -15,11 +15,16 @@ import javax.swing.table.DefaultTableCellRenderer;
  */
 public class tablasimulacion extends javax.swing.JFrame {
     int demanda_diaria;
+    int tiempo_espera;
+    int dia_orden=0;
     /**
      * Creates new form tablasimulacion
      */
-    public tablasimulacion(double q, double r, double[][] matriz_acum_demanda, double[][] matriz_acum_entrega,double[][] matriz_acum_espera, 
-                            double costoInventario, double costoOrden) {
+    public tablasimulacion(int q, int r, 
+                            double[][] matriz_acum_demanda, double[][] matriz_acum_entrega,double[][] matriz_acum_espera, 
+                            double costoInventario, double costoOrden, double costo_sin_espera, double costo_con_espera, 
+                            int inventario_ini, double[] aleatorios) {
+        
         super("Simulación");
         //this.setLocationRelativeTo(null);
         this.setLocation(200, 150);
@@ -46,13 +51,13 @@ public class tablasimulacion extends javax.swing.JFrame {
             columnas.add("Tiempo Espera");
         
             
-            
+        java.util.List<double[]> lista_clientes = new ArrayList<>();    
            
          /* dias de simulacion*/
                 for(int i = 1, ale = 0 ; i <= 365; i++){  
                     /* if para ver si ya la orden llego*/                    
                     if(tiempo_espera + dia_orden < i && dia_orden != 0){
-                        inventario_ini = inventario_ini + q;
+                        inventario_ini =  inventario_ini + q;
                         clase = func.fllegada_pedidos(lista_clientes,inventario_ini);
                         inventario_ini = clase.getQ();
                         lista_clientes = clase.getList();
