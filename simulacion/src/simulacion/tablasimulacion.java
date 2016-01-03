@@ -118,8 +118,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                             numero_orden++;
                             /* dia en el que se pidio la orden */
                             dia_orden = i;
-
-                            lista_clientes = func.fespera_clientes(lista_clientes);
+                           
                             
                             fila.add(Integer.toString(i)); 
                             fila.add(Integer.toString(inventario_ini)); 
@@ -137,7 +136,6 @@ public class tablasimulacion extends javax.swing.JFrame {
                             //System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%.2f\t|%d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
                             faltante = 0;
                         }else{
-                            lista_clientes = func.fespera_clientes(lista_clientes);
                             
                             fila.add(Integer.toString(i)); 
                             fila.add(Integer.toString(inventario_ini)); 
@@ -163,13 +161,13 @@ public class tablasimulacion extends javax.swing.JFrame {
                         if(inventario_fin <= r && dia_orden == 0){
                             /* pide el tiempo de espera de la proxima orden */
                             tiempo_entrega = Funciones.fcompare(aleatorios[ale], matriz_acum_entrega);
+                            naleatorio_entrega = aleatorios[ale];
                             ale++;
                             /* la cantidad de ordenes*/
                             numero_orden++;
                             /* dia en el que se pidio la orden */
                             dia_orden = i;
 
-                            lista_clientes = func.fespera_clientes(lista_clientes);
                             
                             fila.add(Integer.toString(i)); 
                             fila.add(Integer.toString(inventario_ini)); 
@@ -187,7 +185,6 @@ public class tablasimulacion extends javax.swing.JFrame {
                            // System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera);
 
                         }else{
-                            lista_clientes = func.fespera_clientes(lista_clientes);
                             
                             fila.add(Integer.toString(i)); 
                             fila.add(Integer.toString(inventario_ini)); 
@@ -207,6 +204,7 @@ public class tablasimulacion extends javax.swing.JFrame {
 
                     /* inventario inicial del proximo dia */
                     inventario_ini = inventario_fin;
+                    lista_clientes = func.fespera_clientes(lista_clientes);
                     
                     /* Agrego la fila al vector que contiene todas las filas */
                     //aqui se añade todas las filas

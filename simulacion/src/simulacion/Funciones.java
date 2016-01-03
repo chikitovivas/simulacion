@@ -134,15 +134,19 @@ public class Funciones {
             //Se obtiene en var el arreglo que se encuentra en la posicion i de la lista
             var = lista_clientes.get(i);
             
-            if ((var[0]>0) &&(q>=var[1])){
+            if (q >= var[1]){
+                
                 q=q-(int)var[1];
                 cantCE=cantCE+var[1];
                 lista_clientes.remove(i);
-            }else if ((var[0]>0) &&(q<var[1])){
+                
+            }else if ((q != 0) && q < var[1]){
+                
                 cantSE=cantSE+(var[1]-q);
                 cantCE=cantCE+q;
                 q=0;
                 lista_clientes.remove(i);
+                
             }  
             //incremento el indice de ubicacion de la lista
             
@@ -174,6 +178,7 @@ public class Funciones {
             if (var[0]==0){
                 cantSE=cantSE+var[1];
                 lista_clientes.remove(i);
+                System.out.println("boorro");
             
            /* Si la posicion 0 del arreglo es diferente a 1, le resto -1 al tiempo de espera 
               y reemplazo el elemento de la lista por el elemento -1
@@ -181,6 +186,7 @@ public class Funciones {
             }else if (var[0]>0){
                 var[0]=var[0]-1;
                 lista_clientes.set(i, var);
+                System.out.println("menos1");
             }  
             //incremento el indice de ubicacion de la lista
             i++;
