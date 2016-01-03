@@ -5,9 +5,11 @@
  */
 package simulacion;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
 import java.io.File;
-import java.util.Scanner;
-import javax.swing.JFileChooser;
+import java.util.*;
+import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -16,10 +18,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Buscador_archivos {
     static Menu menu = new Menu();
-   
+    static Carga Pcarga = new Carga();;
     
-    
-    
+       
     public static void leer_archivo(String arch){
 		// Fichero del que queremos leer
 		File fichero = new File(arch);
@@ -163,6 +164,7 @@ public class Buscador_archivos {
     public static void archivo(){
 
             String adr= new String("");
+            String nombre_arch = new String("");
             
             //nos creamos el JFileChooser
             JFileChooser fileChooser = new JFileChooser();
@@ -177,8 +179,11 @@ public class Buscador_archivos {
                  File fichero = fileChooser.getSelectedFile();
                 //obtenemos la ruta
                 adr = fichero.getAbsolutePath();
+                nombre_arch = fichero.getName();
                 //System.out.println(adr);
                 //Abrir de ventana de cargando archivo
+                
+                Pcarga.llamada(nombre_arch);
                 leer_archivo(adr);
              break;
 
@@ -193,4 +198,8 @@ public class Buscador_archivos {
              break;
             }
     }
+    
+      
+    
+    
 }
