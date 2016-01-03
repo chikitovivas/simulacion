@@ -465,8 +465,8 @@ public class Home extends javax.swing.JFrame {
         double[] aleatorios = Funciones.fwrite_aleatorio();
         /* Costos */
         double mejor_costo = 9999999;
-        double mejor_q = 0;
-        double mejor_r = 0;
+        int mejor_q = 0;
+        int mejor_r = 0;
         /*double[] array_entrega = new double[5];
         double[] array_espera = new double[2];
         array_entrega[0] = 0.22;
