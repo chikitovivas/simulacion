@@ -18,7 +18,8 @@ public class tablasimulacion extends javax.swing.JFrame {
      * Creates new form tablasimulacion
      */
     public tablasimulacion(double q, double r, double[][] matriz_acum_demanda, double[][] matriz_acum_entrega,double[][] matriz_acum_espera, 
-            double costoInventario, double costoOrden) {
+            double costoInventario, double costoOrden, double costo_sin_espera, double costo_con_espera
+            , int inventario_inicial, double[] aleatorios) {
         super("Simulación");
         //this.setLocationRelativeTo(null);
         this.setLocation(200, 150);
