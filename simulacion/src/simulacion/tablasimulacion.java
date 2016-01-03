@@ -25,7 +25,6 @@ public class tablasimulacion extends javax.swing.JFrame {
     int inventario_promedio;
     int numero_orden=0;
     double naleatorio_demanda=0,naleatorio_entrega=0, naleatorio_espera=0;
-    Funciones fun = new Funciones ();
     
     /**
      * Creates new form tablasimulacion
@@ -128,7 +127,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                             fila.add(Double.toString(naleatorio_entrega));
                             fila.add(Integer.toString(tiempo_entrega));
                             fila.add(Double.toString(naleatorio_espera));
-                            fila.add(Integer.toString(fun.fcompare(naleatorio_demanda,matriz_acum_espera)));
+                            fila.add(Integer.toString(func.fcompare(naleatorio_espera,matriz_acum_espera)));
                             
                             //System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%.2f\t|%d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
 
@@ -141,10 +140,10 @@ public class tablasimulacion extends javax.swing.JFrame {
                             fila.add(Integer.toString(inventario_promedio));
                             fila.add(Integer.toString(faltante));
                             fila.add(Integer.toString(numero_orden));
-                            fila.add(Double.toString(naleatorio_entrega));
-                            fila.add(Integer.toString(tiempo_entrega));
                             fila.add("-");
                             fila.add("-");
+                            fila.add(Double.toString(naleatorio_espera));
+                            fila.add(Integer.toString(func.fcompare(naleatorio_espera,matriz_acum_espera)));
                             
                             
                            // System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t| %.2f\t| %d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
