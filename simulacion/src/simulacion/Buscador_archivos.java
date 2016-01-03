@@ -18,7 +18,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Buscador_archivos {
     static Menu menu = new Menu();
-    static Carga Pcarga = new Carga();;
     
        
     public static void leer_archivo(String arch){
@@ -183,7 +182,7 @@ public class Buscador_archivos {
                 //System.out.println(adr);
                 //Abrir de ventana de cargando archivo
                 
-                Pcarga.llamada(nombre_arch);
+                Carga.llamada(nombre_arch);
                 leer_archivo(adr);
              break;
 

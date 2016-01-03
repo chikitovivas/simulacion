@@ -37,7 +37,7 @@ public class Carga extends JPanel{
     }
     public static void llamada(String archivo) {
         
-        final PantallaCarga it = new PantallaCarga();
+        final Carga it = new Carga();
                     
                     JFrame frame = new JFrame("Cargando archivo...");
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,6 +63,8 @@ public class Carga extends JPanel{
                             }
                           });
                         java.lang.Thread.sleep(50);
+                        
+                        frame.repaint();
                       
                       } catch (InterruptedException e) {
                         ;
