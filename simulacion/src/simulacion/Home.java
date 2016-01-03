@@ -101,19 +101,19 @@ public class Home extends javax.swing.JFrame {
         
         List data = new ArrayList();
         for(int i=0;i<this.matriz_demanda.length;i++){
-            data.add((int)this.matriz_demanda[i][0]);
+            data.add(this.matriz_demanda[i][0]);
             data.add(this.matriz_demanda[i][1]);
             model.addColumn('-', data.toArray());
             data.clear();
         }
         for(int i=0;i<this.matriz_entrega.length;i++){
-            data.add((int)this.matriz_entrega[i][0]);
+            data.add(this.matriz_entrega[i][0]);
             data.add(this.matriz_entrega[i][1]);
             model1.addColumn('-', data.toArray());
             data.clear();
         }
         for(int i=0;i<this.matriz_espera.length;i++){
-            data.add((int)this.matriz_espera[i][0]);
+            data.add(this.matriz_espera[i][0]);
             data.add(this.matriz_espera[i][1]);
             model2.addColumn('-', data.toArray());
             data.clear();
@@ -430,9 +430,9 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Llenar los campos requeridos /n");
         }*/
 
-        double[][] matriz_acum_demanda = Funciones.fnumacumulado(matriz_demanda);
-        double[][] matriz_acum_entrega = Funciones.fnumacumulado(matriz_entrega);
-        double[][] matriz_acum_espera = Funciones.fnumacumulado(matriz_espera);
+        double[][] matriz_acum_demanda = Funciones.fnumacumulado(Funciones.table_to_matriz(demanda_table));
+        double[][] matriz_acum_entrega = Funciones.fnumacumulado(Funciones.table_to_matriz(entrega_table));
+        double[][] matriz_acum_espera = Funciones.fnumacumulado(Funciones.table_to_matriz(espera_table));
         
         /* Random*/
         Random rnd = new Random(0);

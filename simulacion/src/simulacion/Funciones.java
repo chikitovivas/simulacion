@@ -9,6 +9,9 @@ import java.io.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import simulacion.Clase_retorno;
 
@@ -226,5 +229,17 @@ public class Funciones {
         return ((costoSE*cantSE)+(costoCE*cantCE));
     }
     
-
+    public static double[][] table_to_matriz(JTable table){
+        
+        TableModel model = table.getModel();
+        
+        double[][] matriz = new double[model.getColumnCount()][2];      
+        
+        for(int i=0; i < model.getColumnCount(); i++){
+            matriz[i][0] = (double)model.getValueAt(0, i);
+            matriz[i][1] = (double)model.getValueAt(1, i);
+        }
+        return matriz;
+    }
+    
  }  
