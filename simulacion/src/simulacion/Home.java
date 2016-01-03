@@ -19,6 +19,7 @@ import javax.swing.table.JTableHeader;
  */
 public class Home extends javax.swing.JFrame {
     static Menu menu = new Menu();
+    static tablasimulacion tabla;
     private int Q;
     private int R;
     /*
@@ -575,7 +576,8 @@ public class Home extends javax.swing.JFrame {
                  func.reanudar();
             }
         }
-
+        
+       //tabla = new tablasimulacion(mejor_q,mejor_r,matriz_acum_demanda,matriz_acum_entrega,matriz_acum_espera, costoInventario, );
         /* Costos */  
         System.out.println("Mejor Costo = " + mejor_costo);
         System.out.println("Mejor Q = " + mejor_q);
