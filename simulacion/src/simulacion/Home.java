@@ -448,7 +448,7 @@ public class Home extends javax.swing.JFrame {
          
         /* Inicializacion de variables para simulacion*/
         inventario_ini = Integer.parseInt(inventario_inicial.getText());
-        double[] array = Funciones.fread_aleatorios();
+        //double[] array = Funciones.fread_aleatorios();
         int dia_orden=0;
         double costo_faltante = 0;
         double costoInventario = 0;
