@@ -198,26 +198,14 @@ public class tablasimulacion extends javax.swing.JFrame {
 
                     /* inventario inicial del proximo dia */
                     inventario_ini = inventario_fin;
+                    
+                    /* Agrego la fila al vector que contiene todas las filas */
+                    //aqui se añade todas las filas
+                    filas.add(fila);                
                 }   
             
             
             
-            
-         
-        fila.add("X");
-        fila.add("Y");
-        fila.add("Z");
-   
-        /* Agrego la fila al vector que contiene todas las filas */
-        //aqui se añade todas las filas
-        filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);
-        filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);
-        filas.add(fila); filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);
-        filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);
-        filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);
-        filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);
-        filas.add(fila); filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);
-        filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);filas.add(fila);
         /* 
             Creo una instancia de JTable y le paso como parametro los dos Vectores:
                 -filas
