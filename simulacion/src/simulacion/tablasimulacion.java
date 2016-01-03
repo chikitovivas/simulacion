@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  */
 public class tablasimulacion extends javax.swing.JFrame {
     int demanda_diaria;
+    int tiempo_entrega;
     int tiempo_espera;
     int dia_orden=0;
     int faltante;
@@ -23,6 +24,8 @@ public class tablasimulacion extends javax.swing.JFrame {
     Funciones func = new Funciones();
     int inventario_promedio;
     int numero_orden=0;
+    double naleatorio_demanda=0,naleatorio_entrega=0, naleatorio_espera=0;
+    Funciones fun = new Funciones ();
     
     /**
      * Creates new form tablasimulacion
@@ -85,6 +88,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                     }
                     /* aleatorio demanda*/
                     demanda_diaria = Funciones.fcompare(aleatorios[ale],matriz_acum_demanda);
+                    naleatorio_demanda=aleatorios[ale];
                     ale++;
                     /* demanda_diaria */
                     //demanda_diaria = Funciones.fcompare(array[i-1],matriz_acum_demanda);
@@ -94,6 +98,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                     if(inventario_fin < 0){
                         faltante = Math.abs(inventario_fin);
                         lista_clientes.add(new double[] {Funciones.fcompare(aleatorios[ale],matriz_acum_espera) , faltante});
+                        naleatorio_entrega = aleatorios[ale];
                         ale++;
                         inventario_fin = 0;
                         /* inventario_promedio */
@@ -103,6 +108,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                         if(inventario_fin <= r && dia_orden == 0){
                             /* pide el tiempo de espera de la proxima orden */
                             tiempo_espera = Funciones.fcompare(aleatorios[ale], matriz_acum_entrega);
+                            naleatorio_espera = aleatorios[ale];
                             ale++;
                             /* la cantidad de ordenes*/
                             numero_orden++;
@@ -113,21 +119,34 @@ public class tablasimulacion extends javax.swing.JFrame {
                             
                             fila.add(Integer.toString(i)); 
                             fila.add(Integer.toString(inventario_ini)); 
-                            fila.add(Integer.toString(array[i-1]));
+                            fila.add(Double.toString(naleatorio_demanda));
                             fila.add(Integer.toString(demanda_diaria));
                             fila.add(Integer.toString(inventario_fin));
                             fila.add(Integer.toString(inventario_promedio));
                             fila.add(Integer.toString(faltante));
                             fila.add(Integer.toString(numero_orden));
-                            fila.add(Integer.toString(aleatorio_demanda));
-                            fila.add(Integer.toString(tiempo_espera));
-                            fila.add(Integer.toString(aleatorio_demanda));
-                            fila.add(Integer.toString(i));
+                            fila.add(Double.toString(naleatorio_entrega));
+                            fila.add(Integer.toString(tiempo_entrega));
+                            fila.add(Double.toString(naleatorio_espera));
+                            fila.add(Integer.toString(fun.fcompare(naleatorio_demanda,matriz_acum_espera)));
                             
-                            Funciones.fcompare(aleatorio_demanda,matriz_acum_espera)
                             //System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%.2f\t|%d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
 
                         }else{
+                            fila.add(Integer.toString(i)); 
+                            fila.add(Integer.toString(inventario_ini)); 
+                            fila.add(Double.toString(naleatorio_demanda));
+                            fila.add(Integer.toString(demanda_diaria));
+                            fila.add(Integer.toString(inventario_fin));
+                            fila.add(Integer.toString(inventario_promedio));
+                            fila.add(Integer.toString(faltante));
+                            fila.add(Integer.toString(numero_orden));
+                            fila.add(Double.toString(naleatorio_entrega));
+                            fila.add(Integer.toString(tiempo_entrega));
+                            fila.add("-");
+                            fila.add("-");
+                            
+                            
                            // System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t| %.2f\t| %d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
                         }
                     }else{
