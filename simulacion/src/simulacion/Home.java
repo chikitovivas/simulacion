@@ -443,7 +443,7 @@ public class Home extends javax.swing.JFrame {
         
         
         /* Titulos */
-        System.out.printf("Dia\t|Inv.ini|No.Al D|Demanda|Inv.Fin|Inv.prm|Faltant|No.Ordn|No.AleE|T.ntrga|No.Ales|T.espera %n");
+        //System.out.printf("Dia\t|Inv.ini|No.Al D|Demanda|Inv.Fin|Inv.prm|Faltant|No.Ordn|No.AleE|T.ntrga|No.Ales|T.espera %n");
          
         /* Inicializacion de variables para simulacion*/
         inventario_ini = Integer.parseInt(inventario_inicial.getText());
@@ -564,15 +564,15 @@ public class Home extends javax.swing.JFrame {
                 costoOrden = numero_orden * costoOrden;
                 costo_faltante = func.fcosto_faltante(Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText()) );
                 
-                 costo_total = costoInventario + costoOrden + costo_faltante;
-                 System.out.println("costo total : "+costo_total);
+                costo_total = costoInventario + costoOrden + costo_faltante;
+                System.out.println("costo total : "+costo_total);
 
-                 if(costo_total < mejor_costo){
-                     mejor_costo = costo_total;
-                     mejor_q = q;
-                     mejor_r = r;
-                 }
-                 func.reanudar();
+                if(costo_total < mejor_costo){
+                    mejor_costo = costo_total;
+                    mejor_q = q;
+                    mejor_r = r;
+                }
+                func.reanudar();
             }
         }
 
