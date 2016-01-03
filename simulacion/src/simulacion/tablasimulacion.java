@@ -163,10 +163,35 @@ public class tablasimulacion extends javax.swing.JFrame {
                             dia_orden = i;
 
                             lista_clientes = func.fespera_clientes(lista_clientes);
-
+                            
+                            fila.add(Integer.toString(i)); 
+                            fila.add(Integer.toString(inventario_ini)); 
+                            fila.add(Double.toString(naleatorio_demanda));
+                            fila.add(Integer.toString(demanda_diaria));
+                            fila.add(Integer.toString(inventario_fin));
+                            fila.add(Integer.toString(inventario_promedio));
+                            fila.add(Integer.toString(faltante));
+                            fila.add(Integer.toString(numero_orden));
+                            fila.add(Double.toString(naleatorio_entrega));
+                            fila.add(Integer.toString(tiempo_entrega));
+                            fila.add("-");
+                            fila.add("-");
+                            
                            // System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera);
 
                         }else{
+                            fila.add(Integer.toString(i)); 
+                            fila.add(Integer.toString(inventario_ini)); 
+                            fila.add(Double.toString(naleatorio_demanda));
+                            fila.add(Integer.toString(demanda_diaria));
+                            fila.add(Integer.toString(inventario_fin));
+                            fila.add(Integer.toString(inventario_promedio));
+                            fila.add(Integer.toString(faltante));
+                            fila.add(Integer.toString(numero_orden));
+                            fila.add(Double.toString(naleatorio_entrega));
+                            fila.add(Integer.toString(tiempo_entrega));
+                            fila.add("-");
+                            fila.add("-");
                             //System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante);
                         }
                     }
