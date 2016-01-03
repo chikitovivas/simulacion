@@ -182,7 +182,7 @@ public class Buscador_archivos {
                 //System.out.println(adr);
                 //Abrir de ventana de cargando archivo
                 
-                Carga.llamada(nombre_arch);
+                //Carga.llamada(nombre_arch);
                 leer_archivo(adr);
              break;
 

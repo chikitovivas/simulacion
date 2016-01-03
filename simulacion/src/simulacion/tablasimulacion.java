@@ -9,6 +9,7 @@ import java.util.*;
 import javax.swing.*;
 import java.util.Vector;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Administrador
@@ -63,19 +64,21 @@ public class tablasimulacion extends javax.swing.JFrame {
             Creo una instancia de la clase Vector llamada 'filas' , este vector
             tendrá todas las filas de la tabla.
         */
-        Vector filas = new Vector();
+        DefaultTableModel filas = new DefaultTableModel();
          
+        //Vector filas = new Vector()
         /*
             Creo otro objeto de la clase Vector llamado 'fila', esto representará a
             una fila en particular y cada elemento que agregue a este vector
             será una celda.
          */
-        Vector fila = new Vector();
         
+        //java.util.List fila = new ArrayList();
+        Vector fila = new Vector();
         
         java.util.List<double[]> lista_clientes = new ArrayList<>();    
            
-         /* dias de simulacion*/
+                /* dias de simulacion*/
                 for(int i = 1, ale = 0 ; i <= 365; i++){  
                     /* if para ver si ya la orden llego*/                    
                     if(tiempo_espera + dia_orden < i && dia_orden != 0){
@@ -201,7 +204,8 @@ public class tablasimulacion extends javax.swing.JFrame {
                     
                     /* Agrego la fila al vector que contiene todas las filas */
                     //aqui se añade todas las filas
-                    filas.add(fila);                
+                    filas.addRow(fila);
+                    fila.removeAllElements();
                 }   
             
             
@@ -211,7 +215,10 @@ public class tablasimulacion extends javax.swing.JFrame {
                 -filas
                 -columnas   
          */
-        JTable tbl = new JTable(filas,columnas);
+        JTable tbl = new JTable(null,columnas);
+        
+        tbl.setModel(filas);
+        
         /* Creo una instancia de JScrollPane y le paso como parametro la tabla */
         JScrollPane panel =new JScrollPane(tbl);
         
