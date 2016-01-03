@@ -581,6 +581,8 @@ public class Home extends javax.swing.JFrame {
         System.out.println("Mejor Q = " + mejor_q);
         System.out.println("Mejor R = " + mejor_r);
         
+        tablasimulacion mejor  = new tablasimulacion();
+        
     }//GEN-LAST:event_startActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
