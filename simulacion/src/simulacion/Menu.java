@@ -29,19 +29,7 @@ public class Menu extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setSize(500,400);
         
-        
-        
-        
- 
-        
-        
-        
-        
-        
-        
-        
-        
-        
+             
         
         
         
