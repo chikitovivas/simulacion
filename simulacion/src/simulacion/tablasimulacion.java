@@ -187,9 +187,9 @@ public class tablasimulacion extends javax.swing.JFrame {
                             fila.add(Integer.toString(inventario_fin));
                             fila.add(Integer.toString(inventario_promedio));
                             fila.add(Integer.toString(faltante));
-                            fila.add(Integer.toString(numero_orden));
-                            fila.add(Double.toString(naleatorio_entrega));
-                            fila.add(Integer.toString(tiempo_entrega));
+                            fila.add("-");
+                            fila.add("-");
+                            fila.add("-");
                             fila.add("-");
                             fila.add("-");
                             //System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante);
