@@ -17,7 +17,8 @@ public class tablasimulacion extends javax.swing.JFrame {
     /**
      * Creates new form tablasimulacion
      */
-    public tablasimulacion() {
+    public tablasimulacion(double q, double r, double[][] matriz_acum_demanda, double[][] matriz_acum_entrega,double[][] matriz_acum_espera, 
+            double costoInventario, double costoOrden) {
         super("Simulación");
         //this.setLocationRelativeTo(null);
         this.setLocation(200, 150);
@@ -42,7 +43,13 @@ public class tablasimulacion extends javax.swing.JFrame {
             columnas.add("Tiempo de entrega");
             columnas.add("No. Alea. tiempo espera");
             columnas.add("Tiempo Espera");
-        /* 
+        
+            
+            
+            
+            
+            
+            /* 
             Creo una instancia de la clase Vector llamada 'filas' , este vector
             tendrá todas las filas de la tabla.
         */
@@ -104,6 +111,7 @@ public class tablasimulacion extends javax.swing.JFrame {
         /* Por ultimo agrego ese objeto de JScrollPane al contenedor de la ventana */
         this.getContentPane().add(panel);
         
+        this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
     }
@@ -163,7 +171,7 @@ public class tablasimulacion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new tablasimulacion().setVisible(true);
+               // new tablasimulacion().setVisible(true);
                 
             }
         });
