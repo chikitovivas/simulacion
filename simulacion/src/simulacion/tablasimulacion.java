@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package simulacion;
+import java.awt.Panel;
 import java.util.*;
 import javax.swing.*;
 import java.util.Vector;
@@ -44,16 +45,6 @@ public class tablasimulacion extends javax.swing.JFrame {
         this.setLocation(200, 150);
         this.setSize(1200,600);
          
-        JLabel label1,label2;                       
-        
-        label1 = new JLabel("costo de inventario: ");
-        label1.setBounds(800,20,300,30);
-        //add(label1);
-        label2=new JLabel("50");
-        label2.setBounds(920,20,300,30);
-        //add(label2);
-           
-        
         
         
         /* Creo una instancia de la clase Vector llamada 'columnas' */
@@ -269,9 +260,20 @@ public class tablasimulacion extends javax.swing.JFrame {
                     tbl.getColumnModel().getColumn(i).setCellRenderer(modelocentrar); 
                     
                 }
+                
+        Panel panel1 = new Panel ();   
         
-        JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT,new JScrollPane(panel),new JScrollPane(panel));
-
+        JLabel label1,label2;                       
+        
+        label1 = new JLabel("costo de inventario: ");
+        //label1.setBounds(800,20,300,30);
+        panel1.add(label1);
+        label2=new JLabel("50");
+        //label2.setBounds(920,20,300,30);
+        panel1.add(label2);
+        
+        JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT,new JScrollPane(),new JScrollPane(panel));
+        split.setTopComponent(panel1);
         
         this.getContentPane().add(split);
         
