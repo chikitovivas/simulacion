@@ -34,7 +34,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setSize(500,400);
+        this.setSize(500,400); //ancho por largo
         //File file = new File("C:\\Users\\Administrador\\Documents\\NetBeansProjects\\Lecturaarchivos\\src\\lecturaarchivos\\aleatorios.txt"); //ruta completa al fichero que deseamos leer
        // File file = new File("C:\\xampp\\htdocs\\simulacion\\simulacion\\src\\simulacion\\aleatorios.txt");
         ImageIcon   image;
