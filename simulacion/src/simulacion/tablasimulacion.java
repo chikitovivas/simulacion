@@ -36,7 +36,7 @@ public class tablasimulacion extends javax.swing.JFrame {
     public tablasimulacion(int q, int r, 
                             double[][] matriz_acum_demanda, double[][] matriz_acum_entrega,double[][] matriz_acum_espera, 
                             double costoInventario, double costoOrden, double costo_sin_espera, double costo_con_espera, 
-                            int inventario_ini, double[] aleatorios) {
+                            int inventario_ini, double[] aleatorios, int days) {
         
         
         super("Simulación");
@@ -87,7 +87,7 @@ public class tablasimulacion extends javax.swing.JFrame {
         java.util.List<double[]> lista_clientes = new ArrayList<>();    
            
                 /* dias de simulacion*/
-                for(int i = 1, ale = 0 ; i <= 365; i++){  
+                for(int i = 1, ale = 0 ; i <= days; i++){  
                     /* if para ver si ya la orden llego*/                    
                     if(tiempo_entrega + dia_orden < i && dia_orden != 0){
                         inventario_ini =  inventario_ini + q;
@@ -218,7 +218,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                     filas.addRow(fila.toArray());
                     fila.clear();
                 }   
-                costoInventario = acum_inventario * ((costoInventario) / 365 ); //costo de inventario
+                costoInventario = acum_inventario * ((costoInventario) / days ); //costo de inventario
                 costoOrden = numero_orden * costoOrden; //costo de orden
                 double costo_faltante = func.fcosto_faltante(costo_sin_espera,costo_con_espera); //costo faltante
                 

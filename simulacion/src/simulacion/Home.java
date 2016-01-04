@@ -104,8 +104,8 @@ public class Home extends javax.swing.JFrame {
         espera_table.setModel(model2); 
         JTableHeader header2 = espera_table.getTableHeader();
         header2.setPreferredSize(new Dimension(0, 0));
-        Q = 100;
-        R = 75;
+        /*Q = 100;
+        R = 75;*/
     }
 
     /**
@@ -141,6 +141,8 @@ public class Home extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         inventario_inicial = new javax.swing.JTextField();
         evento = new javax.swing.JCheckBox();
+        jLabel11 = new javax.swing.JLabel();
+        dias = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         Q_unique = new javax.swing.JTextField();
@@ -303,6 +305,10 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setText("Dias de simulacion:");
+
+        dias.setText("365");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -310,12 +316,18 @@ public class Home extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel11))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
+                        .addComponent(inventario_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 59, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(dias)
                         .addGap(18, 18, 18)
-                        .addComponent(inventario_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(evento))
-                .addContainerGap(65, Short.MAX_VALUE))
+                        .addComponent(evento)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,7 +337,10 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(inventario_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(evento)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(evento)
+                    .addComponent(jLabel11)
+                    .addComponent(dias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -385,14 +400,16 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,9 +479,10 @@ public class Home extends javax.swing.JFrame {
             double[][] matriz_acum_demanda = Funciones.fnumacumulado(matriz_demanda);
             double[][] matriz_acum_entrega = Funciones.fnumacumulado(matriz_entrega);
             double[][] matriz_acum_espera = Funciones.fnumacumulado(matriz_espera);
-
+            
 
             /* Inicializacion de variables para simulacion*/
+            int days = Integer.parseInt(dias.getText());
             inventario_ini = Integer.parseInt(inventario_inicial.getText());
             //double[] array = Funciones.fread_aleatorios();
             int dia_orden=0;
@@ -473,8 +491,8 @@ public class Home extends javax.swing.JFrame {
             double costo_total = 0;
             Clase_retorno clase;
             /* Calculo Q y R */
-            int[] minima = Funciones.fcalculo_q_r(Double.parseDouble(costo_orden.getText()), matriz_demanda[0][0], Double.parseDouble(costo_inventario.getText()), Double.parseDouble(costo_nespera.getText()),matriz_entrega[0][0],365);
-            int[] maxima = Funciones.fcalculo_q_r(Double.parseDouble(costo_orden.getText()), matriz_demanda[matriz_demanda.length-1][0], Double.parseDouble(costo_inventario.getText()), Double.parseDouble(costo_espera.getText()),matriz_entrega[matriz_entrega.length-1][0],365);
+            int[] minima = Funciones.fcalculo_q_r(Double.parseDouble(costo_orden.getText()), matriz_demanda[0][0], Double.parseDouble(costo_inventario.getText()), Double.parseDouble(costo_nespera.getText()),matriz_entrega[0][0],days);
+            int[] maxima = Funciones.fcalculo_q_r(Double.parseDouble(costo_orden.getText()), matriz_demanda[matriz_demanda.length-1][0], Double.parseDouble(costo_inventario.getText()), Double.parseDouble(costo_espera.getText()),matriz_entrega[matriz_entrega.length-1][0],days);
             int Qminima = minima[0];
             int Qmaxima = maxima[0];
             int Rminima = minima[1];
@@ -485,7 +503,7 @@ public class Home extends javax.swing.JFrame {
             double mejor_costo = 9999999;
             int mejor_q = 0;
             int mejor_r = 0;
-
+            
 
             /* Variacion en cantidad de articulos por orden */
             for(int q = Qminima; q <= Qmaxima ; q++){
@@ -501,7 +519,7 @@ public class Home extends javax.swing.JFrame {
                     Funciones func = new Funciones(); //funciones
                     double costoOrden = Double.parseDouble(costo_orden.getText()); //costo de orden
                     /* dias de simulacion*/
-                    for(int i = 1, ale = 0 ; i <= 365; i++){  
+                    for(int i = 1, ale = 0 ; i <= days; i++){  
                         /* if para ver si ya la orden llego*/                    
                         if(tiempo_espera + dia_orden < i && dia_orden != 0){                     
                             inventario_ini = inventario_ini + q;                //inventario inicial se le suma Q 
@@ -547,7 +565,7 @@ public class Home extends javax.swing.JFrame {
                     } 
                     costo_total = 0;    //se inicializa costo total
 
-                    costoInventario = costoInventario * (Double.parseDouble(costo_inventario.getText()) / 365 ); //costo de inventario
+                    costoInventario = costoInventario * (Double.parseDouble(costo_inventario.getText()) / days ); //costo de inventario
                     costoOrden = numero_orden * costoOrden; //costo de orden
                     costo_faltante = func.fcosto_faltante(Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText()) ); //costo faltante
 
@@ -572,7 +590,7 @@ public class Home extends javax.swing.JFrame {
             tablasimulacion mejor  = new tablasimulacion(100,75,matriz_acum_demanda,matriz_acum_entrega,
                     matriz_acum_espera,Double.parseDouble(costo_inventario.getText()),Double.parseDouble(costo_orden.getText())
                     ,Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText())
-                    ,Integer.parseInt(inventario_inicial.getText()), aleatorios);
+                    ,Integer.parseInt(inventario_inicial.getText()), aleatorios,days);
         }else{
             matriz_demanda = Funciones.table_to_matriz(demanda_table);
             matriz_entrega = Funciones.table_to_matriz(entrega_table);
@@ -583,12 +601,12 @@ public class Home extends javax.swing.JFrame {
             double[][] matriz_acum_espera = Funciones.fnumacumulado(matriz_espera);
 
             double[] aleatorios = Funciones.fwrite_aleatorio();
-
+            int days = Integer.parseInt(dias.getText());
 
             tablasimulacion mejor  = new tablasimulacion(Integer.parseInt(Q_unique.getText()),Integer.parseInt(R_unique.getText()),matriz_acum_demanda,matriz_acum_entrega,
                     matriz_acum_espera,Double.parseDouble(costo_inventario.getText()),Double.parseDouble(costo_orden.getText())
                     ,Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText())
-                    ,Integer.parseInt(inventario_inicial.getText()), aleatorios);        
+                    ,Integer.parseInt(inventario_inicial.getText()), aleatorios,days);        
         }    
     }//GEN-LAST:event_startActionPerformed
 
@@ -649,12 +667,14 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField costo_nespera;
     private javax.swing.JTextField costo_orden;
     private javax.swing.JTable demanda_table;
+    private javax.swing.JTextField dias;
     private javax.swing.JTable entrega_table;
     private javax.swing.JTable espera_table;
     private javax.swing.JCheckBox evento;
     private javax.swing.JTextField inventario_inicial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
