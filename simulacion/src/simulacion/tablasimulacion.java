@@ -261,7 +261,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                     
                 }
                 
-        Panel panel1 = new Panel ();   
+        JPanel panel1 = new JPanel();   
             JLabel label1,label2;                       
 
             label1 = new JLabel("costo de inventario: ");
