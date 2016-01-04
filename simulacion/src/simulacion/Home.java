@@ -170,6 +170,12 @@ public class Home extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         inventario_inicial = new javax.swing.JTextField();
         evento = new javax.swing.JCheckBox();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        Q_unique = new javax.swing.JTextField();
+        unique = new javax.swing.JCheckBox();
+        R_unique = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
         start = new javax.swing.JButton();
         back = new javax.swing.JButton();
 
@@ -352,6 +358,55 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Simulación unica"));
+
+        jLabel9.setText("Q:");
+
+        unique.setText("Simulación unica");
+        unique.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uniqueActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("R:");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(unique)
+                        .addContainerGap(126, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(Q_unique, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(R_unique, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(R_unique, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(Q_unique, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(unique)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -360,7 +415,11 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -371,7 +430,9 @@ public class Home extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -421,162 +482,143 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
-       
-       /* if(costo_sf_cliente != 0 && costo_pedido != 0 && costo_f_cliente != 0 && costo_unidad != 0 && inven_inicial != 0 && costo_f_cliente != 0){
-            
-               /* Random rnd = new Random(0);
-                for(int i = 0; i < 15; i++){
-                    System.out.println((int)(rnd.nextDouble() * 100));
-                }*/
+        if(unique.getSelectedObjects() == null){
 
-       /* }else{
-            JOptionPane.showMessageDialog(null, "Llenar los campos requeridos /n");
-        }*/
+            matriz_demanda = Funciones.table_to_matriz(demanda_table);
+            matriz_entrega = Funciones.table_to_matriz(entrega_table);
+            matriz_espera = Funciones.table_to_matriz(espera_table);
 
-        matriz_demanda = Funciones.table_to_matriz(demanda_table);
-        matriz_entrega = Funciones.table_to_matriz(entrega_table);
-        matriz_espera = Funciones.table_to_matriz(espera_table);
-        
-        double[][] matriz_acum_demanda = Funciones.fnumacumulado(matriz_demanda);
-        double[][] matriz_acum_entrega = Funciones.fnumacumulado(matriz_entrega);
-        double[][] matriz_acum_espera = Funciones.fnumacumulado(matriz_espera);
-        
-        
-        
-        /* Titulos */
-        //System.out.printf("Dia\t|Inv.ini|No.Al D|Demanda|Inv.Fin|Inv.prm|Faltant|No.Ordn|No.AleE|T.ntrga|No.Ales|T.espera %n");
-         
-        /* Inicializacion de variables para simulacion*/
-        inventario_ini = Integer.parseInt(inventario_inicial.getText());
-        //double[] array = Funciones.fread_aleatorios();
-        int dia_orden=0;
-        double costo_faltante = 0;
-        double costoInventario = 0;
-        double costo_total = 0;
-        Clase_retorno clase;
-        /* Calculo Q y R */
-        int[] minima = Funciones.fcalculo_q_r(Double.parseDouble(costo_orden.getText()), matriz_demanda[0][0], Double.parseDouble(costo_inventario.getText()), Double.parseDouble(costo_nespera.getText()),matriz_entrega[0][0],365);
-        int[] maxima = Funciones.fcalculo_q_r(Double.parseDouble(costo_orden.getText()), matriz_demanda[matriz_demanda.length-1][0], Double.parseDouble(costo_inventario.getText()), Double.parseDouble(costo_espera.getText()),matriz_entrega[matriz_entrega.length-1][0],365);
-        int Qminima = minima[0];
-        int Qmaxima = maxima[0];
-        int Rminima = minima[1];
-        int Rmaxima = maxima[1];
-        /* Aleatorios */
-        double[] aleatorios = Funciones.fwrite_aleatorio();
-        /* Costos */
-        double mejor_costo = 9999999;
-        int mejor_q = 0;
-        int mejor_r = 0;
-        /*double[] array_entrega = new double[5];
-        double[] array_espera = new double[2];
-        array_entrega[0] = 0.22;
-        array_entrega[1] = 0.43;
-        array_entrega[2] = 0.19;
-        array_entrega[3] = 0.29;
-        array_entrega[4] = 0.76;      
-        array_espera[0] = 0.64;
-        array_espera[1] = 0.06;*/
+            double[][] matriz_acum_demanda = Funciones.fnumacumulado(matriz_demanda);
+            double[][] matriz_acum_entrega = Funciones.fnumacumulado(matriz_entrega);
+            double[][] matriz_acum_espera = Funciones.fnumacumulado(matriz_espera);
 
-        
-        /* Variacion en cantidad de articulos por orden */
-        for(int q = Qminima; q <= Qmaxima ; q++){
-            /* Variacion en cantidad de puntos de reorden */
-            for(int r = Rminima; r <= Rmaxima ; r++){
-                /* Inicializacion en cada cambio de r */
-                costoInventario = 0;
-                List<double[]> lista_clientes = new ArrayList<>(); //lista clientes
-                numero_orden = 0;   //numero de ordenes
-                dia_orden = 0;      //dia en el que se pidio la orden
-                tiempo_espera = 0;  //tiempo de espera
-                inventario_ini = Integer.parseInt(inventario_inicial.getText()); //inventario inicial
-                Funciones func = new Funciones(); //funciones
-                double costoOrden = Double.parseDouble(costo_orden.getText()); //costo de orden
-                /* dias de simulacion*/
-                for(int i = 1, ale = 0 ; i <= 365; i++){  
-                    /* if para ver si ya la orden llego*/                    
-                    if(tiempo_espera + dia_orden < i && dia_orden != 0){                     
-                        inventario_ini = inventario_ini + q;                //inventario inicial se le suma Q 
-                        clase = func.fllegada_pedidos(lista_clientes,inventario_ini);//se manda a verificar si hay clientes en espera
-                        inventario_ini = clase.getQ();                      //se extrae la Q modificada, si habia clientes la Q disminuye
-                        lista_clientes = clase.getList();                   //se obtiene la nueva lista de clientes
-                        dia_orden = 0;                              //dia orden igual 0, pq ya llego la orden
-                    }
-                    demanda_diaria = Funciones.fcompare(aleatorios[ale],matriz_acum_demanda); // demanda diaria 
-                    ale++;          
-                    //demanda_diaria = Funciones.fcompare(array[i-1],matriz_acum_demanda);
-                    inventario_fin = (int)inventario_ini - demanda_diaria; //inventario final
-                    /* si inventario es negativo, es decir, hay faltante */
-                    if(inventario_fin < 0){
-                        faltante = Math.abs(inventario_fin);            //faltante
-                        /* como hay faltante, se a#ade ese cliente a la lista de espera clientes, con su tiempo aleatorio de espera*/
-                        lista_clientes.add(new double[] {Funciones.fcompare(aleatorios[ale],matriz_acum_espera) , faltante});
-                        ale++;
-                        inventario_fin = 0;         //inventario final es igual a 0
-                        inventario_promedio = (inventario_ini + inventario_fin) / 2; //inventario_promedio
-                        costoInventario = costoInventario + inventario_promedio; //costo de inventario
-                        /* si el inventario final es menor al punto de Reorden y no hay una orden en espera, pide una orden y muestra */
-                        if(inventario_fin <= r && dia_orden == 0){
-                            tiempo_espera = Funciones.fcompare(aleatorios[ale], matriz_acum_entrega); //pide el tiempo de espera de la proxima orden
-                            ale++;
-                            numero_orden++; //cantidad de ordenes aumenta
-                            dia_orden = i;  //dia en el que se pidio la orden
-                            /* disminuye la cantidad de dias de espera de los clientes en la lista, si llegan a 0 la cantidad de dias de espera de una cliente, se elimina ese cliente */
 
-                            //System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%.2f\t|%d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
+            /* Inicializacion de variables para simulacion*/
+            inventario_ini = Integer.parseInt(inventario_inicial.getText());
+            //double[] array = Funciones.fread_aleatorios();
+            int dia_orden=0;
+            double costo_faltante = 0;
+            double costoInventario = 0;
+            double costo_total = 0;
+            Clase_retorno clase;
+            /* Calculo Q y R */
+            int[] minima = Funciones.fcalculo_q_r(Double.parseDouble(costo_orden.getText()), matriz_demanda[0][0], Double.parseDouble(costo_inventario.getText()), Double.parseDouble(costo_nespera.getText()),matriz_entrega[0][0],365);
+            int[] maxima = Funciones.fcalculo_q_r(Double.parseDouble(costo_orden.getText()), matriz_demanda[matriz_demanda.length-1][0], Double.parseDouble(costo_inventario.getText()), Double.parseDouble(costo_espera.getText()),matriz_entrega[matriz_entrega.length-1][0],365);
+            int Qminima = minima[0];
+            int Qmaxima = maxima[0];
+            int Rminima = minima[1];
+            int Rmaxima = maxima[1];
+            /* Aleatorios */
+            double[] aleatorios = Funciones.fwrite_aleatorio();
+            /* Costos */
+            double mejor_costo = 9999999;
+            int mejor_q = 0;
+            int mejor_r = 0;
 
-                        }else{
-                           // System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t| %.2f\t| %d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
+
+            /* Variacion en cantidad de articulos por orden */
+            for(int q = Qminima; q <= Qmaxima ; q++){
+                /* Variacion en cantidad de puntos de reorden */
+                for(int r = Rminima; r <= Rmaxima ; r++){
+                    /* Inicializacion en cada cambio de r */
+                    costoInventario = 0;
+                    List<double[]> lista_clientes = new ArrayList<>(); //lista clientes
+                    numero_orden = 0;   //numero de ordenes
+                    dia_orden = 0;      //dia en el que se pidio la orden
+                    tiempo_espera = 0;  //tiempo de espera
+                    inventario_ini = Integer.parseInt(inventario_inicial.getText()); //inventario inicial
+                    Funciones func = new Funciones(); //funciones
+                    double costoOrden = Double.parseDouble(costo_orden.getText()); //costo de orden
+                    /* dias de simulacion*/
+                    for(int i = 1, ale = 0 ; i <= 365; i++){  
+                        /* if para ver si ya la orden llego*/                    
+                        if(tiempo_espera + dia_orden < i && dia_orden != 0){                     
+                            inventario_ini = inventario_ini + q;                //inventario inicial se le suma Q 
+                            clase = func.fllegada_pedidos(lista_clientes,inventario_ini);//se manda a verificar si hay clientes en espera
+                            inventario_ini = clase.getQ();                      //se extrae la Q modificada, si habia clientes la Q disminuye
+                            lista_clientes = clase.getList();                   //se obtiene la nueva lista de clientes
+                            dia_orden = 0;                              //dia orden igual 0, pq ya llego la orden
                         }
-                    }else{
-                        inventario_promedio = (inventario_ini + inventario_fin) / 2; //inventario_promedio 
-                        costoInventario = costoInventario + inventario_promedio;     //costo de inventario
-                        /* si el inventario final es menor al punto de Reorden y no hay una orden puesta, pide una orden y muestra */
-                        if(inventario_fin <= r && dia_orden == 0){
-                            tiempo_espera = Funciones.fcompare(aleatorios[ale], matriz_acum_entrega); //pide el tiempo de espera de la proxima orden
+                        demanda_diaria = Funciones.fcompare(aleatorios[ale],matriz_acum_demanda); // demanda diaria 
+                        ale++;          
+                        inventario_fin = (int)inventario_ini - demanda_diaria; //inventario final
+                        /* si inventario es negativo, es decir, hay faltante */
+                        if(inventario_fin < 0){
+                            faltante = Math.abs(inventario_fin);            //faltante
+                            /* como hay faltante, se a#ade ese cliente a la lista de espera clientes, con su tiempo aleatorio de espera*/
+                            lista_clientes.add(new double[] {Funciones.fcompare(aleatorios[ale],matriz_acum_espera) , faltante});
                             ale++;
-                            numero_orden++;     //cantidad de ordenes aumenta
-                            dia_orden = i;      //dia en el que se pidio la orden
-                            /* disminuye la cantidad de dias de espera de los clientes en la lista, si llegan a 0 la cantidad de dias de espera de una cliente, se elimina ese cliente */                                
-
-                           // System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera);
-
+                            inventario_fin = 0;         //inventario final es igual a 0
+                            inventario_promedio = (inventario_ini + inventario_fin) / 2; //inventario_promedio
+                            costoInventario = costoInventario + inventario_promedio; //costo de inventario
+                            /* si el inventario final es menor al punto de Reorden y no hay una orden en espera, pide una orden y muestra */
+                            if(inventario_fin <= r && dia_orden == 0){
+                                tiempo_espera = Funciones.fcompare(aleatorios[ale], matriz_acum_entrega); //pide el tiempo de espera de la proxima orden
+                                ale++;
+                                numero_orden++; //cantidad de ordenes aumenta
+                                dia_orden = i;  //dia en el que se pidio la orden
+                                /* disminuye la cantidad de dias de espera de los clientes en la lista, si llegan a 0 la cantidad de dias de espera de una cliente, se elimina ese cliente */
+                            }
                         }else{
-                            //System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante);
+                            inventario_promedio = (inventario_ini + inventario_fin) / 2; //inventario_promedio 
+                            costoInventario = costoInventario + inventario_promedio;     //costo de inventario
+                            /* si el inventario final es menor al punto de Reorden y no hay una orden puesta, pide una orden y muestra */
+                            if(inventario_fin <= r && dia_orden == 0){
+                                tiempo_espera = Funciones.fcompare(aleatorios[ale], matriz_acum_entrega); //pide el tiempo de espera de la proxima orden
+                                ale++;
+                                numero_orden++;     //cantidad de ordenes aumenta
+                                dia_orden = i;      //dia en el que se pidio la orden
+                                /* disminuye la cantidad de dias de espera de los clientes en la lista, si llegan a 0 la cantidad de dias de espera de una cliente, se elimina ese cliente */                                
+                            }
                         }
+                        lista_clientes = func.fespera_clientes(lista_clientes);
+                        inventario_ini = inventario_fin; //inventario inicial del proximo dia 
+                    } 
+                    costo_total = 0;    //se inicializa costo total
+
+                    costoInventario = costoInventario * (Double.parseDouble(costo_inventario.getText()) / 365 ); //costo de inventario
+                    costoOrden = numero_orden * costoOrden; //costo de orden
+                    costo_faltante = func.fcosto_faltante(Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText()) ); //costo faltante
+
+                    costo_total = costoInventario + costoOrden + costo_faltante; //costo total 
+                    //System.out.println("costo total : "+costo_total);
+
+                    /* si el costo total actual es menor que el mejor costo, se actualiza*/
+                    if(costo_total < mejor_costo){
+                        mejor_costo = costo_total; // mejor costo
+                        mejor_q = q;               //mejor Q
+                        mejor_r = r;               //mejor R
                     }
-                    lista_clientes = func.fespera_clientes(lista_clientes);
-                    inventario_ini = inventario_fin; //inventario inicial del proximo dia 
-                } 
-                costo_total = 0;    //se inicializa costo total
-                
-                costoInventario = costoInventario * (Double.parseDouble(costo_inventario.getText()) / 365 ); //costo de inventario
-                costoOrden = numero_orden * costoOrden; //costo de orden
-                costo_faltante = func.fcosto_faltante(Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText()) ); //costo faltante
-                
-                costo_total = costoInventario + costoOrden + costo_faltante; //costo total 
-                //System.out.println("costo total : "+costo_total);
-                
-                /* si el costo total actual es menor que el mejor costo, se actualiza*/
-                if(costo_total < mejor_costo){
-                    mejor_costo = costo_total; // mejor costo
-                    mejor_q = q;               //mejor Q
-                    mejor_r = r;               //mejor R
+                    func.reanudar();
                 }
-                func.reanudar();
             }
-        }
-        
-       //tabla = new tablasimulacion(mejor_q,mejor_r,matriz_acum_demanda,matriz_acum_entrega,matriz_acum_espera, costoInventario, );
-        /* Costos */  
-        System.out.println("Mejor Costo = " + mejor_costo);
-        System.out.println("Mejor Q = " + mejor_q);
-        System.out.println("Mejor R = " + mejor_r);
-        /* simulacion del mejor */
-        tablasimulacion mejor  = new tablasimulacion(100,75,matriz_acum_demanda,matriz_acum_entrega,
-                matriz_acum_espera,Double.parseDouble(costo_inventario.getText()),Double.parseDouble(costo_orden.getText())
-                ,Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText())
-                ,Integer.parseInt(inventario_inicial.getText()), aleatorios);
-        
+
+            /* Costos */  
+            System.out.println("Mejor Costo = " + mejor_costo);
+            System.out.println("Mejor Q = " + mejor_q);
+            System.out.println("Mejor R = " + mejor_r);
+            /* simulacion del mejor */
+            tablasimulacion mejor  = new tablasimulacion(100,75,matriz_acum_demanda,matriz_acum_entrega,
+                    matriz_acum_espera,Double.parseDouble(costo_inventario.getText()),Double.parseDouble(costo_orden.getText())
+                    ,Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText())
+                    ,Integer.parseInt(inventario_inicial.getText()), aleatorios);
+        }else{
+            matriz_demanda = Funciones.table_to_matriz(demanda_table);
+            matriz_entrega = Funciones.table_to_matriz(entrega_table);
+            matriz_espera = Funciones.table_to_matriz(espera_table);
+
+            double[][] matriz_acum_demanda = Funciones.fnumacumulado(matriz_demanda);
+            double[][] matriz_acum_entrega = Funciones.fnumacumulado(matriz_entrega);
+            double[][] matriz_acum_espera = Funciones.fnumacumulado(matriz_espera);
+
+            double[] aleatorios = Funciones.fwrite_aleatorio();
+
+
+            tablasimulacion mejor  = new tablasimulacion(Integer.parseInt(Q_unique.getText()),Integer.parseInt(R_unique.getText()),matriz_acum_demanda,matriz_acum_entrega,
+                    matriz_acum_espera,Double.parseDouble(costo_inventario.getText()),Double.parseDouble(costo_orden.getText())
+                    ,Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText())
+                    ,Integer.parseInt(inventario_inicial.getText()), aleatorios);        
+        }    
     }//GEN-LAST:event_startActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
@@ -587,6 +629,10 @@ public class Home extends javax.swing.JFrame {
     private void eventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_eventoActionPerformed
+
+    private void uniqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uniqueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_uniqueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -624,6 +670,8 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Q_unique;
+    private javax.swing.JTextField R_unique;
     private javax.swing.JButton back;
     private javax.swing.JTextField costo_espera;
     private javax.swing.JTextField costo_inventario;
@@ -635,6 +683,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JCheckBox evento;
     private javax.swing.JTextField inventario_inicial;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -642,13 +691,16 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JButton start;
+    private javax.swing.JCheckBox unique;
     // End of variables declaration//GEN-END:variables
 }
