@@ -270,9 +270,10 @@ public class tablasimulacion extends javax.swing.JFrame {
                     
                 }
         
-        JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT,new JScrollPane(panel),new JScrollPane(panel));
+        JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT,new JScrollPane(),new JScrollPane(panel));
 
-        
+        split.setDividerLocation(100);
+        split.setEnabled(false);
         this.getContentPane().add(split);
         
         this.setVisible(true);
