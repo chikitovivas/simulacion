@@ -262,34 +262,15 @@ public class tablasimulacion extends javax.swing.JFrame {
                 }
                 
         JPanel panel1 = new JPanel();   
-            JLabel Titulo_cinventario= new JLabel("Costo de Inventario: ");
-            JLabel Titulo_cfaltante = new JLabel("Costo Faltante: "); 
-            JLabel Titulo_corden= new JLabel("Costo de Orden; "); 
-            JLabel Titulo_ctotal= new JLabel("Costo Total: ");
+            JLabel label1,label2;                       
+
+            label1 = new JLabel("costo de inventario: ");
+            label1.setBounds(800,20,300,30);
+            panel1.add(label1);
+            label2=new JLabel("50");
+            label2.setBounds(920,20,300,30);
+            panel1.add(label2);
             
-            JLabel JTcosto_inventario = new JLabel(Double.toString(costoInventario));
-            JLabel JTcosto_faltante = new JLabel(Double.toString(costoOrden)); 
-            JLabel JTcosto_orden = new JLabel(" ");
-            JLabel JTcostototal = new JLabel(" ");
-            
-            
-            
-            Titulo_cinventario.setBounds(800,20,300,30);
-            Titulo_cfaltante.setBounds(800,35,300,30);
-            Titulo_corden.setBounds(800,50,300,30);
-            Titulo_ctotal.setBounds(800,75,300,30);
-                panel1.add(Titulo_cinventario); panel1.add(Titulo_cfaltante);
-                panel1.add(Titulo_corden);      panel1.add(Titulo_ctotal);
-                
-             /*   
-            JTcosto_inventario.setBounds(920,20,300,30);    
-            JTcosto_faltante.setBounds(920,20,300,30);
-            JTcosto_orden.setBounds(920,20,300,30);         
-            JTcostototal.setBounds(920,20,300,30); 
-                panel1.add(JTcosto_inventario); panel1.add(JTcosto_faltante);
-                panel1.add(JTcosto_orden);      panel1.add(JTcostototal);*/
-         
-                
         JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT,new JScrollPane(),new JScrollPane(panel));
         
         split.setTopComponent(panel1);
