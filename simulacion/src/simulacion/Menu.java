@@ -5,9 +5,16 @@
  */
 package simulacion;
 
+import java.awt.BorderLayout;
+import java.awt.Image;
 import java.awt.MenuBar;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import static simulacion.Simulacion.VentanaPrincipal;
 
@@ -28,10 +35,14 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setSize(500,400);
+        //File file = new File("C:\\Users\\Administrador\\Documents\\NetBeansProjects\\Lecturaarchivos\\src\\lecturaarchivos\\aleatorios.txt"); //ruta completa al fichero que deseamos leer
+       // File file = new File("C:\\xampp\\htdocs\\simulacion\\simulacion\\src\\simulacion\\aleatorios.txt");
+        ImageIcon   image;
+        image = new ImageIcon("C:\\xampp\\htdocs\\simulacion\\simulacion\\src\\imagenes\\fondo.png");
         
-             
-        
-        
+        JLabel label = new JLabel("", image, JLabel.CENTER);
+
+        this.jPanel1.add( label);
         
     }
 
