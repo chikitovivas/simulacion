@@ -25,6 +25,7 @@ public class Simulacion {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Simulacion.class.getName()).log(Level.SEVERE, null, ex);
         }*/
+        
         VentanaPrincipal.setVisible(true);
     }
     
