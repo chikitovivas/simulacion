@@ -41,7 +41,14 @@ public class tablasimulacion extends javax.swing.JFrame {
         this.setLocation(200, 150);
         this.setSize(1200,600);
          
+        JLabel label1,label2;                       
         
+        label1 = new JLabel("costo de inventario: ");
+        label1.setBounds(800,20,300,30);
+        add(label1);
+        label2=new JLabel("50");
+        label2.setBounds(920,20,300,30);
+        add(label2);
            
         
         
@@ -49,17 +56,17 @@ public class tablasimulacion extends javax.swing.JFrame {
         /* Creo una instancia de la clase Vector llamada 'columnas' */
         Vector columnas = new Vector();
         /* 
-            A ese vector le agrego datos, estos datos vendrán a ser las
-            columnas de la tabla.
-        */
-        
-
-        
-            /* 
             Creo una instancia de la clase Vector llamada 'filas' , este vector
             tendrá todas las filas de la tabla.
         */
+            
         DefaultTableModel filas = new DefaultTableModel();
+        
+        
+        /* 
+            A ese vector le agrego datos, estos datos vendrán a ser las
+            columnas de la tabla.
+        */
             filas.addColumn("Dia");
             filas.addColumn("Inv. Ini");
             filas.addColumn("No. Alea. demanda");
