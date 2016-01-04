@@ -8,8 +8,6 @@ package simulacion;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -73,34 +71,7 @@ public class Home extends javax.swing.JFrame {
         this.costo_nespera.setText(""+costo_nespera);      
         this.inventario_inicial.setText(""+inventario_ini);
 
-        /*
-        Ejemplo
-        */
-      /*  matriz_demanda = new double[][]{
-            new double[] { 25, .02},
-            new double[] { 26, .04},
-            new double[] { 27, .06},
-            new double[] { 28, .12},
-            new double[] { 29, .2},
-            new double[] { 30, .24},
-            new double[] { 31, .15},
-            new double[] { 35, .10},
-            new double[] { 33, .05},
-            new double[] { 34, .02},    
-        };     
-        matriz_entrega = new double[][]{
-            new double[] { 1, .2},
-            new double[] { 2, .3},
-            new double[] { 3, .25},
-            new double[] { 4, .25},            
-        }; 
-        matriz_espera = new double[][]{
-            new double[] { 0, .4},
-            new double[] { 1, .2},
-            new double[] { 2, .15},
-            new double[] { 3, .15},
-            new double[] { 4, .1},          
-        };    */
+
         
         List data = new ArrayList();
         for(int i=0;i<this.matriz_demanda.length;i++){

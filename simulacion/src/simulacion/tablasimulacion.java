@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package simulacion;
-import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 import java.util.Vector;
+import javax.swing.WindowConstants;
 import java.util.List;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -36,7 +36,9 @@ public class tablasimulacion extends javax.swing.JFrame {
                             double costoInventario, double costoOrden, double costo_sin_espera, double costo_con_espera, 
                             int inventario_ini, double[] aleatorios) {
         
+        
         super("Simulación");
+        this.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         //this.setLocationRelativeTo(null);
         this.setLocation(200, 150);
         this.setSize(1200,600);
