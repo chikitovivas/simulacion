@@ -216,8 +216,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                 costoOrden = numero_orden * costoOrden; //costo de orden
                 double costo_faltante = func.fcosto_faltante(costo_sin_espera,costo_con_espera); //costo faltante
                 
-                double costo_total = costoInventario + costoOrden + costo_faltante; //costo total
-                
+                double costo_total = costoInventario + costoOrden + costo_faltante; //costo total 
                 System.out.println("Costo total: "+costo_total);
             
         /* 
