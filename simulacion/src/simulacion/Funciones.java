@@ -32,7 +32,7 @@ public class Funciones {
         retorna: un arreglo tipo double
     
     */
-    public static double [] fwrite_aleatorio(){
+    /*public static double [] fwrite_aleatorio(){
         double[] aleatorios = new double[1200];
         Random rnd = new Random(0);
         
@@ -49,9 +49,9 @@ public class Funciones {
             //System.out.println(aleatorios[i]);
         }
         return aleatorios;
-}   
+}   */
     
-   /* //La perfect
+    //La perfect
     public static double [] fwrite_aleatorio(){
         double[] aleatorios = new double[1200];
         Random rnd = new Random(0);
@@ -63,8 +63,8 @@ public class Funciones {
             //System.out.println(aleatorios[i]);
         }
         return aleatorios;
-    } */
-    
+    } 
+   
     
     
     /*
