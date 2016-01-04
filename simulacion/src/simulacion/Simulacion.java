@@ -19,11 +19,12 @@ public class Simulacion {
     
     
     public static void main(String[] args) {
-        try {
-            javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");  
+        /*try {
+            //javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"); 
+            //javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Simulacion.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         VentanaPrincipal.setVisible(true);
     }
     
