@@ -7,6 +7,7 @@ package simulacion;
 import java.util.*;
 import javax.swing.*;
 import java.util.Vector;
+import javax.swing.JSplitPane;
 import javax.swing.WindowConstants;
 import java.util.List;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -47,10 +48,10 @@ public class tablasimulacion extends javax.swing.JFrame {
         
         label1 = new JLabel("costo de inventario: ");
         label1.setBounds(800,20,300,30);
-        add(label1);
+        //add(label1);
         label2=new JLabel("50");
         label2.setBounds(920,20,300,30);
-        add(label2);
+        //add(label2);
            
         
         
@@ -268,9 +269,11 @@ public class tablasimulacion extends javax.swing.JFrame {
                     tbl.getColumnModel().getColumn(i).setCellRenderer(modelocentrar); 
                     
                 }
-                
-        /* Por ultimo agrego ese objeto de JScrollPane al contenedor de la ventana */
-        this.getContentPane().add(panel);
+        
+        JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT,new JScrollPane(panel),new JScrollPane(panel));
+
+        
+        this.getContentPane().add(split);
         
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
