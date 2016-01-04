@@ -41,6 +41,11 @@ public class tablasimulacion extends javax.swing.JFrame {
         this.setLocation(200, 150);
         this.setSize(1200,600);
          
+        
+           
+        
+        
+        
         /* Creo una instancia de la clase Vector llamada 'columnas' */
         Vector columnas = new Vector();
         /* 
