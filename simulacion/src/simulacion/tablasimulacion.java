@@ -266,10 +266,10 @@ public class tablasimulacion extends javax.swing.JFrame {
 
             label1 = new JLabel("costo de inventario: ");
             label1.setBounds(800,20,300,30);
-            panel1.add(label1);
+                panel1.add(label1);
             label2=new JLabel("50");
             label2.setBounds(920,20,300,30);
-            panel1.add(label2);
+                panel1.add(label2);
             
         JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT,new JScrollPane(),new JScrollPane(panel));
         
