@@ -278,4 +278,11 @@ public class Funciones {
         return matriz_fix;
     }
     
+    public static void setSize(JTable table){
+        
+        for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setPreferredWidth(50);
+        }     
+    }
+    
  }  
