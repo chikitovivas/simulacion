@@ -32,9 +32,9 @@ public class Funciones {
         retorna: un arreglo tipo double
     
     */
-    /*public static double [] fwrite_aleatorio(){
+    /*public static double [] fwrite_aleatorio(int semilla){
         double[] aleatorios = new double[1200];
-        Random rnd = new Random(0);
+        Random rnd = new Random(semilla);
         
         aleatorios[0] = .69; aleatorios[1] = .22 ;aleatorios[2] = .37;aleatorios[3] = .64;aleatorios[4] = .75;aleatorios[5] = .06;
         aleatorios[6] = .60;aleatorios[7] = .43;aleatorios[8] = .54;aleatorios[9] = .47;aleatorios[10] = .79;aleatorios[11] = .10; aleatorios[12] = .96;
@@ -52,9 +52,9 @@ public class Funciones {
 }   */
     
     //La perfect
-    public static double [] fwrite_aleatorio(){
+    public static double [] fwrite_aleatorio(int semilla){
         double[] aleatorios = new double[1200];
-        Random rnd = new Random(0);
+        Random rnd = new Random(semilla);
         
         DecimalFormat format =new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
                 
@@ -114,13 +114,13 @@ public class Funciones {
             
         for (int i=0; i< compare.length; i++) {          
             if (i==0){
-                if (aleatorio<=compare[i][1]){
+                if (aleatorio<=(compare[i][1]-.01)){
                    // System.out.println((int)compare[i][0]);
                     return (int) compare[i][0];
                 }
             }
             else{
-                if ((aleatorio>compare[i-1][1]) &&  (aleatorio<=compare[i][1])){
+                if ((aleatorio>compare[i-1][1]-.01) &&  (aleatorio<=(compare[i][1]-.01))){
                    // System.out.println((int)compare[i][0]);
                     return (int)compare[i][0];
                 }

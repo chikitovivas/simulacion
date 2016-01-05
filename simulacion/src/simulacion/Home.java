@@ -155,6 +155,8 @@ public class Home extends javax.swing.JFrame {
         evento = new javax.swing.JCheckBox();
         jLabel11 = new javax.swing.JLabel();
         dias = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        semilla = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         Q_unique = new javax.swing.JTextField();
@@ -365,6 +367,10 @@ public class Home extends javax.swing.JFrame {
 
         dias.setText("365");
 
+        jLabel12.setText("Semilla:");
+
+        semilla.setText("0");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -375,14 +381,16 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(inventario_inicial)
+                    .addComponent(dias, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(evento)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(inventario_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(dias, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                        .addComponent(jLabel12)
                         .addGap(18, 18, 18)
-                        .addComponent(evento)))
+                        .addComponent(semilla, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -391,13 +399,16 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(inventario_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inventario_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel12)
+                        .addComponent(semilla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(evento)
                     .addComponent(jLabel11)
-                    .addComponent(dias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(dias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(evento))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Simulación unica"));
@@ -458,11 +469,10 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -537,7 +547,7 @@ public class Home extends javax.swing.JFrame {
             double[][] matriz_acum_entrega = Funciones.fnumacumulado(matriz_entrega);
             double[][] matriz_acum_espera = Funciones.fnumacumulado(matriz_espera);
             
-
+            
             /* Inicializacion de variables para simulacion*/
             int days = Integer.parseInt(dias.getText());
             inventario_ini = Integer.parseInt(inventario_inicial.getText());
@@ -555,9 +565,12 @@ public class Home extends javax.swing.JFrame {
             int Rminima = minima[1];
             int Rmaxima = maxima[1];
             /* Aleatorios */
-            double[] aleatorios = Funciones.fwrite_aleatorio();
+            double[] aleatorios = Funciones.fwrite_aleatorio(Integer.parseInt(semilla.getText()));
             /* Costos */
             double mejor_costo = 9999999;
+            double mejor_inventario=0;
+            double mejor_orden=0;
+            double mejor_faltante=0;
             int mejor_q = 0;
             int mejor_r = 0;
             
@@ -622,7 +635,7 @@ public class Home extends javax.swing.JFrame {
                     } 
                     costo_total = 0;    //se inicializa costo total
 
-                    costoInventario = costoInventario * (Double.parseDouble(costo_inventario.getText()) / days ); //costo de inventario
+                    costoInventario = costoInventario * (Double.parseDouble(costo_inventario.getText()) / 365 ); //costo de inventario
                     costoOrden = numero_orden * costoOrden; //costo de orden
                     costo_faltante = func.fcosto_faltante(Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText()) ); //costo faltante
 
@@ -631,7 +644,10 @@ public class Home extends javax.swing.JFrame {
 
                     /* si el costo total actual es menor que el mejor costo, se actualiza*/
                     if(costo_total < mejor_costo){
-                        mejor_costo = costo_total; // mejor costo
+                        mejor_costo = costo_total; // mejor costo 
+                        mejor_inventario = costoInventario;
+                        mejor_orden = costoOrden;
+                        mejor_faltante = costo_faltante;
                         mejor_q = q;               //mejor Q
                         mejor_r = r;               //mejor R
                     }
@@ -641,6 +657,9 @@ public class Home extends javax.swing.JFrame {
 
             /* Costos */  
             System.out.println("Mejor Costo = " + mejor_costo);
+            System.out.println("Mejor invetario = " + mejor_inventario);
+            System.out.println("Mejor orden = " + mejor_orden);
+            System.out.println("Mejor faltante = " + mejor_faltante);          
             System.out.println("Mejor Q = " + mejor_q);
             System.out.println("Mejor R = " + mejor_r);
             /* simulacion del mejor */
@@ -656,8 +675,8 @@ public class Home extends javax.swing.JFrame {
             double[][] matriz_acum_demanda = Funciones.fnumacumulado(matriz_demanda);
             double[][] matriz_acum_entrega = Funciones.fnumacumulado(matriz_entrega);
             double[][] matriz_acum_espera = Funciones.fnumacumulado(matriz_espera);
-
-            double[] aleatorios = Funciones.fwrite_aleatorio();
+            
+            double[] aleatorios = Funciones.fwrite_aleatorio(Integer.parseInt(semilla.getText()));
             int days = Integer.parseInt(dias.getText());
 
             tablasimulacion mejor  = new tablasimulacion(Integer.parseInt(Q_unique.getText()),Integer.parseInt(R_unique.getText()),matriz_acum_demanda,matriz_acum_entrega,
@@ -765,6 +784,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -780,13 +800,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JButton mas_demanda;
     private javax.swing.JButton mas_entrega;
     private javax.swing.JButton mas_espera;
+    private javax.swing.JTextField semilla;
     private javax.swing.JButton start;
     private javax.swing.JCheckBox unique;
     // End of variables declaration//GEN-END:variables

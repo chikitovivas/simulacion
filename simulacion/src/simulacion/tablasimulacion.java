@@ -218,12 +218,15 @@ public class tablasimulacion extends javax.swing.JFrame {
                     filas.addRow(fila.toArray());
                     fila.clear();
                 }   
-                costoInventario = acum_inventario * ((costoInventario) / days ); //costo de inventario
+                costoInventario = acum_inventario * ((costoInventario) / 365 ); //costo de inventario
                 costoOrden = numero_orden * costoOrden; //costo de orden
                 double costo_faltante = func.fcosto_faltante(costo_sin_espera,costo_con_espera); //costo faltante
                 
                 double costo_total = costoInventario + costoOrden + costo_faltante; //costo total 
                 System.out.println("Costo total: "+costo_total);
+                System.out.println("Mejor invetario = " + costoInventario);
+                System.out.println("Mejor orden = " + costoOrden);
+                System.out.println("Mejor faltante = " + costo_faltante); 
             
         /* 
             Creo una instancia de JTable y le paso como parametro los dos Vectores:
