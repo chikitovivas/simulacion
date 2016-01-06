@@ -7,10 +7,14 @@ package simulacion;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import static jdk.nashorn.internal.objects.NativeString.split;
+import javax.swing.border.LineBorder;
+//import static jdk.nashorn.internal.objects.NativeString.split;
 
 /**
  *
@@ -50,9 +54,35 @@ public class Ventana_costo extends javax.swing.JFrame {
         sp.setDividerSize(0);
         sp2.setDividerSize(0);
         
-        JScrollPane pan = new JScrollPane(sp2);
-       // this.setLayout ( new  BorderLayout ()); 
+        //JScrollPane pan = new JScrollPane(sp2);
+        //Primer Label
+        JLabel label = new JLabel("Label");
+        label.setPreferredSize(new Dimension(100, 20));
+        //Segundo Label
+        JLabel label2 = new JLabel("Label2");
+        label2.setPreferredSize(new Dimension(100, 20));
+
+        //ScrollPane
+        JScrollPane pan = new JScrollPane();
+        
+        //JPanel
+        JPanel content = new JPanel();
+        //A#adir los dos label a Jpanel
+        content.add(label);
+        content.add(label2);
+
+        //Seteo del Viewport
+        pan.setViewportView(content);
+        //pan.getViewport().add(label,null);
+        //pan.getViewport().add(label2,null);
+        
+        //pan.getViewport().add(jButton1, null);
+        //pan.add(sp).setBounds(500, 500, 10, 10);
+       // this.setLayout ( new  BorderLayout ()); */
+
         this.add ( pan ,  BorderLayout . CENTER ); 
+
+
         //this.add(pan);
         //pan.add(sp);
         //pan.add(sp2);
