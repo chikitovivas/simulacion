@@ -5,18 +5,16 @@
  */
 package simulacion;
 
-import java.awt.BorderLayout;
-import java.awt.Image;
-import java.awt.MenuBar;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+
+import com.sun.awt.AWTUtilities;
+import java.awt.*;
+import java.awt.geom.RoundRectangle2D;
+import java.io.*;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import static simulacion.Simulacion.VentanaPrincipal;
+
 
 /**
  *
@@ -34,17 +32,24 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setSize(500,400); //ancho por largo
-        //File file = new File("C:\\Users\\Administrador\\Documents\\NetBeansProjects\\Lecturaarchivos\\src\\lecturaarchivos\\aleatorios.txt"); //ruta completa al fichero que deseamos leer
-       // File file = new File("C:\\xampp\\htdocs\\simulacion\\simulacion\\src\\simulacion\\aleatorios.txt");
-        ImageIcon   image;
-        //image = new ImageIcon("C:\\xampp\\htdocs\\simulacion\\simulacion\\src\\imagenes\\fondo.png");
-        image = new ImageIcon("C:\\Users\\Administrador\\Documents\\NetBeansProjects\\simulacion\\simulacion\\src\\simulacion\\imagenes\\menu.png");
-       
-        JLabel label = new JLabel(image, JLabel.CENTER);
-
-        this.jPanel1.add( label);
         
+       
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 450, 300);
+        
+        /*PanelFondo p = new PanelFondo();
+       
+        p.setBorder(new EmptyBorder(5, 5, 5, 5));
+        p.setLayout(new BorderLayout(0, 0));
+       
+        setContentPane(p);*/
+        
+
+        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30); 
+        
+        //AWTUtilities.setWindowShape(this, forma); 
+        this.setSize(550,450); //ancho por largo
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -86,7 +91,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(JB_datosarchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
                 .addComponent(JB_datospantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -104,11 +109,13 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(282, Short.MAX_VALUE))
         );
 
         jPanel1.getAccessibleContext().setAccessibleDescription("");
@@ -157,6 +164,9 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+               // Menu menu = new Menu();
+                
+                //menu.setVisible(true);
                 new Menu().setVisible(true);
             }
         });
