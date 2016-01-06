@@ -17,14 +17,14 @@ import static jdk.nashorn.internal.objects.NativeString.split;
  * @author Administrador
  */
 public class Ventana_costo extends javax.swing.JFrame {
-        JScrollPane pan = new JScrollPane();
+       // JScrollPane pan = new JScrollPane();
      
      /* Creates new form Ventana_costo
         
      */
     public Ventana_costo() {
         initComponents();
-        this.add(pan);
+       
         //JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT,new JPanel(),new JPanel(),new JPanel());
         this.setLayout(new BorderLayout());
 
@@ -50,8 +50,12 @@ public class Ventana_costo extends javax.swing.JFrame {
         sp.setDividerSize(0);
         sp2.setDividerSize(0);
         
-        pan.add(sp);
-        pan.add(sp2);
+        JScrollPane pan = new JScrollPane(sp2);
+       // this.setLayout ( new  BorderLayout ()); 
+        this.add ( pan ,  BorderLayout . CENTER ); 
+        //this.add(pan);
+        //pan.add(sp);
+        //pan.add(sp2);
         
         //this.add(sp2,BorderLayout.CENTER);
         
@@ -59,11 +63,9 @@ public class Ventana_costo extends javax.swing.JFrame {
         
         
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-        this.setSize(300, 100);
+        this.setSize(350, 200);
         this.setVisible(true);
-        
-        
-        
+                
     }
 
     /**
