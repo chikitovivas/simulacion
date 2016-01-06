@@ -10,6 +10,7 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import static jdk.nashorn.internal.objects.NativeString.split;
 
 /**
  *
@@ -23,7 +24,7 @@ public class Ventana_costo extends javax.swing.JFrame {
      */
     public Ventana_costo() {
         initComponents();
-        
+        this.add(pan);
         //JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT,new JPanel(),new JPanel(),new JPanel());
         this.setLayout(new BorderLayout());
 
@@ -41,12 +42,26 @@ public class Ventana_costo extends javax.swing.JFrame {
         sp.setSize(100, 100);
         JSplitPane sp2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sp, rightPanel);
         sp.setSize(100, 100);
+        sp.setDividerLocation(100);
+        sp2.setDividerLocation(200);
+        sp.setEnabled(false);
+        sp2.setEnabled(false);
         
-        this.add(sp2, BorderLayout.CENTER);
+        sp.setDividerSize(0);
+        sp2.setDividerSize(0);
+        
+        pan.add(sp);
+        pan.add(sp2);
+        
+        //this.add(sp2,BorderLayout.CENTER);
+        
+        
+        
+        
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-
-//        this.setSize(100, 100);
+        this.setSize(300, 100);
         this.setVisible(true);
+        
         
         
     }
@@ -66,11 +81,11 @@ public class Ventana_costo extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 403, Short.MAX_VALUE)
+            .addGap(0, 339, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGap(0, 184, Short.MAX_VALUE)
         );
 
         pack();
