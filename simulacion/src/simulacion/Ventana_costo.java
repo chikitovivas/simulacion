@@ -10,7 +10,7 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import static jdk.nashorn.internal.objects.NativeString.split;
+//import static jdk.nashorn.internal.objects.NativeString.split;
 
 /**
  *
