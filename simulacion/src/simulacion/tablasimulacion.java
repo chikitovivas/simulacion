@@ -283,7 +283,7 @@ public class tablasimulacion extends javax.swing.JFrame {
         this.getContentPane().add(split);
         
         this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         
     }
 
