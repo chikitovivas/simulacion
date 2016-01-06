@@ -397,12 +397,13 @@ public class Home extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(inventario_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel12)
-                        .addComponent(semilla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(semilla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(inventario_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -574,6 +575,7 @@ public class Home extends javax.swing.JFrame {
             int mejor_q = 0;
             int mejor_r = 0;
             
+            long startTime = System.currentTimeMillis();
 
             /* Variacion en cantidad de articulos por orden */
             for(int q = Qminima; q <= Qmaxima ; q++){
@@ -654,7 +656,10 @@ public class Home extends javax.swing.JFrame {
                     func.reanudar();
                 }
             }
-
+            long endTime   = System.currentTimeMillis();
+            double mil = 1000;
+            double totalTime = (endTime - startTime) / mil;
+            System.out.printf("Tiempo de Simulacion: %.5f segundos %n",totalTime );
             /* Costos */  
             System.out.println("Mejor Costo = " + mejor_costo);
             System.out.println("Mejor invetario = " + mejor_inventario);
