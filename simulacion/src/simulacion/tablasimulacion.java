@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package simulacion;
+import java.awt.BorderLayout;
 import java.awt.Panel;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.*;
 import javax.swing.*;
 import java.util.Vector;
@@ -223,11 +226,16 @@ public class tablasimulacion extends javax.swing.JFrame {
                 double costo_faltante = func.fcosto_faltante(costo_sin_espera,costo_con_espera); //costo faltante
                 
                 double costo_total = costoInventario + costoOrden + costo_faltante; //costo total 
+                
+                System.out.println("Costo total: "+costo_total);
+                System.out.println("Costo total: "+costo_total);
                 System.out.println("Costo total: "+costo_total);
                 System.out.println("Mejor invetario = " + costoInventario);
                 System.out.println("Mejor orden = " + costoOrden);
                 System.out.println("Mejor faltante = " + costo_faltante); 
-            
+           
+                
+               
         /* 
             Creo una instancia de JTable y le paso como parametro los dos Vectores:
                 -filas
@@ -265,14 +273,105 @@ public class tablasimulacion extends javax.swing.JFrame {
                 }
                 
         JPanel panel1 = new JPanel();   
-            JLabel label1,label2;                       
-
-            label1 = new JLabel("costo de inventario: ");
-            label1.setBounds(800,20,300,30);
-            panel1.add(label1);
-            label2=new JLabel("50");
+        panel.setSize(500, 500);
+            JLabel Ltitulo,Ltitulo2, Tq, Tr, Tcinventario, Tcorden, Tcfaltante, Tctotal;                       
+            JLabel Valorq, Valorr, Valorcinventario, Valorcorden, Valorcfaltante, Valorctotal;
+            
+            DecimalFormat format =new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
+                
+             /*
+                    q*          Costo Inventario        Costo Total
+                    R*          Costo de Orden
+                                Costo faltante
+                */
+            
+            /*boton.setBounds(x, y, width, height);*/
+            
+            Ltitulo = new JLabel("TABLA DE ENVENTOS");
+            Ltitulo.setBounds(800,20,300,30);
+            Ltitulo.setFont(new java.awt.Font("DejaVu Sans", 1, 18));
+            Ltitulo.setText("TABLA DE ENVENTOS");
+            Ltitulo.setLocation(500, 5);
+            
+            Ltitulo2 = new JLabel("Simulación de Inventario");
+            Ltitulo2.setFont(new java.awt.Font("DejaVu Sans", 1, 14));
+            Ltitulo2.setBounds(900,200,350,50);
+            Ltitulo2.setLocation(510, 10);
+            
+            Tq = new JLabel("Q: ");
+            Tq.setFont(new java.awt.Font("Arial", 1, 14));
+            Tq.setBounds(900,200,350,50);
+            Tq.setLocation(50, 30);
+            
+            Valorq = new JLabel(Integer.toString(q));
+            Valorq.setBounds(900,200,350,50);
+            Valorq.setLocation(70, 30);
+            
+            Tr = new JLabel("R: ");
+            //Tr.setFont(new java.awt.Font("Arial", 1, 14));
+            Tr.setBounds(900,200,350,50);
+            Tr.setLocation(50, 45);
+            
+            Valorr = new JLabel(Integer.toString(r));
+            Valorr.setBounds(900,200,350,50);
+            Valorr.setLocation(70, 45);
+            
+            Tcinventario = new JLabel("Costo de Inventario:");
+            Tcinventario.setFont(new java.awt.Font("Arial", 1, 14));
+            Tcinventario.setBounds(900,200,350,50);
+            Tcinventario.setLocation(150, 30);
+            
+            Valorcinventario = new JLabel(format.format(costoInventario));
+            Valorcinventario.setBounds(900,200,350,50);
+            Valorcinventario.setLocation(300, 30);
+            
+            Tcorden = new JLabel("Costo de Oden:");
+            Tcorden.setFont(new java.awt.Font("Arial", 1, 14));
+            Tcorden.setBounds(900,200,350,50);
+            Tcorden.setLocation(150, 45);
+            
+            Valorcorden = new JLabel(format.format(costoOrden));
+            Valorcorden.setBounds(900,200,350,50);
+            Valorcorden.setLocation(300, 45);
+            
+            Tcfaltante = new JLabel("Costo Faltante:");
+            Tcfaltante.setFont(new java.awt.Font("Arial", 1, 14));
+            Tcfaltante.setBounds(900,200,350,50);
+            Tcfaltante.setLocation(150, 60);
+            
+            Valorcfaltante = new JLabel(format.format(costo_faltante));
+            Valorcfaltante.setBounds(900,200,350,50);
+            Valorcfaltante.setLocation(300, 60);
+            
+            Tctotal = new JLabel("Costo Total:");
+            Tctotal.setFont(new java.awt.Font("Arial", 1, 14));
+            Tctotal.setBounds(900,200,350,50);
+            Tctotal.setLocation(370, 30);
+            
+            Valorctotal = new JLabel(format.format(costo_total));
+            Valorctotal.setBounds(900,200,350,50);
+            Valorctotal.setLocation(460, 30);
+            
+            
+            panel1.add(Ltitulo);
+            panel1.add(Ltitulo2);
+            panel1.add(Tq);
+            panel1.add(Tr);
+            panel1.add(Tcinventario);
+            panel1.add(Tcorden);
+            panel1.add(Tcfaltante);
+            panel1.add(Tctotal);
+            panel1.add(Valorq);
+            panel1.add(Valorr);
+            panel1.add(Valorcinventario);
+            panel1.add(Valorcorden);
+            panel1.add(Valorcfaltante);
+            panel1.add(Valorctotal);
+            panel1.setLayout(null);
+            
+            /*label2=new JLabel("50");
             label2.setBounds(920,20,300,30);
-            panel1.add(label2);
+            panel1.add(label2);*/
             
         JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT,new JScrollPane(),new JScrollPane(panel));
         
