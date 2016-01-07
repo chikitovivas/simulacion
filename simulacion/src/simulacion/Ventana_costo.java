@@ -67,10 +67,10 @@ public class Ventana_costo extends javax.swing.JFrame {
         
         //JPanel
         JPanel content = new JPanel();
+        
         //A#adir los dos label a Jpanel
         content.add(label);
         content.add(label2);
-
         //Seteo del Viewport
         pan.setViewportView(content);
         //pan.getViewport().add(label,null);
