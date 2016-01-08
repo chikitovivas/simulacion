@@ -22,11 +22,6 @@ public class PanelFondo extends javax.swing.JPanel {
     public PanelFondo() {
         initComponents();
         
-        //this.setSize(800,800);//ancho por largo
-        //Icon imgBoton = new ImageIcon (getClass().
-               // getResource("C:\\Users\\Administrador\\Documents\\NetBeansProjects\\simulacion\\simulacion\\src\\simulacion\\imagenes\\menu.png"));
-    
-                //btnIngresar.setIcon(imgBoton);
     }
     
     
@@ -34,10 +29,12 @@ public class PanelFondo extends javax.swing.JPanel {
     public void paintComponent (Graphics g){
         Dimension tamano = getSize();
         ImageIcon imagenFondo = new ImageIcon (getClass().
-                getResource("/simulacion/imagenes/acercade.png"));
+                getResource("/simulacion/imagenes/fondo.png"));
         g.drawImage (imagenFondo.getImage(),0,0,tamano.width, tamano.height, null);
         setOpaque(false);
-        super.paintComponent(g);
+       // super.paintComponent(g);
+       super.paintComponent(g);
+       
     }
 
     /**
