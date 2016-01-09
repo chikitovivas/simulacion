@@ -8,6 +8,10 @@ package simulacion;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,18 +24,19 @@ import javax.swing.border.LineBorder;
  *
  * @author Administrador
  */
-public class Ventana_costo extends javax.swing.JFrame {
-       // JScrollPane pan = new JScrollPane();
-     
+public class Ventana_costo extends javax.swing.JFrame {     
      /* Creates new form Ventana_costo
         
      */
+    JScrollPane scroll = new JScrollPane();
+    JPanel panel1 = new JPanel();
+    JPanel panel = new JPanel();
     public Ventana_costo() {
         initComponents();
        
         //JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT,new JPanel(),new JPanel(),new JPanel());
         this.setLayout(new BorderLayout());
-
+/* · PANELS
         JPanel leftPanel = new JPanel();
         leftPanel.setBackground(Color.BLUE);
         leftPanel.setSize(100, 100);
@@ -67,10 +72,10 @@ public class Ventana_costo extends javax.swing.JFrame {
         
         //JPanel
         JPanel content = new JPanel();
+        
         //A#adir los dos label a Jpanel
         content.add(label);
         content.add(label2);
-
         //Seteo del Viewport
         pan.setViewportView(content);
         //pan.getViewport().add(label,null);
@@ -80,20 +85,148 @@ public class Ventana_costo extends javax.swing.JFrame {
         //pan.add(sp).setBounds(500, 500, 10, 10);
        // this.setLayout ( new  BorderLayout ()); */
 
-        this.add ( pan ,  BorderLayout . CENTER ); 
+       // this.add ( pan ,  BorderLayout . CENTER ); 
 
 
         //this.add(pan);
         //pan.add(sp);
         //pan.add(sp2);
         
-        //this.add(sp2,BorderLayout.CENTER);
+        //this.add(sp2,BorderLayout.CENTER);*/
         
         
         
         
+           
+            
+            JLabel Ltitulo,Ltitulo2, Tq, Tr, Tcinventario, Tcorden, Tcfaltante, Tctotal;                       
+            JLabel Valorq, Valorr, Valorcinventario, Valorcorden, Valorcfaltante, Valorctotal;
+            Font bold = new Font("Arial", 0, 14);
+            Font boldTitulo = new Font("Arial", Font.BOLD, 20);
+            Font plain = new Font("Arial", Font.PLAIN, 14);
+            
+            DecimalFormat format =new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
+                
+             /*
+                    q*          Costo Inventario        Costo Total
+                    R*          Costo de Orden
+                                Costo faltante
+                */
+            
+            /*boton.setBounds(x, y, width, height);*/
+            
+            Ltitulo = new JLabel("Variación De Costos para Q y R");
+            //Ltitulo.setSize(700, 70);
+            Ltitulo.setBounds(800,20,300,30);
+            Ltitulo.setFont(boldTitulo);
+            Ltitulo.setLocation(140, 10);
+            
+            Ltitulo2 = new JLabel("Simulación de Inventario");
+            Ltitulo2.setFont(new java.awt.Font("Arial", 1, 14));
+            Ltitulo2.setBounds(900,200,350,50);
+            Ltitulo2.setLocation(200, 20);
+            
+            panel.add(Ltitulo);
+            panel.add(Ltitulo2);
+            
+            Tq = new JLabel("Q: ");
+            Tq.setFont(new java.awt.Font("Arial", 1, 14));
+          //  Tq.setFont(bold);
+            Tq.setBounds(900,200,350,50);
+            Tq.setLocation(50, 75);
+            
+//            Valorq = new JLabel(Integer.toString(q));
+//           // Tq.setFont(plain);
+//            Valorq.setFont(plain);
+//            Valorq.setBounds(900,200,350,50);
+//            Valorq.setLocation(70, 75);
+            
+            Tr = new JLabel("R: ");
+            Tr.setFont(new java.awt.Font("Arial", 1, 14));
+            Tr.setBounds(900,200,350,50);
+            Tr.setLocation(50, 90);
+            
+//            Valorr = new JLabel(Integer.toString(r));
+//            Valorr.setBounds(900,200,350,50);
+//            Valorr.setFont(plain);
+//            Valorr.setLocation(70, 90);
+            
+            Tcinventario = new JLabel("Costo de Inventario:");
+            Tcinventario.setFont(new java.awt.Font("Arial", 1, 14));
+            Tcinventario.setBounds(900,200,350,50);
+            Tcinventario.setLocation(150, 75);
+            
+//            Valorcinventario = new JLabel(format.format(costoInventario));
+//            Valorcinventario.setBounds(900,200,350,50);
+//            Valorcinventario.setFont(plain);
+//            Valorcinventario.setLocation(300, 75);
+            
+            Tcorden = new JLabel("Costo de Oden:");
+            Tcorden.setFont(new java.awt.Font("Arial", 1, 14));
+            Tcorden.setBounds(900,200,350,50);
+            Tcorden.setLocation(150, 90);
+            
+//            Valorcorden = new JLabel(format.format(costoOrden));
+//            Valorcorden.setBounds(900,200,350,50);
+//            Valorcorden.setFont(plain);
+//            Valorcorden.setLocation(300, 90);
+            
+            Tcfaltante = new JLabel("Costo Faltante:");
+            Tcfaltante.setFont(new java.awt.Font("Arial", 1, 14));
+            Tcfaltante.setBounds(900,200,350,50);
+            Tcfaltante.setLocation(150, 105);
+            
+//            Valorcfaltante = new JLabel(format.format(costo_faltante));
+//            Valorcfaltante.setBounds(900,200,350,50);
+//            Valorcfaltante.setFont(plain);
+//            Valorcfaltante.setLocation(300, 105);
+            
+            Tctotal = new JLabel("Costo Total:");
+            Tctotal.setFont(new java.awt.Font("Arial", 1, 14));
+            Tctotal.setBounds(900,200,350,50);
+            Tctotal.setLocation(390, 75);
+            
+//            Valorctotal = new JLabel(format.format(costo_total));
+//            Valorctotal.setBounds(900,200,350,50);
+//            Valorctotal.setFont(plain);
+//            Valorctotal.setLocation(480, 75);
+            
+            
+            
+            panel1.add(Tq);
+            panel1.add(Tr);
+            panel1.add(Tcinventario);
+            panel1.add(Tcorden);
+            panel1.add(Tcfaltante);
+            panel1.add(Tctotal);
+//            panel1.add(Valorq);
+//            panel1.add(Valorr);
+//            panel1.add(Valorcinventario);
+//            panel1.add(Valorcorden);
+//            panel1.add(Valorcfaltante);
+//            panel1.add(Valorctotal);
+            panel.setLayout(null);
+            panel1.setLayout(null);
+            //scroll.setLayout(null);
+        
+        panel1.setSize(500, 900);    
+        
+       
+        
+       
+        panel.add(panel1);
+          
+        //scroll.setAutoscrolls(true);
+        scroll.setPreferredSize(new java.awt.Dimension(800, 400));
+       // scroll.setWheelScrollingEnabled(true);
+        scroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        //scroll.getViewport().setViewPosition(p); // para que la barra baje automaticamente
+        scroll.setViewportView(panel);
+                
+        this.add(scroll);
+        // this.add ( scroll ,  BorderLayout . CENTER );
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-        this.setSize(350, 200);
+        this.setSize(600, 800);
         this.setVisible(true);
                 
     }

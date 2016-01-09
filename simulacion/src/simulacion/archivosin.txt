@@ -6,3 +6,4 @@ Costo de ordenar - 100
 Costo de faltante con espera de cliente - 20
 Costo de faltante sin espera del cliente - 50
 Inventario inicial - 50
+Dias de Simulacion - 365

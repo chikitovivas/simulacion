@@ -20,35 +20,36 @@ import static simulacion.Simulacion.VentanaPrincipal;
  *
  * @author Administrador
  */
-public class Menu extends javax.swing.JFrame {
-
+public class Menu extends Framefondo {
+     static   JButton boton = new JButton();
     /**
      * Creates new form Menu
      */
     static Home VentanaPrincipal = new Home();
     static Buscador_archivos buscador = new Buscador_archivos();
-    
+    private final PanelFondo p = new PanelFondo();
+    static AcercaDe acerca = new AcercaDe();;
     
     public Menu() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        
+//        this.setLocationRelativeTo(null);
+//        
        
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
-        
-        /*PanelFondo p = new PanelFondo();
-       
-        p.setBorder(new EmptyBorder(5, 5, 5, 5));
-        p.setLayout(new BorderLayout(0, 0));
-       
-        setContentPane(p);*/
-        
-
-        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30); 
-        
-        //AWTUtilities.setWindowShape(this, forma); 
-        this.setSize(550,450); //ancho por largo
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setBounds(100, 100, 450, 300);
+//        
+//        
+//       
+////        p.setBorder(new EmptyBorder(5, 5, 5, 5));
+////        p.setLayout(new BorderLayout(0, 0));
+//       
+//        setContentPane(p);
+//        
+//        
+//        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 30, 30); 
+//        
+//        this.setWindowShape(this, forma); 
+//        this.setSize(600,396); //ancho por largo
         this.setLocationRelativeTo(null);
     }
 
@@ -61,22 +62,17 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        JB_datosarchivo = new javax.swing.JButton();
         JB_datospantalla = new javax.swing.JButton();
+        JB_datosarchivo = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        JB_acercade = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Menú"));
-        jPanel1.setPreferredSize(new java.awt.Dimension(500, 400));
-
-        JB_datosarchivo.setText("Cargar datos desde archivo");
-        JB_datosarchivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JB_datosarchivoActionPerformed(evt);
-            }
-        });
-
+        JB_datospantalla.setBackground(new java.awt.Color(247, 226, 188));
+        JB_datospantalla.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
+        JB_datospantalla.setForeground(new java.awt.Color(2, 48, 142));
         JB_datospantalla.setText("Cargar datos por pantalla");
         JB_datospantalla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,55 +80,85 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(JB_datosarchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
-                .addComponent(JB_datospantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JB_datosarchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JB_datospantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(190, 190, 190))
-        );
+        JB_datosarchivo.setBackground(new java.awt.Color(247, 226, 188));
+        JB_datosarchivo.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
+        JB_datosarchivo.setForeground(new java.awt.Color(2, 48, 142));
+        JB_datosarchivo.setText("Cargar Datos Desde Archivo");
+        JB_datosarchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_datosarchivoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Simulación de Inventario");
+
+        JB_acercade.setBackground(new java.awt.Color(247, 226, 188));
+        JB_acercade.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
+        JB_acercade.setForeground(new java.awt.Color(2, 48, 142));
+        JB_acercade.setText("Acerca De");
+        JB_acercade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_acercadeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(155, 155, 155)
+                .addComponent(jLabel1)
+                .addContainerGap(172, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(JB_datosarchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JB_datospantalla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JB_acercade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(85, 85, 85))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(282, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
+                .addComponent(JB_datosarchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(JB_datospantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(JB_acercade, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
-
-        jPanel1.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void JB_datosarchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_datosarchivoActionPerformed
-        this.dispose();
-        buscador.archivo();
-        
-    }//GEN-LAST:event_JB_datosarchivoActionPerformed
 
     private void JB_datospantallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_datospantallaActionPerformed
         this.dispose();
         VentanaPrincipal.setVisible(true);
     }//GEN-LAST:event_JB_datospantallaActionPerformed
+
+    private void JB_datosarchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_datosarchivoActionPerformed
+        this.dispose();
+        buscador.archivo();
+
+    }//GEN-LAST:event_JB_datosarchivoActionPerformed
+
+    private void JB_acercadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_acercadeActionPerformed
+        this.dispose();
+        
+//        ImageIcon icono = new ImageIcon("/simulacion/imagenes/homesin.png");
+//        boton.setSize(50, 50);
+//        boton.setIcon(icono);
+//        boton.setBounds(900,200,350,50);
+//        boton.setLocation(50, 500);
+        
+        acerca.setVisible(true);
+    }//GEN-LAST:event_JB_acercadeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,14 +193,22 @@ public class Menu extends javax.swing.JFrame {
                // Menu menu = new Menu();
                 
                 //menu.setVisible(true);
-                new Menu().setVisible(true);
+//                new Menu().setVisible(true);
+                Framefondo jf = new Menu();
+                jf.setLocationRelativeTo(null);
+                
+                
+
+//                jf.add(boton);
+                jf.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JB_acercade;
     private javax.swing.JButton JB_datosarchivo;
     private javax.swing.JButton JB_datospantalla;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
