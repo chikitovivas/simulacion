@@ -575,7 +575,7 @@ public class Home extends javax.swing.JFrame {
             int mejor_r = 0;
             
             long startTime = System.currentTimeMillis();
-
+            Ventana_costo ventana_c = new Ventana_costo();
             /* Variacion en cantidad de articulos por orden */
             for(int q = Qminima; q <= Qmaxima ; q++){
                 /* Variacion en cantidad de puntos de reorden */
@@ -632,7 +632,7 @@ public class Home extends javax.swing.JFrame {
                             }
                         }
                         lista_clientes = func.fespera_clientes(lista_clientes);
-                        inventario_ini = inventario_fin; //inventario inicial del proximo dia 
+                        inventario_ini = inventario_fin; //inventario inicial del proximo dia                       
                     } 
                     costo_total = 0;    //se inicializa costo total
 
@@ -652,9 +652,12 @@ public class Home extends javax.swing.JFrame {
                         mejor_q = q;               //mejor Q
                         mejor_r = r;               //mejor R
                     }
+                    //ventana_c.Añadir_filas(q, r,costoInventario, costoOrden, costo_faltante,costo_total)
                     func.reanudar();
                 }
             }
+            //ventana_c.modelo_table();
+            //ventana_c.setVisible(true);
             long endTime   = System.currentTimeMillis();
             double mil = 1000;
             double totalTime = (endTime - startTime) / mil;

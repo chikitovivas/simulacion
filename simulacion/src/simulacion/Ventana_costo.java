@@ -214,7 +214,11 @@ public class Ventana_costo extends javax.swing.JFrame {
        
         
        
-        panel.add(panel1);
+        panel.add(panel1, BorderLayout.AFTER_LINE_ENDS);
+        
+        JPanel panel2 = new JPanel();
+        panel2.add(Tq);
+        panel.add(panel2, BorderLayout.AFTER_LAST_LINE);
           
         //scroll.setAutoscrolls(true);
         scroll.setPreferredSize(new java.awt.Dimension(800, 400));
