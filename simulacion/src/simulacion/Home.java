@@ -576,6 +576,7 @@ public class Home extends javax.swing.JFrame {
             
             long startTime = System.currentTimeMillis();
             Ventana_costo ventana_c = new Ventana_costo();
+            ventana_c.Añadir_columnas();
             /* Variacion en cantidad de articulos por orden */
             for(int q = Qminima; q <= Qmaxima ; q++){
                 /* Variacion en cantidad de puntos de reorden */
@@ -652,12 +653,12 @@ public class Home extends javax.swing.JFrame {
                         mejor_q = q;               //mejor Q
                         mejor_r = r;               //mejor R
                     }
-                    //ventana_c.Añadir_filas(q, r,costoInventario, costoOrden, costo_faltante,costo_total)
+                    ventana_c.Añadir_filas(q, r,costoInventario, costoOrden, costo_faltante,costo_total);
                     func.reanudar();
                 }
             }
-            //ventana_c.modelo_table();
-            //ventana_c.setVisible(true);
+            ventana_c.Modelo_table();
+
             long endTime   = System.currentTimeMillis();
             double mil = 1000;
             double totalTime = (endTime - startTime) / mil;

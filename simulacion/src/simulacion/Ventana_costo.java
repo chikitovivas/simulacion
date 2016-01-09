@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Vector;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -70,7 +71,7 @@ public class Ventana_costo extends javax.swing.JFrame {
     public Ventana_costo() {
         
         this.setLayout(new BorderLayout());
-        this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setLocation(100, 200);
         this.setSize(600, 500);
         //this.setVisible(true);

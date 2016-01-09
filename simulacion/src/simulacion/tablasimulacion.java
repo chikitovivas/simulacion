@@ -225,9 +225,9 @@ public class tablasimulacion extends javax.swing.JFrame {
                 costoInventario = acum_inventario * ((costoInventario) / 365 ); //costo de inventario
                 costoOrden = numero_orden * costoOrden; //costo de orden
                 double costo_faltante = func.fcosto_faltante(costo_sin_espera,costo_con_espera); //costo faltante
-                
+               
                 double costo_total = costoInventario + costoOrden + costo_faltante; //costo total 
-                
+                func.reanudar();
                 System.out.println("Costo total: "+costo_total);
                 System.out.println("Costo total: "+costo_total);
                 System.out.println("Costo total: "+costo_total);
