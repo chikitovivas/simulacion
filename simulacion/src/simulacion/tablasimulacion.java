@@ -5,6 +5,7 @@
  */
 package simulacion;
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.Panel;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -272,10 +273,13 @@ public class tablasimulacion extends javax.swing.JFrame {
                     
                 }
                 
-        JPanel panel1 = new JPanel();   
-        panel.setSize(500, 500);
+            JPanel panel1 = new JPanel();   
+            panel.setSize(500, 500);
             JLabel Ltitulo,Ltitulo2, Tq, Tr, Tcinventario, Tcorden, Tcfaltante, Tctotal;                       
             JLabel Valorq, Valorr, Valorcinventario, Valorcorden, Valorcfaltante, Valorctotal;
+            Font bold = new Font("Arial", 0, 14);
+            Font boldTitulo = new Font("Arial", Font.BOLD, 18);
+            Font plain = new Font("Arial", Font.PLAIN, 14);
             
             DecimalFormat format =new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
                 
@@ -287,70 +291,79 @@ public class tablasimulacion extends javax.swing.JFrame {
             
             /*boton.setBounds(x, y, width, height);*/
             
-            Ltitulo = new JLabel("TABLA DE ENVENTOS");
+            Ltitulo = new JLabel("TABLA DE EVENTOS");
             Ltitulo.setBounds(800,20,300,30);
-            Ltitulo.setFont(new java.awt.Font("DejaVu Sans", 1, 18));
+            Ltitulo.setFont(boldTitulo);
             Ltitulo.setText("TABLA DE ENVENTOS");
-            Ltitulo.setLocation(500, 5);
+            Ltitulo.setLocation(500, 10);
             
             Ltitulo2 = new JLabel("Simulación de Inventario");
-            Ltitulo2.setFont(new java.awt.Font("DejaVu Sans", 1, 14));
+            Ltitulo2.setFont(new java.awt.Font("Arial", 1, 14));
+           // Ltitulo2.setFont(bold);
             Ltitulo2.setBounds(900,200,350,50);
-            Ltitulo2.setLocation(510, 10);
+            Ltitulo2.setLocation(510, 20);
             
             Tq = new JLabel("Q: ");
             Tq.setFont(new java.awt.Font("Arial", 1, 14));
+          //  Tq.setFont(bold);
             Tq.setBounds(900,200,350,50);
-            Tq.setLocation(50, 30);
+            Tq.setLocation(50, 75);
             
             Valorq = new JLabel(Integer.toString(q));
+           // Tq.setFont(plain);
+            Valorq.setFont(plain);
             Valorq.setBounds(900,200,350,50);
-            Valorq.setLocation(70, 30);
+            Valorq.setLocation(70, 75);
             
             Tr = new JLabel("R: ");
-            //Tr.setFont(new java.awt.Font("Arial", 1, 14));
+            Tr.setFont(new java.awt.Font("Arial", 1, 14));
             Tr.setBounds(900,200,350,50);
-            Tr.setLocation(50, 45);
+            Tr.setLocation(50, 90);
             
             Valorr = new JLabel(Integer.toString(r));
             Valorr.setBounds(900,200,350,50);
-            Valorr.setLocation(70, 45);
+            Valorr.setFont(plain);
+            Valorr.setLocation(70, 90);
             
             Tcinventario = new JLabel("Costo de Inventario:");
             Tcinventario.setFont(new java.awt.Font("Arial", 1, 14));
             Tcinventario.setBounds(900,200,350,50);
-            Tcinventario.setLocation(150, 30);
+            Tcinventario.setLocation(150, 75);
             
             Valorcinventario = new JLabel(format.format(costoInventario));
             Valorcinventario.setBounds(900,200,350,50);
-            Valorcinventario.setLocation(300, 30);
+            Valorcinventario.setFont(plain);
+            Valorcinventario.setLocation(300, 75);
             
             Tcorden = new JLabel("Costo de Oden:");
             Tcorden.setFont(new java.awt.Font("Arial", 1, 14));
             Tcorden.setBounds(900,200,350,50);
-            Tcorden.setLocation(150, 45);
+            Tcorden.setLocation(150, 90);
             
             Valorcorden = new JLabel(format.format(costoOrden));
             Valorcorden.setBounds(900,200,350,50);
-            Valorcorden.setLocation(300, 45);
+            Valorcorden.setFont(plain);
+            Valorcorden.setLocation(300, 90);
             
             Tcfaltante = new JLabel("Costo Faltante:");
             Tcfaltante.setFont(new java.awt.Font("Arial", 1, 14));
             Tcfaltante.setBounds(900,200,350,50);
-            Tcfaltante.setLocation(150, 60);
+            Tcfaltante.setLocation(150, 105);
             
             Valorcfaltante = new JLabel(format.format(costo_faltante));
             Valorcfaltante.setBounds(900,200,350,50);
-            Valorcfaltante.setLocation(300, 60);
+            Valorcfaltante.setFont(plain);
+            Valorcfaltante.setLocation(300, 105);
             
             Tctotal = new JLabel("Costo Total:");
             Tctotal.setFont(new java.awt.Font("Arial", 1, 14));
             Tctotal.setBounds(900,200,350,50);
-            Tctotal.setLocation(370, 30);
+            Tctotal.setLocation(390, 75);
             
             Valorctotal = new JLabel(format.format(costo_total));
             Valorctotal.setBounds(900,200,350,50);
-            Valorctotal.setLocation(460, 30);
+            Valorctotal.setFont(plain);
+            Valorctotal.setLocation(480, 75);
             
             
             panel1.add(Ltitulo);
@@ -377,7 +390,7 @@ public class tablasimulacion extends javax.swing.JFrame {
         
         split.setTopComponent(panel1);
         
-        split.setDividerLocation(100);
+        split.setDividerLocation(160);
         split.setEnabled(false);
         this.getContentPane().add(split);
         

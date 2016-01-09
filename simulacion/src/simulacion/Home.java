@@ -356,6 +356,7 @@ public class Home extends javax.swing.JFrame {
 
         jLabel8.setText("Inventario inicial:");
 
+        evento.setSelected(true);
         evento.setText("Tabla de eventos");
         evento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
