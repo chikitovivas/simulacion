@@ -302,7 +302,7 @@ public class Ventana_costo extends javax.swing.JFrame {
             Ventana_costo venprincipal = new Ventana_costo ();
             
             venprincipal.add(panel);
-            
+            venprincipal.setVisible(true);
             //this.getContentPane().add(panel);
     }
     
