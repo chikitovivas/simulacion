@@ -58,7 +58,7 @@ public class Home extends javax.swing.JFrame {
     }
     
     public Home(double[][] matriz_demanda, double[][] matriz_entrega, double[][] matriz_espera,
-            double costo_inventario, double costo_orden, double costo_espera, double costo_nespera, int inventario_ini) {
+            double costo_inventario, double costo_orden, double costo_espera, double costo_nespera, int inventario_ini, int diasimulacion) {
         
         initComponents();
         
@@ -75,7 +75,7 @@ public class Home extends javax.swing.JFrame {
         this.costo_espera.setText(""+costo_espera);
         this.costo_nespera.setText(""+costo_nespera);      
         this.inventario_inicial.setText(""+inventario_ini);
-
+        this.dias.setText(""+diasimulacion);
 
         
         List data = new ArrayList();
@@ -365,8 +365,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel11.setText("Dias de simulacion:");
-
-        dias.setText("365");
 
         jLabel12.setText("Semilla:");
 

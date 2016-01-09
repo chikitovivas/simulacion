@@ -47,7 +47,7 @@ public class tablasimulacion extends javax.swing.JFrame {
         this.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         //this.setLocationRelativeTo(null);
         this.setLocation(200, 150);
-        this.setSize(1200,600);
+        this.setSize(1200,700);
          
         
         

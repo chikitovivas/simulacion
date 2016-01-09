@@ -35,6 +35,7 @@ public class Buscador_archivos {
                 double costo_faltanteCE=0;//Costo de faltante con espera de cliente
                 double costo_faltanteSE=0;//Costo de faltante sin espera del cliente
                 int inventario_inicial=0;//Inventario inicial
+                int diasimulacion=0;
                 
 		try {
 			// Leemos el contenido del fichero
@@ -125,6 +126,10 @@ public class Buscador_archivos {
                                     inventario_inicial= Integer.parseInt(array_string[1]);
                                     //System.out.println(inventario_inicial);     
                                       break;
+                                 case 9:// Dias de simulacion
+                                    diasimulacion= Integer.parseInt(array_string[1]);
+                                    //System.out.println(diassimulacion);     
+                                      break;
 
                                  }              
                                 
@@ -135,7 +140,7 @@ public class Buscador_archivos {
                 //llamada a home al constructor con parametros
                 
                 Home home = new Home(matriz_demanda,matriz_entrega,matriz_espera,costo_inventario,costo_ordenar, 
-                                    costo_faltanteCE, costo_faltanteSE, inventario_inicial);
+                                    costo_faltanteCE, costo_faltanteSE, inventario_inicial, diasimulacion);
                 home.setVisible(true);
                 
                         
