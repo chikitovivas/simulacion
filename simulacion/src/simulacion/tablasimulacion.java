@@ -259,7 +259,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                 /* Para centrar las celdas*/        
                 DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer();
                 modelocentrar.setHorizontalAlignment(SwingConstants.CENTER);
-                for (int i=1; i<12; i++){
+                for (int i=0; i<12; i++){
                     tbl.getColumnModel().getColumn(i).setCellRenderer(modelocentrar); 
                     
                 }
@@ -278,7 +278,7 @@ public class tablasimulacion extends javax.swing.JFrame {
         
         split.setTopComponent(panel1);
         
-        split.setDividerLocation(100);
+        split.setDividerLocation(300);
         split.setEnabled(false);
         this.getContentPane().add(split);
         
