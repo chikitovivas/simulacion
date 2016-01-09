@@ -8,6 +8,8 @@ package simulacion;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -677,6 +679,13 @@ public class Home extends javax.swing.JFrame {
                     matriz_acum_espera,Double.parseDouble(costo_inventario.getText()),Double.parseDouble(costo_orden.getText())
                     ,Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText())
                     ,Integer.parseInt(inventario_inicial.getText()), aleatorios,days);
+                
+                JComponent simulacion = (JPanel) mejor.getContentPane();
+                JComponent costos = (JPanel) ventana_c.getComponent();
+                
+                division div = new division(simulacion, costos);
+                
+                div.setVisible(true);
             }
 
         }else{

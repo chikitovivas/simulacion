@@ -68,6 +68,8 @@ public class Ventana_costo extends javax.swing.JFrame {
     static List fila = new ArrayList();
     static JTable tbl = new JTable();
     
+    static JPanel pantalla;
+    
     public Ventana_costo() {
         
         this.setLayout(new BorderLayout());
@@ -145,9 +147,15 @@ public class Ventana_costo extends javax.swing.JFrame {
             
             Ventana_costo venprincipal = new Ventana_costo ();
             venprincipal.getContentPane().add(split);
-            venprincipal.setVisible(true);
+            
+            pantalla = (JPanel) venprincipal.getContentPane();
     }
     
+    public JPanel getComponent(){
+        
+        return this.pantalla;
+        
+    }
     
     
     

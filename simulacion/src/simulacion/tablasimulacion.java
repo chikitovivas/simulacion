@@ -34,6 +34,7 @@ public class tablasimulacion extends javax.swing.JFrame {
     int numero_orden=0;
     double naleatorio_demanda=0,naleatorio_entrega=0, naleatorio_espera=0;
     int acum_inventario=0;
+    static tablasimulacion pantalla;
     /**
      * Creates new form tablasimulacion
      */
@@ -394,11 +395,18 @@ public class tablasimulacion extends javax.swing.JFrame {
         split.setEnabled(false);
         this.getContentPane().add(split);
         
-        this.setVisible(true);
+        //this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         
+        pantalla  = this;
     }
 
+    public tablasimulacion getComponent(){
+        
+        return this.pantalla;
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
