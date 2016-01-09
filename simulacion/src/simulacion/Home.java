@@ -672,7 +672,7 @@ public class Home extends javax.swing.JFrame {
             System.out.println("Mejor Q = " + mejor_q);
             System.out.println("Mejor R = " + mejor_r);
             if(evento.getSelectedObjects() == null){
-                
+                ventana_c.visible();
             }else{
                 /* simulacion del mejor */
                 tablasimulacion mejor  = new tablasimulacion(mejor_q,mejor_r,matriz_acum_demanda,matriz_acum_entrega,
@@ -708,6 +708,8 @@ public class Home extends javax.swing.JFrame {
                     matriz_acum_espera,Double.parseDouble(costo_inventario.getText()),Double.parseDouble(costo_orden.getText())
                     ,Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText())
                     ,Integer.parseInt(inventario_inicial.getText()), aleatorios,days);
+                
+                mejor.setVisible(true);
             }
         }    
     }//GEN-LAST:event_startActionPerformed
