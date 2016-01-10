@@ -70,7 +70,7 @@ public class Menu extends Framefondo {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
 
-        JB_datospantalla.setBackground(new java.awt.Color(247, 226, 188));
+        JB_datospantalla.setBackground(new java.awt.Color(255, 255, 255));
         JB_datospantalla.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
         JB_datospantalla.setForeground(new java.awt.Color(2, 48, 142));
         JB_datospantalla.setText("Cargar datos por pantalla");
@@ -80,7 +80,7 @@ public class Menu extends Framefondo {
             }
         });
 
-        JB_datosarchivo.setBackground(new java.awt.Color(247, 226, 188));
+        JB_datosarchivo.setBackground(new java.awt.Color(255, 255, 255));
         JB_datosarchivo.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
         JB_datosarchivo.setForeground(new java.awt.Color(2, 48, 142));
         JB_datosarchivo.setText("Cargar Datos Desde Archivo");
@@ -94,7 +94,7 @@ public class Menu extends Framefondo {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Simulación de Inventario");
 
-        JB_acercade.setBackground(new java.awt.Color(247, 226, 188));
+        JB_acercade.setBackground(new java.awt.Color(255, 255, 255));
         JB_acercade.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
         JB_acercade.setForeground(new java.awt.Color(2, 48, 142));
         JB_acercade.setText("Acerca De");

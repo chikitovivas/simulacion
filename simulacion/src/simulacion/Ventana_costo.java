@@ -7,6 +7,7 @@ package simulacion;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import static java.awt.Color.white;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.text.DecimalFormat;
@@ -70,8 +71,9 @@ public class Ventana_costo extends javax.swing.JFrame {
     
     static JPanel pantalla;
     static Ventana_costo mostrar;
+    static DecimalFormat format =new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
     public Ventana_costo() {
-        
+        super("Variacion de Q y R");
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setLocation(100, 200);
@@ -88,16 +90,17 @@ public class Ventana_costo extends javax.swing.JFrame {
             tabla.addColumn("Costo Orden");
             tabla.addColumn("Costo Faltante");
             tabla.addColumn("Costo Total");
+            
     }
     
     public static void Añadir_filas (int Q, int R, double costo_inventario, double costo_orden, double costo_faltante, double costototal){
     
             fila.add(Integer.toString(Q)); 
             fila.add(Integer.toString(R)); 
-            fila.add(Double.toString(costo_inventario));
-            fila.add(Double.toString(costo_orden));
-            fila.add(Double.toString(costo_faltante));            
-            fila.add(Double.toString(costototal));
+            fila.add(format.format(costo_inventario));
+            fila.add(format.format(costo_orden));
+            fila.add(format.format(costo_faltante));            
+            fila.add(format.format(costototal));
             tabla.addRow(fila.toArray());
             fila.clear();
     
@@ -106,17 +109,15 @@ public class Ventana_costo extends javax.swing.JFrame {
     public static void Modelo_table (){
             tbl.setModel(tabla);
             
+            /* Para centrar las celdas*/
+            DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer();
+            modelocentrar.setHorizontalAlignment(SwingConstants.CENTER);
+            for (int i=0; i<6; i++){ 
+                tbl.getColumnModel().getColumn(i).setCellRenderer(modelocentrar);
+            }
             
-            /* Para centrar las celdas*/        
-//                DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer();
-//                modelocentrar.setHorizontalAlignment(SwingConstants.CENTER);
-//                for (int i=1; i<12; i++){
-//                    tbl.getColumnModel().getColumn(i).setCellRenderer(modelocentrar); 
-//                    
-//                }
-////                
             JScrollPane panel =new JScrollPane(tbl);
-            
+             
             JLabel Ltitulo, Ltitulo2;
             
              JPanel paneltitulos = new JPanel();
@@ -124,23 +125,26 @@ public class Ventana_costo extends javax.swing.JFrame {
                 Ltitulo = new JLabel("Variación De Costos para Q y R");
                 Ltitulo.setBounds(800,20,300,30);
                 Ltitulo.setFont(new java.awt.Font("Arial", 1, 20));
-                Ltitulo.setLocation(140, 10);
+                Ltitulo.setForeground(white);
+                Ltitulo.setLocation(450, 10);
 
                 Ltitulo2 = new JLabel("Simulación de Inventario");
                 Ltitulo2.setFont(new java.awt.Font("Arial", 1, 14));
-                Ltitulo2.setBounds(900,200,350,50);
-                Ltitulo2.setLocation(200, 25);
+                Ltitulo2.setBounds(900,200,350,50); 
+                Ltitulo2.setForeground(white);
+                Ltitulo2.setLocation(510, 20);
                 
                 
                 paneltitulos.add(Ltitulo);
                 paneltitulos.add(Ltitulo2);
-
-                
+            Color azul =new Color(1, 28, 82);
+            paneltitulos.setBackground(azul);
+            panel.setBackground(azul);
             JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT,new JScrollPane(),new JScrollPane(panel));
-        
+            
             split.setTopComponent(paneltitulos);
-
-            split.setDividerLocation(70);
+            
+            split.setDividerLocation(90);
             split.setEnabled(false);
             
             
@@ -162,7 +166,12 @@ public class Ventana_costo extends javax.swing.JFrame {
             this.mostrar.setVisible(true);
     }
     
-
+    public void limpiarmodelo(){
+     
+        tabla.setColumnCount(0);
+        tabla.setRowCount(0);
+       
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -173,6 +182,7 @@ public class Ventana_costo extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(1, 55, 167));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

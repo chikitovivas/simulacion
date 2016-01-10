@@ -6,6 +6,7 @@
 package simulacion;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.io.File;
 import java.util.*;
@@ -136,7 +137,7 @@ public class Buscador_archivos {
                                 j++;
 
 			}
-                System.out.println("llamamos a home");
+                //System.out.println("llamamos a home");
                 //llamada a home al constructor con parametros
                 
                 Home home = new Home(matriz_demanda,matriz_entrega,matriz_espera,costo_inventario,costo_ordenar, 

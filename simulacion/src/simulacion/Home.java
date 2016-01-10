@@ -5,10 +5,13 @@
  */
 package simulacion;
 
+import java.awt.Color;
+import static java.awt.Color.white;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -39,10 +42,17 @@ public class Home extends javax.swing.JFrame {
     private double[][] matriz_espera;
     private double aleatorio_espera;
     private double aleatorio_entrega;
-
+    private long endTime;
+    private double mil;
+    private double totalTime;
     /**
      * Creates new form Home
      */
+    static Color azul =new Color(1, 39, 118);
+    
+    static Color azuloscuro =new Color(1, 28, 82);
+    static Ventana_costo ventana_c = new Ventana_costo();
+    
     
     public Home(){
         initComponents();
@@ -56,7 +66,9 @@ public class Home extends javax.swing.JFrame {
         Funciones.setSize(demanda_table);
         Funciones.setSize(entrega_table);
         Funciones.setSize(espera_table);
+        this.getContentPane().setBackground(azuloscuro);
     }
+    
     
     public Home(double[][] matriz_demanda, double[][] matriz_entrega, double[][] matriz_espera,
             double costo_inventario, double costo_orden, double costo_espera, double costo_nespera, int inventario_ini, int diasimulacion) {
@@ -114,6 +126,13 @@ public class Home extends javax.swing.JFrame {
         Funciones.setSize(demanda_table);
         Funciones.setSize(entrega_table);
         Funciones.setSize(espera_table);
+        
+        
+        this.getContentPane().setBackground(azuloscuro);
+
+
+            ventana_c.Añadir_columnas();
+            
         /*Q = 100;
         R = 75;*/
     }
@@ -169,10 +188,16 @@ public class Home extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cargar Datos");
+        setAutoRequestFocus(false);
+        setBackground(new java.awt.Color(1, 39, 118));
+        setForeground(java.awt.Color.white);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
+        jPanel1.setBackground(new java.awt.Color(1, 28, 82));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Semilight", 1, 24), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Probabilidades"));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Probabilidades", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Semilight", 1, 14))); // NOI18N
 
         jLabel1.setText("Demanda diaria:");
 
@@ -300,7 +325,9 @@ public class Home extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Costos"));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Costos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Semilight", 1, 14))); // NOI18N
+        jPanel3.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
 
         jLabel4.setText("Costo de inventario: ");
 
@@ -353,7 +380,9 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Otros"));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Otros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Semilight", 1, 14))); // NOI18N
+        jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setText("Inventario inicial:");
 
@@ -412,7 +441,8 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Simulación unica"));
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Simulación unica", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Semilight", 1, 14))); // NOI18N
 
         jLabel9.setText("Q:");
 
@@ -466,9 +496,8 @@ public class Home extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -476,8 +505,9 @@ public class Home extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -492,6 +522,8 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        start.setBackground(new java.awt.Color(255, 255, 255));
+        start.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
         start.setText("Start");
         start.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -499,6 +531,8 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        back.setBackground(new java.awt.Color(255, 255, 255));
+        back.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
         back.setText("Back");
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -513,9 +547,9 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(back)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(start)
-                .addGap(22, 22, 22))
+                .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -538,6 +572,15 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
+        
+        
+//        
+//            JOptionPane.showOptionDialog(this, "Este es el Texto del Cuerpo", "Este es el Título", JOptionPane.ERROR_MESSAGE, 
+//                JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "},"Cancelar");
+            
+        
+        
+        
         if(unique.getSelectedObjects() == null){
 
             matriz_demanda = Funciones.table_to_matriz(demanda_table);
@@ -576,8 +619,7 @@ public class Home extends javax.swing.JFrame {
             int mejor_r = 0;
             
             long startTime = System.currentTimeMillis();
-            Ventana_costo ventana_c = new Ventana_costo();
-            ventana_c.Añadir_columnas();
+            
             /* Variacion en cantidad de articulos por orden */
             for(int q = Qminima; q <= Qmaxima ; q++){
                 /* Variacion en cantidad de puntos de reorden */
@@ -663,18 +705,17 @@ public class Home extends javax.swing.JFrame {
                 }
             }
             ventana_c.Modelo_table();
-
-            long endTime   = System.currentTimeMillis();
-            double mil = 1000;
-            double totalTime = (endTime - startTime) / mil;
-            System.out.printf("Tiempo de Simulacion: %.5f segundos %n",totalTime );
+            endTime   = System.currentTimeMillis();
+            mil = 1000;
+            totalTime = (endTime - startTime) / mil;
+            //System.out.printf("Tiempo de Simulacion: %.5f segundos %n",totalTime);
             /* Costos */  
-            System.out.println("Mejor Costo = " + mejor_costo);
-            System.out.println("Mejor invetario = " + mejor_inventario);
-            System.out.println("Mejor orden = " + mejor_orden);
-            System.out.println("Mejor faltante = " + mejor_faltante);          
-            System.out.println("Mejor Q = " + mejor_q);
-            System.out.println("Mejor R = " + mejor_r);
+//            System.out.println("Mejor Costo = " + mejor_costo);
+//            System.out.println("Mejor invetario = " + mejor_inventario);
+//            System.out.println("Mejor orden = " + mejor_orden);
+//            System.out.println("Mejor faltante = " + mejor_faltante);          
+//            System.out.println("Mejor Q = " + mejor_q);
+//            System.out.println("Mejor R = " + mejor_r);
             if(evento.getSelectedObjects() == null){
                 ventana_c.visible();
             }else{
@@ -682,7 +723,7 @@ public class Home extends javax.swing.JFrame {
                 tablasimulacion mejor  = new tablasimulacion(mejor_q,mejor_r,matriz_acum_demanda,matriz_acum_entrega,
                     matriz_acum_espera,Double.parseDouble(costo_inventario.getText()),Double.parseDouble(costo_orden.getText())
                     ,Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText())
-                    ,Integer.parseInt(inventario_inicial.getText()), aleatorios,days);
+                    ,Integer.parseInt(inventario_inicial.getText()), aleatorios,days, totalTime);
                 
                 JComponent simulacion = (JPanel) mejor.getContentPane();
                 JComponent costos = (JPanel) ventana_c.getComponent();
@@ -692,7 +733,8 @@ public class Home extends javax.swing.JFrame {
                 div.setVisible(true);
             }
 
-        }else{
+        }
+        else{
             matriz_demanda = Funciones.table_to_matriz(demanda_table);
             matriz_entrega = Funciones.table_to_matriz(entrega_table);
             matriz_espera = Funciones.table_to_matriz(espera_table);
@@ -704,22 +746,23 @@ public class Home extends javax.swing.JFrame {
             double[] aleatorios = Funciones.fwrite_aleatorio(Integer.parseInt(semilla.getText()));
             int days = Integer.parseInt(dias.getText());
             if(evento.getSelectedObjects() == null){
-                
+                //que es esto?
             }else{
                 /* simulacion del mejor */
                 tablasimulacion mejor  = new tablasimulacion(Integer.parseInt(Q_unique.getText()),Integer.parseInt(R_unique.getText())
                         ,matriz_acum_demanda,matriz_acum_entrega,
                     matriz_acum_espera,Double.parseDouble(costo_inventario.getText()),Double.parseDouble(costo_orden.getText())
                     ,Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText())
-                    ,Integer.parseInt(inventario_inicial.getText()), aleatorios,days);
+                    ,Integer.parseInt(inventario_inicial.getText()), aleatorios,days, totalTime);
                 
                 mejor.setVisible(true);
             }
-        }    
+        }    //fin else
     }//GEN-LAST:event_startActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         this.dispose();
+        ventana_c.limpiarmodelo();
         menu.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
 

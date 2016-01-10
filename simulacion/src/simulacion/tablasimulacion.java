@@ -5,6 +5,8 @@
  */
 package simulacion;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import static java.awt.Color.white;
 import java.awt.Font;
 import java.awt.Panel;
 import java.text.DecimalFormat;
@@ -41,7 +43,7 @@ public class tablasimulacion extends javax.swing.JFrame {
     public tablasimulacion(int q, int r, 
                             double[][] matriz_acum_demanda, double[][] matriz_acum_entrega,double[][] matriz_acum_espera, 
                             double costoInventario, double costoOrden, double costo_sin_espera, double costo_con_espera, 
-                            int inventario_ini, double[] aleatorios, int days) {
+                            int inventario_ini, double[] aleatorios, int days, double totalTime) {
         
         
         super("Simulación");
@@ -228,13 +230,13 @@ public class tablasimulacion extends javax.swing.JFrame {
                 double costo_faltante = func.fcosto_faltante(costo_sin_espera,costo_con_espera); //costo faltante
                
                 double costo_total = costoInventario + costoOrden + costo_faltante; //costo total 
-                func.reanudar();
-                System.out.println("Costo total: "+costo_total);
-                System.out.println("Costo total: "+costo_total);
-                System.out.println("Costo total: "+costo_total);
-                System.out.println("Mejor invetario = " + costoInventario);
-                System.out.println("Mejor orden = " + costoOrden);
-                System.out.println("Mejor faltante = " + costo_faltante); 
+//                func.reanudar();
+//                System.out.println("Costo total: "+costo_total);
+//                System.out.println("Costo total: "+costo_total);
+//                System.out.println("Costo total: "+costo_total);
+//                System.out.println("Mejor invetario = " + costoInventario);
+//                System.out.println("Mejor orden = " + costoOrden);
+//                System.out.println("Mejor faltante = " + costo_faltante); 
            
                 
                
@@ -276,8 +278,8 @@ public class tablasimulacion extends javax.swing.JFrame {
                 
             JPanel panel1 = new JPanel();   
             panel.setSize(500, 500);
-            JLabel Ltitulo,Ltitulo2, Tq, Tr, Tcinventario, Tcorden, Tcfaltante, Tctotal;                       
-            JLabel Valorq, Valorr, Valorcinventario, Valorcorden, Valorcfaltante, Valorctotal;
+            JLabel Ltitulo,Ltitulo2, Tq, Tr, Tcinventario, Tcorden, Tcfaltante, Tctotal, Ttime;                       
+            JLabel Valorq, Valorr, Valorcinventario, Valorcorden, Valorcfaltante, Valorctotal, Valortime;
             Font bold = new Font("Arial", 0, 14);
             Font boldTitulo = new Font("Arial", Font.BOLD, 18);
             Font plain = new Font("Arial", Font.PLAIN, 14);
@@ -295,14 +297,13 @@ public class tablasimulacion extends javax.swing.JFrame {
             Ltitulo = new JLabel("TABLA DE EVENTOS");
             Ltitulo.setBounds(800,20,300,30);
             Ltitulo.setFont(boldTitulo);
-            Ltitulo.setText("TABLA DE ENVENTOS");
             Ltitulo.setLocation(500, 10);
             
             Ltitulo2 = new JLabel("Simulación de Inventario");
             Ltitulo2.setFont(new java.awt.Font("Arial", 1, 14));
            // Ltitulo2.setFont(bold);
             Ltitulo2.setBounds(900,200,350,50);
-            Ltitulo2.setLocation(510, 20);
+            Ltitulo2.setLocation(505, 20);
             
             Tq = new JLabel("Q: ");
             Tq.setFont(new java.awt.Font("Arial", 1, 14));
@@ -366,7 +367,23 @@ public class tablasimulacion extends javax.swing.JFrame {
             Valorctotal.setFont(plain);
             Valorctotal.setLocation(480, 75);
             
+            Ttime = new JLabel("Tiempo de Simulación");
+            Ttime.setFont(new java.awt.Font("Arial", 1, 14));
+            Ttime.setBounds(900,200,350,50);
+            Ttime.setLocation(890, 75);
             
+            Valortime = new JLabel(format.format(totalTime) + " seg");
+            Valortime.setBounds(900,200,350,50);
+            Valortime.setFont(plain);
+            Valortime.setLocation(1060, 75);
+            
+            Color azul =new Color(1, 28, 82);
+            panel1.setBackground(azul);
+            Ltitulo.setForeground(white);Ltitulo2.setForeground(white);Tq.setForeground(white);Tr.setForeground(white);
+            Tcinventario.setForeground(white);Tcorden.setForeground(white);Tcfaltante.setForeground(white);Tctotal.setForeground(white);
+            Valorq.setForeground(white);Valorr.setForeground(white);Valorcinventario.setForeground(white);Valorcorden.setForeground(white);
+            Valorcfaltante.setForeground(white);Valorctotal.setForeground(white);
+            Ttime.setForeground(white);Valortime.setForeground(white);
             panel1.add(Ltitulo);
             panel1.add(Ltitulo2);
             panel1.add(Tq);
@@ -381,6 +398,8 @@ public class tablasimulacion extends javax.swing.JFrame {
             panel1.add(Valorcorden);
             panel1.add(Valorcfaltante);
             panel1.add(Valorctotal);
+            panel1.add(Ttime);
+            panel1.add(Valortime);
             panel1.setLayout(null);
             
             /*label2=new JLabel("50");
