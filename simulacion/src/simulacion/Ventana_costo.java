@@ -109,17 +109,15 @@ public class Ventana_costo extends javax.swing.JFrame {
     public static void Modelo_table (){
             tbl.setModel(tabla);
             
+            /* Para centrar las celdas*/
+            DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer();
+            modelocentrar.setHorizontalAlignment(SwingConstants.CENTER);
+            for (int i=0; i<6; i++){ 
+                tbl.getColumnModel().getColumn(i).setCellRenderer(modelocentrar);
+            }
             
-            /* Para centrar las celdas*/        
-//                DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer();
-//                modelocentrar.setHorizontalAlignment(SwingConstants.CENTER);
-//                for (int i=1; i<12; i++){
-//                    tbl.getColumnModel().getColumn(i).setCellRenderer(modelocentrar); 
-//                    
-//                }
-////                
             JScrollPane panel =new JScrollPane(tbl);
-            
+             
             JLabel Ltitulo, Ltitulo2;
             
              JPanel paneltitulos = new JPanel();

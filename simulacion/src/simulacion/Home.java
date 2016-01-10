@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -41,7 +42,9 @@ public class Home extends javax.swing.JFrame {
     private double[][] matriz_espera;
     private double aleatorio_espera;
     private double aleatorio_entrega;
-
+    private long endTime;
+    private double mil;
+    private double totalTime;
     /**
      * Creates new form Home
      */
@@ -49,6 +52,7 @@ public class Home extends javax.swing.JFrame {
     
     static Color azuloscuro =new Color(1, 28, 82);
     static Ventana_costo ventana_c = new Ventana_costo();
+    
     
     public Home(){
         initComponents();
@@ -568,6 +572,15 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
+        
+        
+//        
+//            JOptionPane.showOptionDialog(this, "Este es el Texto del Cuerpo", "Este es el Título", JOptionPane.ERROR_MESSAGE, 
+//                JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "},"Cancelar");
+            
+        
+        
+        
         if(unique.getSelectedObjects() == null){
 
             matriz_demanda = Funciones.table_to_matriz(demanda_table);
@@ -688,18 +701,17 @@ public class Home extends javax.swing.JFrame {
                 }
             }
             ventana_c.Modelo_table();
-
-            long endTime   = System.currentTimeMillis();
-            double mil = 1000;
-            double totalTime = (endTime - startTime) / mil;
-            System.out.printf("Tiempo de Simulacion: %.5f segundos %n",totalTime );
+            endTime   = System.currentTimeMillis();
+            mil = 1000;
+            totalTime = (endTime - startTime) / mil;
+            //System.out.printf("Tiempo de Simulacion: %.5f segundos %n",totalTime);
             /* Costos */  
-            System.out.println("Mejor Costo = " + mejor_costo);
-            System.out.println("Mejor invetario = " + mejor_inventario);
-            System.out.println("Mejor orden = " + mejor_orden);
-            System.out.println("Mejor faltante = " + mejor_faltante);          
-            System.out.println("Mejor Q = " + mejor_q);
-            System.out.println("Mejor R = " + mejor_r);
+//            System.out.println("Mejor Costo = " + mejor_costo);
+//            System.out.println("Mejor invetario = " + mejor_inventario);
+//            System.out.println("Mejor orden = " + mejor_orden);
+//            System.out.println("Mejor faltante = " + mejor_faltante);          
+//            System.out.println("Mejor Q = " + mejor_q);
+//            System.out.println("Mejor R = " + mejor_r);
             if(evento.getSelectedObjects() == null){
                 ventana_c.visible();
             }else{
@@ -707,7 +719,7 @@ public class Home extends javax.swing.JFrame {
                 tablasimulacion mejor  = new tablasimulacion(mejor_q,mejor_r,matriz_acum_demanda,matriz_acum_entrega,
                     matriz_acum_espera,Double.parseDouble(costo_inventario.getText()),Double.parseDouble(costo_orden.getText())
                     ,Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText())
-                    ,Integer.parseInt(inventario_inicial.getText()), aleatorios,days);
+                    ,Integer.parseInt(inventario_inicial.getText()), aleatorios,days, totalTime);
                 
                 JComponent simulacion = (JPanel) mejor.getContentPane();
                 JComponent costos = (JPanel) ventana_c.getComponent();
@@ -717,7 +729,8 @@ public class Home extends javax.swing.JFrame {
                 div.setVisible(true);
             }
 
-        }else{
+        }
+        else{
             matriz_demanda = Funciones.table_to_matriz(demanda_table);
             matriz_entrega = Funciones.table_to_matriz(entrega_table);
             matriz_espera = Funciones.table_to_matriz(espera_table);
@@ -729,18 +742,18 @@ public class Home extends javax.swing.JFrame {
             double[] aleatorios = Funciones.fwrite_aleatorio(Integer.parseInt(semilla.getText()));
             int days = Integer.parseInt(dias.getText());
             if(evento.getSelectedObjects() == null){
-                
+                //que es esto?
             }else{
                 /* simulacion del mejor */
                 tablasimulacion mejor  = new tablasimulacion(Integer.parseInt(Q_unique.getText()),Integer.parseInt(R_unique.getText())
                         ,matriz_acum_demanda,matriz_acum_entrega,
                     matriz_acum_espera,Double.parseDouble(costo_inventario.getText()),Double.parseDouble(costo_orden.getText())
                     ,Double.parseDouble(costo_nespera.getText()),Double.parseDouble(costo_espera.getText())
-                    ,Integer.parseInt(inventario_inicial.getText()), aleatorios,days);
+                    ,Integer.parseInt(inventario_inicial.getText()), aleatorios,days, totalTime);
                 
                 mejor.setVisible(true);
             }
-        }    
+        }    //fin else
     }//GEN-LAST:event_startActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed

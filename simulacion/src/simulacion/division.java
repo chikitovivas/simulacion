@@ -24,12 +24,16 @@ public class division extends javax.swing.JFrame {
         this.setTitle("Simulación de Inventario");
         jTabbedPane1.addTab("Simulacion", simulacion);
         jTabbedPane1.addTab("Costos",costos);
+        //jTabbedPane1.addTab("Salir");
         
         this.setLocation(200, 150);
         this.setSize(1200,700);
         this.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
     }
-
+    public void action () {
+        System.exit(0);
+    };
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

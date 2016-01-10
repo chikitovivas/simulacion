@@ -137,7 +137,7 @@ public class Buscador_archivos {
                                 j++;
 
 			}
-                System.out.println("llamamos a home");
+                //System.out.println("llamamos a home");
                 //llamada a home al constructor con parametros
                 
                 Home home = new Home(matriz_demanda,matriz_entrega,matriz_espera,costo_inventario,costo_ordenar, 
