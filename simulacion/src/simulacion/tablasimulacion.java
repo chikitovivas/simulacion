@@ -92,7 +92,7 @@ public class tablasimulacion extends javax.swing.JFrame {
         List fila = new ArrayList();
         
         java.util.List<double[]> lista_clientes = new ArrayList<>();    
-           
+        func.reanudar();   
                 /* dias de simulacion*/
                 for(int i = 1, ale = 0 ; i <= days; i++){  
                     /* if para ver si ya la orden llego*/                    
@@ -114,9 +114,17 @@ public class tablasimulacion extends javax.swing.JFrame {
                     /* si inventario es negativo, es decir, hay faltante */
                     if(inventario_fin < 0){
                         faltante = Math.abs(inventario_fin);
-                        lista_clientes.add(new double[] {Funciones.fcompare(aleatorios[ale],matriz_acum_espera) , faltante});
-                        naleatorio_espera = aleatorios[ale];
-                        ale++;
+                         if(Funciones.fcompare(aleatorios[ale],matriz_acum_espera) > 0){
+                                /* como hay faltante, se a#ade ese cliente a la lista de espera clientes, con su tiempo aleatorio de espera*/
+                                lista_clientes.add(new double[] {Funciones.fcompare(aleatorios[ale],matriz_acum_espera) , faltante});
+                                naleatorio_espera = aleatorios[ale];
+                                ale++;                               
+                            }else{
+                                Funciones.setCantSE(faltante);
+                                naleatorio_espera = aleatorios[ale];
+                                ale++;
+                            }
+                        
                         inventario_fin = 0;
                         /* inventario_promedio */
                         inventario_promedio = (inventario_ini + inventario_fin) / 2;
@@ -127,6 +135,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                             tiempo_entrega = Funciones.fcompare(aleatorios[ale], matriz_acum_entrega);
                             naleatorio_entrega = aleatorios[ale];
                             ale++;
+                            
                             /* la cantidad de ordenes*/
                             numero_orden++;
                             /* dia en el que se pidio la orden */
@@ -214,7 +223,6 @@ public class tablasimulacion extends javax.swing.JFrame {
                             //System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|\t|\t|\t|\t|\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante);
                         }
                     }
-
                     /* inventario inicial del proximo dia */
                     inventario_ini = inventario_fin;
                     lista_clientes = func.fespera_clientes(lista_clientes);

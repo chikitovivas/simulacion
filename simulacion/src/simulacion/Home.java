@@ -602,8 +602,8 @@ public class Home extends javax.swing.JFrame {
             double costo_total = 0;
             Clase_retorno clase;
             /* Calculo Q y R */
-            int[] minima = Funciones.fcalculo_q_r(Double.parseDouble(costo_orden.getText()), matriz_demanda[0][0], Double.parseDouble(costo_inventario.getText()), Double.parseDouble(costo_nespera.getText()),matriz_entrega[0][0],days);
-            int[] maxima = Funciones.fcalculo_q_r(Double.parseDouble(costo_orden.getText()), matriz_demanda[matriz_demanda.length-1][0], Double.parseDouble(costo_inventario.getText()), Double.parseDouble(costo_espera.getText()),matriz_entrega[matriz_entrega.length-1][0],days);
+            int[] minima = Funciones.fcalculo_q_r(Double.parseDouble(costo_orden.getText()), Funciones.fcompare_menor(matriz_demanda), Double.parseDouble(costo_inventario.getText()), Double.parseDouble(costo_nespera.getText()),Funciones.fcompare_menor(matriz_entrega),days);
+            int[] maxima = Funciones.fcalculo_q_r(Double.parseDouble(costo_orden.getText()), Funciones.fcompare_mayor(matriz_demanda), Double.parseDouble(costo_inventario.getText()), Double.parseDouble(costo_espera.getText()),Funciones.fcompare_mayor(matriz_entrega),days);
             int Qminima = minima[0];
             int Qmaxima = maxima[0];
             int Rminima = minima[1];
@@ -650,13 +650,15 @@ public class Home extends javax.swing.JFrame {
                         if(inventario_fin < 0){
                             faltante = Math.abs(inventario_fin);            //faltante
                             /* MODIFICACION DE ESPERA CLIENTE, como lo tenia es sin el IF */
-                            //if(Funciones.fcompare(aleatorios[ale],matriz_acum_espera) > 0){
+                            if(Funciones.fcompare(aleatorios[ale],matriz_acum_espera) > 0){
                                 /* como hay faltante, se a#ade ese cliente a la lista de espera clientes, con su tiempo aleatorio de espera*/
                                 lista_clientes.add(new double[] {Funciones.fcompare(aleatorios[ale],matriz_acum_espera) , faltante});
                                 ale++;
-                           // }else{
-                                //Funciones.setCantSE(faltante);
-                           // }
+                                
+                            }else{
+                                Funciones.setCantSE(faltante);
+                                ale++;
+                            }
                           
                             inventario_fin = 0;         //inventario final es igual a 0
                             inventario_promedio = (inventario_ini + inventario_fin) / 2; //inventario_promedio
@@ -703,6 +705,7 @@ public class Home extends javax.swing.JFrame {
                         mejor_r = r;               //mejor R
                     }
                     ventana_c.Añadir_filas(q, r,costoInventario, costoOrden, costo_faltante,costo_total);
+                    lista_clientes.clear();
                     func.reanudar();
                 }
             }

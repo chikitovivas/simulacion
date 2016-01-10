@@ -32,64 +32,66 @@ public class Funciones {
         retorna: un arreglo tipo double
     
     *///PRIMER EJEMPLO
- /*   public static double [] fwrite_aleatorio(int semilla){
+  /* public static double [] fwrite_aleatorio(int semilla){
         double[] aleatorios = new double[1200];
         Random rnd = new Random(semilla);
         
         aleatorios[0] = .69; aleatorios[1] = .22 ;aleatorios[2] = .37;aleatorios[3] = .64;aleatorios[4] = .75;aleatorios[5] = .06;
-        aleatorios[6] = .60;aleatorios[7] = .43;aleatorios[8] = .54;aleatorios[9] = .47;aleatorios[10] = .79;aleatorios[11] = .10; aleatorios[12] = .96;
+        aleatorios[6] = .60;aleatorios[7] = .43;aleatorios[8] = .54;aleatorios[9] = .47;aleatorios[10] = .79;aleatorios[11] = .10; 
+        aleatorios[12] = .96;
         aleatorios[13] = .42;aleatorios[14] = .98;aleatorios[15] = .29;aleatorios[16] = .15;aleatorios[17] = .59;aleatorios[18] = .37;
         aleatorios[19] = .25;aleatorios[20] = .76;aleatorios[21] = .14;
         
         
         DecimalFormat format =new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
                 
-        for (int i = 22; i < 1200; i++) {
+        for (int i = 21; i < 1200; i++) {
             aleatorios[i] = Double.valueOf(format.format((rnd.nextDouble() * 100)/100));
             //System.out.println(aleatorios[i]);
         }
         return aleatorios;
-}  */  //SEGUNDO EJEMPLO
+} */ /*//SEGUNDO EJEMPLO
         public static double [] fwrite_aleatorio(int semilla){
         double[] aleatorios = new double[1200];
         Random rnd = new Random(semilla);
         
         aleatorios[0] = .69; aleatorios[1] = .22 ;aleatorios[2] = .37;aleatorios[3] = .64;aleatorios[4] = .75;aleatorios[5] = .06;
         aleatorios[6] = .60;aleatorios[7] = .43;aleatorios[8] = .99;aleatorios[9] = .38;aleatorios[10] = .29;aleatorios[11] = .47; aleatorios[12] = .42;
-        aleatorios[13] = .96;aleatorios[14] = .79;aleatorios[15] = .96;aleatorios[16] = .42;aleatorios[17] = .83;aleatorios[18] = .98;
-        aleatorios[19] = .15;aleatorios[20] = .59;aleatorios[21] = .37;aleatorios[22] = .25;aleatorios[23] = .26;aleatorios[24] = .14;
-        
+        aleatorios[13] = .79;aleatorios[14] = .90;aleatorios[15] = .96;aleatorios[16] = .15;aleatorios[17] = .42;aleatorios[18] = .83;
+        aleatorios[19] = .98;aleatorios[20] = .80;aleatorios[21] = .15;aleatorios[22] = .50;aleatorios[23] = .59;aleatorios[24] = .37;
+        aleatorios[25] = .37;aleatorios[26] = .96;aleatorios[27] = .25;aleatorios[28] = .26;aleatorios[29] = .14;aleatorios[30] = .15;
+
         
         DecimalFormat format =new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
                 
-        for (int i = 22; i < 1200; i++) {
+        for (int i = 30; i < 1200; i++) {
             aleatorios[i] = Double.valueOf(format.format((rnd.nextDouble() * 100)/100));
             //System.out.println(aleatorios[i]);
         }
         return aleatorios;
-}   
+}   */
     
-   /* //La perfect
+    //La perfect
     public static double [] fwrite_aleatorio(int semilla){
         double[] aleatorios = new double[1200];
         Random rnd = new Random(semilla);
         
-        DecimalFormat format =new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
+        DecimalFormat format =new DecimalFormat("#.###", new DecimalFormatSymbols(Locale.ENGLISH));
                 
         for (int i = 0; i < aleatorios.length; i++) {
-            aleatorios[i] = Double.valueOf(format.format((rnd.nextDouble() * 100)/100));
+            aleatorios[i] = Double.valueOf((rnd.nextDouble() * 100)/100);
             //System.out.println(aleatorios[i]);
         }
         return aleatorios;
-    } */
+    } 
    
     
     
     /*
         fread_aleatorios()
-        permite la lectura del archivo de numeros aleatorios
-    
+        permite la lectura del archivo de numeros aleatorios    
     */
+    
     public static double[] fread_aleatorios() {
         String content = null;//contenido del fichero
         File file = new File("C:\\Users\\Administrador\\Documents\\NetBeansProjects\\Lecturaarchivos\\src\\lecturaarchivos\\aleatorios.txt"); //ruta completa al fichero que deseamos leer
@@ -132,12 +134,11 @@ public class Funciones {
             
         for (int i=0; i< compare.length; i++) {          
             if (i==0){
-                if (aleatorio<=compare[i][1]){
+                if (aleatorio<compare[i][1]){
                    // System.out.println((int)compare[i][0]);
                     return (int) compare[i][0];
                 }
-            }
-            else{
+            }else{
                 if ((aleatorio>compare[i-1][1]) &&  (aleatorio<=compare[i][1])){
                    // System.out.println((int)compare[i][0]);
                     return (int)compare[i][0];
@@ -147,7 +148,26 @@ public class Funciones {
         return -1;
     }  
     
-    
+    public static int fcompare_mayor(double[][] compare){
+        int mayor = 0;
+        
+        for(int i = 0; i < compare.length; i++ ){
+            if(compare[i][0] > mayor){
+                mayor = (int)compare[i][0];
+            }
+        }
+        return mayor;
+    }
+    public static int fcompare_menor(double[][] compare){
+        int menor = 999;
+        
+        for(int i = 0; i < compare.length; i++ ){
+            if(compare[i][0] < menor){
+                menor = (int)compare[i][0];
+            }
+        }
+        return menor;
+    }
     /*fnumacumulado(double[][] compare)
       permite realizar el acumulado de las probabilidades,
       recibe: una matriz de double
@@ -186,12 +206,12 @@ public class Funciones {
                 cantCE=cantCE+q;
                 q=0;
                 lista_clientes.remove(i);
-                System.out.println("entro, locamente");
                 
-            }  
-            //incremento el indice de ubicacion de la lista
+            }else{
+                i++;
+            }
             
-            i++;
+            
         }
         return new Clase_retorno(lista_clientes, q);
         
@@ -215,14 +235,14 @@ public class Funciones {
               dia, por lo que el tiempo de espera queda en 0, lo que nos lleva a remover el elemento, 
               tomando su faltante y sumando al costo por faltate sin espera del cliente (costoSE)
             */
-            if ((int)var[0] == 0){
+            if ((int)var[0] < 0){
                 cantSE=cantSE+var[1];
                 lista_clientes.remove(i);
             
            /* Si la posicion 0 del arreglo es diferente a 1, le resto -1 al tiempo de espera 
               y reemplazo el elemento de la lista por el elemento -1
            */     
-            }else if ((int)var[0] > 0){
+            }else if ((int)var[0] >= 0){
                 var[0]=var[0]-1;
                 lista_clientes.set(i, var);
                 i++;
@@ -231,6 +251,7 @@ public class Funciones {
             
                 
         }
+        
         return lista_clientes;
     } 
     public static void reanudar(){
@@ -238,9 +259,9 @@ public class Funciones {
         cantCE = 0;
     }
     
-    /*public static void setCantSE(int faltante){
+    public static void setCantSE(int faltante){
         cantSE += faltante;
-    }*/
+    }
     /*
         fcalculo_q_r (double k, double d, double h, double s)
         metodo que permite el calculo de la cantidad de articulos por pedido (q) y
