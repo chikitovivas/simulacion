@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package simulacion;
-import com.sun.awt.AWTUtilities;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 /**
