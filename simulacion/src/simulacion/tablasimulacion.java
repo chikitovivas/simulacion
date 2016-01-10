@@ -5,6 +5,8 @@
  */
 package simulacion;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import static java.awt.Color.white;
 import java.awt.Font;
 import java.awt.Panel;
 import java.text.DecimalFormat;
@@ -295,14 +297,13 @@ public class tablasimulacion extends javax.swing.JFrame {
             Ltitulo = new JLabel("TABLA DE EVENTOS");
             Ltitulo.setBounds(800,20,300,30);
             Ltitulo.setFont(boldTitulo);
-            Ltitulo.setText("TABLA DE ENVENTOS");
             Ltitulo.setLocation(500, 10);
             
             Ltitulo2 = new JLabel("Simulación de Inventario");
             Ltitulo2.setFont(new java.awt.Font("Arial", 1, 14));
            // Ltitulo2.setFont(bold);
             Ltitulo2.setBounds(900,200,350,50);
-            Ltitulo2.setLocation(510, 20);
+            Ltitulo2.setLocation(505, 20);
             
             Tq = new JLabel("Q: ");
             Tq.setFont(new java.awt.Font("Arial", 1, 14));
@@ -366,7 +367,12 @@ public class tablasimulacion extends javax.swing.JFrame {
             Valorctotal.setFont(plain);
             Valorctotal.setLocation(480, 75);
             
-            
+            Color azul =new Color(1, 28, 82);
+            panel1.setBackground(azul);
+            Ltitulo.setForeground(white);Ltitulo2.setForeground(white);Tq.setForeground(white);Tr.setForeground(white);
+            Tcinventario.setForeground(white);Tcorden.setForeground(white);Tcfaltante.setForeground(white);Tctotal.setForeground(white);
+            Valorq.setForeground(white);Valorr.setForeground(white);Valorcinventario.setForeground(white);
+            Valorcorden.setForeground(white);Valorcfaltante.setForeground(white);Valorctotal.setForeground(white);
             panel1.add(Ltitulo);
             panel1.add(Ltitulo2);
             panel1.add(Tq);

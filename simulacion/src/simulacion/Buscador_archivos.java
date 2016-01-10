@@ -6,6 +6,7 @@
 package simulacion;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.io.File;
 import java.util.*;

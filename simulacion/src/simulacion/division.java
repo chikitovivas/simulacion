@@ -21,7 +21,7 @@ public class division extends javax.swing.JFrame {
      */
     public division(JComponent simulacion,JComponent costos ) {
         initComponents();
-        
+        this.setTitle("Simulación de Inventario");
         jTabbedPane1.addTab("Simulacion", simulacion);
         jTabbedPane1.addTab("Costos",costos);
         

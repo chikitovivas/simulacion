@@ -5,6 +5,8 @@
  */
 package simulacion;
 
+import java.awt.Color;
+import static java.awt.Color.white;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,10 @@ public class Home extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
+    static Color azul =new Color(1, 39, 118);
+    
+    static Color azuloscuro =new Color(1, 28, 82);
+    static Ventana_costo ventana_c = new Ventana_costo();
     
     public Home(){
         initComponents();
@@ -56,8 +62,9 @@ public class Home extends javax.swing.JFrame {
         Funciones.setSize(demanda_table);
         Funciones.setSize(entrega_table);
         Funciones.setSize(espera_table);
+        this.getContentPane().setBackground(azuloscuro);
     }
-    static Ventana_costo ventana_c = new Ventana_costo();
+    
     
     public Home(double[][] matriz_demanda, double[][] matriz_entrega, double[][] matriz_espera,
             double costo_inventario, double costo_orden, double costo_espera, double costo_nespera, int inventario_ini, int diasimulacion) {
@@ -117,7 +124,9 @@ public class Home extends javax.swing.JFrame {
         Funciones.setSize(espera_table);
         
         
-        
+        this.getContentPane().setBackground(azuloscuro);
+
+
             ventana_c.Añadir_columnas();
             
         /*Q = 100;
@@ -175,10 +184,16 @@ public class Home extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cargar Datos");
+        setAutoRequestFocus(false);
+        setBackground(new java.awt.Color(1, 39, 118));
+        setForeground(java.awt.Color.white);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
+        jPanel1.setBackground(new java.awt.Color(1, 28, 82));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Semilight", 1, 24), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Probabilidades"));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Probabilidades", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Semilight", 1, 14))); // NOI18N
 
         jLabel1.setText("Demanda diaria:");
 
@@ -306,7 +321,9 @@ public class Home extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Costos"));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Costos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Semilight", 1, 14))); // NOI18N
+        jPanel3.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
 
         jLabel4.setText("Costo de inventario: ");
 
@@ -359,7 +376,9 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Otros"));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Otros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Semilight", 1, 14))); // NOI18N
+        jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setText("Inventario inicial:");
 
@@ -418,7 +437,8 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Simulación unica"));
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Simulación unica", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Semilight", 1, 14))); // NOI18N
 
         jLabel9.setText("Q:");
 
@@ -472,9 +492,8 @@ public class Home extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -482,8 +501,9 @@ public class Home extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -498,6 +518,8 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        start.setBackground(new java.awt.Color(255, 255, 255));
+        start.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
         start.setText("Start");
         start.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -505,6 +527,8 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        back.setBackground(new java.awt.Color(255, 255, 255));
+        back.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
         back.setText("Back");
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -519,9 +543,9 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(back)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(start)
-                .addGap(22, 22, 22))
+                .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
