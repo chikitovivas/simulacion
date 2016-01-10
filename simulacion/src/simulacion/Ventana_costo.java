@@ -95,18 +95,19 @@ public class Ventana_costo extends javax.swing.JFrame {
     
     public static void Añadir_filas (int Q, int R, double costo_inventario, double costo_orden, double costo_faltante, double costototal){
     
-            fila.add(Integer.toString(Q)); 
-            fila.add(Integer.toString(R)); 
-            fila.add(format.format(costo_inventario));
-            fila.add(format.format(costo_orden));
-            fila.add(format.format(costo_faltante));            
-            fila.add(format.format(costototal));
+            fila.add(Integer.toString(Q)+" Unid."); 
+            fila.add(Integer.toString(R)+" Unid."); 
+            fila.add(format.format(costo_inventario)+" $");
+            fila.add(format.format(costo_orden)+" $");
+            fila.add(format.format(costo_faltante)+" $");            
+            fila.add(format.format(costototal)+" $");
             tabla.addRow(fila.toArray());
             fila.clear();
     
     }
     
-    public static void Modelo_table (){
+    public static void Modelo_table (int qmin, int qmax, int rmin, int rmax){
+    //public static void Modelo_table (){
             tbl.setModel(tabla);
             
             /* Para centrar las celdas*/
@@ -118,7 +119,8 @@ public class Ventana_costo extends javax.swing.JFrame {
             
             JScrollPane panel =new JScrollPane(tbl);
              
-            JLabel Ltitulo, Ltitulo2;
+            JLabel Ltitulo, Ltitulo2, Tqmin, Tqmax, Trmin, Trmax,Valorqmin,Valorqmax,Valorrmin,Valorrmax;
+            Font plain = new Font("Arial", Font.PLAIN, 14);
             
              JPanel paneltitulos = new JPanel();
                 paneltitulos.setLayout(null);
@@ -134,9 +136,54 @@ public class Ventana_costo extends javax.swing.JFrame {
                 Ltitulo2.setForeground(white);
                 Ltitulo2.setLocation(510, 20);
                 
+                Tqmin = new JLabel("Qmin: ");
+                Tqmin.setFont(new java.awt.Font("Arial", 1, 14));
+                Tqmin.setBounds(900,200,350,50);
+                Tqmin.setLocation(150, 75);Tqmin.setForeground(white);
+
+                Valorqmin = new JLabel(Integer.toString(qmin)+" Unid.");
+                Valorqmin.setFont(plain);
+                Valorqmin.setBounds(900,200,350,50);
+                Valorqmin.setLocation(200, 75);Valorqmin.setForeground(white);
+
+                Tqmax = new JLabel("Qmax: ");
+                Tqmax.setFont(new java.awt.Font("Arial", 1, 14));
+                Tqmax.setBounds(900,200,350,50);
+                Tqmax.setLocation(150, 90);Tqmax.setForeground(white);
+
+                Valorqmax = new JLabel(Integer.toString(qmax)+" Unid.");
+                Valorqmax.setBounds(900,200,350,50);
+                Valorqmax.setFont(plain);
+                Valorqmax.setLocation(200, 90);Valorqmax.setForeground(white);
+
+                Trmin = new JLabel("Rmin:");
+                Trmin.setFont(new java.awt.Font("Arial", 1, 14));
+                Trmin.setBounds(900,200,350,50);
+                Trmin.setLocation(350, 75);Trmin.setForeground(white);
+
+                Valorrmin = new JLabel(Integer.toString(rmin)+" Unid.");
+                Valorrmin.setBounds(900,200,350,50);
+                Valorrmin.setFont(plain);
+                Valorrmin.setLocation(400, 75);Valorrmin.setForeground(white);
+
+                Trmax = new JLabel("Rmax:");
+                Trmax.setFont(new java.awt.Font("Arial", 1, 14));
+                Trmax.setBounds(900,200,350,50);
+                Trmax.setLocation(350, 90);Trmax.setForeground(white);
+
+                Valorrmax = new JLabel(Integer.toString(rmax)+" Unid.");
+                Valorrmax.setBounds(900,200,350,50);
+                Valorrmax.setFont(plain);
+                Valorrmax.setLocation(400, 90);Valorrmax.setForeground(white);
                 
-                paneltitulos.add(Ltitulo);
-                paneltitulos.add(Ltitulo2);
+                
+                
+                
+                paneltitulos.add(Ltitulo);paneltitulos.add(Ltitulo2);paneltitulos.add(Tqmin);
+                paneltitulos.add(Tqmax);paneltitulos.add(Trmin);paneltitulos.add(Trmax);
+                paneltitulos.add(Valorqmin);paneltitulos.add(Valorqmax);paneltitulos.add(Valorrmin);
+                paneltitulos.add(Valorrmax);
+                
             Color azul =new Color(1, 28, 82);
             paneltitulos.setBackground(azul);
             panel.setBackground(azul);
@@ -144,7 +191,7 @@ public class Ventana_costo extends javax.swing.JFrame {
             
             split.setTopComponent(paneltitulos);
             
-            split.setDividerLocation(90);
+            split.setDividerLocation(160);
             split.setEnabled(false);
             
             

@@ -311,7 +311,7 @@ public class tablasimulacion extends javax.swing.JFrame {
             Tq.setBounds(900,200,350,50);
             Tq.setLocation(50, 75);
             
-            Valorq = new JLabel(Integer.toString(q));
+            Valorq = new JLabel(Integer.toString(q)+" Unid.");
            // Tq.setFont(plain);
             Valorq.setFont(plain);
             Valorq.setBounds(900,200,350,50);
@@ -322,7 +322,7 @@ public class tablasimulacion extends javax.swing.JFrame {
             Tr.setBounds(900,200,350,50);
             Tr.setLocation(50, 90);
             
-            Valorr = new JLabel(Integer.toString(r));
+            Valorr = new JLabel(Integer.toString(r)+" Unid.");
             Valorr.setBounds(900,200,350,50);
             Valorr.setFont(plain);
             Valorr.setLocation(70, 90);
@@ -332,7 +332,7 @@ public class tablasimulacion extends javax.swing.JFrame {
             Tcinventario.setBounds(900,200,350,50);
             Tcinventario.setLocation(150, 75);
             
-            Valorcinventario = new JLabel(format.format(costoInventario));
+            Valorcinventario = new JLabel(format.format(costoInventario)+" $");
             Valorcinventario.setBounds(900,200,350,50);
             Valorcinventario.setFont(plain);
             Valorcinventario.setLocation(300, 75);
@@ -342,7 +342,7 @@ public class tablasimulacion extends javax.swing.JFrame {
             Tcorden.setBounds(900,200,350,50);
             Tcorden.setLocation(150, 90);
             
-            Valorcorden = new JLabel(format.format(costoOrden));
+            Valorcorden = new JLabel(format.format(costoOrden)+" $");
             Valorcorden.setBounds(900,200,350,50);
             Valorcorden.setFont(plain);
             Valorcorden.setLocation(300, 90);
@@ -352,7 +352,7 @@ public class tablasimulacion extends javax.swing.JFrame {
             Tcfaltante.setBounds(900,200,350,50);
             Tcfaltante.setLocation(150, 105);
             
-            Valorcfaltante = new JLabel(format.format(costo_faltante));
+            Valorcfaltante = new JLabel(format.format(costo_faltante)+" $");
             Valorcfaltante.setBounds(900,200,350,50);
             Valorcfaltante.setFont(plain);
             Valorcfaltante.setLocation(300, 105);
@@ -362,7 +362,7 @@ public class tablasimulacion extends javax.swing.JFrame {
             Tctotal.setBounds(900,200,350,50);
             Tctotal.setLocation(390, 75);
             
-            Valorctotal = new JLabel(format.format(costo_total));
+            Valorctotal = new JLabel(format.format(costo_total)+" $");
             Valorctotal.setBounds(900,200,350,50);
             Valorctotal.setFont(plain);
             Valorctotal.setLocation(480, 75);
