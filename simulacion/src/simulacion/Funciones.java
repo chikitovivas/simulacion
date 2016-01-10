@@ -168,6 +168,7 @@ public class Funciones {
                 cantCE=cantCE+q;
                 q=0;
                 lista_clientes.remove(i);
+                //System.put.println("entro, locamente");
                 
             }  
             //incremento el indice de ubicacion de la lista
@@ -196,14 +197,14 @@ public class Funciones {
               dia, por lo que el tiempo de espera queda en 0, lo que nos lleva a remover el elemento, 
               tomando su faltante y sumando al costo por faltate sin espera del cliente (costoSE)
             */
-            if ((int)var[0] == 0){
+            if ((int)var[0] < 0){
                 cantSE=cantSE+var[1];
                 lista_clientes.remove(i);
             
            /* Si la posicion 0 del arreglo es diferente a 1, le resto -1 al tiempo de espera 
               y reemplazo el elemento de la lista por el elemento -1
            */     
-            }else if ((int)var[0]>0){
+            }else if ((int)var[0] >= 0){
                 var[0]=var[0]-1;
                 lista_clientes.set(i, var);
                 i++;

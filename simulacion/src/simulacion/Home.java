@@ -607,9 +607,13 @@ public class Home extends javax.swing.JFrame {
                         /* si inventario es negativo, es decir, hay faltante */
                         if(inventario_fin < 0){
                             faltante = Math.abs(inventario_fin);            //faltante
-                            /* como hay faltante, se a#ade ese cliente a la lista de espera clientes, con su tiempo aleatorio de espera*/
-                            lista_clientes.add(new double[] {Funciones.fcompare(aleatorios[ale],matriz_acum_espera) , faltante});
-                            ale++;
+                            /* MODIFICACION DE ESPERA CLIENTE, como lo tenia es sin el IF */
+                            if(Funciones.fcompare(aleatorios[ale],matriz_acum_espera) != 0){
+                                /* como hay faltante, se a#ade ese cliente a la lista de espera clientes, con su tiempo aleatorio de espera*/
+                                lista_clientes.add(new double[] {Funciones.fcompare(aleatorios[ale],matriz_acum_espera) , faltante});
+                                ale++;
+                            }
+                          
                             inventario_fin = 0;         //inventario final es igual a 0
                             inventario_promedio = (inventario_ini + inventario_fin) / 2; //inventario_promedio
                             costoInventario = costoInventario + inventario_promedio; //costo de inventario
