@@ -22,7 +22,7 @@ import simulacion.Clase_retorno;
 public class Funciones {
     //cantSE: cantidad de faltante sin espera de cliente
     //cantCE: cantidad de faltante con espera de cliente
-    public static double cantSE, cantCE;
+    public static double cantSE = 0, cantCE = 0;
 
     
     
@@ -31,8 +31,8 @@ public class Funciones {
         permite la creacion de un arreglo de numeros aleatorios
         retorna: un arreglo tipo double
     
-    */
-    public static double [] fwrite_aleatorio(int semilla){
+    *///PRIMER EJEMPLO
+ /*   public static double [] fwrite_aleatorio(int semilla){
         double[] aleatorios = new double[1200];
         Random rnd = new Random(semilla);
         
@@ -49,9 +49,27 @@ public class Funciones {
             //System.out.println(aleatorios[i]);
         }
         return aleatorios;
+}  */  //SEGUNDO EJEMPLO
+        public static double [] fwrite_aleatorio(int semilla){
+        double[] aleatorios = new double[1200];
+        Random rnd = new Random(semilla);
+        
+        aleatorios[0] = .69; aleatorios[1] = .22 ;aleatorios[2] = .37;aleatorios[3] = .64;aleatorios[4] = .75;aleatorios[5] = .06;
+        aleatorios[6] = .60;aleatorios[7] = .43;aleatorios[8] = .99;aleatorios[9] = .38;aleatorios[10] = .29;aleatorios[11] = .47; aleatorios[12] = .42;
+        aleatorios[13] = .96;aleatorios[14] = .79;aleatorios[15] = .96;aleatorios[16] = .42;aleatorios[17] = .83;aleatorios[18] = .98;
+        aleatorios[19] = .15;aleatorios[20] = .59;aleatorios[21] = .37;aleatorios[22] = .25;aleatorios[23] = .26;aleatorios[24] = .14;
+        
+        
+        DecimalFormat format =new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
+                
+        for (int i = 22; i < 1200; i++) {
+            aleatorios[i] = Double.valueOf(format.format((rnd.nextDouble() * 100)/100));
+            //System.out.println(aleatorios[i]);
+        }
+        return aleatorios;
 }   
-   /* 
-    //La perfect
+    
+   /* //La perfect
     public static double [] fwrite_aleatorio(int semilla){
         double[] aleatorios = new double[1200];
         Random rnd = new Random(semilla);
@@ -63,9 +81,9 @@ public class Funciones {
             //System.out.println(aleatorios[i]);
         }
         return aleatorios;
-    } 
+    } */
    
-    */
+    
     
     /*
         fread_aleatorios()
@@ -162,13 +180,13 @@ public class Funciones {
                 cantCE=cantCE+var[1];
                 lista_clientes.remove(i);
                 
-            }else if ((q != 0) && q < var[1]){
+            }else if ((q != 0) && (q < var[1])){
                 
                 cantSE=cantSE+(var[1]-q);
                 cantCE=cantCE+q;
                 q=0;
                 lista_clientes.remove(i);
-                //System.put.println("entro, locamente");
+                System.out.println("entro, locamente");
                 
             }  
             //incremento el indice de ubicacion de la lista
@@ -197,14 +215,14 @@ public class Funciones {
               dia, por lo que el tiempo de espera queda en 0, lo que nos lleva a remover el elemento, 
               tomando su faltante y sumando al costo por faltate sin espera del cliente (costoSE)
             */
-            if ((int)var[0] < 0){
+            if ((int)var[0] == 0){
                 cantSE=cantSE+var[1];
                 lista_clientes.remove(i);
             
            /* Si la posicion 0 del arreglo es diferente a 1, le resto -1 al tiempo de espera 
               y reemplazo el elemento de la lista por el elemento -1
            */     
-            }else if ((int)var[0] >= 0){
+            }else if ((int)var[0] > 0){
                 var[0]=var[0]-1;
                 lista_clientes.set(i, var);
                 i++;
@@ -220,6 +238,9 @@ public class Funciones {
         cantCE = 0;
     }
     
+    /*public static void setCantSE(int faltante){
+        cantSE += faltante;
+    }*/
     /*
         fcalculo_q_r (double k, double d, double h, double s)
         metodo que permite el calculo de la cantidad de articulos por pedido (q) y

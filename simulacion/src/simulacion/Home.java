@@ -650,11 +650,13 @@ public class Home extends javax.swing.JFrame {
                         if(inventario_fin < 0){
                             faltante = Math.abs(inventario_fin);            //faltante
                             /* MODIFICACION DE ESPERA CLIENTE, como lo tenia es sin el IF */
-                            if(Funciones.fcompare(aleatorios[ale],matriz_acum_espera) != 0){
+                            //if(Funciones.fcompare(aleatorios[ale],matriz_acum_espera) > 0){
                                 /* como hay faltante, se a#ade ese cliente a la lista de espera clientes, con su tiempo aleatorio de espera*/
                                 lista_clientes.add(new double[] {Funciones.fcompare(aleatorios[ale],matriz_acum_espera) , faltante});
                                 ale++;
-                            }
+                           // }else{
+                                //Funciones.setCantSE(faltante);
+                           // }
                           
                             inventario_fin = 0;         //inventario final es igual a 0
                             inventario_promedio = (inventario_ini + inventario_fin) / 2; //inventario_promedio
@@ -708,14 +710,7 @@ public class Home extends javax.swing.JFrame {
             endTime   = System.currentTimeMillis();
             mil = 1000;
             totalTime = (endTime - startTime) / mil;
-            //System.out.printf("Tiempo de Simulacion: %.5f segundos %n",totalTime);
-            /* Costos */  
-//            System.out.println("Mejor Costo = " + mejor_costo);
-//            System.out.println("Mejor invetario = " + mejor_inventario);
-//            System.out.println("Mejor orden = " + mejor_orden);
-//            System.out.println("Mejor faltante = " + mejor_faltante);          
-//            System.out.println("Mejor Q = " + mejor_q);
-//            System.out.println("Mejor R = " + mejor_r);
+
             if(evento.getSelectedObjects() == null){
                 ventana_c.visible();
             }else{
