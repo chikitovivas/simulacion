@@ -76,7 +76,7 @@ public class Funciones {
         double[] aleatorios = new double[1200];
         Random rnd = new Random(semilla);
         
-        DecimalFormat format =new DecimalFormat("#.###", new DecimalFormatSymbols(Locale.ENGLISH));
+        
                 
         for (int i = 0; i < aleatorios.length; i++) {
             aleatorios[i] = Double.valueOf((rnd.nextDouble() * 100)/100);

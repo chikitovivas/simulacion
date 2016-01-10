@@ -52,7 +52,7 @@ public class tablasimulacion extends javax.swing.JFrame {
         this.setLocation(200, 150);
         this.setSize(1200,700);
          
-        
+        DecimalFormat format =new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
         
         /* Creo una instancia de la clase Vector llamada 'columnas' */
         Vector columnas = new Vector();
@@ -144,15 +144,15 @@ public class tablasimulacion extends javax.swing.JFrame {
                             
                             fila.add(Integer.toString(i)); 
                             fila.add(Integer.toString(inventario_ini)); 
-                            fila.add(Double.toString(naleatorio_demanda));
+                            fila.add(format.format(naleatorio_demanda));
                             fila.add(Integer.toString(demanda_diaria));
                             fila.add(Integer.toString(inventario_fin));
                             fila.add(Integer.toString(inventario_promedio));
                             fila.add(Integer.toString(faltante));
                             fila.add(Integer.toString(numero_orden));
-                            fila.add(Double.toString(naleatorio_entrega));
+                            fila.add(format.format(naleatorio_entrega));
                             fila.add(Integer.toString(tiempo_entrega));
-                            fila.add(Double.toString(naleatorio_espera));
+                            fila.add(format.format(naleatorio_espera));
                             fila.add(Integer.toString(func.fcompare(naleatorio_espera,matriz_acum_espera)));
                             
                             //System.out.printf("%d\t|%d\t|%.2f\t|%d\t|%d\t|%d\t|%d\t|%d\t|%.2f\t|%d\t|%.2f\t|%d\t| %n", i,inventario_ini,array[i-1],demanda_diaria,inventario_fin,inventario_promedio,faltante,numero_orden,aleatorio_demanda,tiempo_espera,aleatorio_demanda,Funciones.fcompare(aleatorio_demanda,matriz_acum_espera));
@@ -161,7 +161,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                             
                             fila.add(Integer.toString(i)); 
                             fila.add(Integer.toString(inventario_ini)); 
-                            fila.add(Double.toString(naleatorio_demanda));
+                            fila.add(format.format(naleatorio_demanda));
                             fila.add(Integer.toString(demanda_diaria));
                             fila.add(Integer.toString(inventario_fin));
                             fila.add(Integer.toString(inventario_promedio));
@@ -169,7 +169,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                             fila.add("-");
                             fila.add("-");
                             fila.add("-");
-                            fila.add(Double.toString(naleatorio_espera));
+                            fila.add(format.format(naleatorio_espera));
                             fila.add(Integer.toString(func.fcompare(naleatorio_espera,matriz_acum_espera)));
                             
                             faltante = 0;
@@ -193,13 +193,13 @@ public class tablasimulacion extends javax.swing.JFrame {
                             
                             fila.add(Integer.toString(i)); 
                             fila.add(Integer.toString(inventario_ini)); 
-                            fila.add(Double.toString(naleatorio_demanda));
+                            fila.add(format.format(naleatorio_demanda));
                             fila.add(Integer.toString(demanda_diaria));
                             fila.add(Integer.toString(inventario_fin));
                             fila.add(Integer.toString(inventario_promedio));
                             fila.add(Integer.toString(faltante));
                             fila.add(Integer.toString(numero_orden));
-                            fila.add(Double.toString(naleatorio_entrega));
+                            fila.add(format.format(naleatorio_entrega));
                             fila.add(Integer.toString(tiempo_entrega));
                             fila.add("-");
                             fila.add("-");
@@ -210,7 +210,7 @@ public class tablasimulacion extends javax.swing.JFrame {
                             
                             fila.add(Integer.toString(i)); 
                             fila.add(Integer.toString(inventario_ini)); 
-                            fila.add(Double.toString(naleatorio_demanda));
+                            fila.add(format.format(naleatorio_demanda));
                             fila.add(Integer.toString(demanda_diaria));
                             fila.add(Integer.toString(inventario_fin));
                             fila.add(Integer.toString(inventario_promedio));
@@ -292,7 +292,6 @@ public class tablasimulacion extends javax.swing.JFrame {
             Font boldTitulo = new Font("Arial", Font.BOLD, 18);
             Font plain = new Font("Arial", Font.PLAIN, 14);
             
-            DecimalFormat format =new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
                 
              /*
                     q*          Costo Inventario        Costo Total
