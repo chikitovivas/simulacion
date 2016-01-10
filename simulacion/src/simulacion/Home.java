@@ -57,6 +57,7 @@ public class Home extends javax.swing.JFrame {
         Funciones.setSize(entrega_table);
         Funciones.setSize(espera_table);
     }
+    static Ventana_costo ventana_c = new Ventana_costo();
     
     public Home(double[][] matriz_demanda, double[][] matriz_entrega, double[][] matriz_espera,
             double costo_inventario, double costo_orden, double costo_espera, double costo_nespera, int inventario_ini, int diasimulacion) {
@@ -114,6 +115,11 @@ public class Home extends javax.swing.JFrame {
         Funciones.setSize(demanda_table);
         Funciones.setSize(entrega_table);
         Funciones.setSize(espera_table);
+        
+        
+        
+            ventana_c.Añadir_columnas();
+            
         /*Q = 100;
         R = 75;*/
     }
@@ -576,8 +582,7 @@ public class Home extends javax.swing.JFrame {
             int mejor_r = 0;
             
             long startTime = System.currentTimeMillis();
-            Ventana_costo ventana_c = new Ventana_costo();
-            ventana_c.Añadir_columnas();
+            
             /* Variacion en cantidad de articulos por orden */
             for(int q = Qminima; q <= Qmaxima ; q++){
                 /* Variacion en cantidad de puntos de reorden */
@@ -716,6 +721,7 @@ public class Home extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         this.dispose();
+        ventana_c.limpiarmodelo();
         menu.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
 
