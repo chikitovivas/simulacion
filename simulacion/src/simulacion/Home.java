@@ -131,7 +131,7 @@ public class Home extends javax.swing.JFrame {
         this.getContentPane().setBackground(azuloscuro);
 
 
-            ventana_c.Añadir_columnas();
+           
             
         /*Q = 100;
         R = 75;*/
@@ -579,7 +579,7 @@ public class Home extends javax.swing.JFrame {
 //                JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "},"Cancelar");
             
         
-        
+         ventana_c.Añadir_columnas();
         
         if(unique.getSelectedObjects() == null){
 
