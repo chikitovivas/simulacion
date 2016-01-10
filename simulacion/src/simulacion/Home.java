@@ -578,7 +578,8 @@ public class Home extends javax.swing.JFrame {
 //            JOptionPane.showOptionDialog(this, "Este es el Texto del Cuerpo", "Este es el Título", JOptionPane.ERROR_MESSAGE, 
 //                JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "},"Cancelar");
             
-        
+         ventana_c.limpiarmodelo();
+         
          ventana_c.Añadir_columnas();
         
         if(unique.getSelectedObjects() == null){
