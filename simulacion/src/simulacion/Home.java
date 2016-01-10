@@ -709,7 +709,7 @@ public class Home extends javax.swing.JFrame {
                     func.reanudar();
                 }
             }
-            ventana_c.Modelo_table();
+            ventana_c.Modelo_table(Qminima,Qmaxima,Rminima,Rmaxima);
             endTime   = System.currentTimeMillis();
             mil = 1000;
             totalTime = (endTime - startTime) / mil;
