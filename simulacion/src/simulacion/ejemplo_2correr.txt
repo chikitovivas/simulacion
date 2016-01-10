@@ -1,6 +1,6 @@
-Demanda Diaria - 25,26,27,28,29,30,31,35,33,34 - 2,4,6,12,20,24,15,10,5,2
-Tiempo de entrega - 1,2,3,4 - 5,10,30,60
-Tiempo de espera del cliente - 0,1,2,3,4 - 3,50,40,3,4
+Demanda Diaria - 25,26,27,28,29,30,31,35,33,34 - .02,.04,.06,.12,.20,.24,.15,.10,.05,.02
+Tiempo de entrega - 1,2,3,4 - .05,.10,.30,.60
+Tiempo de espera del cliente - 0,1,2,3,4 - .03,.50,.40,.03,.04
 Costo de inventario - 52
 Costo de ordenar - 100
 Costo de faltante con espera de cliente - 20
