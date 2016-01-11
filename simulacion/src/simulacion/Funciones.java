@@ -50,7 +50,7 @@ public class Funciones {
             //System.out.println(aleatorios[i]);
         }
         return aleatorios;
-} */ /*//SEGUNDO EJEMPLO
+} *//* //SEGUNDO EJEMPLO
         public static double [] fwrite_aleatorio(int semilla){
         double[] aleatorios = new double[1200];
         Random rnd = new Random(semilla);
@@ -74,9 +74,7 @@ public class Funciones {
     //La perfect
     public static double [] fwrite_aleatorio(int semilla){
         double[] aleatorios = new double[1200];
-        Random rnd = new Random(semilla);
-        
-        
+        Random rnd = new Random(semilla);             
                 
         for (int i = 0; i < aleatorios.length; i++) {
             aleatorios[i] = Double.valueOf((rnd.nextDouble() * 100)/100);
@@ -139,7 +137,7 @@ public class Funciones {
                     return (int) compare[i][0];
                 }
             }else{
-                if ((aleatorio>compare[i-1][1]) &&  (aleatorio<=compare[i][1])){
+                if ((aleatorio>=compare[i-1][1]) &&  (aleatorio<compare[i][1])){
                    // System.out.println((int)compare[i][0]);
                     return (int)compare[i][0];
                 }
