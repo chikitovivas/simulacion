@@ -398,7 +398,7 @@ public class Home extends javax.swing.JFrame {
 
         jLabel12.setText("Semilla:");
 
-        semilla.setText("0");
+        semilla.setText("100");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
