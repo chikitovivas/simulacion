@@ -83,7 +83,7 @@ public class Cod_calendario {
     /**
      * retorna las tuplas de una fecha en especifico 
      */
-    public Object[][] procesar_cita(Date fech){
+    public Object[][] procesar_cita(Date fech,int nasda){
         int max=puntos.length;        
         if(max<=0)
             return null;
@@ -137,6 +137,61 @@ public class Cod_calendario {
         
     
     
+    
+    
+    
+    
+    public Object[][] procesar_cita(Date fech){
+  
+        int max=puntos.length; 
+        
+        if(max<=0)
+            return null;
+        
+        int pos_ini; //posicion incial de la fecha requerida
+        int pos_fin=0;
+        int aaaaaja=-1;
+        for(pos_ini=0;pos_ini<max;pos_ini++){
+            
+            if(puntos[pos_ini].getDate()==fech.getDate()){
+                if(puntos[pos_ini].getMonth()==fech.getMonth()){
+                    if(puntos[pos_ini].getYear()==fech.getYear()){
+                        aaaaaja=1;
+                        break; //cortar la iteracion                    
+                    }                
+                }
+            }
+        }
+                          
+        if  (aaaaaja!=1)    // no consiguio la fecha
+            return null;
+ 
+        
+        for(pos_fin=pos_ini;pos_fin<max;pos_fin++){            
+            
+            if((puntos[pos_fin].getDate()!=fech.getDate()) || (puntos[pos_fin].getMonth()!=fech.getMonth()) || (puntos[pos_fin].getYear()!=fech.getYear())){
+                break;
+            }
+        }
+        pos_fin--;                
+        
+        
+        pos_ini=Diccionario[pos_ini];                        
+        pos_fin=Diccionario[pos_fin];   
+        
+        Object[][] aux=new Object[pos_fin-pos_ini+1][col];
+        
+        for(int i=0;i<=pos_fin-pos_ini;i++){
+            for(int j=0;j<col;j++){
+                //System.out.println("NO JODAS "+" QUE LADILLA "+(pos_ini+i));
+                    aux[i][j]=tuplas[pos_ini+i][j];                
+            }
+        }                                           
+        
+        
+        
+        return aux;
+    }
    
             
         // PRUEBA COD CALENDARIO
@@ -227,6 +282,8 @@ public class Cod_calendario {
                System.out.println(puntos[i]);
             
         }   
+
+
          
 }
 

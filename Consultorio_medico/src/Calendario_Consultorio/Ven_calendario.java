@@ -5,11 +5,14 @@
  */
 package Calendario_Consultorio;
 
+import JSON.JSON;
 import Lista_citas.Ven_registrocita_1;
 import com.toedter.calendar.JDayChooser;
 import consultorio_medico.Proyecto;
 import java.awt.Color;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.shaper.StandardButtonShaper;
@@ -173,9 +176,14 @@ public class Ven_calendario extends javax.swing.JFrame {
             }
             
         }catch(Exception ex){
-            System.err.println("No hay citas en esa fecha "+ex);             
+            
+            System.err.println("No hay citas en esa fecha "+ex);  
+            Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, null, ex);
+            
+            
+            //llamar_cabral(day, aux,null);
         }       
-               llamar_cabral(day, aux,mierda_para_cabral);
+               //llamar_cabral(day, aux,mierda_para_cabral);
         
     }
     
@@ -195,8 +203,32 @@ public class Ven_calendario extends javax.swing.JFrame {
         }
     
     
+    
+    
+    private void PROBANDO(){
+          
+      for(int i=0;i<this.logica.fil;i++){
+          for(int j=0;j<this.logica.col;j++)
+              System.out.print(this.logica.tuplas[i][j]+" ");              
+      System.out.println();
+      }
+      System.out.println();
+      System.out.println("Diccionario");
+      System.out.println();
+      for(int i=0;i<this.logica.Diccionario.length;i++)
+        System.out.println(this.logica.Diccionario[i]);
+      
+      System.out.println();
+      System.out.println("Puntos");
+      System.out.println();
+      for(int i=0;i<this.logica.puntos.length;i++)
+        System.out.println(this.logica.puntos[i]);
+      
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        pruebacalen();           
+        pruebacalen();     
+        //PROBANDO();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
