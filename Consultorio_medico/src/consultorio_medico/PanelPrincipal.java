@@ -5,11 +5,25 @@
  */
 package consultorio_medico;
 
+import Calendario_Consultorio.Panel_calendario;
+import Calendario_Consultorio.Ven_calendario;
+import JSON.Crearjsoncalendario;
+import Lista_citas.Panel_registrocita_1;
+import Lista_citas.Ven_registrocita_1;
+import Registro_cita.Panel_cita;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import verHistorial.Panel_Historial;
 
 /**
  *
@@ -20,142 +34,168 @@ public class PanelPrincipal extends javax.swing.JPanel {
     /**
      * Creates new form PanelPrincipal
      */
-    JPanel panelCalendario;
-    JPanel panelLista;
-    JPanel panelHistorial;
-    JPanel panelRegistroCita;
-    JButton botonCalen;
-    
-    JButton botonLista;
-    
-    JButton botonHist;
+    Panel_calendario panelCalendario;
+    Panel_registrocita_1 panelLista;
+    Panel_Historial panelHistorial;
+    Panel_cita panelRegistroCita;
+    int ancho, largo;
+    boolean bandera=true; // Bandera para saber si a la izquiera esta agregar un paciente o que..
+
     
     JButton botonRegis;
     
-    public PanelPrincipal() {
+    public PanelPrincipal(Dimension d) {
         initComponents();
-        botonCalen = new JButton();
-         botonLista = new JButton();
-          botonHist = new JButton();
-           botonRegis = new JButton();
-           
-     
-                   
-                   
-           
         
-              botonCalen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCalenActionPerformed(evt);
-            }
-
+       Crearjsoncalendario prueba=new Crearjsoncalendario(25620021);     
        
-        });
-                 botonLista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonListaActionPerformed(evt);
-            }
-
-           
-        });
-                    botonHist.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonHistActionPerformed(evt);
-            }
-
+                this.panelCalendario=new Panel_calendario(
+                prueba.fil,
+                prueba.col,
+                prueba.tuplas);
+        
+                 panelRegistroCita=new Panel_cita();
+                
      
-        });
-          
-             botonRegis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRegisActionPerformed(evt);
-            }
-
-          
-        });
-             
-             
-             
-           
-        panelCalendario = new JPanel();
-        panelLista = new JPanel();
-        panelHistorial = new JPanel();
-        panelRegistroCita = new JPanel();
-        //Back
-        panelCalendario.setBackground(Color.red);
-        
-        panelLista.setBackground(Color.black);
-        
-        panelHistorial.setBackground(Color.GREEN);
-        
-        panelRegistroCita.setBackground(Color.YELLOW);
-        //Posiciono este beta
-        panelCalendario.setBounds(0, 0, 400, 250);
-        panelLista.setBounds(0, 251, 400,250);
-        panelHistorial.setBounds(401, 0, 400, 500);
-       // panelRegistroCita.setBounds(402,251,400,250);    
-        
-        
-        
-        // add buton
-        panelCalendario.add(botonCalen);
-        
-        panelLista.add(botonLista);
-        
-        panelHistorial.add(botonHist);
-        
-        panelRegistroCita.add(botonRegis);
-        
-              botonCalen.setBounds(0, 0, 50, 50);
-           botonLista.setBounds(0, 0, 50, 50);
-           botonHist.setBounds(0, 0, 50, 50);
-           botonRegis.setBounds(0, 0, 50, 50);
-           
-                  botonCalen.setVisible(true);
-           botonLista.setVisible(true);
-           botonHist.setVisible(true);
-           botonRegis.setVisible(true);
-             botonCalen.setText("ok");
-        botonCalen.setDefaultCapable(false);
-          botonLista.setText("ok");
-        botonLista.setDefaultCapable(false);
-        
-          botonHist.setText("ok");
-        botonHist.setDefaultCapable(false);
-        
-          botonRegis.setText("ok");
-        botonRegis.setDefaultCapable(false);
-        
-        
-
-           
+        panelLista= new Panel_registrocita_1();
+      
+   
            panelCalendario.setVisible(true);
-                   panelLista.setVisible(true);
-                   panelHistorial.setVisible(true);
-                           panelRegistroCita.setVisible(true);
-        
+           panelLista.setVisible(true);
+           panelRegistroCita.setVisible(true);
+           
+           ancho=d.width;
+           largo=d.height;
+           
+           
+           panelCalendario.setBounds(0, 0,ancho/2, (largo/2)+10);
+          panelLista.setBounds(0, (largo/2)+11, (ancho/2), (largo/2) );
+          panelRegistroCita.setBounds((ancho/2)+1, 0, (ancho/2)-1, largo);
+                 
+        this.add(panelRegistroCita);
         this.add(panelCalendario);
         this.add(panelLista);
-        this.add(panelHistorial);
+        panelCalendario.getjButton1().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+         
+
+          
+        });
+        
+        panelLista.getList().addListSelectionListener (
+            new ListSelectionListener() {
+                @Override
+                public void valueChanged(ListSelectionEvent evt) {
+                    boolean isAdjusting = evt.getValueIsAdjusting();
+                    if (!isAdjusting)         {
+                        jList1ValueChanged(evt); }
+                }
+            }
+        );
+     //   this.add(panelHistorial);
         //this.add(panelRegistroCita);
         
     }
-     private void botonCalenActionPerformed(ActionEvent evt) {
-                 this.panelHistorial.setVisible(true);
-                 }
-     
-      private void botonListaActionPerformed(ActionEvent evt) {
-             this.panelHistorial.setVisible(false);
-                 }
-      
-             private void botonHistActionPerformed(ActionEvent evt) {
-               
-            }
-             
-               private void botonRegisActionPerformed(ActionEvent evt) {
+// funcion que hace la logica de nicolas de llamar a cabral. no se por que me la treaje para aca jaja
+         private void llamar_cabral(String day, Date aux, Object[][] mierda_para_cabral) {
+             panelLista.setVisible(false);
+                panelLista=new Panel_registrocita_1(  //Constructor que debemos utilizar
+                                                                         day,           //el dia si te pierdes puede mirar arriba cabron
+                                                                         aux.getDate(), // numero del dia
+                                                                         aux.getMonth()+1, // numero del mes
+                                                                         aux.getYear()+1900,// numero del año
+                                                                         mierda_para_cabral// tabla con las tuplas que te importan         
+                                        );
+        panelLista.setVisible(true);
+        panelLista.setBounds(0, (largo/2)+11, (ancho/2), (largo/2) );
+         panelLista.getList().addListSelectionListener (
+            new ListSelectionListener() {
+                @Override
+                public void valueChanged(ListSelectionEvent evt) {
+                    boolean isAdjusting = evt.getValueIsAdjusting();
+                    if (!isAdjusting)         {
+                        jList1ValueChanged(evt); }
                 }
-
+            }
+        );
+        this.add(panelLista);
+        
+        this.updateUI();
+        }
+ // Aqui es el listener del boton del calendario de nicolas
+         // cuando lo selecciona llamo a la parte de cabral
+  private void jButton1ActionPerformed(ActionEvent evt) {
+           Object[] ret= panelCalendario.pruebacalen();
+           String day=(String)ret[0];
+           Date aux=(Date)ret[1];
+           Object[][] mierda_para_cabral=(Object[][]) ret[2];
+           
+           llamar_cabral(day, aux,mierda_para_cabral);
+ }
     
+  
+  // Este es el listener de la lista de cabral a la hora que cambia llama a la funcion de cabral y me traigo
+  // los objetos que crea cabral como retorno en un object [2]
+  // el cual es primero es un entero y el segundo es o el panel mio(rafa) o el de pato
+  // despues que los tengo los agrego a la ventana y listo
+   private void jList1ValueChanged(ListSelectionEvent evt) {
+             Object[] retorno=panelLista.jListChange();
+             if(bandera){
+                 panelRegistroCita.setVisible(false);
+             }else{
+                 panelHistorial.setVisible(false);
+             }
+             if((int)retorno[0]==1){// 1 es pato
+                 bandera=true;
+                 panelRegistroCita=(Panel_cita)retorno[1];
+                 panelRegistroCita.setBounds((ancho/2)+1, 0, (ancho/2)-1, largo);
+                 panelRegistroCita.setVisible(true);
+                 panelRegistroCita.getBotonCrear().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonCrearActionPerformed(evt);
+            }
+
+             
+        });
+                 panelRegistroCita.getBotonLimpiar().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonLimpiarActionPerformed(evt);
+            }
+
+                    
+        });
+                 this.add(panelRegistroCita);
+             }else{ // 0 es rafa
+                 bandera=false;
+                 panelHistorial=(Panel_Historial)retorno[1];
+                 panelHistorial.setBounds((ancho/2)+1, 0, (ancho/2)-1, largo);
+                 panelHistorial.setVisible(true);
+                 this.add(panelHistorial);
+             }
+              this.updateUI();
+   }
+   
+   
+   
+    private void BotonLimpiarActionPerformed(ActionEvent evt) {
+         panelRegistroCita.limpiar();
+    }
+    
+   private void BotonCrearActionPerformed(ActionEvent evt) {
+           panelRegistroCita.crear();        
+           refrescar();
+   }
+   
+   public void refrescar(){
+        Crearjsoncalendario prueba=new Crearjsoncalendario(25620021);     
+          
+                panelCalendario.refrescarCalendario(
+                prueba.fil,
+                prueba.col,
+                prueba.tuplas);
+   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -165,15 +205,17 @@ public class PanelPrincipal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 694, Short.MAX_VALUE)
+            .addGap(0, 692, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
+            .addGap(0, 414, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
