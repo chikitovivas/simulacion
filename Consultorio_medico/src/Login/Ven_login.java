@@ -7,13 +7,9 @@ package Login;
 
 
 import consultorio_medico.MenuPrincipal;
-import consultorio_medico.Proyecto;
-import java.awt.Color;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import org.json.JSONException;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.shaper.StandardButtonShaper;
@@ -27,27 +23,40 @@ public class Ven_login extends javax.swing.JFrame {
     Cod_login log;
     public static String nickname;
     public static String password;
-    public static String url=
+    public final static String url=
                              "http://192.168.153.171:8000/";
                              //"http://169.254.105.188:8000/";
                              //"http://miconsultoriocal.no-ip.org:8000/";
+   
+    Pan_olvido polv;
     
-    public Ven_login() {
-        
-        
+    
+    public Ven_login() {                
         initComponents();     
         
-//        
-//        JFrame.setDefaultLookAndFeelDecorated(true);
-//       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
-       
-       this.jButton1.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-       this.jButton2.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-       this.jButton3.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-        
-        L_olvido.setText("<HTML><U>"+L_olvido.getText()+"</U></HTML>");      
-        this.L_warn.setVisible(false);        
+                                
     }
+    
+    public void iniciar_olvido(){
+        polv=new Pan_olvido(this.L_user.getText(),this);
+        polv.setVisible(true);
+        this.PanelLogin.setVisible(false);
+        polv.setLocation(this.PanelLogin.getLocation());
+        polv.setSize(polv.getPreferredSize());
+        this.setSize(polv.getPreferredSize().width+10, polv.getPreferredSize().height+80);
+        this.setResizable(true);
+        this.add(polv);    
+    }
+    
+    public void iniciar_login(){
+        if(polv!=null){
+            polv.setVisible(false);
+        }
+        this.PanelLogin.setVisible(true);
+        this.setPreferredSize(this.getPreferredSize());
+        
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,7 +67,7 @@ public class Ven_login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Panel = new javax.swing.JPanel();
+        PanelLogin = new javax.swing.JPanel();
         L_user = new javax.swing.JLabel();
         L_pass = new javax.swing.JLabel();
         T_nick = new javax.swing.JTextField();
@@ -115,43 +124,43 @@ public class Ven_login extends javax.swing.JFrame {
         L_warn.setForeground(new java.awt.Color(255, 0, 0));
         L_warn.setText("Error en el usuario o en la contrase;a");
 
-        javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
-        Panel.setLayout(PanelLayout);
-        PanelLayout.setHorizontalGroup(
-            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout PanelLoginLayout = new javax.swing.GroupLayout(PanelLogin);
+        PanelLogin.setLayout(PanelLoginLayout);
+        PanelLoginLayout.setHorizontalGroup(
+            PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelLoginLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(L_warn)
                     .addComponent(L_registro)
-                    .addGroup(PanelLayout.createSequentialGroup()
+                    .addGroup(PanelLoginLayout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3))
-                    .addGroup(PanelLayout.createSequentialGroup()
-                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelLoginLayout.createSequentialGroup()
+                        .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(L_pass)
                             .addComponent(L_user, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
-                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(T_nick)
                             .addComponent(T_pass, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)))
                     .addComponent(L_olvido))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
-        PanelLayout.setVerticalGroup(
-            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelLayout.createSequentialGroup()
+        PanelLoginLayout.setVerticalGroup(
+            PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelLoginLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(L_warn, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_user)
                     .addComponent(T_nick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_pass)
                     .addComponent(T_pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -159,7 +168,7 @@ public class Ven_login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(L_registro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
@@ -172,14 +181,14 @@ public class Ven_login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -274,7 +283,7 @@ public class Ven_login extends javax.swing.JFrame {
     private javax.swing.JLabel L_registro;
     private javax.swing.JLabel L_user;
     private javax.swing.JLabel L_warn;
-    private javax.swing.JPanel Panel;
+    private javax.swing.JPanel PanelLogin;
     private javax.swing.JTextField T_nick;
     private javax.swing.JTextField T_pass;
     private javax.swing.JButton jButton1;

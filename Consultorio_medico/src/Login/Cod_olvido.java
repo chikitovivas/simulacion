@@ -5,8 +5,6 @@
  */
 package Login;
 
-//import consultorio_medico.Proyecto;
-
 import JSON.JSON;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,30 +20,27 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-
 /**
  *
  * @author Nico
  */
-public class Cod_login {
-    public String username,password;   
+public class Cod_olvido {
+    String ci="",email="";
     
-    Cod_login(String nick, String pass) {        
-        username=nick;
-        password=pass;        
+    
+    Cod_olvido(String ci, String email) {
+        this.ci=ci;
+        this.email=email;
     }
-    
-     
-    
-    public Boolean comprobar_user() throws IOException, JSONException {
-        String[] titulo_datos={"ci","pass"};
-        String[] datos={this.username,this.password};
+
+    Boolean comprobar_correo() throws IOException, ClientProtocolException, JSONException {
+        String[] titulo_datos={"ci","email"};
+        String[] datos={this.ci,this.email};
         int numDatos=2;
         
         String url=  Ven_login.url;
         
-        url=url+"iniciarsesion/"+this.username;
+        url=url+"comprobarcorreo/"+ci;
         
         HttpResponse response=JSON_agregar(titulo_datos, datos, numDatos, url);
         switch(response.toString()){
@@ -60,7 +55,12 @@ public class Cod_login {
     
     
     
-    public HttpResponse JSON_agregar(String[] titulo_datos, String[] datos,int numDatos, String url) throws ClientProtocolException, IOException, JSONException{
+    
+    
+    
+    
+    
+     public HttpResponse JSON_agregar(String[] titulo_datos, String[] datos,int numDatos, String url) throws ClientProtocolException, IOException, JSONException{
               
         HttpClient client = new DefaultHttpClient(); // cliente
 
@@ -107,7 +107,6 @@ public class Cod_login {
         
             return response;
     }
-    
     
     
     
