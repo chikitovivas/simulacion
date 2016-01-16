@@ -55,7 +55,15 @@ public class Cod_login {
         String url="http://miconsultoriocal.no-ip.org:8000/iniciarsesion/";
         
         url=url+this.username;
-        JSON.JSON_agregar(titulo_datos, datos, numDatos, url);
+        
+        HttpResponse response=JSON_agregar(titulo_datos, datos, numDatos, url);
+        switch(response.toString()){
+            case "true": return true;
+            case "True": return true;
+            case "false": return false;
+            case "False": return false;
+    
+        }
         
         //this.Peticion_inicio(this.username);
         
@@ -66,7 +74,7 @@ public class Cod_login {
     
     
     
-    public static HttpResponse JSON_agregar(String[] titulo_datos, String[] datos,int numDatos, String url) throws ClientProtocolException, IOException, JSONException{
+    public HttpResponse JSON_agregar(String[] titulo_datos, String[] datos,int numDatos, String url) throws ClientProtocolException, IOException, JSONException{
               
         HttpClient client = new DefaultHttpClient(); // cliente
 
