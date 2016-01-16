@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.json.JSONException;
 import Registro_cita.Cod_registrocita;
-import consultorio_medico.Menu;
 import javax.swing.JFrame;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.shaper.StandardButtonShaper;

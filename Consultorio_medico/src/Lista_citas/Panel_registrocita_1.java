@@ -6,6 +6,7 @@
 package Lista_citas;
 import JSON.JSON;
 import Registro_cita.Fondo_Formulariopaciente;
+import Registro_cita.Panel_cita;
 import Registro_cita.Ven_registrocita;
 import consultorio_medico.Proyecto;
 import java.awt.BorderLayout;
@@ -15,9 +16,11 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import verHistorial.Panel_Historial;
 import verHistorial.Ven_VerHistorial;
 /**
  *
@@ -159,9 +162,10 @@ public class Panel_registrocita_1 extends javax.swing.JPanel {
         JLtitulo1 = new javax.swing.JLabel();
         JLtitulo = new javax.swing.JLabel();
         JLtitulo2 = new javax.swing.JLabel();
-        BotonCrear = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
+
+        setPreferredSize(new java.awt.Dimension(589, 350));
 
         JLtitulo1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         JLtitulo1.setText(fecha_mostrar);
@@ -171,13 +175,6 @@ public class Panel_registrocita_1 extends javax.swing.JPanel {
 
         JLtitulo2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         JLtitulo2.setText("Personas");
-
-        BotonCrear.setText("Crear");
-        BotonCrear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonCrearActionPerformed(evt);
-            }
-        });
 
         jList1.setBackground(new java.awt.Color(0, 204, 204));
         jList1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 102)));
@@ -203,23 +200,21 @@ public class Panel_registrocita_1 extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(BotonCrear))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JLtitulo1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JLtitulo)
+                                .addGap(52, 52, 52)
+                                .addComponent(JLtitulo2)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(JLtitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JLtitulo2)
-                .addGap(154, 154, 154))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(243, 243, 243)
-                .addComponent(JLtitulo1)
-                .addContainerGap(225, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,50 +223,60 @@ public class Panel_registrocita_1 extends javax.swing.JPanel {
                 .addComponent(JLtitulo1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLtitulo2)
-                    .addComponent(JLtitulo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotonCrear))
+                    .addComponent(JLtitulo)
+                    .addComponent(JLtitulo2))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BotonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCrearActionPerformed
 
-    }//GEN-LAST:event_BotonCrearActionPerformed
-
-
-
-        private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
-        //set text on right here
+    public Object[] jListChange(){
+         //set text on right here
         String liststring = (String) jList1.getSelectedValue();
          char[] s = new char[5+esp.length()];
         liststring.getChars(esp.length(), 5, s, 0);
         String hora_min=new String(s);
         dhour=  Integer.valueOf(hora_min.substring(0, 2));
+      Object retorno[];
+      retorno = new Object[2];
         
         fecha_pato= String.valueOf(dyear)+"-"+String.valueOf(dmouth)+"-"+String.valueOf(dday)+" "+hora_min+":00";
-        
+        System.out.println("hola1");
         if ((esp.length()+7)<=liststring.length()){
-                   Ven_VerHistorial rafa = new Ven_VerHistorial (ocus_magnus, dhour, cass, dday, dmouth, dyear);
-                   rafa.setVisible(true);
-                   this.setVisible(false);
-                   System.out.println(hora_min);    //System.out.println(dhour);
+                   Panel_Historial rafa = new Panel_Historial (ocus_magnus, dhour, cass, dday, dmouth, dyear);
+                   int aux=0;
+                   System.out.println("hola2");
+                   retorno[0]=aux;
+                   retorno[1]=rafa;
+                   return retorno;
+                  
                    
         }  else {  //System.out.print("penemalditoansias");
                    //Ven_registrocita pato = new Ven_registrocita(ocus_magnus, cass, dday, dmouth, dyear, fecha_pato);
-                    Ven_registrocita pato = new Ven_registrocita(fecha_pato);
-                  pato.setVisible(true);
-                  this.setVisible(false);
+                    Panel_cita pato = new Panel_cita(fecha_pato);
+                    System.out.println("hola3");
+                   int aux=1;
+                   retorno[0]=aux;
+                   retorno[1]=pato;
+                   return retorno;
                   // Proyecto.Switch.cambiar_vent(pato);
                    //System.out.println(fecha_pato);   //fecha_pato
            }
     }
     
+
+        private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
+           // aqui se puede hacer otra cosa si cambia la lista
+           System.out.println("jLsit");
+    }
+    
+        public JList getList(){
+            return jList1;
+        }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonCrear;
     private javax.swing.JLabel JLtitulo;
     private javax.swing.JLabel JLtitulo1;
     private javax.swing.JLabel JLtitulo2;

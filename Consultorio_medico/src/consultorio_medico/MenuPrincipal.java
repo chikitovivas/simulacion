@@ -5,21 +5,28 @@
  */
 package consultorio_medico;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Frame;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Rafael
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-
+    Dimension dim;
     PanelPrincipal panelPrin;
     /**
      * Creates new form PruebaDePanel
      */
     public MenuPrincipal() {
        
-      
-         initComponents();
          
+         initComponents();
+         jPanel1.setBackground(Color.red);
+         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+       
          
     }
 
@@ -38,9 +45,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 640));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
 
@@ -60,30 +70,45 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(298, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(JBcalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56))
-                    .addComponent(JLtitulo))
-                .addGap(275, 275, 275))
+                        .addGap(280, 280, 280)
+                        .addComponent(JLtitulo))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(322, 322, 322)
+                        .addComponent(JBcalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(293, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(205, 205, 205)
+                .addGap(163, 163, 163)
                 .addComponent(JLtitulo)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JBcalendario)
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addContainerGap(361, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("File");
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(386, 40));
+
+        jMenu1.setText("Calendario");
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Historial");
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Consulta");
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Encuestas");
+        jMenuBar1.add(jMenu4);
+
+        jMenu5.setText("Configuracion");
+        jMenuBar1.add(jMenu5);
+
+        jMenu6.setText("Acerca de..");
+        jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
 
@@ -91,15 +116,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 400, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
         );
 
         pack();
@@ -107,9 +128,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void JBcalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcalendarioActionPerformed
         jPanel1.setVisible(false);
-        panelPrin = new PanelPrincipal();
+        dim=jPanel1.getSize();
+        panelPrin = new PanelPrincipal(dim);
+        panelPrin.setSize(dim);
+        panelPrin.setBackground(Color.blue);
         panelPrin.setVisible(true);
-        panelPrin.setBounds(0, 40,800 ,600);
         this.add(panelPrin);
      
     }//GEN-LAST:event_JBcalendarioActionPerformed
@@ -141,6 +164,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -155,6 +180,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel JLtitulo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

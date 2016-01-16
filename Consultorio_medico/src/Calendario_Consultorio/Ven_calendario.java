@@ -18,7 +18,7 @@ import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.shaper.StandardButtonShaper;
 
 
-
+// No usar esta.
 /**
  *
  * @author Nico
@@ -183,7 +183,7 @@ public class Ven_calendario extends javax.swing.JFrame {
             
             //llamar_cabral(day, aux,null);
         }       
-               //llamar_cabral(day, aux,mierda_para_cabral);
+               llamar_cabral(day, aux,mierda_para_cabral);
         
     }
     
