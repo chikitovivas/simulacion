@@ -148,6 +148,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="L_olvidoMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="L_olvidoMousePressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">

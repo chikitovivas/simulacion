@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONException;
-import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.shaper.StandardButtonShaper;
 
 /**
  *
@@ -38,7 +36,7 @@ public class Ven_login extends javax.swing.JFrame {
     }
     
     public void iniciar_olvido(){
-        polv=new Pan_olvido(this.L_user.getText(),this);
+        polv=new Pan_olvido(this.T_nick.getText(),this);
         polv.setVisible(true);
         this.PanelLogin.setVisible(false);
         polv.setLocation(this.PanelLogin.getLocation());
@@ -103,6 +101,9 @@ public class Ven_login extends javax.swing.JFrame {
         L_olvido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 L_olvidoMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                L_olvidoMousePressed(evt);
             }
         });
 
@@ -203,8 +204,12 @@ public class Ven_login extends javax.swing.JFrame {
        
         try {
             Boolean connect;
-            connect = this.log.comprobar_user();
-                   
+            
+
+            //POR AHORA            
+           // connect = this.log.comprobar_user(); //DESCOMENTAR                        
+            connect=true; //QUITAR CUANDO EL SERVIDOR COMPRUEBE USUARIOS
+            
            if (connect==true){
                MenuPrincipal men=new MenuPrincipal(nick);
                men.setVisible(true);
@@ -214,12 +219,9 @@ public class Ven_login extends javax.swing.JFrame {
                this.L_warn.setVisible(true);
            }
            
-        } catch (IOException ex) {
-            Logger.getLogger(Ven_login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JSONException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(Ven_login.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -228,12 +230,16 @@ public class Ven_login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void L_olvidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_olvidoMouseClicked
-        
+        this.iniciar_olvido();
     }//GEN-LAST:event_L_olvidoMouseClicked
 
     private void L_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_registroMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_L_registroMouseClicked
+
+    private void L_olvidoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_olvidoMousePressed
+        this.iniciar_olvido();
+    }//GEN-LAST:event_L_olvidoMousePressed
 
     /**
      * @param args the command line arguments
