@@ -31,7 +31,7 @@ public class Ven_login extends javax.swing.JFrame {
     
     public Ven_login() {                
         initComponents();     
-        
+        this.L_warn.setVisible(false);
                                 
     }
     
@@ -52,8 +52,16 @@ public class Ven_login extends javax.swing.JFrame {
         }
         this.PanelLogin.setVisible(true);
         this.setPreferredSize(this.getPreferredSize());
+        this.borrar_campos();
         
     }
+    
+    private void borrar_campos(){
+        this.L_warn.setVisible(false);
+        this.T_nick.setText("");
+        this.T_pass.setText("");    
+    }
+    
     
 
     /**
