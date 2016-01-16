@@ -13,16 +13,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,20 +35,15 @@ public class Cod_login {
         username=nick;
         password=pass;        
     }
-
-    Cod_login() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
-    
-    
+     
     
     public Boolean comprobar_user() throws IOException, JSONException {
         String[] titulo_datos={"ci","pass"};
         String[] datos={this.username,this.password};
         int numDatos=2;
-        //String url="http://169.254.105.188:8000/iniciarsesion/";
-        String url="http://miconsultoriocal.no-ip.org:8000/iniciarsesion/";
+        
+        String url=  Ven_login.url;
         
         url=url+this.username;
         
@@ -61,13 +52,8 @@ public class Cod_login {
             case "true": return true;
             case "True": return true;
             case "false": return false;
-            case "False": return false;
-    
+            case "False": return false;    
         }
-        
-        //this.Peticion_inicio(this.username);
-        
-        
         
         return false;
     }
@@ -116,6 +102,7 @@ public class Cod_login {
                 
             } catch (Exception ex) {
                 Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
             }
         
             return response;
