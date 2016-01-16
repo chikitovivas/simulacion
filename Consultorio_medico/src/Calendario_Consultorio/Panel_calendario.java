@@ -159,12 +159,15 @@ public class Panel_calendario extends javax.swing.JPanel {
             Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, null, ex);
             
             
-            //llamar_cabral(day, aux,null);
+            retorno[0]=day;
+            retorno[1]=aux;
+            retorno[2]=null;
+            return retorno;
         }       
             retorno[0]=day;
             retorno[1]=aux;
             retorno[2]=mierda_para_cabral;
-             //  llamar_cabral(day, aux,mierda_para_cabral);
+             
         return retorno;
     }
     

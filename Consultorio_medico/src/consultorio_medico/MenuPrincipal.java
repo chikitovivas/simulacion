@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 public class MenuPrincipal extends javax.swing.JFrame {
     Dimension dim;
     PanelPrincipal panelPrin;
+    static public String ci="";
     /**
      * Creates new form PruebaDePanel
      */
@@ -28,6 +29,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
          this.setExtendedState(JFrame.MAXIMIZED_BOTH);
        
          
+    }
+
+    public MenuPrincipal(String nick) {
+         this.ci=nick;
+         initComponents();
+         jPanel1.setBackground(Color.red);
+         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+       
     }
 
     /**
