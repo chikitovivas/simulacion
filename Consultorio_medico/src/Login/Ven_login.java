@@ -199,6 +199,7 @@ public class Ven_login extends javax.swing.JFrame {
            if (connect==true){
                MenuPrincipal men=new MenuPrincipal(nick);
                men.setVisible(true);
+               this.setVisible(false);
            }
            else{
                this.L_warn.setVisible(true);
@@ -218,7 +219,7 @@ public class Ven_login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void L_olvidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_olvidoMouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_L_olvidoMouseClicked
 
     private void L_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_registroMouseClicked
