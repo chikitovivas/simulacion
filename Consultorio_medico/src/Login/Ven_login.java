@@ -81,7 +81,7 @@ public class Ven_login extends javax.swing.JFrame {
 
         L_user.setText("CI:");
 
-        L_pass.setText("Contrase;a:");
+        L_pass.setText("Contraseña:");
 
         T_nick.setText("25620021");
 
@@ -123,7 +123,7 @@ public class Ven_login extends javax.swing.JFrame {
         });
 
         L_warn.setForeground(new java.awt.Color(255, 0, 0));
-        L_warn.setText("Error en el usuario o en la contrase;a");
+        L_warn.setText("Error en el usuario o en la contraseña");
 
         javax.swing.GroupLayout PanelLoginLayout = new javax.swing.GroupLayout(PanelLogin);
         PanelLogin.setLayout(PanelLoginLayout);
