@@ -181,9 +181,9 @@ public class Ven_calendario extends javax.swing.JFrame {
             Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, null, ex);
             
             
-            //llamar_cabral(day, aux,null);
+            llamar_cabral(day, aux,null);
         }       
-               //llamar_cabral(day, aux,mierda_para_cabral);
+               llamar_cabral(day, aux,mierda_para_cabral);
         
     }
     
