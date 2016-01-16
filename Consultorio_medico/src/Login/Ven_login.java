@@ -6,9 +6,15 @@
 package Login;
 
 
+import consultorio_medico.MenuPrincipal;
 import consultorio_medico.Proyecto;
+import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import org.json.JSONException;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.shaper.StandardButtonShaper;
 
@@ -19,8 +25,13 @@ import org.jvnet.substance.shaper.StandardButtonShaper;
 public class Ven_login extends javax.swing.JFrame {
 
     Cod_login log;
+    public static String nickname;
+    public static String password;
+    public static int ci;
+    
     public Ven_login() {
-        this.log = new Cod_login();
+        
+        
         initComponents();     
         
 //        
@@ -31,7 +42,9 @@ public class Ven_login extends javax.swing.JFrame {
        this.jButton2.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
        this.jButton3.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
         
-        L_olvido.setText("<HTML><U>"+L_olvido.getText()+"</U></HTML>");                 
+        L_olvido.setText("<HTML><U>"+L_olvido.getText()+"</U></HTML>");      
+        this.L_warn.setVisible(false);
+        this.log = new Cod_login();//INNECESARIO
     }
 
     /**
@@ -52,18 +65,20 @@ public class Ven_login extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         L_olvido = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        L_registro = new javax.swing.JLabel();
+        L_warn = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        L_user.setText("Nickname:");
+        L_user.setText("CI:");
 
-        L_pass.setText("Password:");
+        L_pass.setText("Contrase;a:");
 
-        T_nick.setText("nico");
+        T_nick.setText("25620021");
 
-        T_pass.setText("nico");
+        T_pass.setText("123456789");
 
-        jButton1.setText("Ok");
+        jButton1.setText("Iniciar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -75,8 +90,8 @@ public class Ven_login extends javax.swing.JFrame {
         L_olvido.setForeground(new java.awt.Color(0, 0, 255));
         L_olvido.setText("Se le olvido su password?");
         L_olvido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                L_olvidoMouseEntered(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                L_olvidoMouseClicked(evt);
             }
         });
 
@@ -87,6 +102,17 @@ public class Ven_login extends javax.swing.JFrame {
             }
         });
 
+        L_registro.setForeground(new java.awt.Color(0, 0, 255));
+        L_registro.setText("Registrarse");
+        L_registro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                L_registroMouseClicked(evt);
+            }
+        });
+
+        L_warn.setForeground(new java.awt.Color(255, 0, 0));
+        L_warn.setText("Error en el usuario o en la contrase;a");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -94,38 +120,43 @@ public class Ven_login extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(L_warn)
+                    .addComponent(L_registro)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3))
-                    .addComponent(L_olvido)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(L_user)
-                            .addGap(18, 18, 18)
-                            .addComponent(T_nick))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(L_pass)
-                            .addGap(18, 18, 18)
-                            .addComponent(T_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(79, Short.MAX_VALUE))
+                            .addComponent(L_user, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(T_nick)
+                            .addComponent(T_pass, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)))
+                    .addComponent(L_olvido))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(62, 62, 62)
+                .addComponent(L_warn, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_user)
                     .addComponent(T_nick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_pass)
                     .addComponent(T_pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(L_olvido)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(L_registro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -153,19 +184,44 @@ public class Ven_login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void L_olvidoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_olvidoMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_L_olvidoMouseEntered
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //Proyecto.con.iniciar_user(T_nick.getText(), T_pass.getText());
-        
+       String nick=T_nick.getText();
+       String pass=T_pass.getText();
+       this.log=new Cod_login(nick,pass);
+       
+       
+        try {
+            Boolean connect;
+            connect = this.log.comprobar_user();
+                   
+           if (connect==true){
+               MenuPrincipal men=new MenuPrincipal(nick);
+               men.setVisible(true);
+           }
+           else{
+               this.L_warn.setVisible(true);
+           }
+           
+        } catch (IOException ex) {
+            Logger.getLogger(Ven_login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException ex) {
+            Logger.getLogger(Ven_login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        T_nick.setText("");
        T_pass.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void L_olvidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_olvidoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_L_olvidoMouseClicked
+
+    private void L_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_registroMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_L_registroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -212,7 +268,9 @@ public class Ven_login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel L_olvido;
     private javax.swing.JLabel L_pass;
+    private javax.swing.JLabel L_registro;
     private javax.swing.JLabel L_user;
+    private javax.swing.JLabel L_warn;
     private javax.swing.JTextField T_nick;
     private javax.swing.JTextField T_pass;
     private javax.swing.JButton jButton1;
