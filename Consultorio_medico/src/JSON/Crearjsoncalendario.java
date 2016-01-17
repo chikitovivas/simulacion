@@ -81,9 +81,9 @@ public class Crearjsoncalendario {
     return aux;
     }
     
-    
-    private JSONArray ordenar_json(JSONArray aux) throws JSONException{
-        JSONArray keys=aux;
+    /*
+    private JSONArray ordenar_json() throws JSONException{
+        JSONArray keys=null;
                     //System.out.println("primer keys");
                     //System.out.println(keys);
         Object jaux=keys.get(0);// guardo fecha nac
@@ -99,6 +99,28 @@ public class Crearjsoncalendario {
         
                     //System.out.println("segundo keys");
                     //System.out.println(keys);
+        
+        return keys;
+    }
+    */
+    
+    
+    private JSONArray ordenar_json(JSONArray aux) throws JSONException{
+        JSONArray keys=aux;
+            for(int i=0;i<aux.length();i++){
+                switch (aux.getString(i)){
+                    case "fechahora": keys.put(0, aux.get(i)); break;
+                    case "ciPaciente": keys.put(1, aux.get(i)); break;
+                    case "nombrePaciente": keys.put(2, aux.get(i)); break;
+                    case "apellidoPaciente": keys.put(3, aux.get(i)); break;
+                    case "numero": keys.put(4, aux.get(i)); break;
+                    case "correo": keys.put(5, aux.get(i)); break;
+                    case "fecha_nac": keys.put(6, aux.get(i)); break;
+                    default : break;
+                }
+            
+            }
+        
         
         return keys;
     }

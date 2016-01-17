@@ -6,11 +6,11 @@
 package Login;
 
 
-import consultorio_medico.Proyecto;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.shaper.StandardButtonShaper;
+import consultorio_medico.MenuPrincipal;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONException;
 
 /**
  *
@@ -19,20 +19,50 @@ import org.jvnet.substance.shaper.StandardButtonShaper;
 public class Ven_login extends javax.swing.JFrame {
 
     Cod_login log;
-    public Ven_login() {
-        this.log = new Cod_login();
+    public static String nickname;
+    public static String password;
+    public final static String url=
+                             "http://192.168.153.171:8000/";
+                             //"http://169.254.105.188:8000/";
+                             //"http://miconsultoriocal.no-ip.org:8000/";
+   
+    Pan_olvido polv;
+    
+    
+    public Ven_login() {                
         initComponents();     
-        
-//        
-//        JFrame.setDefaultLookAndFeelDecorated(true);
-//       SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
-       
-       this.jButton1.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-       this.jButton2.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-       this.jButton3.putClientProperty(SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-        
-        L_olvido.setText("<HTML><U>"+L_olvido.getText()+"</U></HTML>");                 
+        this.L_warn.setVisible(false);
+                                
     }
+    
+    public void iniciar_olvido(){
+        polv=new Pan_olvido(this.T_nick.getText(),this);
+        polv.setVisible(true);
+        this.PanelLogin.setVisible(false);
+        polv.setLocation(this.PanelLogin.getLocation());
+        polv.setSize(polv.getPreferredSize());
+        this.setSize(polv.getPreferredSize().width+10, polv.getPreferredSize().height+80);
+        this.setResizable(true);
+        this.add(polv);    
+    }
+    
+    public void iniciar_login(){
+        if(polv!=null){
+            polv.setVisible(false);
+        }
+        this.PanelLogin.setVisible(true);
+        this.setPreferredSize(this.getPreferredSize());
+        this.borrar_campos();
+        
+    }
+    
+    private void borrar_campos(){
+        this.L_warn.setVisible(false);
+        this.T_nick.setText("");
+        this.T_pass.setText("");    
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +73,7 @@ public class Ven_login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        PanelLogin = new javax.swing.JPanel();
         L_user = new javax.swing.JLabel();
         L_pass = new javax.swing.JLabel();
         T_nick = new javax.swing.JTextField();
@@ -52,18 +82,20 @@ public class Ven_login extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         L_olvido = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        L_registro = new javax.swing.JLabel();
+        L_warn = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        L_user.setText("Nickname:");
+        L_user.setText("CI:");
 
-        L_pass.setText("Password:");
+        L_pass.setText("Contraseña:");
 
-        T_nick.setText("nico");
+        T_nick.setText("25620021");
 
-        T_pass.setText("nico");
+        T_pass.setText("123456789");
 
-        jButton1.setText("Ok");
+        jButton1.setText("Iniciar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -75,8 +107,11 @@ public class Ven_login extends javax.swing.JFrame {
         L_olvido.setForeground(new java.awt.Color(0, 0, 255));
         L_olvido.setText("Se le olvido su password?");
         L_olvido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                L_olvidoMouseEntered(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                L_olvidoMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                L_olvidoMousePressed(evt);
             }
         });
 
@@ -87,46 +122,62 @@ public class Ven_login extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        L_registro.setForeground(new java.awt.Color(0, 0, 255));
+        L_registro.setText("Registrarse");
+        L_registro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                L_registroMouseClicked(evt);
+            }
+        });
+
+        L_warn.setForeground(new java.awt.Color(255, 0, 0));
+        L_warn.setText("Error en el usuario o en la contraseña");
+
+        javax.swing.GroupLayout PanelLoginLayout = new javax.swing.GroupLayout(PanelLogin);
+        PanelLogin.setLayout(PanelLoginLayout);
+        PanelLoginLayout.setHorizontalGroup(
+            PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelLoginLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(L_warn)
+                    .addComponent(L_registro)
+                    .addGroup(PanelLoginLayout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3))
-                    .addComponent(L_olvido)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(L_user)
-                            .addGap(18, 18, 18)
-                            .addComponent(T_nick))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(PanelLoginLayout.createSequentialGroup()
+                        .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(L_pass)
-                            .addGap(18, 18, 18)
-                            .addComponent(T_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(79, Short.MAX_VALUE))
+                            .addComponent(L_user, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(T_nick)
+                            .addComponent(T_pass, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)))
+                    .addComponent(L_olvido))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        PanelLoginLayout.setVerticalGroup(
+            PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelLoginLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(L_warn, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_user)
                     .addComponent(T_nick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_pass)
                     .addComponent(T_pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(L_olvido)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(L_registro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
@@ -139,33 +190,64 @@ public class Ven_login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void L_olvidoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_olvidoMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_L_olvidoMouseEntered
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //Proyecto.con.iniciar_user(T_nick.getText(), T_pass.getText());
-        
+       String nick=T_nick.getText();
+       String pass=T_pass.getText();
+       this.log=new Cod_login(nick,pass);
+       
+       
+        try {
+            Boolean connect;
+            
+
+            //POR AHORA            
+           // connect = this.log.comprobar_user(); //DESCOMENTAR                        
+            connect=true; //QUITAR CUANDO EL SERVIDOR COMPRUEBE USUARIOS
+            
+           if (connect==true){
+               MenuPrincipal men=new MenuPrincipal(nick);
+               men.setVisible(true);
+               this.setVisible(false);
+           }
+           else{
+               this.L_warn.setVisible(true);
+           }
+           
+        } catch (Exception ex) {
+            Logger.getLogger(Ven_login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        T_nick.setText("");
        T_pass.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void L_olvidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_olvidoMouseClicked
+        this.iniciar_olvido();
+    }//GEN-LAST:event_L_olvidoMouseClicked
+
+    private void L_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_registroMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_L_registroMouseClicked
+
+    private void L_olvidoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_olvidoMousePressed
+        this.iniciar_olvido();
+    }//GEN-LAST:event_L_olvidoMousePressed
 
     /**
      * @param args the command line arguments
@@ -212,12 +294,14 @@ public class Ven_login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel L_olvido;
     private javax.swing.JLabel L_pass;
+    private javax.swing.JLabel L_registro;
     private javax.swing.JLabel L_user;
+    private javax.swing.JLabel L_warn;
+    private javax.swing.JPanel PanelLogin;
     private javax.swing.JTextField T_nick;
     private javax.swing.JTextField T_pass;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

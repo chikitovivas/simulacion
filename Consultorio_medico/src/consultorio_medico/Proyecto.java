@@ -14,7 +14,7 @@ import org.jvnet.substance.SubstanceLookAndFeel;
  * @author Nico
  */
 public class Proyecto {
-    public static Ven_switch Switch;
+    public static MenuPrincipal principal;
     
    
     
@@ -28,11 +28,9 @@ public class Proyecto {
                 JFrame.setDefaultLookAndFeelDecorated(true);
 
             SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.EmeraldDuskSkin");
-            Switch= new Ven_switch(" UCAB   -   Consultotio Médico");
-            Switch.setVisible(true);
-            Menu men=new Menu();
-            Switch.cambiar_vent(men);
-               
+            principal= new MenuPrincipal();
+            principal.setVisible(true);
+          
             }
         });
         
