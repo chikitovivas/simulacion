@@ -5,7 +5,11 @@
  */
 package verHistorial;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,45 +31,85 @@ public class Panel_Historial extends javax.swing.JPanel {
     
     public Panel_Historial(){
              initComponents();
-              jTextField1.setText("");
-         jTextField2.setText("");
-         jTextField3.setText("");
-         jTextField4.setText("");
+              jTci.setText("");
+         jTnombre.setText("");
+         jTemail.setText("");
+         jTtelefono.setText("");
     }
     
+    
+//public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int moth, int year) {
+//        
+//     this.arreglo_datos=arreglo_datos;  
+//     this.sday=sday;
+//     this.day=day;
+//     this.moth=moth; 
+//     this.year=year;
+//    
+//    
+//        initComponents();
+//        String y=Integer.toString(i); //En otra versiones hay que poner horas minutos y segundos
+//        
+//        for(int j=0;j<arreglo_datos.length;j++){
+//            if(  Integer.valueOf(i).equals(Integer.valueOf((((Date)arreglo_datos[j][0]).getHours())))  ){
+//
+//                 jTci.setText(arreglo_datos[j][1].toString());
+//                 jTnombre.setText(arreglo_datos[j][2].toString()+" "+ arreglo_datos[j][3].toString());
+//                 jTemail.setText(arreglo_datos[j][5].toString());
+//                 jTtelefono.setText(arreglo_datos[j][4].toString());
+//
+//            }
+//        }
+//         jTci.setEditable(false);
+//         jTnombre.setEditable(false);
+//         jTemail.setEditable(false);
+//         jTtelefono.setEditable(false);
+//    }
+
 public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int moth, int year) {
         
-      
      this.arreglo_datos=arreglo_datos;  
      this.sday=sday;
      this.day=day;
      this.moth=moth; 
      this.year=year;
-    
-    
+     
         initComponents();
         String y=Integer.toString(i); //En otra versiones hay que poner horas minutos y segundos
+        DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("Fecha");
+            modelo.addColumn("Descripción");
+        List fila = new ArrayList();
         
-        
+//        for(int i=0;i<;i++){
+//            fila.add(fecha_historial);
+//            fila.add(descripcion_historial);
+//            modelo.addRow(fila);
+//            fila.clear();
+//        }
+//        
+//      
+//        JTable tabla = new JTable(modelo){
+//        public boolean isCellEditable(int row, int columnn) {
+//            return false;
+//        }};//return false: Desabilitar edición de celdas.
+//        
+//        this.jScrollPane1.setViewportView(tabla);
         
         for(int j=0;j<arreglo_datos.length;j++){
-       
-        
-       if(  Integer.valueOf(i).equals(Integer.valueOf((((Date)arreglo_datos[j][0]).getHours())))  ){
-               
-         jTextField1.setText(arreglo_datos[j][1].toString());
-         jTextField2.setText(arreglo_datos[j][2].toString()+" "+ arreglo_datos[j][3].toString());
-         jTextField3.setText(arreglo_datos[j][5].toString());
-         jTextField4.setText(arreglo_datos[j][4].toString());
-       
-            }
-        }
-        
-    
-         jTextField1.setEditable(false);
-         jTextField2.setEditable(false);
-         jTextField3.setEditable(false);
-         jTextField4.setEditable(false);
+            if(  Integer.valueOf(i).equals(Integer.valueOf((((Date)arreglo_datos[j][0]).getHours())))  ){
+
+                 jTci.setText(arreglo_datos[j][1].toString());
+                 jTnombre.setText(arreglo_datos[j][2].toString()+" "+ arreglo_datos[j][3].toString());
+                 jTemail.setText(arreglo_datos[j][5].toString());
+                 jTtelefono.setText(arreglo_datos[j][4].toString());
+
+            }//fin del if
+        }//fin del for
+         jTci.setEditable(false);
+         jTnombre.setEditable(false);
+         jTemail.setEditable(false);
+         jTtelefono.setEditable(false);
     }
 
     /**
@@ -88,10 +132,10 @@ public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int
         jList1 = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jTci = new javax.swing.JTextField();
+        jTnombre = new javax.swing.JTextField();
+        jTemail = new javax.swing.JTextField();
+        jTtelefono = new javax.swing.JTextField();
 
         JLtitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         JLtitulo.setText("Datos Paciente");
@@ -109,13 +153,13 @@ public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int
 
         jScrollPane1.setViewportView(jList1);
 
-        jTextField1.setText("jTextField1");
+        jTci.setText("jTextField1");
 
-        jTextField2.setText("jTextField2");
+        jTnombre.setText("jTextField2");
 
-        jTextField3.setText("jTextField3");
+        jTemail.setText("jTextField3");
 
-        jTextField4.setText("jTextField4");
+        jTtelefono.setText("jTextField4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -138,22 +182,22 @@ public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(JLci)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTci, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(JLnombre)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(85, 85, 85)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(JLemail)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTemail, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JLtelefono)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -165,17 +209,17 @@ public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JLnombre)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JLtelefono)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JLci))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JLemail))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,9 +244,9 @@ public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTci;
+    private javax.swing.JTextField jTemail;
+    private javax.swing.JTextField jTnombre;
+    private javax.swing.JTextField jTtelefono;
     // End of variables declaration//GEN-END:variables
 }
