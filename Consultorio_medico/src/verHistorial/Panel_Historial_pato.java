@@ -5,31 +5,35 @@
  */
 package verHistorial;
 
+import JSON.JSON;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 /**
  *
  * @author Rafael
  */
-public class Panel_Historial extends javax.swing.JPanel {
+public class Panel_Historial_pato extends javax.swing.JPanel {
    Object[][] arreglo_datos;
     String sday;
     int day;
     int moth; 
     int year;
     Date fechahoraG;
-    
+    JSON json;
+    JSONArray arreglo=null;
     /**
      * Creates new form Ven_VerHistorial
      * @param arreglo_datos
      */
     
     
-    public Panel_Historial(){
+    public Panel_Historial_pato(){
              initComponents();
               jTci.setText("");
          jTnombre.setText("");
@@ -37,51 +41,64 @@ public class Panel_Historial extends javax.swing.JPanel {
          jTtelefono.setText("");
     }
     
-    
-public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int moth, int year) {
-        
-     this.arreglo_datos=arreglo_datos;  
-     this.sday=sday;
-     this.day=day;
-     this.moth=moth; 
-     this.year=year;
-    
-    
-        initComponents();
-        String y=Integer.toString(i); //En otra versiones hay que poner horas minutos y segundos
-        
-        for(int j=0;j<arreglo_datos.length;j++){
-            if(  Integer.valueOf(i).equals(Integer.valueOf((((Date)arreglo_datos[j][0]).getHours())))  ){
-
-                 jTci.setText(arreglo_datos[j][1].toString());
-                 jTnombre.setText(arreglo_datos[j][2].toString()+" "+ arreglo_datos[j][3].toString());
-                 jTemail.setText(arreglo_datos[j][5].toString());
-                 jTtelefono.setText(arreglo_datos[j][4].toString());
-
-            }
-        }
-         jTci.setEditable(false);
-         jTnombre.setEditable(false);
-         jTemail.setEditable(false);
-         jTtelefono.setEditable(false);
-    }
-
-//public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int moth, int year) {
+//    
+//public Panel_Historial_pato(Object[][] arreglo_datos, int i,String sday, int day, int moth, int year) {
 //        
 //     this.arreglo_datos=arreglo_datos;  
 //     this.sday=sday;
 //     this.day=day;
 //     this.moth=moth; 
 //     this.year=year;
-//     
+//    
+//    
 //        initComponents();
 //        String y=Integer.toString(i); //En otra versiones hay que poner horas minutos y segundos
-//       
-//        DefaultTableModel modelo = new DefaultTableModel();
-//            modelo.addColumn("Fecha");
-//            modelo.addColumn("Descripción");
-//        List fila = new ArrayList();
 //        
+//        for(int j=0;j<arreglo_datos.length;j++){
+//            if(  Integer.valueOf(i).equals(Integer.valueOf((((Date)arreglo_datos[j][0]).getHours())))  ){
+//
+//                 jTci.setText(arreglo_datos[j][1].toString());
+//                 jTnombre.setText(arreglo_datos[j][2].toString()+" "+ arreglo_datos[j][3].toString());
+//                 jTemail.setText(arreglo_datos[j][5].toString());
+//                 jTtelefono.setText(arreglo_datos[j][4].toString());
+//
+//            }
+//        }
+//         jTci.setEditable(false);
+//         jTnombre.setEditable(false);
+//         jTemail.setEditable(false);
+//         jTtelefono.setEditable(false);
+//    }
+
+public Panel_Historial_pato(String cedula) throws JSONException {
+        
+    json= new JSON();
+   
+     //arreglo=   json.JSON_view("cedula","consulta/");
+     
+    
+    for(int k=0;k<arreglo.length();k++){ // Aqui agarras todos los porque, diagnostico y tratamiento de cada consulta que haya 
+                                         // ido el paciente de la cedula
+        arreglo.getJSONObject(k).get("medico");
+        arreglo.getJSONObject(k).get("porque");
+        arreglo.getJSONObject(k).get("diagnostico");
+        arreglo.getJSONObject(k).get("tratamiento");
+    }
+    
+     this.arreglo_datos=arreglo_datos;  
+     this.sday=sday;
+     this.day=day;
+     this.moth=moth; 
+     this.year=year;
+     
+        initComponents();
+       // String y=Integer.toString(i); //En otra versiones hay que poner horas minutos y segundos
+       
+        DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("Fecha");
+            modelo.addColumn("Descripción");
+        List fila = new ArrayList();
+        
 //        for(int i=0;i<;i++){
 //            fila.add(fecha_historial);
 //            fila.add(descripcion_historial);
@@ -89,14 +106,14 @@ public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int
 //            fila.clear();
 //        }
 //        
-//      
-//        JTable tabla = new JTable(modelo){
-//        public boolean isCellEditable(int row, int columnn) {
-//            return false;
-//        }};//return false: Desabilitar edición de celdas.
-//        
-//        this.jPanel.add(tabla);
-//        
+      
+        JTable tabla = new JTable(modelo){
+        public boolean isCellEditable(int row, int columnn) {
+            return false;
+        }};//return false: Desabilitar edición de celdas.
+        
+        this.jPanel.add(tabla);
+        
 //        for(int j=0;j<arreglo_datos.length;j++){
 //            if(  Integer.valueOf(i).equals(Integer.valueOf((((Date)arreglo_datos[j][0]).getHours())))  ){
 //
@@ -107,11 +124,11 @@ public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int
 //
 //            }//fin del if
 //        }//fin del for
-//         jTci.setEditable(false);
-//         jTnombre.setEditable(false);
-//         jTemail.setEditable(false);
-//         jTtelefono.setEditable(false);
-//    }
+         jTci.setEditable(false);
+         jTnombre.setEditable(false);
+         jTemail.setEditable(false);
+         jTtelefono.setEditable(false);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
