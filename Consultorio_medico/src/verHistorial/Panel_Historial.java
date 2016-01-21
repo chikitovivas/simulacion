@@ -76,11 +76,12 @@ public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int
      
         initComponents();
         String y=Integer.toString(i); //En otra versiones hay que poner horas minutos y segundos
-        DefaultTableModel modelo = new DefaultTableModel();
-            modelo.addColumn("Fecha");
-            modelo.addColumn("Descripción");
-        List fila = new ArrayList();
-        
+       
+//        DefaultTableModel modelo = new DefaultTableModel();
+//            modelo.addColumn("Fecha");
+//            modelo.addColumn("Descripción");
+//        List fila = new ArrayList();
+//        
 //        for(int i=0;i<;i++){
 //            fila.add(fecha_historial);
 //            fila.add(descripcion_historial);
@@ -94,7 +95,7 @@ public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int
 //            return false;
 //        }};//return false: Desabilitar edición de celdas.
 //        
-//        this.jScrollPane1.setViewportView(tabla);
+//        this.jPanel.add(tabla);
         
         for(int j=0;j<arreglo_datos.length;j++){
             if(  Integer.valueOf(i).equals(Integer.valueOf((((Date)arreglo_datos[j][0]).getHours())))  ){
@@ -128,14 +129,13 @@ public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int
         JLemail = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         JLtitulo1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jTci = new javax.swing.JTextField();
         jTnombre = new javax.swing.JTextField();
         jTemail = new javax.swing.JTextField();
         jTtelefono = new javax.swing.JTextField();
+        jPanel = new javax.swing.JPanel();
 
         JLtitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         JLtitulo.setText("Datos Paciente");
@@ -151,8 +151,6 @@ public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int
         JLtitulo1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         JLtitulo1.setText("Historial");
 
-        jScrollPane1.setViewportView(jList1);
-
         jTci.setText("jTextField1");
 
         jTnombre.setText("jTextField2");
@@ -161,12 +159,22 @@ public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int
 
         jTtelefono.setText("jTextField4");
 
+        javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
+        jPanel.setLayout(jPanelLayout);
+        jPanelLayout.setHorizontalGroup(
+            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanelLayout.setVerticalGroup(
+            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 336, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,6 +207,7 @@ public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(76, Short.MAX_VALUE))
+            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,8 +235,7 @@ public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JLtitulo1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -240,8 +248,7 @@ public Panel_Historial(Object[][] arreglo_datos, int i,String sday, int day, int
     private javax.swing.JLabel JLtitulo;
     private javax.swing.JLabel JLtitulo1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTci;
