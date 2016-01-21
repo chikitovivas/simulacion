@@ -7,6 +7,7 @@ package Login;
 
 
 import consultorio_medico.MenuPrincipal;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,8 +18,10 @@ import org.json.JSONException;
  * @author Nico
  */
 public class Ven_login extends javax.swing.JFrame {
-
+    
+   
     Cod_login log;
+    private  Dimension dim;
     public static String nickname;
     public static String password;
     public final static String url=
@@ -32,7 +35,7 @@ public class Ven_login extends javax.swing.JFrame {
     public Ven_login() {                
         initComponents();     
         this.L_warn.setVisible(false);
-                                
+           dim=this.preferredSize();
     }
     
     public void iniciar_olvido(){
@@ -51,8 +54,8 @@ public class Ven_login extends javax.swing.JFrame {
             polv.setVisible(false);
         }
         this.PanelLogin.setVisible(true);
-        this.setPreferredSize(this.getPreferredSize());
-        this.borrar_campos();
+        this.setPreferredSize(this.dim);
+        this.borrar_campos();        
         
     }
     
