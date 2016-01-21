@@ -6,6 +6,7 @@
 package Login;
 
 import JSON.JSON;
+import JSON.LoginJSON;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -41,8 +42,9 @@ public class Cod_olvido {
         String url=  Ven_login.url;
         
         url=url+"comprobarcorreo/"+ci;
+        LoginJSON ljson=new LoginJSON();
         
-        HttpResponse response=JSON_agregar(titulo_datos, datos, numDatos, url);
+        HttpResponse response=ljson.JSON_agregar(titulo_datos, datos, numDatos, url);
         switch(response.toString()){
             case "true": return true;
             case "True": return true;
@@ -51,63 +53,6 @@ public class Cod_olvido {
         }
         
         return false;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-     public HttpResponse JSON_agregar(String[] titulo_datos, String[] datos,int numDatos, String url) throws ClientProtocolException, IOException, JSONException{
-              
-        HttpClient client = new DefaultHttpClient(); // cliente
-
-        //HttpPost post = new HttpPost("http://169.254.105.188:8000/"+url);// aqui ponen el url que necesiten lo unico que tiene que cambiar es el /notes ponen el que quieran por ejemplo /crearusuario
-        
-        HttpPost post= new HttpPost(url); //con el servidor remoto
-
-        JSONObject json = new JSONObject(); // crean el objeto json
-        JSONObject json2 = new JSONObject(); 
-        HttpResponse response=null;
-        // ponen el nombre del campo en la bd con lo que quieren que lleve
-                    
-            try {
-                for ( int i=0; i<numDatos; i++) {
-                    json.put(titulo_datos[i],datos[i]);
-                }
-                
-                
-                System.out.println(json); // imprimo a ver si esta bien
-                StringEntity se = new StringEntity( json.toString()); //convierte el json en este tipo para poder pasarlo
-                 se.setContentType("application/json;charset=UTF-8"); // especificamos que es un json
-                 post.setHeader("Accept", "application/json");              // acceptamos el json    
-                post.setEntity(se); // lo agregamos al post
-                response = client.execute(post); // hacemos la peticion
-
-                System.out.println(response.toString()); // imprimo la respuesta
-
-                // de aqui para abajo sirve para ver errores, 
-                // por ejemplo s hay algun error con el servidor esto te manda la pagina de respuesta del servidor 
-                // y te la escribe en la consola
-                // pero en texto al final se puede ver el tipo de error y eso..
-                BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent())); 
-                String line = "";
-                while ((line = rd.readLine()) != null) {
-                 System.out.println(line);
-                }
-                                
-                
-                
-            } catch (Exception ex) {
-                Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, null, ex);
-                return null;
-            }
-        
-            return response;
-    }
-    
-    
-    
+    }                      
+            
 }

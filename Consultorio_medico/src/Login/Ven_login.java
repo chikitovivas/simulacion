@@ -26,8 +26,8 @@ public class Ven_login extends javax.swing.JFrame {
                              //"http://169.254.105.188:8000/";
                              //"http://miconsultoriocal.no-ip.org:8000/";
    
-    Pan_olvido polv;
-    
+    Pan_olvido polv=null;
+    Pan_registro preg=null;
     
     public Ven_login() {                
         initComponents();     
@@ -54,6 +54,17 @@ public class Ven_login extends javax.swing.JFrame {
         this.setPreferredSize(this.getPreferredSize());
         this.borrar_campos();
         
+    }
+    
+    public void iniciar_registro() {
+        preg=new Pan_registro(this);
+        preg.setVisible(true);
+        this.PanelLogin.setVisible(false);
+        preg.setLocation(this.PanelLogin.getLocation());
+        preg.setSize(preg.getPreferredSize());
+        this.setSize(preg.getPreferredSize().width+10, preg.getPreferredSize().height+80);
+        this.setResizable(true);
+        this.add(preg);  
     }
     
     private void borrar_campos(){
@@ -127,6 +138,9 @@ public class Ven_login extends javax.swing.JFrame {
         L_registro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 L_registroMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                L_registroMousePressed(evt);
             }
         });
 
@@ -242,12 +256,16 @@ public class Ven_login extends javax.swing.JFrame {
     }//GEN-LAST:event_L_olvidoMouseClicked
 
     private void L_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_registroMouseClicked
-        // TODO add your handling code here:
+        this.iniciar_registro();
     }//GEN-LAST:event_L_registroMouseClicked
 
     private void L_olvidoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_olvidoMousePressed
         this.iniciar_olvido();
     }//GEN-LAST:event_L_olvidoMousePressed
+
+    private void L_registroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_registroMousePressed
+        this.iniciar_registro();
+    }//GEN-LAST:event_L_registroMousePressed
 
     /**
      * @param args the command line arguments
@@ -304,4 +322,6 @@ public class Ven_login extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
+
+    
 }

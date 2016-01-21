@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Login;
+package JSON;
 
-import JSON.JSON;
-import JSON.LoginJSON;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.http.HttpResponse;
@@ -23,44 +23,7 @@ import org.json.JSONObject;
  *
  * @author Nico
  */
-class Cod_registro {
-    String ci,nom,ape,dir,tlf,tlf2,mail,mail2;
-    String hini,hfin;
-
-    public Cod_registro(String ci, String nom, String ape, String dir, String tlf, String tlf2, String mail, String mail2,String hini,String hfin) {
-        this.ci = ci;
-        this.nom = nom;
-        this.ape = ape;
-        this.dir = dir;
-        this.tlf = tlf;
-        this.tlf2 = tlf2;
-        this.mail = mail;
-        this.mail2 = mail2;
-        this.hini=hini;
-        this.hfin=hfin;
-    }
-
-   public void enviar_registro() {
-        try {
-            String[] titulo_datos={"ci","nombre","apellido","direccion",
-                                    "telefono","telefono2","email","email2",
-                                    "horaini","horafin"};
-            String[] datos={this.ci,this.nom,this.ape,this.dir,
-                            this.tlf,this.tlf2,this.mail,this.mail2,
-                            this.hini,this.hfin};
-            int numDatos=datos.length;     
-            
-            String url=Ven_login.url+"registro_usuario";
-             LoginJSON ljson=new LoginJSON();
-             
-            ljson.JSON_agregar(titulo_datos, datos, numDatos, url);
-            
-        } catch (IOException ex) {
-            Logger.getLogger(Cod_registro.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JSONException ex) {
-            Logger.getLogger(Cod_registro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+public class LoginJSON {
     
     
     
@@ -68,7 +31,7 @@ class Cod_registro {
     
     
     
-    private void JSON_agregar(String[] titulo_datos, String[] datos,int numDatos, String url) throws ClientProtocolException, IOException, JSONException{
+    public HttpResponse JSON_agregar(String[] titulo_datos, String[] datos,int numDatos, String url) throws ClientProtocolException, IOException, JSONException{
               
         HttpClient client = new DefaultHttpClient(); // cliente
 
@@ -76,8 +39,7 @@ class Cod_registro {
         
         HttpPost post= new HttpPost(url); //con el servidor remoto
 
-        JSONObject json = new JSONObject(); // crean el objeto json
-        JSONObject json2 = new JSONObject(); 
+        JSONObject json = new JSONObject(); // crean el objeto json        
         HttpResponse response=null;
         // ponen el nombre del campo en la bd con lo que quieren que lleve
                     
@@ -100,22 +62,25 @@ class Cod_registro {
                 // por ejemplo s hay algun error con el servidor esto te manda la pagina de respuesta del servidor 
                 // y te la escribe en la consola
                 // pero en texto al final se puede ver el tipo de error y eso..
-                
-                /*
                 BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent())); 
                 String line = "";
                 while ((line = rd.readLine()) != null) {
                  System.out.println(line);
                 }
-                  */              
+                                
                 
                 
             } catch (Exception ex) {
-                Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, null, ex);               
+                Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
             }
         
-            
+            return response;
     }
+    
+    
+    
+    
     
     
     

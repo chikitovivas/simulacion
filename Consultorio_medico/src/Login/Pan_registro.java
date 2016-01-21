@@ -14,6 +14,7 @@ import javax.swing.JCheckBox;
 public class Pan_registro extends javax.swing.JPanel {
 
     Cod_registro reg;
+    Ven_login log;
     JCheckBox[] horario;
     String cedula,nom,ape,tlf,tlf2,email,email2,dir;
     String horasini,horasfin;
@@ -23,9 +24,10 @@ public class Pan_registro extends javax.swing.JPanel {
         this.set_globales();
     }
 
-    public Pan_registro(Object ventana) {
+    public Pan_registro(Ven_login ventana) {
         initComponents();        
         this.set_globales();
+        log=ventana;
     }
        
     private void get_variables(){

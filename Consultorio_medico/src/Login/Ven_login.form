@@ -168,6 +168,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="L_registroMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="L_registroMousePressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="L_warn">
