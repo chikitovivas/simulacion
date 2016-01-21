@@ -5,6 +5,7 @@
  */
 package Login;
 
+import JSON.JSON;
 import javax.swing.JCheckBox;
 
 /**
@@ -366,7 +367,7 @@ public class Pan_registro extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarActionPerformed
-        this.set_variables();
+        this.set_variables();       
     }//GEN-LAST:event_BorrarActionPerformed
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed

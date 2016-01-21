@@ -4,7 +4,6 @@ import Login.Ven_login;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.http.HttpEntity;
@@ -126,7 +125,6 @@ public class JSON {
     public static JSONArray JSON_view_general (int ci,String url){
         JSONArray json=null;
         HttpClient client = new DefaultHttpClient();
-              
         HttpGet get = new HttpGet(Ven_login.url+url);
         
         try {
@@ -139,7 +137,8 @@ public class JSON {
              System.out.println(content);
              json = new JSONArray(content);
              
-             System.out.println(json);
+             //System.out.println(json);
+            
                                                             
         } catch (IOException | JSONException ex) {
             Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, null, ex);
@@ -150,6 +149,27 @@ public class JSON {
 
   
     
+    public static JSONArray ordenar_json(JSONArray json, String[] titulo_datos){
+        if (json==null)
+            return null;
+        if(titulo_datos==null)
+            return null;
+        JSONArray aux=null;
+        try {
+            aux=json;
+            for(int i=0;i<json.length();i++){   
+                for(int j=0;j<titulo_datos.length;j++){
+                    aux.getJSONObject(i).put(titulo_datos[j], json.getJSONObject(i));
+                }
+            }
+            
+        } catch (JSONException ex) {
+            Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return aux;
+    }
+
     
 
     
