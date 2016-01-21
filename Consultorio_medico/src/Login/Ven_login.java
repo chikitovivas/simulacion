@@ -21,7 +21,6 @@ public class Ven_login extends javax.swing.JFrame {
     
    
     Cod_login log;
-    private  Dimension dim;
     public static String nickname;
     public static String password;
     public final static String url=
@@ -34,8 +33,7 @@ public class Ven_login extends javax.swing.JFrame {
     
     public Ven_login() {                
         initComponents();     
-        this.L_warn.setVisible(false);
-           dim=this.preferredSize();
+        this.L_warn.setVisible(false);           
     }
     
     public void iniciar_olvido(){
@@ -53,8 +51,11 @@ public class Ven_login extends javax.swing.JFrame {
         if(polv!=null){
             polv.setVisible(false);
         }
-        this.PanelLogin.setVisible(true);
-        this.setPreferredSize(this.dim);
+        if(preg!=null){
+            preg.setVisible(false);
+        }
+        this.PanelLogin.setVisible(true);        
+        this.setSize(this.getPreferredSize());
         this.borrar_campos();        
         
     }
