@@ -231,9 +231,9 @@ public class Ven_login extends javax.swing.JFrame {
         try {
             Boolean connect;
             
-
+              
             //POR AHORA            
-           // connect = this.log.comprobar_user(); //DESCOMENTAR                        
+            //connect = this.log.comprobar_user(); //DESCOMENTAR                        
             connect=true; //QUITAR CUANDO EL SERVIDOR COMPRUEBE USUARIOS
             
            if (connect==true){
@@ -247,6 +247,8 @@ public class Ven_login extends javax.swing.JFrame {
            
         } catch (Exception ex) {
             Logger.getLogger(Ven_login.class.getName()).log(Level.SEVERE, null, ex);
+            Ven_error err=new Ven_error();
+            err.setVisible(true);                   
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

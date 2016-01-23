@@ -145,14 +145,25 @@ public class Panel_calendario extends javax.swing.JPanel {
       
  
             
-
+/* //IMPRIMIR LAS CITAS QUE MANDA A CABRAL
             for(int i=0;i<mierda_para_cabral.length;i++){  //imprimir fechas que le paso a cabral            
                 for(int j=0;j<mierda_para_cabral[0].length;j++){
-                    System.out.print(mierda_para_cabral[i][j]+" ");
+                   System.out.print(mierda_para_cabral[i][j]+" ");
+                    
                 }
             System.out.println();
             }
-            
+  */          
+   /*        // IMPRIMIR TODAS LAS CITAS EN EL CALENDARIO
+            for(int i=0;i<logica.tuplas.length;i++){  //imprimir fechas que le paso a cabral            
+                for(int j=0;j<logica.tuplas[0].length;j++){
+                   System.out.print(logica.tuplas[i][j]);
+                    
+                }
+            System.out.println();
+            }
+    */        
+  
         }catch(Exception ex){
             
             System.err.println("No hay citas en esa fecha "+ex);  

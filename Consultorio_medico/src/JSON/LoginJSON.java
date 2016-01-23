@@ -42,8 +42,7 @@ public class LoginJSON {
         JSONObject json = new JSONObject(); // crean el objeto json        
         HttpResponse response=null;
         // ponen el nombre del campo en la bd con lo que quieren que lleve
-                    
-            try {
+                      
                 for ( int i=0; i<numDatos; i++) {
                     json.put(titulo_datos[i],datos[i]);
                 }
@@ -69,11 +68,7 @@ public class LoginJSON {
                 }
                                 
                 
-                
-            } catch (Exception ex) {
-                Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, null, ex);
-                return null;
-            }
+
         
             return response;
     }
