@@ -10,6 +10,7 @@ package Login;
 import JSON.LoginJSON;
 import java.io.IOException;
 import org.apache.http.HttpResponse;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 
 
@@ -28,7 +29,7 @@ public class Cod_login {
     
      
     
-    public Boolean comprobar_user() throws IOException, JSONException {
+    public int comprobar_user() throws IOException, JSONException {
         String[] titulo_datos={"ci","password"};
         String[] datos={this.username,this.password};
         int numDatos=2;
@@ -37,21 +38,28 @@ public class Cod_login {
         
         //url=url+"login/"+this.username;
         
-        url=url+"login/";
+       // url="http://miconsultoriocal.no-ip.org:8000/"; //mientras tanto
         
+        url=url+"login/";
+        System.out.println(url);
         LoginJSON ljson=new LoginJSON();
         
         HttpResponse response=ljson.JSON_agregar(titulo_datos, datos, numDatos, url);
+        String content=ljson.JSON_respuesta(response);
         
-        System.out.println(response.toString());
         
-        switch(response.toString()){
-            case "secretaria": return true;
-            case "medico": return true;
-            case "no": return false;            
+        
+        System.out.println(content);
+        
+        
+        switch(content){
+            case "{\"mensaje\":\"secretaria\"}": return 1;
+            case "{\"mensaje\":\"medico\"}": return 0;
+            case "{\"mensaje\":\"no\"}": return 2;  
+            
         }
         
-        return false;
+        return 3;
     }
     
     

@@ -24,16 +24,16 @@ public class Ven_login extends javax.swing.JFrame {
     public static String nickname;
     public static String password;
     public final static String url=
-                             "http://192.168.153.171:8000/";
+                             //"http://192.168.153.171:8000/";
                              //"http://169.254.105.188:8000/";
-                             //"http://miconsultoriocal.no-ip.org:8000/";
+                             "http://miconsultoriocal.no-ip.org:8000/";
    
     Pan_olvido polv=null;
     Pan_registro preg=null;
     
     public Ven_login() {                
         initComponents();     
-        this.L_warn.setVisible(false);           
+        this.L_warn.setVisible(false); 
     }
     
     public void iniciar_olvido(){
@@ -77,7 +77,13 @@ public class Ven_login extends javax.swing.JFrame {
         this.T_pass.setText("");    
     }
     
+    private void Iniciar_menu_medico(String nick){
+               MenuPrincipal men=new MenuPrincipal(nick);
+               men.setVisible(true);
+               this.setVisible(false);
     
+    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -229,22 +235,21 @@ public class Ven_login extends javax.swing.JFrame {
        
        
         try {
-            Boolean connect;
+            int connect;
             
               
             //POR AHORA            
             connect = this.log.comprobar_user(); //DESCOMENTAR                        
             //connect=true; //QUITAR CUANDO EL SERVIDOR COMPRUEBE USUARIOS
             
-           if (connect==true){
-               MenuPrincipal men=new MenuPrincipal(nick);
-               men.setVisible(true);
-               this.setVisible(false);
-           }
-           else{
-               this.L_warn.setVisible(true);
-           }
-           
+            
+            switch(connect){
+                case 0: this.Iniciar_menu_medico(nick);break; //0 PARA MEDICOS
+                case 1: this.Iniciar_menu_medico(nick);break;
+                default: this.L_warn.setVisible(true);
+            
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(Ven_login.class.getName()).log(Level.SEVERE, null, ex);
             Ven_error err=new Ven_error();

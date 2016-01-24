@@ -16,6 +16,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -55,7 +56,7 @@ public class LoginJSON {
                 post.setEntity(se); // lo agregamos al post
                 response = client.execute(post); // hacemos la peticion
 
-                System.out.println(response.toString()); // imprimo la respuesta
+                //System.out.println(response.toString()); // imprimo la respuesta
 
                 // de aqui para abajo sirve para ver errores, 
                 // por ejemplo s hay algun error con el servidor esto te manda la pagina de respuesta del servidor 
@@ -63,19 +64,28 @@ public class LoginJSON {
                 // pero en texto al final se puede ver el tipo de error y eso..
                 BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent())); 
                 String line = "";
+                
+                /*
                 while ((line = rd.readLine()) != null) {
                  System.out.println(line);
                 }
-                                
+                   */           
                 
 
         
             return response;
     }
+
+    public String JSON_respuesta(HttpResponse response) throws IOException {
+        //String content = EntityUtils.toString(response.getEntity());
+        
+        
+        return EntityUtils.toString(response.getEntity());
+    }
     
     
     
-    
+  
     
     
     
