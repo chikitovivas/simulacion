@@ -80,31 +80,7 @@ public class Crearjsoncalendario {
         
     return aux;
     }
-    
-    /*
-    private JSONArray ordenar_json() throws JSONException{
-        JSONArray keys=null;
-                    //System.out.println("primer keys");
-                    //System.out.println(keys);
-        Object jaux=keys.get(0);// guardo fecha nac
-        keys.put(0, keys.get(4));// muevo fecha hora       
-        keys.put(4, keys.get(6));// //muevo numero
-        keys.put(6, jaux);// muevo fecha nac del aux        
-        jaux=keys.get(1); //guardo nombre paciente                
-        keys.put(1, keys.get(2)); //muevo cedula
-        keys.put(2, jaux);//muevo nombre paciente del aux
-        jaux=keys.get(5);//guardo apellido
-        keys.put(5, keys.get(3)); //muevo correo
-        keys.put(3, jaux);// muevo apellido paciente del aux
-        
-                    //System.out.println("segundo keys");
-                    //System.out.println(keys);
-        
-        return keys;
-    }
-    */
-    
-    
+       
     private JSONArray ordenar_json(JSONArray aux) throws JSONException{
         JSONArray keys=aux;
             for(int i=0;i<aux.length();i++){

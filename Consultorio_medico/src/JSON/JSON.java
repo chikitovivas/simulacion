@@ -1,5 +1,6 @@
 package JSON;
 
+import Login.Ven_login;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,13 +8,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import static org.apache.http.HttpVersion.HTTP;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicHeader;
 import org.json.JSONException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
@@ -119,4 +118,64 @@ public class JSON {
       
       
     }
+
+ 
+       
+    
+    public static JSONArray JSON_view_general (int ci,String url){
+        JSONArray json=null;
+        HttpClient client = new DefaultHttpClient();
+        HttpGet get = new HttpGet(Ven_login.url+url);
+        
+        try {
+            HttpResponse response = client.execute(get);
+            HttpEntity entity= response.getEntity();
+            String content = EntityUtils.toString(entity);
+
+            System.out.println(response.toString());
+
+             System.out.println(content);
+             json = new JSONArray(content);
+             
+             //System.out.println(json);
+            
+                                                            
+        } catch (IOException | JSONException ex) {
+            Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return json;
+    }
+
+  
+    
+    public static JSONArray ordenar_json(JSONArray json, String[] titulo_datos){
+        if (json==null)
+            return null;
+        if(titulo_datos==null)
+            return null;
+        JSONArray aux=null;
+        try {
+            aux=json;
+            for(int i=0;i<json.length();i++){   
+                for(int j=0;j<titulo_datos.length;j++){
+                    aux.getJSONObject(i).put(titulo_datos[j], json.getJSONObject(i));
+                }
+            }
+            
+        } catch (JSONException ex) {
+            Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return aux;
+    }
+
+    
+
+    
+
+
+
+
+
 }

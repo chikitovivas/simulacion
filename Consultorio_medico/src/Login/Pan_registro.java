@@ -5,6 +5,7 @@
  */
 package Login;
 
+import JSON.JSON;
 import javax.swing.JCheckBox;
 
 /**
@@ -16,8 +17,9 @@ public class Pan_registro extends javax.swing.JPanel {
     Cod_registro reg;
     Ven_login log;
     JCheckBox[] horario;
-    String cedula,nom,ape,tlf,tlf2,email,email2,dir;
+    String cedula,nom,ape,email,pass,tipo;
     String horasini,horasfin;
+    
     
     public Pan_registro() {
         initComponents();        
@@ -34,11 +36,10 @@ public class Pan_registro extends javax.swing.JPanel {
         this.cedula=this.ci.getText();
         this.nom=this.nombre.getText();
         this.ape=this.apellido.getText();
-        this.dir=this.direccion.getText();
-        this.tlf=this.telf.getText();
-        this.tlf2=this.telf2.getText();
+        this.pass=this.password.getText();
+        this.tipo=this.checkradio();
         this.email=this.mail.getText()+"@"+this.cmail.getSelectedItem().toString();
-        this.email2=this.mail2.getText()+"@"+this.cmail2.getSelectedItem().toString();            
+       
         this.horasini=this.hini.getSelectedItem().toString();
         this.horasfin=this.hfin.getSelectedItem().toString();
     
@@ -48,11 +49,12 @@ public class Pan_registro extends javax.swing.JPanel {
         this.cedula="";
         this.nom="";
         this.ape="";
-        this.dir="";
-        this.tlf="";
-        this.tlf2="";
+        this.pass="";
+ 
         this.email="";
-        this.email2="";
+        
+        this.tipo="";
+        
         this.horasini="";
         this.horasfin="";
     }
@@ -60,18 +62,34 @@ public class Pan_registro extends javax.swing.JPanel {
         this.ci.setText("");
         this.nombre.setText("");
         this.apellido.setText("");
-        this.direccion.setText("");
-        this.telf.setText("");
-        this.telf2.setText("");
+        this.password.setText("");
+
         this.mail.setText("");
-        this.mail2.setText("");
+
         this.cmail.setSelectedIndex(0);
-        this.cmail2.setSelectedIndex(0);
+        
+        this.buttonGroup1.clearSelection();
         
         set_globales();
     }
     
- 
+
+    private boolean check_radio(){
+        if(this.Rasistente.isSelected()==true)
+            return true;
+        if(this.Rmedico.isSelected()==true)
+            return true;
+        return false;
+    }
+    
+    private String checkradio() {
+        if(this.Rasistente.isSelected()==true)
+            return "asistente";
+        if(this.Rmedico.isSelected()==true)
+            return "medico";
+        
+        return "";
+    } 
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -80,30 +98,22 @@ public class Pan_registro extends javax.swing.JPanel {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         mail = new javax.swing.JTextField();
-        telf = new javax.swing.JTextField();
-        telf2 = new javax.swing.JTextField();
         apellido = new javax.swing.JTextField();
-        direccion = new javax.swing.JTextField();
+        password = new javax.swing.JTextField();
         nombre = new javax.swing.JTextField();
-        mail2 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         ci = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        Rmedico = new javax.swing.JRadioButton();
+        Rasistente = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         cmail = new javax.swing.JComboBox();
-        cmail2 = new javax.swing.JComboBox();
         Guardar = new javax.swing.JButton();
         Borrar = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
@@ -116,17 +126,11 @@ public class Pan_registro extends javax.swing.JPanel {
 
         mail.setText("Tehagocaballito");
 
-        telf.setText("04121234567");
-
-        telf2.setText("04147654321");
-
         apellido.setText("Jackson");
 
-        direccion.setText("Petare");
+        password.setText("Petare");
 
         nombre.setText("Jaimito");
-
-        mail2.setText("nosemeocurrenada");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setText("Registro de usuarios");
@@ -138,11 +142,7 @@ public class Pan_registro extends javax.swing.JPanel {
 
         jLabel1.setText("CI");
 
-        jLabel8.setText("Email 2");
-
-        jLabel5.setText("Telefono");
-
-        jLabel4.setText("Direccion");
+        jLabel4.setText("Password");
 
         jLabel3.setText("Apellido");
 
@@ -150,24 +150,18 @@ public class Pan_registro extends javax.swing.JPanel {
 
         jLabel7.setText("Email");
 
-        jLabel6.setText("Telefono 2");
+        buttonGroup1.add(Rmedico);
+        Rmedico.setText("Medico");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Medico");
-
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Asistente");
+        buttonGroup1.add(Rasistente);
+        Rasistente.setText("Asistente");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("Datos personales");
 
         jLabel9.setText("@");
 
-        jLabel13.setText("@");
-
         cmail.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "gmail.com", "yahoo.com", "hotmail.com" }));
-
-        cmail2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "gmail.com", "yahoo.com", "hotmail.com" }));
 
         Guardar.setText("Guardar");
         Guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -214,50 +208,35 @@ public class Pan_registro extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel10)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jRadioButton2)
+                                .addComponent(Rasistente)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jRadioButton1)))
+                                .addComponent(Rmedico)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Borrar)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(31, 31, 31)
+                                .addComponent(mail))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel4))
+                                    .addGap(31, 31, 31)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(password, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(apellido, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(nombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ci, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)))
+                                .addComponent(jLabel11)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
-                                .addGap(23, 23, 23)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(mail2)
-                                    .addComponent(mail, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(telf2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(telf, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(direccion, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(apellido, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ci)))
-                            .addComponent(jLabel11))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,7 +251,12 @@ public class Pan_registro extends javax.swing.JPanel {
                                         .addComponent(Guardar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButton1)))
-                                .addGap(20, 20, 20))))))
+                                .addGap(20, 20, 20))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(139, Short.MAX_VALUE))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,8 +271,8 @@ public class Pan_registro extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2))
+                            .addComponent(Rmedico)
+                            .addComponent(Rasistente))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -312,21 +296,7 @@ public class Pan_registro extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(telf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(telf2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(cmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
@@ -338,13 +308,13 @@ public class Pan_registro extends javax.swing.JPanel {
                                     .addComponent(hini, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(hfin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel15))))
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(mail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(cmail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12))
+                    .addComponent(jLabel7)
+                    .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(cmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -366,17 +336,19 @@ public class Pan_registro extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarActionPerformed
-        this.set_variables();
+        this.set_variables();       
     }//GEN-LAST:event_BorrarActionPerformed
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+        if(this.check_radio()==false)
+            return;
+                
         this.get_variables();  
-        reg=new Cod_registro(this.cedula,this.nom,this.ape,this.dir,
-                                this.tlf,this.tlf2,
-                                this.email,this.email2,
+        reg=new Cod_registro(this.cedula,this.nom,this.ape,
+                                this.pass,this.email,this.tipo,
                                 this.horasini,this.horasfin);
         
-        reg.enviar_registro();
+        reg.enviar_registro_medicos();
         
     }//GEN-LAST:event_GuardarActionPerformed
 
@@ -389,12 +361,12 @@ public class Pan_registro extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Borrar;
     private javax.swing.JButton Guardar;
+    private javax.swing.JRadioButton Rasistente;
+    private javax.swing.JRadioButton Rmedico;
     private javax.swing.JTextField apellido;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField ci;
     private javax.swing.JComboBox cmail;
-    private javax.swing.JComboBox cmail2;
-    private javax.swing.JTextField direccion;
     private javax.swing.JComboBox hfin;
     private javax.swing.JComboBox hini;
     private javax.swing.JButton jButton1;
@@ -402,24 +374,17 @@ public class Pan_registro extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField mail;
-    private javax.swing.JTextField mail2;
     private javax.swing.JTextField nombre;
-    private javax.swing.JTextField telf;
-    private javax.swing.JTextField telf2;
+    private javax.swing.JTextField password;
     // End of variables declaration//GEN-END:variables
+
 }
