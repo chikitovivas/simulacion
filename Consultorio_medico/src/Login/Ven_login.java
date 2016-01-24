@@ -108,7 +108,7 @@ public class Ven_login extends javax.swing.JFrame {
 
         T_nick.setText("25620021");
 
-        T_pass.setText("123456789");
+        T_pass.setText("1234");
 
         jButton1.setText("Iniciar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -233,8 +233,8 @@ public class Ven_login extends javax.swing.JFrame {
             
               
             //POR AHORA            
-            //connect = this.log.comprobar_user(); //DESCOMENTAR                        
-            connect=true; //QUITAR CUANDO EL SERVIDOR COMPRUEBE USUARIOS
+            connect = this.log.comprobar_user(); //DESCOMENTAR                        
+            //connect=true; //QUITAR CUANDO EL SERVIDOR COMPRUEBE USUARIOS
             
            if (connect==true){
                MenuPrincipal men=new MenuPrincipal(nick);

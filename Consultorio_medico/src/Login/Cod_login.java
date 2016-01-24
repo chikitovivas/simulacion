@@ -29,22 +29,26 @@ public class Cod_login {
      
     
     public Boolean comprobar_user() throws IOException, JSONException {
-        String[] titulo_datos={"ci","pass"};
+        String[] titulo_datos={"ci","password"};
         String[] datos={this.username,this.password};
         int numDatos=2;
         
         String url=  Ven_login.url;
         
-        url=url+"iniciarsesion/"+this.username;
+        //url=url+"login/"+this.username;
+        
+        url=url+"login/";
         
         LoginJSON ljson=new LoginJSON();
         
         HttpResponse response=ljson.JSON_agregar(titulo_datos, datos, numDatos, url);
+        
+        System.out.println(response.toString());
+        
         switch(response.toString()){
-            case "true": return true;
-            case "True": return true;
-            case "false": return false;
-            case "False": return false;    
+            case "secretaria": return true;
+            case "medico": return true;
+            case "no": return false;            
         }
         
         return false;
