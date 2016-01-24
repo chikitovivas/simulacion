@@ -239,8 +239,8 @@ public class Ven_login extends javax.swing.JFrame {
             
               
             //POR AHORA            
-            connect = this.log.comprobar_user(); //DESCOMENTAR                        
-            //connect=true; //QUITAR CUANDO EL SERVIDOR COMPRUEBE USUARIOS
+            //connect = this.log.comprobar_user(); //DESCOMENTAR                        
+            connect=0; //QUITAR CUANDO EL SERVIDOR COMPRUEBE USUARIOS
             
             
             switch(connect){
