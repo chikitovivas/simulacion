@@ -33,6 +33,8 @@ public class Panel_Historial_pato extends javax.swing.JPanel {
      */
     
     
+    
+    
     public Panel_Historial_pato(){
              initComponents();
               jTci.setText("");
@@ -98,6 +100,9 @@ public Panel_Historial_pato(String cedula) throws JSONException {
             modelo.addColumn("Fecha");
             modelo.addColumn("Descripción");
         List fila = new ArrayList();
+    
+        modelo.addTableModelListener(jTable1);
+        
         
 //        for(int i=0;i<;i++){
 //            fila.add(fecha_historial);
@@ -153,6 +158,8 @@ public Panel_Historial_pato(String cedula) throws JSONException {
         jTemail = new javax.swing.JTextField();
         jTtelefono = new javax.swing.JTextField();
         jPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         JLtitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         JLtitulo.setText("Datos Paciente");
@@ -176,15 +183,31 @@ public Panel_Historial_pato(String cedula) throws JSONException {
 
         jTtelefono.setText("jTextField4");
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -266,8 +289,10 @@ public Panel_Historial_pato(String cedula) throws JSONException {
     private javax.swing.JLabel JLtitulo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTci;
     private javax.swing.JTextField jTemail;
     private javax.swing.JTextField jTnombre;
