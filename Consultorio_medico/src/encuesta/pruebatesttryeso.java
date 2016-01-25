@@ -20,13 +20,67 @@ public class pruebatesttryeso extends javax.swing.JFrame {
         
         initComponents();
         
-        addType type= new addType();
+       
       //  this.setPreferredSize(new Dimension(1000, 1100));
      //   this.setLayout(new BorderLayout());
-        this.add(type);
+      //  addType type= new addType();
+        //this.add(type);
         
+      //  addQEnc qEnc= new addQEnc();
+       // this.add(qEnc);
+        
+         viewEnc vEnc= new viewEnc();
+         this.add(vEnc); 
+       
+        //pruebaApuntadorString();   inmutable
+        //pruebaApuntadorArreglo();  los arreglos si guardan el apuntador al objeto arreglo 
+        //pruebaImprimirMatriz();
+        
+        
+
     }
 
+    
+        void    pruebaImprimirMatriz()  {
+          String[] asignador0= {"hueso","para los huesos"};
+          String[] asignador1= {"cabeza","para los cabeza"};
+          String[] asignador2= {"pierna","para los pierna"};
+          String [][] asignador= {asignador0,asignador1,asignador2};
+        
+        System.out.print(asignador[0][0]);  System.out.print(" - ");  System.out.println(asignador[0][1]);
+        System.out.print(asignador[1][0]);  System.out.print(" - ");  System.out.println(asignador[1][1]);
+        System.out.print(asignador[2][0]);  System.out.print(" - ");  System.out.println(asignador[2][1]);
+        }
+    
+        void    pruebaApuntadorString()  {
+        String a= "casa";
+        String b= "casa"; 
+        String c= new String ("casa"); 
+        if (a==c) {System.out.println(" 'a' es igual a 'c' ");}
+        
+        b = c;
+        a=null; a=b;
+        b="perro";
+        if (a==b) {System.out.println(" 'a' es igual a 'b' ");}
+        }
+        
+        
+        void    pruebaApuntadorArreglo()  {
+        String[] a = {"casa","perro", "aa"};
+        String[] b = {"casa","perro", "sapo"};
+        String[] c = {"casa","perro", "aa"};
+        
+        a=b;
+        b[2]="caballo";
+        
+        System.out.println(a[2]);
+        a[2]="tigre";
+        System.out.println(b[2]);
+        System.out.println(a[2]);
+        if (a[1]==c[1]) {System.out.println(" 'a1' es igual a 'c1' ");}
+        }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,52 +90,10 @@ public class pruebatesttryeso extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(300, 200, 1000, 600));
-
-        jPanel3.setBackground(new java.awt.Color(102, 255, 102));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(357, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
-        );
+        setPreferredSize(new java.awt.Dimension(800, 500));
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.X_AXIS));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -120,9 +132,10 @@ public class pruebatesttryeso extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
