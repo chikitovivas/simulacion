@@ -94,6 +94,7 @@ public Panel_Historial_pato(String cedula, int idcita) throws JSONException {
         DefaultTableModel modelo = new DefaultTableModel();
         List fila = new ArrayList();
          for(int k=0;k<arreglopaciente.length();k++){
+            fila.add(arreglopaciente.getJSONObject(k).get("id")); 
             fila.add(arreglopaciente.getJSONObject(k).get("fecha"));
             fila.add(arreglopaciente.getJSONObject(k).get("porque"));
             modelo.addRow(fila.toArray());
@@ -145,6 +146,96 @@ public Panel_Historial_pato(String cedula, int idcita) throws JSONException {
          this.jTAdescripcion.setEditable(false);
          this.jTAtratamiento.setEditable(false);
     }
+
+            /******************************/
+            /* Constructor solo con cedula*/
+            /******************************/
+
+public Panel_Historial_pato(String cedula) throws JSONException {
+    String[]titulo_pacientes = {"ciPaciente","nombrePaciente","apellidoPaciente","tlfpaciente","fecha_nac","tipoSangre","direPaciente"};
+    
+    json= new JSON();
+   
+    arreglopaciente= json.JSON_view_general(cedula,"consulta/");
+    arreglopaciente = json.ordenar_json(arreglopaciente, titulo_pacientes);
+    
+    this.jBback.setVisible(false);
+    
+    /*hacer la llamada del paciente con los datos*/
+    
+         this.jTcipaciente.setText(arreglopaciente.get(0).toString());
+        
+         this.jTcipaciente.setText(arreglopaciente.get(0).toString());
+         this.jTnombrepaciente.setText(arreglopaciente.get(1).toString());
+         this.jTapellidopaciente.setText(arreglopaciente.get(2).toString());
+         this.jFfnacpaciente.setText(arreglopaciente.get(3).toString());
+         this.jTtelefonopaciente.setText(arreglopaciente.get(4).toString());
+         this.jTsangrepaciente.setText(arreglopaciente.get(5).toString());
+         this.jTemailpaciente.setText(arreglopaciente.get(6).toString());
+         this.jTAdireccionpaciente.setText(arreglopaciente.get(0).toString());
+         
+         
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        List fila = new ArrayList();
+         for(int k=0;k<arreglopaciente.length();k++){
+            fila.add(arreglopaciente.getJSONObject(k).get("id")); 
+            fila.add(arreglopaciente.getJSONObject(k).get("fecha"));
+            fila.add(arreglopaciente.getJSONObject(k).get("porque"));
+            modelo.addRow(fila.toArray());
+            fila.clear();
+        }
+        
+        this.jTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+        this.jTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+         
+        initComponents();
+
+        
+        
+        int i=0;
+        if (i==0){ //si se hace click en una fila del jtable
+        //hacer la peticion de la cita nuevamente y editar los campos de motivo,diagnostico,etcetc
+        
+//            arreglocita = json.JSON_view_general(cedula,"cita/"); //no es cedula, es idcita
+//            arreglocita = json.ordenar_json(arreglocita, titulo_cita);
+//
+//             this.jTidcita.setText(arreglocita.get(0).toString());
+//             this.jFfcita.setText(arreglocita.get(1).toString());
+//             this.jTmedico.setText(arreglocita.get(2).toString());
+//             this.jTAmotivo.setText(arreglocita.get(3).toString());
+//             this.jTAdescripcion.setText(arreglocita.get(4).toString());
+//             this.jTAtratamiento.setText(arreglocita.get(5).toString());
+        
+        }
+                
+                
+                
+        
+        this.jTable = new JTable(modelo){
+        public boolean isCellEditable(int row, int columnn) {
+            return false;
+        }};//return false: Desabilitar edición de celdas.
+         this.jTcipaciente.setEditable(false);
+         this.jTnombrepaciente.setEditable(false);
+         this.jTapellidopaciente.setEditable(false);
+         this.jFfnacpaciente.setEditable(false);
+         this.jTtelefonopaciente.setEditable(false);
+         this.jTsangrepaciente.setEditable(false);
+         this.jTemailpaciente.setEditable(false);
+         this.jTAdireccionpaciente.setEditable(false);
+         this.jTidcita.setEditable(false);
+         this.jFfcita.setEditable(false);
+         this.jTmedico.setEditable(false);
+         this.jTAmotivo.setEditable(false);
+         this.jTAdescripcion.setEditable(false);
+         this.jTAtratamiento.setEditable(false);
+    }
+
+
+
+
+
 
 
     @SuppressWarnings("unchecked")
