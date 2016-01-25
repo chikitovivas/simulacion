@@ -26,188 +26,181 @@ public class Panel_Historial_pato extends javax.swing.JPanel {
     int year;
     Date fechahoraG;
     JSON json;
-    JSONArray arreglo=null;
-    /**
-     * Creates new form Ven_VerHistorial
-     * @param arreglo_datos
-     */
-    
-    
-    
-    
+    JSONArray arreglopaciente=null, arreglocita=null;
+       
     public Panel_Historial_pato(){
-             initComponents();
-              jTcipaciente.setText("");
-         jTnombrepaciente.setText("");
-         jTemailpaciente.setText("");
-         jTtelefonopaciente.setText("");
+         initComponents();
+         this.jTcipaciente.setEditable(false);
+         this.jTnombrepaciente.setEditable(false);
+         this.jTapellidopaciente.setEditable(false);
+         this.jFfnacpaciente.setEditable(false);
+         this.jTtelefonopaciente.setEditable(false);
+         this.jTsangrepaciente.setEditable(false);
+         this.jTemailpaciente.setEditable(false);
+         this.jTAdireccionpaciente.setEditable(false);
+         this.jTidcita.setEditable(false);
+         this.jFfcita.setEditable(false);
+         this.jTmedico.setEditable(false);
+         this.jTAmotivo.setEditable(false);
+         this.jTAdescripcion.setEditable(false);
+         this.jTAtratamiento.setEditable(false);
     }
     
-//    
-//public Panel_Historial_pato(Object[][] arreglo_datos, int i,String sday, int day, int moth, int year) {
-//        
-//     this.arreglo_datos=arreglo_datos;  
-//     this.sday=sday;
-//     this.day=day;
-//     this.moth=moth; 
-//     this.year=year;
-//    
-//    
-//        initComponents();
-//        String y=Integer.toString(i); //En otra versiones hay que poner horas minutos y segundos
-//        
-//        for(int j=0;j<arreglo_datos.length;j++){
-//            if(  Integer.valueOf(i).equals(Integer.valueOf((((Date)arreglo_datos[j][0]).getHours())))  ){
-//
-//                 jTci.setText(arreglo_datos[j][1].toString());
-//                 jTnombre.setText(arreglo_datos[j][2].toString()+" "+ arreglo_datos[j][3].toString());
-//                 jTemail.setText(arreglo_datos[j][5].toString());
-//                 jTtelefono.setText(arreglo_datos[j][4].toString());
-//
-//            }
-//        }
-//         jTci.setEditable(false);
-//         jTnombre.setEditable(false);
-//         jTemail.setEditable(false);
-//         jTtelefono.setEditable(false);
-//    }
 
-public Panel_Historial_pato(String cedula) throws JSONException {
-        
+
+public Panel_Historial_pato(String cedula, int idcita) throws JSONException {
+    String[]titulo_pacientes = {"ciPaciente","nombrePaciente","apellidoPaciente","tlfpaciente","fecha_nac","tipoSangre","direPaciente"};
+    String[]titulo_cita = {"id","fcita","medico","porque","diagnostico","tratamiento"}; //arreglar este orden
     json= new JSON();
    
-     //arreglo=   json.JSON_view("cedula","consulta/");
-     
+    arreglopaciente= json.JSON_view_general(cedula,"consulta/");
+    arreglopaciente = json.ordenar_json(arreglopaciente, titulo_pacientes);
+    arreglocita = json.JSON_view_general(cedula,"cita/"); //no es cedula, es idcita
+    arreglocita = json.ordenar_json(arreglocita, titulo_cita);
+    this.jBback.setVisible(false);
     
-    for(int k=0;k<arreglo.length();k++){ // Aqui agarras todos los porque, diagnostico y tratamiento de cada consulta que haya 
-                                         // ido el paciente de la cedula
-        arreglo.getJSONObject(k).get("medico");
-        arreglo.getJSONObject(k).get("porque");
-        arreglo.getJSONObject(k).get("diagnostico");
-        arreglo.getJSONObject(k).get("tratamiento");
-    }
+    /*hacer la llamada del paciente con los datos*/
     
-     this.arreglo_datos=arreglo_datos;  
-     this.sday=sday;
-     this.day=day;
-     this.moth=moth; 
-     this.year=year;
-     
-        initComponents();
-       // String y=Integer.toString(i); //En otra versiones hay que poner horas minutos y segundos
-       
+        this.jTcipaciente.setText(arreglopaciente.get(0).toString());
+        
+         this.jTcipaciente.setText(arreglopaciente.get(0).toString());
+         this.jTnombrepaciente.setText(arreglopaciente.get(1).toString());
+         this.jTapellidopaciente.setText(arreglopaciente.get(2).toString());
+         this.jFfnacpaciente.setText(arreglopaciente.get(3).toString());
+         this.jTtelefonopaciente.setText(arreglopaciente.get(4).toString());
+         this.jTsangrepaciente.setText(arreglopaciente.get(5).toString());
+         this.jTemailpaciente.setText(arreglopaciente.get(6).toString());
+         this.jTAdireccionpaciente.setText(arreglopaciente.get(0).toString());
+         
+         this.jTidcita.setText(arreglocita.get(0).toString());
+         this.jFfcita.setText(arreglocita.get(1).toString());
+         this.jTmedico.setText(arreglocita.get(2).toString());
+         this.jTAmotivo.setText(arreglocita.get(3).toString());
+         this.jTAdescripcion.setText(arreglocita.get(4).toString());
+         this.jTAtratamiento.setText(arreglocita.get(5).toString());
+ 
+         
+
+    
+//    for(int k=0;k<arreglopaciente.length();k++){ // Aqui agarras todos los porque, diagnostico y tratamiento de cada consulta que haya 
+//                                         // ido el paciente de la cedula
+//        arreglopaciente.getJSONObject(k).get("medico");
+//        arreglopaciente.getJSONObject(k).get("porque");
+//        arreglopaciente.getJSONObject(k).get("diagnostico");
+//        arreglopaciente.getJSONObject(k).get("tratamiento");
+//    }
+        
+        
         DefaultTableModel modelo = new DefaultTableModel();
-            modelo.addColumn("Fecha");
-            modelo.addColumn("Descripción");
         List fila = new ArrayList();
-    
-        modelo.addTableModelListener(jTable1);
+         for(int k=0;k<arreglopaciente.length();k++){
+            fila.add(arreglopaciente.getJSONObject(k).get("fecha"));
+            fila.add(arreglopaciente.getJSONObject(k).get("porque"));
+            modelo.addRow(fila.toArray());
+            fila.clear();
+        }
+        
+        this.jTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+        this.jTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+         
+        initComponents();
+
         
         
-//        for(int i=0;i<;i++){
-//            fila.add(fecha_historial);
-//            fila.add(descripcion_historial);
-//            modelo.addRow(fila);
-//            fila.clear();
-//        }
-//        
-      
-        JTable tabla = new JTable(modelo){
+        int i=0;
+        if (i==0){ //si se hace click en una fila del jtable
+        //hacer la peticion de la cita nuevamente y editar los campos de motivo,diagnostico,etcetc
+        
+            arreglocita = json.JSON_view_general(cedula,"cita/"); //no es cedula, es idcita
+            arreglocita = json.ordenar_json(arreglocita, titulo_cita);
+
+             this.jTidcita.setText(arreglocita.get(0).toString());
+             this.jFfcita.setText(arreglocita.get(1).toString());
+             this.jTmedico.setText(arreglocita.get(2).toString());
+             this.jTAmotivo.setText(arreglocita.get(3).toString());
+             this.jTAdescripcion.setText(arreglocita.get(4).toString());
+             this.jTAtratamiento.setText(arreglocita.get(5).toString());
+        
+        }
+                
+                
+                
+        
+        this.jTable = new JTable(modelo){
         public boolean isCellEditable(int row, int columnn) {
             return false;
         }};//return false: Desabilitar edición de celdas.
-        
-        this.jPanel.add(tabla);
-        
-//        for(int j=0;j<arreglo_datos.length;j++){
-//            if(  Integer.valueOf(i).equals(Integer.valueOf((((Date)arreglo_datos[j][0]).getHours())))  ){
-//
-//                 jTci.setText(arreglo_datos[j][1].toString());
-//                 jTnombre.setText(arreglo_datos[j][2].toString()+" "+ arreglo_datos[j][3].toString());
-//                 jTemail.setText(arreglo_datos[j][5].toString());
-//                 jTtelefono.setText(arreglo_datos[j][4].toString());
-//
-//            }//fin del if
-//        }//fin del for
-         jTcipaciente.setEditable(false);
-         jTnombrepaciente.setEditable(false);
-         jTemailpaciente.setEditable(false);
-         jTtelefonopaciente.setEditable(false);
+         this.jTcipaciente.setEditable(false);
+         this.jTnombrepaciente.setEditable(false);
+         this.jTapellidopaciente.setEditable(false);
+         this.jFfnacpaciente.setEditable(false);
+         this.jTtelefonopaciente.setEditable(false);
+         this.jTsangrepaciente.setEditable(false);
+         this.jTemailpaciente.setEditable(false);
+         this.jTAdireccionpaciente.setEditable(false);
+         this.jTidcita.setEditable(false);
+         this.jFfcita.setEditable(false);
+         this.jTmedico.setEditable(false);
+         this.jTAmotivo.setEditable(false);
+         this.jTAdescripcion.setEditable(false);
+         this.jTAtratamiento.setEditable(false);
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         JLtitulo = new javax.swing.JLabel();
-        JLci = new javax.swing.JLabel();
-        JLnombre = new javax.swing.JLabel();
-        JLtelefono = new javax.swing.JLabel();
-        JLemail = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         JLtitulo1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jTcipaciente = new javax.swing.JTextField();
-        jTnombrepaciente = new javax.swing.JTextField();
-        jTemailpaciente = new javax.swing.JTextField();
-        jTtelefonopaciente = new javax.swing.JTextField();
         jPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
+        jSeparator3 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTidcita = new javax.swing.JTextField();
-        jTfechacita = new javax.swing.JTextField();
         jTmedico = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTAdescripcion = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jTAmotivo = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        jTAtratamiento = new javax.swing.JTextArea();
+        jLabel9 = new javax.swing.JLabel();
+        jFfcita = new javax.swing.JFormattedTextField();
+        jFhoracita = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
+        jBback = new javax.swing.JButton();
+        jTsangrepaciente = new javax.swing.JTextField();
+        JLnombre1 = new javax.swing.JLabel();
+        jFfnacpaciente = new javax.swing.JFormattedTextField();
+        jTemailpaciente = new javax.swing.JTextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTAdireccionpaciente = new javax.swing.JTextArea();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jTcipaciente = new javax.swing.JTextField();
+        jTtelefonopaciente = new javax.swing.JTextField();
+        JLtelefono1 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jTnombrepaciente = new javax.swing.JTextField();
+        jTapellidopaciente = new javax.swing.JTextField();
+        JLci1 = new javax.swing.JLabel();
+        JLemail1 = new javax.swing.JLabel();
 
         JLtitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         JLtitulo.setText("Datos Paciente");
 
-        JLci.setText("C.I:");
-
-        JLnombre.setText("Nombre:");
-
-        JLtelefono.setText("Télefono:");
-
-        JLemail.setText("Email:");
-
         JLtitulo1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         JLtitulo1.setText("Historial");
-
-        jTcipaciente.setText("jTextField1");
-
-        jTnombrepaciente.setText("jTextField2");
-
-        jTemailpaciente.setText("jTextField3");
-
-        jTtelefonopaciente.setText("jTextField4");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Title 1", "Title 2"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
 
         jLabel2.setText("ID cita: ");
 
@@ -227,87 +220,112 @@ public Panel_Historial_pato(String cedula) throws JSONException {
 
         jLabel7.setText("Tratamiento:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        jTAdescripcion.setColumns(20);
+        jTAdescripcion.setRows(5);
+        jScrollPane2.setViewportView(jTAdescripcion);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane3.setViewportView(jTextArea2);
+        jTAmotivo.setColumns(20);
+        jTAmotivo.setRows(5);
+        jScrollPane3.setViewportView(jTAmotivo);
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane4.setViewportView(jTextArea3);
+        jTAtratamiento.setColumns(20);
+        jTAtratamiento.setRows(5);
+        jScrollPane4.setViewportView(jTAtratamiento);
+
+        jLabel9.setText("Hora:");
+
+        jFfcita.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy/MM/dd"))));
+        jFfcita.setText("2016/01/24");
+        jFfcita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFfcitaActionPerformed(evt);
+            }
+        });
+
+        jFhoracita.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        jFhoracita.setText("08:15 PM");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3)))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTidcita, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTfechacita, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jTmedico, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jSeparator3)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTidcita, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFfcita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFhoracita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTmedico, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane3))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel5)
                     .addComponent(jTidcita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTfechacita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTmedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9)
+                    .addComponent(jFfcita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFhoracita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTmedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(15, 15, 15))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel6)
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel7)
-                        .addGap(29, 29, 29))
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel7)
+                        .addGap(24, 24, 24))))
         );
+
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id Cita", "Fecha", "Motivo"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable);
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
@@ -319,10 +337,63 @@ public Panel_Historial_pato(String cedula) throws JSONException {
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        jBback.setText("Atrás");
+        jBback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBbackActionPerformed(evt);
+            }
+        });
+
+        jTsangrepaciente.setText("jTextField1");
+
+        JLnombre1.setText("Nombre:");
+
+        jFfnacpaciente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy/MM/dd"))));
+        jFfnacpaciente.setText("1970/01/24");
+        jFfnacpaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFfnacpacienteActionPerformed(evt);
+            }
+        });
+
+        jTemailpaciente.setText("jTextField3");
+
+        jTAdireccionpaciente.setColumns(20);
+        jTAdireccionpaciente.setRows(5);
+        jScrollPane5.setViewportView(jTAdireccionpaciente);
+
+        jLabel13.setText("Dirección:");
+
+        jLabel14.setText("Tipo Sangre: ");
+
+        jTcipaciente.setText("jTextField1");
+
+        jTtelefonopaciente.setText("jTextField4");
+
+        JLtelefono1.setText("Télefono:");
+
+        jLabel15.setText("Apellido: ");
+
+        jLabel12.setText("F. Nac:");
+
+        jTnombrepaciente.setText("jTextField2");
+
+        jTapellidopaciente.setText("jTextField2");
+        jTapellidopaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTapellidopacienteActionPerformed(evt);
+            }
+        });
+
+        JLci1.setText("C.I:");
+
+        JLemail1.setText("Email:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -330,69 +401,97 @@ public Panel_Historial_pato(String cedula) throws JSONException {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JLemail)
-                            .addComponent(JLci))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTcipaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44)
-                                .addComponent(JLnombre)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTnombrepaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
-                            .addComponent(jTemailpaciente))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JLtelefono)
+                                .addComponent(JLci1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTcipaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFfnacpaciente)))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(JLnombre1)
+                            .addComponent(JLtelefono1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTnombrepaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTtelefonopaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(58, 58, 58)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTapellidopaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTsangrepaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JLemail1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTtelefonopaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(jTemailpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
+                        .addContainerGap()
+                        .addComponent(jBback)
+                        .addGap(213, 213, 213)
                         .addComponent(JLtitulo))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(267, 267, 267)
+                        .addGap(316, 316, 316)
                         .addComponent(JLtitulo1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(JLtitulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JLtitulo)
+                    .addComponent(jBback))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTcipaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JLnombre)
+                    .addComponent(JLnombre1)
                     .addComponent(jTnombrepaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JLtelefono)
-                    .addComponent(jTtelefonopaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JLci))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTemailpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JLemail))
+                    .addComponent(JLci1)
+                    .addComponent(jTcipaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(jTapellidopaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(jFfnacpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JLtelefono1)
+                            .addComponent(jTtelefonopaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14)
+                            .addComponent(jTsangrepaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JLemail1)
+                            .addComponent(jTemailpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13)))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JLtitulo1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -400,39 +499,67 @@ public Panel_Historial_pato(String cedula) throws JSONException {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTidcitaActionPerformed
 
+    private void jBbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBbackActionPerformed
+
+    private void jFfnacpacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFfnacpacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFfnacpacienteActionPerformed
+
+    private void jTapellidopacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTapellidopacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTapellidopacienteActionPerformed
+
+    private void jFfcitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFfcitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFfcitaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel JLci;
-    private javax.swing.JLabel JLemail;
-    private javax.swing.JLabel JLnombre;
-    private javax.swing.JLabel JLtelefono;
+    private javax.swing.JLabel JLci1;
+    private javax.swing.JLabel JLemail1;
+    private javax.swing.JLabel JLnombre1;
+    private javax.swing.JLabel JLtelefono1;
     private javax.swing.JLabel JLtitulo;
     private javax.swing.JLabel JLtitulo1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jBback;
+    private javax.swing.JFormattedTextField jFfcita;
+    private javax.swing.JFormattedTextField jFfnacpaciente;
+    private javax.swing.JFormattedTextField jFhoracita;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTextArea jTAdescripcion;
+    private javax.swing.JTextArea jTAdireccionpaciente;
+    private javax.swing.JTextArea jTAmotivo;
+    private javax.swing.JTextArea jTAtratamiento;
+    private javax.swing.JTable jTable;
+    private javax.swing.JTextField jTapellidopaciente;
     private javax.swing.JTextField jTcipaciente;
     private javax.swing.JTextField jTemailpaciente;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextField jTfechacita;
     private javax.swing.JTextField jTidcita;
     private javax.swing.JTextField jTmedico;
     private javax.swing.JTextField jTnombrepaciente;
+    private javax.swing.JTextField jTsangrepaciente;
     private javax.swing.JTextField jTtelefonopaciente;
     // End of variables declaration//GEN-END:variables
 }

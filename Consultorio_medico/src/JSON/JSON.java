@@ -122,7 +122,7 @@ public class JSON {
  
        
     
-    public static JSONArray JSON_view_general (int ci,String url){
+    public static JSONArray JSON_view_general (String ci,String url){
         JSONArray json=null;
         HttpClient client = new DefaultHttpClient();
         HttpGet get = new HttpGet(Ven_login.url+url);
