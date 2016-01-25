@@ -6,6 +6,9 @@
 package encuesta;
 
 import java.awt.Dimension;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONException;
 
 /**
  *
@@ -16,21 +19,21 @@ public class pruebatesttryeso extends javax.swing.JFrame {
     /**
      * Creates new form pruebatesttryeso
      */
-    public pruebatesttryeso() {
+    public pruebatesttryeso() throws JSONException {
         
         initComponents();
         
        
       //  this.setPreferredSize(new Dimension(1000, 1100));
      //   this.setLayout(new BorderLayout());
-      //  addType type= new addType();
-        //this.add(type);
+       // addType type= new addType(123);
+      //  this.add(type);
         
-      //  addQEnc qEnc= new addQEnc();
-       // this.add(qEnc);
+        addQEnc qEnc= new addQEnc();
+        this.add(qEnc);
         
-         viewEnc vEnc= new viewEnc();
-         this.add(vEnc); 
+        // viewEnc vEnc= new viewEnc();
+       //  this.add(vEnc); 
        
         //pruebaApuntadorString();   inmutable
         //pruebaApuntadorArreglo();  los arreglos si guardan el apuntador al objeto arreglo 
@@ -128,7 +131,11 @@ public class pruebatesttryeso extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new pruebatesttryeso().setVisible(true);
+                try {
+                    new pruebatesttryeso().setVisible(true);
+                } catch (JSONException ex) {
+                    Logger.getLogger(pruebatesttryeso.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

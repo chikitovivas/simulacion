@@ -5,6 +5,13 @@
  */
 package encuesta;
 
+import encuesta.conection.MYJSON;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONArray;
+import org.json.JSONException;
+
 /**
  *
  * @author carlo
@@ -17,6 +24,8 @@ public class addQEnc extends javax.swing.JPanel {
     
     String[] tipos=null;
     String[] questionsT=null;
+    MYJSON jsonchan= new MYJSON();
+    String ciMedic=null;
     
     public addQEnc() {
         initComponents();
@@ -44,34 +53,70 @@ public class addQEnc extends javax.swing.JPanel {
          String[] auxQuestions=null;
          
          //Antes de crear el tamaño del auxiliar debo de preguntar de que tamaño sera y sumarle 1 para la parte de agregar nuevas preguntas
-         if (ertipo.equals("hueso")) {
+         /*if (ertipo.equals("hueso")) {
           auxQuestions= new String [] {"¿Quejeso?","¿Como se come?","¿y me van a pagar por eso?","¿Eso esparas, nurd?","¿GG?",""};   }    
          else { auxQuestions= new String [] {"¿Q?","¿C?","¿y m?","¿Eso espara?","¿GG?",""};}
            
          if (ertipo.equals("coxi")) {
          auxQuestions= new String [] {"¿Que?","¿Coe?","¿y mr eso?","¿Eso nurd?","¿GG?",""};   }    
-          
          auxQuestions[auxQuestions.length-1]="Agregar nueva pregunta a el tipo actual";
+         */ 
          
          //Aqui finjo que traigo las preguntas de un tipo y las asigno a la variable global que las usara
+         JSONArray aux= //incompleto pls
+          jsonchan.JSON_view_general( "preguntas",ciMedic );  //Mando medico
+          auxQuestions= new String[aux.length()+1]; 
+          
+          for (int xi=0; xi<aux.length(); xi++) {
+                try {
+            auxQuestions[xi]= aux.getJSONObject(0).get("pregunta").toString();
+                } catch (JSONException ex) {Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+          }
+         
+         auxQuestions[auxQuestions.length-1]="Agregar nueva pregunta a el tipo actual"; 
          questionsT=auxQuestions;
     }
     
      //Trae los tipos de encuestas segun el medico desde la base de datos
     void initDataType() {
-          String[] auxtipos= {"hueso","cabeza","pierna","coxi","prostata"};        //Aqui finjo que creo el arreglo de tipos con datos de la base de datos :c
-          tipos=auxtipos;
+          String[] auxS;
+         //auxS= new String[] {"hueso","cabeza","pierna","coxi","prostata"};        //Aqui finjo que creo el arreglo de tipos con datos de la base de datos :c
+          
+        JSONArray aux= 
+          jsonchan.JSON_view_general( "tipos",ciMedic );  //Mando medico
+          auxS= new String[aux.length()]; 
+          
+          for (int xi=0; xi<aux.length(); xi++) {
+                try {
+            auxS[xi]= aux.getJSONObject(0).get("nombre").toString();
+                } catch (JSONException ex) {Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+          }
+          
+      tipos=auxS;  
     }
     
     
     void editData(String a, String b, int c) {
           //Agregar funcion que mande los datos a editar a la base de datos
-          questionsT[c]=b; 
+          //questionsT[c]=b; 
+        
+        String[] a1={"tipo","ciMedico","pNueva","pVieja"};
+        String[] b1=new String[] {jComboBox1.getSelectedItem().toString(), ciMedic, b, a};
+        
+            try {
+                jsonchan.JSON_agregar(a1, b1, b1.length, "editar/pregunta");
+            } catch (IOException ex) {
+                Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JSONException ex) {
+                Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     
     void addData(String b, int c) {
           //Agregar codigo que agregue nuevas preguntas a la base de dato
-          int xa=0;
+         /* int xa=0;
                 String [] aux = new String[questionsT.length+1];
                  for(int xu=0; xu<questionsT.length+1; xu++) {
                       if (xu!=questionsT.length-1) {
@@ -79,11 +124,22 @@ public class addQEnc extends javax.swing.JPanel {
                        xa++;  
                          }  else { aux[xu]=b;  }
                   }
-                questionsT=aux;
+                questionsT=aux; */
+        
+        String[] a1={"tipo","ciMedico","pNueva"};
+        String[] b1=new String[] {jComboBox1.getSelectedItem().toString(), ciMedic, b};
+        
+            try {
+                jsonchan.JSON_agregar(a1, b1, b1.length, "agregar/pregunta");
+            } catch (IOException ex) {
+                Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JSONException ex) {
+                Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     
     void EraseData (String actT, int actP) {
-          int xa=0;
+          /*int xa=0;
                 String [] aux = new String[questionsT.length-1];
                  for(int xu=0; xu<questionsT.length; xu++) {
                       if (xu!=actP) {
@@ -91,9 +147,19 @@ public class addQEnc extends javax.swing.JPanel {
                        xa++;
                          }
                   }
-                questionsT=aux;    
-                
-        //Agregar codigo que mande los datos a borrar de la tabla de preguntas
+            questionsT=aux;*/
+        
+          //Agregar codigo que mande los datos a borrar de la tabla de preguntas
+        String[] a1={"tipo","ciMedico","pregunta"};
+        String[] b1=new String[] {jComboBox1.getSelectedItem().toString(), ciMedic, actT};
+        
+            try {
+                jsonchan.JSON_agregar(a1, b1, b1.length, "borrar/pregunta");
+            } catch (IOException ex) {
+                Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JSONException ex) {
+                Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     
     
@@ -236,7 +302,7 @@ public class addQEnc extends javax.swing.JPanel {
         } else { addData (newText,actPos) ;}
         
         jComboBox2.removeAllItems();
-        //bringQuestions();
+        bringQuestions( jComboBox1.getSelectedItem().toString() );
         addElementstoComboboxtoStart(jComboBox2,questionsT);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -248,7 +314,7 @@ public class addQEnc extends javax.swing.JPanel {
                String actText= jComboBox2.getSelectedItem().toString();
                EraseData (actText, actPos);
                jComboBox2.removeAllItems();
-               //bringQuestions();
+               bringQuestions( jComboBox1.getSelectedItem().toString() );
                addElementstoComboboxtoStart(jComboBox2,questionsT);
                
            }
