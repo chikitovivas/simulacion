@@ -27,7 +27,8 @@ public class addQEnc extends javax.swing.JPanel {
     MYJSON jsonchan= new MYJSON();
     String ciMedic=null;
     
-    public addQEnc() {
+    public addQEnc(int ci) {
+        ciMedic= Integer.toString(ci);
         initComponents();
         
         //Carga los tipos
@@ -63,13 +64,13 @@ public class addQEnc extends javax.swing.JPanel {
          */ 
          
          //Aqui finjo que traigo las preguntas de un tipo y las asigno a la variable global que las usara
-         JSONArray aux= //incompleto pls
-          jsonchan.JSON_view_general( "preguntas",ciMedic );  //Mando medico
+         JSONArray aux= 
+          jsonchan.JSON_view_general( "preguntas",( ciMedic+"/"+jComboBox1.getSelectedItem().toString()) );  //Mando medico
           auxQuestions= new String[aux.length()+1]; 
           
           for (int xi=0; xi<aux.length(); xi++) {
                 try {
-            auxQuestions[xi]= aux.getJSONObject(0).get("pregunta").toString();
+            auxQuestions[xi]= aux.getJSONObject(xi).get("pregunta").toString();
                 } catch (JSONException ex) {Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
                   }
           }
@@ -89,7 +90,7 @@ public class addQEnc extends javax.swing.JPanel {
           
           for (int xi=0; xi<aux.length(); xi++) {
                 try {
-            auxS[xi]= aux.getJSONObject(0).get("nombre").toString();
+            auxS[xi]= aux.getJSONObject(xi).get("nombre").toString();
                 } catch (JSONException ex) {Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
                   }
           }
@@ -107,9 +108,7 @@ public class addQEnc extends javax.swing.JPanel {
         
             try {
                 jsonchan.JSON_agregar(a1, b1, b1.length, "editar/pregunta");
-            } catch (IOException ex) {
-                Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (JSONException ex) {
+            } catch (IOException | JSONException ex) {
                 Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
             }
     }

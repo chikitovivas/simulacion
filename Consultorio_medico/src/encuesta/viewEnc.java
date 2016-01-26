@@ -6,7 +6,14 @@
 package encuesta;
 
 import Login.Ven_login;
+import encuesta.conection.MYJSON;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -19,15 +26,19 @@ public class viewEnc extends javax.swing.JPanel {
      */
     
     String[] tipos= null;
-    String[] citas= null;
+    comboItem[] citas= null;
     String ciAct=null;
     String tipoAct=null;
-    String[] preg=null;
+    comboItem[] preg=null;
     comboItem[] resp=null;
     DefaultTableModel modelX;
+    MYJSON jsonchan= new MYJSON();
+    String ciMedic= null;
     
-    public viewEnc() {
+    public viewEnc(int ci) {
+        ciMedic=Integer.toString(ci);
         initComponents();
+        
       // String medico= Ven_login.url;
                //Carga los tipos
         modelX = (DefaultTableModel) jTable1.getModel();
@@ -47,8 +58,21 @@ public class viewEnc extends javax.swing.JPanel {
     }
     
     void initDataType() {
-          String[] auxtipos= {"hueso","cabeza","pierna","coxi","prostata"};        //Aqui finjo que creo el arreglo de tipos con datos de la base de datos :c
-          tipos=auxtipos;
+          String[] auxS= null;        //Aqui finjo que creo el arreglo de tipos con datos de la base de datos :c
+          /*auxS= new String[] {"hueso","cabeza","pierna","coxi","prostata"};*/
+          
+        JSONArray aux= 
+          jsonchan.JSON_view_general( "tipos",ciMedic );  //Mando medico
+          auxS= new String[aux.length()]; 
+          
+          for (int xi=0; xi<aux.length(); xi++) {
+                try {
+            auxS[xi]= aux.getJSONObject(xi).get("nombre").toString();
+                } catch (JSONException ex) {Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+          }
+          
+          tipos=auxS;
     }
     
     void addElementstoComboboxtoStart(javax.swing.JComboBox combobox, Object[] arreglo) {
@@ -57,10 +81,10 @@ public class viewEnc extends javax.swing.JPanel {
         }
     }
     
-    void buscarCitasBD (String ci) {
+    void buscarCitasBD (String ciPaciente) {
         //Codigo a implementar que me devuelva esas citas de los pacientes desdde la BD
-        String[] a=null;
-        if (ci.equals("24.533.420")) {
+        comboItem[] a=null;
+        /*if (ci.equals("24.533.420")) {
         a= new String [] {"martes, 15, 2015","jueves, 26, 2015","sabado, 15, nunca"};}
         else {a= new String [] {"qeq, 62, 2015","asdas, 43, 2015","asdas, 32, nunca"};}
         if (ci.equals("1")) {
@@ -68,20 +92,78 @@ public class viewEnc extends javax.swing.JPanel {
         if (ci.equals("2")) {
         a= new String [] {"jueves, 6, 2015","lunes, 3, 2015","domingo, 13, nunca"};}
         if (ci.equals("3")) {
-        a= new String [] {};}
+        a= new String [] {};}*/
+        
+        JSONArray aux= 
+          jsonchan.JSON_view_general( "consultas",( ciPaciente+"/"+ciMedic) );  //Mando medico
+          a= new comboItem[aux.length()]; 
+          
+          for (int xi=0; xi<aux.length(); xi++) {
+                try {
+            a[xi]= new comboItem (new String [] {aux.getJSONObject(xi).get("consulta").toString(),
+                                                 aux.getJSONObject(xi).get("fecha").toString()},
+                                  aux.getJSONObject(xi).get("fecha").toString()               
+                                 );
+                } catch (JSONException ex) {Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+          }
         
         citas= a;
     }
     
     //recibe la cita seleccionada de una persona
-    void buscarPreguntasBD(String cit) {
+    void buscarPreguntasBD() {
         //Buscar las preguntas de una persona en una cita particular, estas preguntas ya tienen una respuesta claro esta...
         
-        String[] a= {"Q1","Q2","Q3","Q4","Q5","Q6","Q7"};
-        String[] b= {"1","2","1","3","5","4","4"};
+        comboItem[] a=null;
+        String[] b=null;
+        
+        /*a=  new String[] {"Q1","Q2","Q3","Q4","Q5","Q6","Q7"};
+        b= new String[] {"1","2","1","3","5","4","4"};*/
+        
+        //Buscar las preguntas
         
         
-        comboItem[] aux=new comboItem[b.length];
+        
+        //Busca las preguntas si ya estan en la BD sino asigna 0 a todo eso
+        JSONArray aux= 
+          jsonchan.JSON_view_general( "respuestas",
+                                      ((comboItem)jComboBox2.getSelectedItem()).elements[0] 
+                                    );  //Mando cita
+          b= new String[aux.length()]; 
+          
+          for (int xi=0; xi<aux.length(); xi++) {
+                try {
+            b[xi]= aux.getJSONObject(xi).get("respuesta").toString();
+                } catch (JSONException ex) {Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+          }
+        
+        aux= 
+          jsonchan.JSON_view_general( "preguntas",
+                                      ( ciMedic+"/"+tipoAct) 
+                                    );  //Mando tipo y el medico para que me devuelva las preguntas
+          a= new comboItem[aux.length()]; 
+          
+          for (int xi=0; xi<aux.length(); xi++) {
+                try {
+            a[xi]= new comboItem(new String[] {aux.getJSONObject(xi).get("idPregunta").toString()
+                                              ,aux.getJSONObject(xi).get("pregunta").toString()} 
+                                 ,aux.getJSONObject(xi).get("pregunta").toString()
+                       );
+                } catch (JSONException ex) {Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+          }
+          
+        //Aqui es donde asigna 0 porque el arreglo b sera menor que la cantidad de preguntas
+        if (b.length<a.length) { 
+            b= new String[a.length];
+            for (int xii=0; xii<a.length; xii++) {
+                b[xii]="0";
+            }
+        }  
+          
+        comboItem[] auxt=new comboItem[b.length];
         String yx;
         for (int gg=0; gg<b.length; gg++) {
             
@@ -96,15 +178,15 @@ public class viewEnc extends javax.swing.JPanel {
                      break;
             case "5":  yx = "Muy Malo";
                      break;
-            default: yx = "Invalid grrr";
+            default: yx = "No Asignado";
                      break;
             }
             
-        aux[gg]= new comboItem((new String[] {b[gg],yx}), yx);
+        auxt[gg]= new comboItem((new String[] {b[gg],yx}), yx);
         }
         
         preg=a;
-        resp=aux;
+        resp=auxt;
     }
     
     void addQtoTable(){
@@ -114,22 +196,58 @@ public class viewEnc extends javax.swing.JPanel {
         }
     }
     
-    String[] getNumbersinTable() {
+    String[] getNumbersinTable(int xx) {
         comboItem[] i=new comboItem[jTable1.getRowCount()];
         String[] ii=new String[jTable1.getRowCount()];
         
         for (int t=0; t<jTable1.getRowCount(); t++) {
-            i[t]=(comboItem) modelX.getValueAt(t, 1);   
+            i[t]=(comboItem) modelX.getValueAt(t, xx);   
             ii[t]=i[t].elements[0];            //System.out.print(ii[t]);
         }
         return ii;
     }
     
     void sendDataEditedBD() {
-        String[] ar=null;
-        ar=getNumbersinTable();                      //Los numeros a guardar en la base de datos correspondientes a las respuestas del tipo, persona y cita
-        jComboBox2.getSelectedItem().toString();     //La cita en donde se guardara       
-        jComboBox1.getSelectedItem().toString();     //El tipo jeje
+        String[] respuestas;
+        respuestas=getNumbersinTable(1);                      //Los numeros a guardar en la base de datos correspondientes a las respuestas del tipo, persona y cita
+        String[] preguntas;
+        preguntas=getNumbersinTable(0);
+        
+        String consultaAct;
+        consultaAct= ((comboItem)jComboBox2.getSelectedItem() ).elements[0];     //La cita en donde se guardara       
+        
+        String[] a1={"idCita","idPregunta","resp"};
+        String[][] auxA= new String[preguntas.length][]; //Creando el JSONArray
+        
+            //Agregando los datos al JSONArray
+            for (int ti=0; ti<preguntas.length; ti++) {  
+                auxA[ti]= new String[] {consultaAct,preguntas[ti],respuestas[ti]};
+            
+            }
+            
+            JSONArray auxJ=null;
+            
+            for ( int ixx=0; ixx<auxA.length; ixx++) {
+                    JSONObject jsonchin= new JSONObject();
+                    
+                    for ( int ix=0; ix<3; ix++) {
+                        try {
+                      jsonchin.put(a1[ix],auxA[ixx][ix]);
+                        } catch (JSONException ex) {
+                            Logger.getLogger(viewEnc.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }    
+                
+                    auxJ.put(jsonchin);
+                }
+           
+            try {
+                jsonchan.JSON_agregarArray(auxJ,"respuesta/pregunta");
+            } catch (IOException ex) {
+                Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JSONException ex) {
+                Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
         //manda los datos de la tabla a la base de datos segun lo que sea que sea
     }
@@ -360,7 +478,7 @@ public class viewEnc extends javax.swing.JPanel {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
       if ( jComboBox2.getSelectedIndex()<0 ) {
       } else {
-             buscarPreguntasBD(jTextField1.getText());    //Le Paso la cita que esta seleccionada
+             buscarPreguntasBD();    //Busca las preguntas
              addQtoTable();
         }
     }//GEN-LAST:event_jComboBox2ActionPerformed

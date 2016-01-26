@@ -29,11 +29,11 @@ public class pruebatesttryeso extends javax.swing.JFrame {
        // addType type= new addType(123);
       //  this.add(type);
         
-        addQEnc qEnc= new addQEnc();
-        this.add(qEnc);
+       // addQEnc qEnc= new addQEnc();
+       // this.add(qEnc);
         
-        // viewEnc vEnc= new viewEnc();
-       //  this.add(vEnc); 
+         //viewEnc vEnc= new viewEnc();
+         //this.add(vEnc); 
        
         //pruebaApuntadorString();   inmutable
         //pruebaApuntadorArreglo();  los arreglos si guardan el apuntador al objeto arreglo 

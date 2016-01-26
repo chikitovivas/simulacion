@@ -65,8 +65,8 @@ public class addType extends javax.swing.JPanel {
           
           for (int xi=0; xi<aux.length(); xi++) {
                 try {
-            auxS[xi][0]= aux.getJSONObject(0).get("nombre").toString();
-            auxS[xi][1]= aux.getJSONObject(0).get("descripcion").toString();
+            auxS[xi][0]= aux.getJSONObject(xi).get("nombre").toString();
+            auxS[xi][1]= aux.getJSONObject(xi).get("descripcion").toString();
                 } catch (JSONException ex) {Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
                   }
           }
