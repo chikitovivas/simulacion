@@ -5,6 +5,14 @@
  */
 package encuesta;
 
+import JSON.JSON;
+import encuesta.conection.MYJSON;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONArray;
+import org.json.JSONException;
+
 /**
  *
  * @author carlo
@@ -17,9 +25,11 @@ public class addType extends javax.swing.JPanel {
     
     
     comboItem[] tipos = null;         //Por fila tiene (Nombre Del Tipo, Descrp Del Tipo)
+    MYJSON jsonchan= new MYJSON();
+    String ciMedic;
     
-    
-    public addType() {
+    public addType(int ci) throws JSONException {
+        ciMedic= Integer.toString(ci);
         initComponents();
         
         //Carga los datos
@@ -45,14 +55,27 @@ public class addType extends javax.swing.JPanel {
          jTextArea1.setText(b);
       }
       
+      
       //Inicializa los datos de esta clase trayendolos desde la base de datos (en proceso)
       void initData() {
           
-          String[] asignador0= {"hueso","para los huesos"};
-          String[] asignador1= {"cabeza","para los cabeza"};
-          String[] asignador2= {"pierna","para los pierna"};
-          String [][] asignador= {asignador0,asignador1,asignador2};
+          JSONArray aux= 
+          jsonchan.JSON_view_general( "tipos",ciMedic );  //Mando medico
+          String[][] auxS= new String[aux.length()][2]; 
           
+          for (int xi=0; xi<aux.length(); xi++) {
+                try {
+            auxS[xi][0]= aux.getJSONObject(xi).get("nombre").toString();
+            auxS[xi][1]= aux.getJSONObject(xi).get("descripcion").toString();
+                } catch (JSONException ex) {Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+          }
+          //String[] asignador0= {"hueso","para los huesos"};
+          //String[] asignador1= {"cabeza","para los cabeza"};
+          //String[] asignador2= {"pierna","para los pierna"};
+          //String [][] asignador= {asignador0, asignador1, asignador2 };
+          
+          String [][]asignador=auxS;
           tipos= new comboItem[asignador.length];
           //System.out.println(asignador.length);
           
@@ -65,13 +88,24 @@ public class addType extends javax.swing.JPanel {
       //Recibe el elemente actual posicionado y como se vera modificado     
       //"a" es actual, "b" es con los datos modificados y "c" es la posicion del viejo en el arreglo
       void editData(comboItem a, comboItem b, int c) { 
-          tipos[c]= b;  //Innecesario solo para ver actualmente como deberia de ser
+          //tipos[c]= b;  //Innecesario solo para ver actualmente como deberia de ser
         //  System.out.println(tipos[jComboBox1.getSelectedIndex()].toString());
           //Codigo para mandar cosas por JSON a la base de datos
+      
+        String[] a1={"ciMedico","nombre","descrp","nviejo"};
+        String[] b1=new String[] {ciMedic, b.elements[0], b.elements[1], a.identifier};
+        
+            try {
+                jsonchan.JSON_agregar(a1, b1, b1.length, "editar/tipo");
+            } catch (IOException ex) {
+                Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JSONException ex) {
+                Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+            }
       }
       
-      void addData(comboItem a, comboItem b, int c) { 
-          int xa=0;
+      void addData(comboItem b, int c) { 
+         /* int xa=0;
                 comboItem [] aux = new comboItem[tipos.length+1];
                  for(int xu=0; xu<tipos.length+1; xu++) {
                       if (xu!=tipos.length) {
@@ -80,8 +114,21 @@ public class addType extends javax.swing.JPanel {
                          }  else { aux[xu]=b;  }
                   }
                 tipos=aux;
-               // System.out.println(tipos[tipos.length-1]);
+               // System.out.println(tipos[tipos.length-1]); */
+
           //Codigo para agregar cosas por JSON a la base de datos
+      
+          
+        String[] a1={"ciMedico","nombre","descrp"};
+        String[] b1=new String[] {ciMedic, b.elements[0], b.elements[1]};
+        
+        try {
+            jsonchan.JSON_agregar(a1, b1, b1.length, "agregar/tipo");
+        } catch (IOException ex) {
+            Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException ex) {
+            Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+        }
       }
       
       
@@ -90,7 +137,7 @@ public class addType extends javax.swing.JPanel {
       //Recibe el elemente actual posicionado
       //"b" es el item a borrar y "c" es la posicion en el arreglo
       void EraseData(comboItem b, int c) {
-          int xa=0;
+          /*int xa=0;
                 comboItem [] aux = new comboItem[tipos.length-1];
                  for(int xu=0; xu<tipos.length; xu++) {
                       if (xu!=c) {
@@ -98,8 +145,19 @@ public class addType extends javax.swing.JPanel {
                        xa++;
                          }
                   }
-                tipos=aux;     
+                tipos=aux;  */   
         //Codigo para borrar cosas por json a la base de datos
+        
+        String[] a1={"ciMedico","nombre"};
+        String[] b1=new String[] {ciMedic, b.identifier};
+        
+            try {
+                jsonchan.JSON_agregar(a1, b1, b1.length, "borrar/tipo");
+            } catch (IOException ex) {
+                Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JSONException ex) {
+                Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
+            }
       }
     
     
@@ -224,10 +282,10 @@ public class addType extends javax.swing.JPanel {
               
               if (jComboBox1.getSelectedIndex()< tipos.length) {
                       editData (selected, newselected,jComboBox1.getSelectedIndex());
-              } else { addData (selected, newselected,jComboBox1.getSelectedIndex()) ;}
+              } else { addData (newselected,jComboBox1.getSelectedIndex()) ;}
                      
               jComboBox1.removeAllItems();
-              //initData();
+              initData();
               addElementstoComboboxtoStart();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -237,7 +295,7 @@ public class addType extends javax.swing.JPanel {
                      comboItem selected = (comboItem) jComboBox1.getSelectedItem();
                      EraseData (selected, jComboBox1.getSelectedIndex());
                      jComboBox1.removeAllItems();
-                    //initData();
+                     initData();
                      addElementstoComboboxtoStart();
                  }
     }//GEN-LAST:event_jButton2ActionPerformed
