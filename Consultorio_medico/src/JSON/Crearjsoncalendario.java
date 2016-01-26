@@ -92,6 +92,7 @@ public class Crearjsoncalendario {
                     case "numero": keys.put(4, aux.get(i)); break;
                     case "correo": keys.put(5, aux.get(i)); break;
                     case "fecha_nac": keys.put(6, aux.get(i)); break;
+                   // case "idCita": keys.put(7, aux.get(i)); break;
                     default : break;
                 }
             

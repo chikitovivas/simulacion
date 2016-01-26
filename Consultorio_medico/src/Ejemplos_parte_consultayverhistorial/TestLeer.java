@@ -1,5 +1,6 @@
 package Ejemplos_parte_consultayverhistorial;
 
+import Login.Ven_login;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -34,7 +35,7 @@ public class TestLeer {
   
   //Ejemplo para recibir respuestas con mensaje adelante
   
-  HttpGet get = new HttpGet("http://miconsultoriocal.no-ip.org:8000/historial/8990721");
+  HttpGet get = new HttpGet(Ven_login.url+"historial/8990721");
    // HttpGet get = new HttpGet("http://localhost:8000/usuario");
   
  HttpResponse response = client.execute(get);

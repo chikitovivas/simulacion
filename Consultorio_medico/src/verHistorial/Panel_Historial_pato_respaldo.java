@@ -20,7 +20,7 @@ import org.json.JSONException;
  *
  * @author Rafael
  */
-public class Panel_Historial_pato extends javax.swing.JPanel {
+public class Panel_Historial_pato_respaldo extends javax.swing.JPanel {
    Object[][] arreglo_datos;
     String sday;
     int day;
@@ -28,8 +28,9 @@ public class Panel_Historial_pato extends javax.swing.JPanel {
     int year;
     Date fechahoraG;
     JSON json;
+    JSONArray arreglopaciente=null, arreglocita=null;
        
-    public Panel_Historial_pato(){
+    public Panel_Historial_pato_respaldo(){
          initComponents();
          this.jTcipaciente.setEditable(false);
          this.jTnombrepaciente.setEditable(false);
@@ -49,138 +50,112 @@ public class Panel_Historial_pato extends javax.swing.JPanel {
     
 
 
-public Panel_Historial_pato(String cedula, int day, int moth, int year) throws JSONException, IOException {
+public Panel_Historial_pato_respaldo(String cedula, int day, int moth, int year) throws JSONException, IOException {
+    String[]titulo_pacientes = {"ciPaciente","nombrePaciente","apellidoPaciente","tlfpaciente","fecha_nac","tipoSangre","direPaciente"};
+    String[]titulo_cita = {"id","fcita","medico","porque","diagnostico","tratamiento"}; //arreglar este orden
     json= new JSON();
     
     JSONpato jsonpato = new JSONpato();
-    JSONArray[] arreglo = new JSONArray[2];
+    JSONArray[] array = new JSONArray[2];
+    Object[] objeto;
+    objeto = jsonpato.solicitar_pato(cedula); // obtengo los datos del paciente, la consulta y las citas
     
-    arreglo = jsonpato.solicitar_pato(cedula); // obtengo los datos del paciente, la consulta y las citas
+    arreglopaciente= json.JSON_view_general(cedula,"consulta/"+cedula);
+    arreglopaciente = json.ordenar_json(arreglopaciente, titulo_pacientes);
+//    arreglocita = json.JSON_view_general(cedula,"cita/"+cedula); //no es cedula, es idcita
+//    arreglocita = json.ordenar_json(arreglocita, titulo_cita);
     
-    
-    
-        // POSICION 0 TIENE CONSULTAS POSICION 1 TIENE CITAS
-        JSONArray consulta=arreglo[0],citas=arreglo[1];        
-        Object[] mierda={"","","","","","","","",null,null};
         
-        if((consulta==null) && (citas==null))
-             arreglo= null;
         
-        Object[][] consul=null,cit=null;
-        if(consulta!=null){
-            mierda[0]=consulta.getJSONObject(0).get("ciPaciente").toString();
-            mierda[1]=consulta.getJSONObject(0).get("nombrePaciente").toString();
-            mierda[2]=consulta.getJSONObject(0).get("apellidoPaciente").toString();
-            mierda[3]=consulta.getJSONObject(0).get("tlfpaciente").toString();
-            mierda[4]=consulta.getJSONObject(0).get("fecha_nac").toString();
-            mierda[5]=consulta.getJSONObject(0).get("tipoSangre").toString();
-            mierda[6]=consulta.getJSONObject(0).get("direPaciente").toString();                    
-            mierda[7]=consulta.getJSONObject(0).get("correo").toString();                    
+         this.jTcipaciente.setText(arreglopaciente.get(0).toString());
+         this.jTnombrepaciente.setText(arreglopaciente.get(1).toString());
+         this.jTapellidopaciente.setText(arreglopaciente.get(2).toString());
+         this.jFfnacpaciente.setText(arreglopaciente.get(3).toString());
+         this.jTtelefonopaciente.setText(arreglopaciente.get(4).toString());
+         this.jTsangrepaciente.setText(arreglopaciente.get(5).toString());
+         this.jTemailpaciente.setText(arreglopaciente.get(6).toString());
+         this.jTAdireccionpaciente.setText(arreglopaciente.get(0).toString());
+         
+         this.jTidcita.setText(arreglocita.get(0).toString());
+         this.jFfcita.setText(arreglocita.get(1).toString());
+         this.jTmedico.setText(arreglocita.get(2).toString());
+         this.jTAmotivo.setText(arreglocita.get(3).toString());
+         this.jTAdescripcion.setText(arreglocita.get(4).toString());
+         this.jTAtratamiento.setText(arreglocita.get(5).toString());
+    
+          
             
-            
-           consul=new Object[consulta.length()][6];
-           for(int i=0;i<consulta.length();i++){               
-                    consul[i][0]=consulta.getJSONObject(i).getJSONObject("idCita");
-                    consul[i][1]=consulta.getJSONObject(i).getJSONObject("fecha");
-                    consul[i][2]=consulta.getJSONObject(i).getJSONObject("hora");
-                    consul[i][3]=consulta.getJSONObject(i).getJSONObject("motivo");
-                    consul[i][4]=consulta.getJSONObject(i).getJSONObject("diagnostico");
-                    consul[i][5]=consulta.getJSONObject(i).getJSONObject("tratamiento");
-                    
-           }//fin for consulta.length()
-            
-            
-        }//fin if (consulta!=null)
-        else{
-        if(citas!=null){
-            mierda[0]=citas.getJSONObject(0).get("ciPaciente").toString();
-            mierda[1]=citas.getJSONObject(0).get("nombrePaciente").toString();
-            mierda[2]=citas.getJSONObject(0).get("apellidoPaciente").toString();
-            mierda[3]=citas.getJSONObject(0).get("tlfpaciente").toString();
-            mierda[4]=citas.getJSONObject(0).get("fecha_nac").toString();
-            mierda[5]=citas.getJSONObject(0).get("tipoSangre").toString();
-            mierda[6]=citas.getJSONObject(0).get("direPaciente").toString();                  
-            mierda[7]=consulta.getJSONObject(0).get("correo").toString();         
-            
-            cit=new Object[citas.length()][6];
-            for(int i=0;i<citas.length();i++){               
-                    cit[i][0]=citas.getJSONObject(i).getJSONObject("idCita");
-                    cit[i][1]=citas.getJSONObject(i).getJSONObject("fecha");
-                    cit[i][2]=citas.getJSONObject(i).getJSONObject("hora");
-                    cit[i][3]=citas.getJSONObject(i).getJSONObject("motivo");
-                    cit[i][4]=citas.getJSONObject(i).getJSONObject("diagnostico");
-                    cit[i][5]=citas.getJSONObject(i).getJSONObject("tratamiento");
-                    
-            }//fin for citas.length()
+    
+//         this.jTcipaciente.setText(arreglopaciente.get(0).toString());
+//        
+//         this.jTcipaciente.setText(arreglopaciente.get(0).toString());
+//         this.jTnombrepaciente.setText(arreglopaciente.get(1).toString());
+//         this.jTapellidopaciente.setText(arreglopaciente.get(2).toString());
+//         this.jFfnacpaciente.setText(arreglopaciente.get(3).toString());
+//         this.jTtelefonopaciente.setText(arreglopaciente.get(4).toString());
+//         this.jTsangrepaciente.setText(arreglopaciente.get(5).toString());
+//         this.jTemailpaciente.setText(arreglopaciente.get(6).toString());
+//         this.jTAdireccionpaciente.setText(arreglopaciente.get(0).toString());
+//         
+//         this.jTidcita.setText(arreglocita.get(0).toString());
+//         this.jFfcita.setText(arreglocita.get(1).toString());
+//         this.jTmedico.setText(arreglocita.get(2).toString());
+//         this.jTAmotivo.setText(arreglocita.get(3).toString());
+//         this.jTAdescripcion.setText(arreglocita.get(4).toString());
+//         this.jTAtratamiento.setText(arreglocita.get(5).toString());
+ 
+         
 
-        } //finn if (citas!=null)
-        }// fin else
+    
+//    for(int k=0;k<arreglopaciente.length();k++){ // Aqui agarras todos los porque, diagnostico y tratamiento de cada consulta que haya 
+//                                         // ido el paciente de la cedula
+//        arreglopaciente.getJSONObject(k).get("medico");
+//        arreglopaciente.getJSONObject(k).get("porque");
+//        arreglopaciente.getJSONObject(k).get("diagnostico");
+//        arreglopaciente.getJSONObject(k).get("tratamiento");
+//    }
         
-        
-         this.jTcipaciente.setText(mierda[0].toString());
-         this.jTnombrepaciente.setText(mierda[1].toString());
-         this.jTapellidopaciente.setText(mierda[2].toString());
-         this.jTtelefonopaciente.setText(mierda[3].toString());
-         this.jFfnacpaciente.setText(mierda[4].toString());
-         this.jTsangrepaciente.setText(mierda[5].toString());
-         this.jTAdireccionpaciente.setText(mierda[6].toString());
-         this.jTemailpaciente.setText(mierda[7].toString());
-         
-         int fecha=0;
-         for (int j=0; ((j<citas.length()) || (day==fecha)); j++){ //pendiente de cambiar la fecha y no solo el day
-                if ( day == (Integer) cit[j][1] ){
-                    fecha=day;
-                    this.jTidcita.setText(cit[j][0].toString());
-                    this.jFfcita.setText(cit[j][1].toString());
-                    this.jTmedico.setText(cit[j][2].toString());
-                    this.jTAmotivo.setText(cit[j][3].toString());
-                    this.jTAdescripcion.setText(cit[j][4].toString());
-                    this.jTAtratamiento.setText(cit[j][5].toString());
-            }
-            
-         }   
-         
         
         DefaultTableModel modelo = new DefaultTableModel();
         List fila = new ArrayList();
-         for(int j=cit.length;j<cit.length;j--){
-            fila.add(cit[j][0].toString()); 
-            fila.add(cit[j][1].toString());
-            fila.add(cit[j][2].toString());
+         for(int k=0;k<arreglopaciente.length();k++){
+            fila.add(arreglopaciente.getJSONObject(k).get("id")); 
+            fila.add(arreglopaciente.getJSONObject(k).get("fecha"));
+            fila.add(arreglopaciente.getJSONObject(k).get("porque"));
             modelo.addRow(fila.toArray());
             fila.clear();
         }
         
         this.jTable.getColumnModel().getColumn(0).setPreferredWidth(50);
         this.jTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-        this.jTable = new JTable(modelo){
-        
-        public boolean isCellEditable(int row, int columnn) {
-            return false;
-        }};//return false: Desabilitar edición de celdas.
          
-        
         initComponents();
-     
+
+        
         
         int i=0;
         if (i==0){ //si se hace click en una fila del jtable
-        // editar los campos de motivo,diagnostico,etcetc
+        //hacer la peticion de la cita nuevamente y editar los campos de motivo,diagnostico,etcetc
         
-            
+            arreglocita = json.JSON_view_general(cedula,"cita/"); //no es cedula, es idcita
+            arreglocita = json.ordenar_json(arreglocita, titulo_cita);
 
-             this.jTidcita.setText("");
-             this.jFfcita.setText("");
-             this.jTmedico.setText("");
-             this.jTAmotivo.setText("");
-             this.jTAdescripcion.setText("");
-             this.jTAtratamiento.setText("");
+             this.jTidcita.setText(arreglocita.get(0).toString());
+             this.jFfcita.setText(arreglocita.get(1).toString());
+             this.jTmedico.setText(arreglocita.get(2).toString());
+             this.jTAmotivo.setText(arreglocita.get(3).toString());
+             this.jTAdescripcion.setText(arreglocita.get(4).toString());
+             this.jTAtratamiento.setText(arreglocita.get(5).toString());
+        
         }
                 
                 
                 
         
-        
+        this.jTable = new JTable(modelo){
+        public boolean isCellEditable(int row, int columnn) {
+            return false;
+        }};//return false: Desabilitar edición de celdas.
          this.jTcipaciente.setEditable(false);
          this.jTnombrepaciente.setEditable(false);
          this.jTapellidopaciente.setEditable(false);
@@ -201,8 +176,71 @@ public Panel_Historial_pato(String cedula, int day, int moth, int year) throws J
             /* Constructor solo con cedula*/
             /******************************/
 
-public Panel_Historial_pato(String cedula) throws JSONException {
- 
+public Panel_Historial_pato_respaldo(String cedula) throws JSONException {
+    String[]titulo_pacientes = {"ciPaciente","nombrePaciente","apellidoPaciente","tlfpaciente","fecha_nac","tipoSangre","direPaciente"};
+    
+    json= new JSON();
+   
+    arreglopaciente= json.JSON_view_general(cedula,"consulta/");
+    arreglopaciente = json.ordenar_json(arreglopaciente, titulo_pacientes);
+    
+    this.jBback.setVisible(false);
+    
+    /*hacer la llamada del paciente con los datos*/
+    
+         this.jTcipaciente.setText(arreglopaciente.get(0).toString());
+        
+         this.jTcipaciente.setText(arreglopaciente.get(0).toString());
+         this.jTnombrepaciente.setText(arreglopaciente.get(1).toString());
+         this.jTapellidopaciente.setText(arreglopaciente.get(2).toString());
+         this.jFfnacpaciente.setText(arreglopaciente.get(3).toString());
+         this.jTtelefonopaciente.setText(arreglopaciente.get(4).toString());
+         this.jTsangrepaciente.setText(arreglopaciente.get(5).toString());
+         this.jTemailpaciente.setText(arreglopaciente.get(6).toString());
+         this.jTAdireccionpaciente.setText(arreglopaciente.get(0).toString());
+         
+         
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        List fila = new ArrayList();
+         for(int k=0;k<arreglopaciente.length();k++){
+            fila.add(arreglopaciente.getJSONObject(k).get("id")); 
+            fila.add(arreglopaciente.getJSONObject(k).get("fecha"));
+            fila.add(arreglopaciente.getJSONObject(k).get("porque"));
+            modelo.addRow(fila.toArray());
+            fila.clear();
+        }
+        
+        this.jTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+        this.jTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+         
+        initComponents();
+
+        
+        
+        int i=0;
+        if (i==0){ //si se hace click en una fila del jtable
+        //hacer la peticion de la cita nuevamente y editar los campos de motivo,diagnostico,etcetc
+        
+//            arreglocita = json.JSON_view_general(cedula,"cita/"); //no es cedula, es idcita
+//            arreglocita = json.ordenar_json(arreglocita, titulo_cita);
+//
+//             this.jTidcita.setText(arreglocita.get(0).toString());
+//             this.jFfcita.setText(arreglocita.get(1).toString());
+//             this.jTmedico.setText(arreglocita.get(2).toString());
+//             this.jTAmotivo.setText(arreglocita.get(3).toString());
+//             this.jTAdescripcion.setText(arreglocita.get(4).toString());
+//             this.jTAtratamiento.setText(arreglocita.get(5).toString());
+        
+        }
+                
+                
+                
+        
+        this.jTable = new JTable(modelo){
+        public boolean isCellEditable(int row, int columnn) {
+            return false;
+        }};//return false: Desabilitar edición de celdas.
          this.jTcipaciente.setEditable(false);
          this.jTnombrepaciente.setEditable(false);
          this.jTapellidopaciente.setEditable(false);
@@ -376,13 +414,11 @@ public Panel_Historial_pato(String cedula) throws JSONException {
                     .addComponent(jLabel5))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
