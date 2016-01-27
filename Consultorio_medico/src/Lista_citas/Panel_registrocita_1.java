@@ -102,10 +102,31 @@ public class Panel_registrocita_1 extends javax.swing.JPanel {
     }
     
     
-    
+    public Panel_registrocita_1(String sday, int day, int moth, int year) {
+        
+        dday=day; dmouth=moth; dyear=year; this.cass=sday;
+        
+        fecha_mostrar= sday + "  " + Integer.toString(day) +  "/" + Integer.toString(moth) + "/" + Integer.toString(year);
+        fecha_pato= Integer.toString(year) + "-" + Integer.toString(moth) + "-" + Integer.toString(day) + " ";
+      
+        horario= new String[] {"08:00","09:33","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"};
+          
+        imprimir= new String [horario.length];
+        for(int zi=0; zi<horario.length; zi++) {
+            imprimir[zi]= esp+horario[zi];
+        }
+        
+        casita= imprimir;
+        initComponents();
+    }   
     
     //Segundo Constructor y es el que se va a usar "normalmente"                        sigh :c
     public Panel_registrocita_1(String sday, int day, int moth, int year, Object[][] ocus_pocus) {
+         
+                 if (ocus_pocus.length==0) {new Panel_registrocita_1 ( sday,  day,  moth,  year); 
+                               System.out.println("Pase por aca"); 
+                               return;}
+                 
         ocus_magnus=ocus_pocus;
         dday=day; dmouth=moth; dyear=year; this.cass=sday;
         horario= new String[] {"08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"};
@@ -254,8 +275,8 @@ public class Panel_registrocita_1 extends javax.swing.JPanel {
                   
                    
         }  else {  //System.out.print("penemalditoansias");
-                   //Ven_registrocita pato = new Ven_registrocita(ocus_magnus, cass, dday, dmouth, dyear, fecha_pato);
-                    Panel_cita pato = new Panel_cita(fecha_pato);
+                   Ven_registrocita pato = new Ven_registrocita(ocus_magnus, cass, dday, dmouth, dyear, fecha_pato);
+                   // Panel_cita pato = new Panel_cita(fecha_pato);
                     System.out.println("hola3");
                    int aux=1;
                    retorno[0]=aux;

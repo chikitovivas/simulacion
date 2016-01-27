@@ -172,7 +172,7 @@ public class Panel_calendario extends javax.swing.JPanel {
             
             retorno[0]=day;
             retorno[1]=aux;
-            retorno[2]=null;
+            retorno[2]=new Object[0][0];
             return retorno;
         }       
             retorno[0]=day;

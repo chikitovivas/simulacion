@@ -1,12 +1,17 @@
 package JSON;
 
 import Login.Ven_login;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
@@ -179,7 +184,72 @@ public class JSONpato {
         return supermierda;
     }
     
+    public static void agregar_pato(String[] arreglo) throws JSONException, UnsupportedEncodingException, IOException{
     
+        HttpClient client = new DefaultHttpClient(); // cliente
+  
+        // HttpPost post = new HttpPost("http://miconsultoriocal.no-ip.org:8000/hacerCita");// aqui ponen el url que necesiten lo unico que tiene que cambiar es el /notes ponen el que quieran por ejemplo /crearusuario
+
+         HttpPost post = new HttpPost(Ven_login.url+"/historial");
+
+         JSONObject json = new JSONObject(); // crean el objeto json
+
+         // ponen el nombre del campo en la bd con lo que quieren que lleve
+
+          json.put("ci",arreglo[0]);//Esta es la cedula del paciente 
+          json.put("nombrepaciente",arreglo[1]);//pendiente con el nombre 
+          json.put("apellidopaciente",arreglo[2]);//pendiente con el nombre 
+          json.put("telefonopaciente",arreglo[3]);//pendiente con el nombre 
+          //Los datos del paciente que se pueden editar
+          json.put("fechanac",arreglo[4]);
+          json.put("sangre",arreglo[5]);
+          json.put("dire",arreglo[6]);
+          json.put("correo",arreglo[7]);
+
+          json.put("numeroCita",arreglo[8]);
+          json.put("fcita",arreglo[9]);  //pendiente con el nombre 
+          json.put("horacita",arreglo[10]); //pendiente con el nombre 
+          json.put("porque",arreglo[11]);
+          json.put("diagnostico",arreglo[12]);
+          json.put("tratamiento",arreglo[13]);
+
+//         [0] = cipaciente
+//         [1] = nombrepaciente
+//         [2] = apellidopaciente
+//         [3] = telefonopaciente
+//         [4] = fnacpaciente
+//         [5] = sangrepaciente
+//         [6] = direccionpaciente
+//         [7] = emailpaciente
+//         [8] = idcita
+//         [9] = fcita
+//         [10] = horacita
+//         [11] = motivo
+//         [12] = diagnostico
+//         [13] = tratamiento
+
+        System.out.println(json); // imprimo a ver si esta bien
+
+
+
+         StringEntity se = new StringEntity( json.toString()); //convierte el json en este tipo para poder pasarlo
+         se.setContentType("application/json;charset=UTF-8"); // especificamos que es un json
+         post.setHeader("Accept", "application/json");              // acceptamos el json    
+         post.setEntity(se); // lo agregamos al post
+         HttpResponse response = client.execute(post); // hacemos la peticion
+
+         System.out.println(response.toString()); // imprimo la respuesta
+
+         // de aqui para abajo sirve para ver errores, 
+         // por ejemplo s hay algun error con el servidor esto te manda la pagina de respuesta del servidor 
+         // y te la escribe en la consola
+         // pero en texto al final se puede ver el tipo de error y eso..
+         BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent())); 
+//         String line = "";
+//         while ((line = rd.readLine()) != null) {
+//          System.out.println(line);
+//         }
+    }
     
     
     

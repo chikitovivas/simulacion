@@ -6,9 +6,14 @@
 package verHistorial;
 
 import JSON.JSON;
+import JSON.JSONpato;
+import static JSON.JSONpato.agregar_pato;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.json.JSONArray;
@@ -27,6 +32,7 @@ public class Panel_Historial_patoeditable extends javax.swing.JPanel {
     Date fechahoraG;
     JSON json;
     JSONArray arreglo=null;
+    JSONpato jsonpato = new JSONpato();
     /**
      * Creates new form Ven_VerHistorial
      * @param arreglo_datos
@@ -44,33 +50,89 @@ public class Panel_Historial_patoeditable extends javax.swing.JPanel {
     }
     
 
-public Panel_Historial_patoeditable(String cedula) throws JSONException {
-        
-    json= new JSON();
-   
-     //arreglo=   json.JSON_view("cedula","consulta/");
+public Panel_Historial_patoeditable(String cedula) throws JSONException, IOException {
+    Object[] objeto = new Object[3];
+    
     this.jBback.setVisible(false);
     
-    for(int k=0;k<arreglo.length();k++){ // Aqui agarras todos los porque, diagnostico y tratamiento de cada consulta que haya 
-                                         // ido el paciente de la cedula
-        arreglo.getJSONObject(k).get("medico");
-        arreglo.getJSONObject(k).get("porque");
-        arreglo.getJSONObject(k).get("diagnostico");
-        arreglo.getJSONObject(k).get("tratamiento");
-    }
+    JSONArray[] arreglo = new JSONArray[2];
     
-   
-        initComponents();
+    arreglo = jsonpato.solicitar_pato(cedula);
+    
+    // POSICION 0 TIENE CONSULTAS POSICION 1 TIENE CITAS
+        JSONArray consulta=arreglo[0],citas=arreglo[1];        
+        Object[] mierda={"","","","","","","","",null,null};
+        
+        if((consulta==null) && (citas==null))
+             arreglo= null;
+        
+        Object[][] consul=null,cit=null;
+        if(consulta!=null){
+            mierda[0]=consulta.getJSONObject(0).get("ciPaciente").toString();
+            mierda[1]=consulta.getJSONObject(0).get("nombrePaciente").toString();
+            mierda[2]=consulta.getJSONObject(0).get("apellidoPaciente").toString();
+            mierda[3]=consulta.getJSONObject(0).get("tlfpaciente").toString();
+            mierda[4]=consulta.getJSONObject(0).get("fecha_nac").toString();
+            mierda[5]=consulta.getJSONObject(0).get("tipoSangre").toString();
+            mierda[6]=consulta.getJSONObject(0).get("direPaciente").toString();                    
+            mierda[7]=consulta.getJSONObject(0).get("correo").toString();                    
+            
+            
+           consul=new Object[consulta.length()][6];
+           for(int i=0;i<consulta.length();i++){               
+                    consul[i][0]=consulta.getJSONObject(i).getJSONObject("idCita");
+                    consul[i][1]=consulta.getJSONObject(i).getJSONObject("fecha");
+                    consul[i][2]=consulta.getJSONObject(i).getJSONObject("hora");
+                    consul[i][3]=consulta.getJSONObject(i).getJSONObject("motivo");
+                    consul[i][4]=consulta.getJSONObject(i).getJSONObject("diagnostico");
+                    consul[i][5]=consulta.getJSONObject(i).getJSONObject("tratamiento");
+                    
+           }//fin for consulta.length()
+            
+            
+        }//fin if (consulta!=null)
+        else{
+        if(citas!=null){
+            mierda[0]=citas.getJSONObject(0).get("ciPaciente").toString();
+            mierda[1]=citas.getJSONObject(0).get("nombrePaciente").toString();
+            mierda[2]=citas.getJSONObject(0).get("apellidoPaciente").toString();
+            mierda[3]=citas.getJSONObject(0).get("tlfpaciente").toString();
+            mierda[4]=citas.getJSONObject(0).get("fecha_nac").toString();
+            mierda[5]=citas.getJSONObject(0).get("tipoSangre").toString();
+            mierda[6]=citas.getJSONObject(0).get("direPaciente").toString();                  
+            mierda[7]=consulta.getJSONObject(0).get("correo").toString();         
+            
+            cit=new Object[citas.length()][6];
+            for(int i=0;i<citas.length();i++){               
+                    cit[i][0]=citas.getJSONObject(i).getJSONObject("idCita");
+                    cit[i][1]=citas.getJSONObject(i).getJSONObject("fecha");
+                    cit[i][2]=citas.getJSONObject(i).getJSONObject("hora");
+                    cit[i][3]=citas.getJSONObject(i).getJSONObject("motivo");
+                    cit[i][4]=citas.getJSONObject(i).getJSONObject("diagnostico");
+                    cit[i][5]=citas.getJSONObject(i).getJSONObject("tratamiento");
+                    
+            }//fin for citas.length()
+
+        } //finn if (citas!=null)
+        }// fin else
+        
+        
+         this.jTcipaciente.setText(mierda[0].toString());
+         this.jTnombrepaciente.setText(mierda[1].toString());
+         this.jTapellidopaciente.setText(mierda[2].toString());
+         this.jTtelefonopaciente.setText(mierda[3].toString());
+         this.jFfnacpaciente.setText(mierda[4].toString());
+         this.jTsangrepaciente.setText(mierda[5].toString());
+         this.jTAdireccionpaciente.setText(mierda[6].toString());
+         this.jTemailpaciente.setText(mierda[7].toString());
+         
+    
+    
+    initComponents();
  
         
 
-         jTcipaciente.setEditable(false);
-         jTnombrepaciente.setEditable(false);
-         jTemailpaciente.setEditable(false);
-         jTtelefonopaciente.setEditable(false);
-         jTAmotivo.setEditable(false);
-         jTAdiagnostico.setEditable(false);
-         jTAtratamiento.setEditable(false);
+         
     }
 
     /**
@@ -97,9 +159,7 @@ public Panel_Historial_patoeditable(String cedula) throws JSONException {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jTidcita = new javax.swing.JTextField();
-        jTmedico = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -149,8 +209,6 @@ public Panel_Historial_patoeditable(String cedula) throws JSONException {
         jLabel2.setText("ID cita: ");
 
         jLabel3.setText("Fecha: ");
-
-        jLabel5.setText("Médico:");
 
         jTidcita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,11 +265,8 @@ public Panel_Historial_patoeditable(String cedula) throws JSONException {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFhoracita)
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTmedico, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jFhoracita, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                        .addGap(220, 220, 220))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -233,9 +288,7 @@ public Panel_Historial_patoeditable(String cedula) throws JSONException {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel5)
                     .addComponent(jTidcita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTmedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFfcita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(jFhoracita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -262,6 +315,11 @@ public Panel_Historial_patoeditable(String cedula) throws JSONException {
         JLtitulo1.setText("Historial");
 
         jBguardar.setText("Guardar");
+        jBguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBguardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
@@ -441,6 +499,38 @@ public Panel_Historial_patoeditable(String cedula) throws JSONException {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFfcitaActionPerformed
 
+    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
+       String[] datospaciente = new String[13];
+       
+       
+     // condicion de si la consulta la consulta ya existe
+     // if (tal)
+     
+         datospaciente[0] = this.jTcipaciente.getText();
+         datospaciente[1] = this.jTnombrepaciente.getText();
+         datospaciente[2] = this.jTapellidopaciente.getText();
+         datospaciente[3] = this.jTtelefonopaciente.getText();
+         datospaciente[4] = this.jFfnacpaciente.getText();
+         datospaciente[5] = this.jTsangrepaciente.getText();
+         datospaciente[6] = this.jTAdireccionpaciente.getText();
+         datospaciente[7] = this.jTemailpaciente.getText();
+         datospaciente[8] = this.jTidcita.getText();
+         datospaciente[9] = this.jFfcita.getText();
+         datospaciente[10] = this.jFhoracita.getText();
+         datospaciente[11] = this.jTAmotivo.getText();
+         datospaciente[12] = this.jTAdiagnostico.getText();
+         datospaciente[13] = this.jTAtratamiento.getText();
+        
+       try {
+           jsonpato.agregar_pato(datospaciente);
+           
+       } catch (JSONException ex) {
+           Logger.getLogger(Panel_Historial_patoeditable.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (IOException ex) {
+           Logger.getLogger(Panel_Historial_patoeditable.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }//GEN-LAST:event_jBguardarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLci;
@@ -461,7 +551,6 @@ public Panel_Historial_patoeditable(String cedula) throws JSONException {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -483,7 +572,6 @@ public Panel_Historial_patoeditable(String cedula) throws JSONException {
     private javax.swing.JTextField jTcipaciente;
     private javax.swing.JTextField jTemailpaciente;
     private javax.swing.JTextField jTidcita;
-    private javax.swing.JTextField jTmedico;
     private javax.swing.JTextField jTnombrepaciente;
     private javax.swing.JTextField jTsangrepaciente;
     private javax.swing.JTextField jTtelefonopaciente;

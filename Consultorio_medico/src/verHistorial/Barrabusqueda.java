@@ -5,6 +5,10 @@
  */
 package verHistorial;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONException;
+
 /**
  *
  * @author Administrador
@@ -32,25 +36,67 @@ public class Barrabusqueda extends javax.swing.JPanel {
     private void initComponents() {
 
         barra = new javax.swing.JTextField();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         barra.setText("Busquedad por cédula de identidad del paciente");
+        barra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                barraMouseClicked(evt);
+            }
+        });
+        barra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                barraActionPerformed(evt);
+            }
+        });
+
+        jToggleButton1.setText("Búsqueda");
+        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(barra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButton1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addComponent(jToggleButton1))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void barraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barraActionPerformed
+        
+        
+    }//GEN-LAST:event_barraActionPerformed
+
+    private void barraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraMouseClicked
+        barra.setText("");
+    }//GEN-LAST:event_barraMouseClicked
+
+    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
+        try {
+            Panel_Historial_pato historial;
+            String text = barra.getText();
+            if (text!=null)
+                 historial = new Panel_Historial_pato(text);
+        } catch (JSONException ex) {
+            Logger.getLogger(Barrabusqueda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jToggleButton1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField barra;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

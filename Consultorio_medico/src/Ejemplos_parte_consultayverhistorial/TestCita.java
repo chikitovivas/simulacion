@@ -41,9 +41,6 @@ public class TestCita {
   
   JSONObject json = new JSONObject(); // crean el objeto json
   
-  
-
-
   // ponen el nombre del campo en la bd con lo que quieren que lleve
  
    json.put("ci","121442");//Esta es la cedula del paciente 

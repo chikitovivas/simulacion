@@ -34,6 +34,7 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
      String [] horario;
      String [][] casex;
      String [] imprimir;
+     String[] tasa=null;
      
      Object[][] ocus_magnus;
      int dhour;
@@ -102,13 +103,38 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
     }
     
     
+    public Ven_registrocita_1(String sday, int day, int moth, int year) {
+        
+        dday=day; dmouth=moth; dyear=year; this.cass=sday;
+        
+        fecha_mostrar= sday + "  " + Integer.toString(day) +  "/" + Integer.toString(moth) + "/" + Integer.toString(year);
+        fecha_pato= Integer.toString(year) + "-" + Integer.toString(moth) + "-" + Integer.toString(day) + " ";
+      
+        horario= new String[] {"08:00","09:33","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"};
+          
+        imprimir= new String [horario.length];
+        for(int zi=0; zi<horario.length; zi++) {
+            imprimir[zi]= esp+horario[zi];
+        }
+        tasa=imprimir;
+        casita= imprimir;
+        initComponents();
+    }    
     
     
     //Segundo Constructor y es el que se va a usar "normalmente"                        sigh :c
     public Ven_registrocita_1(String sday, int day, int moth, int year, Object[][] ocus_pocus) {
+        if (ocus_pocus.length==0) {new Ven_registrocita_1 ( sday,  day,  moth,  year); 
+                               System.out.println("Pase por aca"); 
+                               return;}
+        
+        System.out.println("neeee por aca");
         ocus_magnus=ocus_pocus;
         dday=day; dmouth=moth; dyear=year; this.cass=sday;
         horario= new String[] {"08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"};
+        
+        
+        imprimir= new String [horario.length];
         
       fecha_mostrar= sday + "  " + Integer.toString(day) +  "/" + Integer.toString(moth) + "/" + Integer.toString(year);
       fecha_pato= Integer.toString(year) + "-" + Integer.toString(moth) + "-" + Integer.toString(day) + " ";
@@ -133,7 +159,7 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
               }
         }
           
-        imprimir= new String [horario.length];
+        
         for(int zi=0; zi<=horario.length-1; zi++) {
             for(int zy=0; zy<=casex.length-1; zy++) {
                if (horario[zi].equals(casex[zy][0])) {
@@ -143,7 +169,7 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
                     } 
             }  
         }
-        
+        tasa=imprimir;
         casita= imprimir;
         initComponents();
     }
@@ -192,7 +218,7 @@ public class Ven_registrocita_1 extends javax.swing.JFrame {
         jList1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 102)));
         jList1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = casita;
+            String[] strings = tasa;
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

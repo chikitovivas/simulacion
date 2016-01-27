@@ -7,6 +7,8 @@ package verHistorial;
 
 import JSON.JSON;
 import JSON.JSONpato;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -144,9 +146,9 @@ public Panel_Historial_pato(String cedula, int day, int moth, int year) throws J
         DefaultTableModel modelo = new DefaultTableModel();
         List fila = new ArrayList();
          for(int j=cit.length;j<cit.length;j--){
-            fila.add(cit[j][0].toString()); 
-            fila.add(cit[j][1].toString());
-            fila.add(cit[j][2].toString());
+            fila.add(cit[j][0].toString()); //idcita
+            fila.add(cit[j][1].toString()); //fecha
+            fila.add(cit[j][3].toString()); //motivo
             modelo.addRow(fila.toArray());
             fila.clear();
         }
@@ -162,19 +164,29 @@ public Panel_Historial_pato(String cedula, int day, int moth, int year) throws J
         
         initComponents();
      
+         /* SI SE SELECCIONA ALGUNA FILA DEL JTABLE*/
+        //setEventoMouseClicked(jTable);
         
-        int i=0;
-        if (i==0){ //si se hace click en una fila del jtable
-        // editar los campos de motivo,diagnostico,etcetc
+        int x=0,y=0; //x id de la fila seleccionada, y id de la comparacion
+        //si se hace click en una fila del jtable
+        int row = jTable.getSelectedRow();/* row devolvera -1 si se ha clicado fuera de la fila pero dentro de la tabla, si no devolvera el indice de la fila en la que se ha clicado. */
+        if (row!=-1){ 
+            x=(int) modelo.getValueAt(row, 0);
         
+            for (int j=0; ((j<citas.length()) || (y==x)); j++){ //pendiente de cambiar la fecha y no solo el day
+                    if ( x == (Integer) cit[j][0] ){
+                        
+                        // editar los campos de motivo,diagnostico,etcetc
+                        this.jTidcita.setText(cit[j][0].toString());
+                        this.jFfcita.setText(cit[j][1].toString());
+                        this.jTmedico.setText(cit[j][2].toString());
+                        this.jTAmotivo.setText(cit[j][3].toString());
+                        this.jTAdescripcion.setText(cit[j][4].toString());
+                        this.jTAtratamiento.setText(cit[j][5].toString());
+                        y=x;
+                }
+            }
             
-
-             this.jTidcita.setText("");
-             this.jFfcita.setText("");
-             this.jTmedico.setText("");
-             this.jTAmotivo.setText("");
-             this.jTAdescripcion.setText("");
-             this.jTAtratamiento.setText("");
         }
                 
                 
@@ -202,7 +214,8 @@ public Panel_Historial_pato(String cedula, int day, int moth, int year) throws J
             /******************************/
 
 public Panel_Historial_pato(String cedula) throws JSONException {
- 
+        
+        
          this.jTcipaciente.setEditable(false);
          this.jTnombrepaciente.setEditable(false);
          this.jTapellidopaciente.setEditable(false);
@@ -221,8 +234,31 @@ public Panel_Historial_pato(String cedula) throws JSONException {
 
 
 
-
-
+    private void setEventoMouseClicked(JTable tbl)
+    {
+        tbl.addMouseListener(new java.awt.event.MouseAdapter() {
+ 
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            MouseClicked(e);
+        }
+        });
+    }
+ 
+    private void MouseClicked(java.awt.event.MouseEvent evt) {
+ 
+       String cadena="";
+ 
+        int row = jTable.rowAtPoint(evt.getPoint());
+        if (row >= 0 && jTable.isEnabled())
+        {
+            for (int i=0; i < jTable.getColumnCount();i++)
+            {
+               cadena=cadena + " " +  jTable.getValueAt(row,i).toString();
+            }
+        }
+ 
+    }
 
 
     @SuppressWarnings("unchecked")
