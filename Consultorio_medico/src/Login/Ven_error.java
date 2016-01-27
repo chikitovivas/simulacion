@@ -5,6 +5,9 @@
  */
 package Login;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,7 +21,7 @@ public class Ven_error extends javax.swing.JFrame {
      * Creates new form Ven_error
      */
     public Ven_error() {
-            initComponents();        
+            initComponents();                                     
     }
     
 
@@ -38,7 +41,7 @@ public class Ven_error extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Nico\\Documents\\Workshop\\Consultorio_medico\\Consultorio_medico_RespaldoPrimeraEntrega\\Librerias\\warning.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("Librerias/warning.jpg"));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
