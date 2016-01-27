@@ -64,8 +64,8 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Nico\Documents\Workshop\Consultorio_medico\Consultorio_medico_RespaldoPrimeraEntrega\Librerias\warning.jpg"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(&quot;Librerias/warning.jpg&quot;)" type="code"/>
             </Property>
           </Properties>
         </Component>

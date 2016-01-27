@@ -78,6 +78,7 @@ public class Ven_login extends javax.swing.JFrame {
     }
     
     private void Iniciar_menu_medico(String nick){
+               Ven_login.nickname=nick;
                MenuPrincipal men=new MenuPrincipal(nick);
                men.setVisible(true);
                this.setVisible(false);
