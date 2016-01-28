@@ -56,12 +56,10 @@ public Panel_Historial_pato(String cedula, int day, int moth, int year) throws J
     
     JSONpato jsonpato = new JSONpato();
     JSONArray[] arreglo = new JSONArray[2];
-    
+    int bandera=0;
     arreglo = jsonpato.solicitar_pato(cedula); // obtengo los datos del paciente, la consulta y las citas
     
-    
-    
-        // POSICION 0 TIENE CONSULTAS POSICION 1 TIENE CITAS
+         // POSICION 0 TIENE CONSULTAS POSICION 1 TIENE CITAS
         JSONArray consulta=arreglo[0],citas=arreglo[1];        
         Object[] mierda={"","","","","","","","",null,null};
         
@@ -69,54 +67,50 @@ public Panel_Historial_pato(String cedula, int day, int moth, int year) throws J
              arreglo= null;
         
         Object[][] consul=null,cit=null;
-        if(consulta!=null){
+        
+            if(consulta!=null){
+            bandera++;
             mierda[0]=consulta.getJSONObject(0).get("ciPaciente").toString();
             mierda[1]=consulta.getJSONObject(0).get("nombrePaciente").toString();
             mierda[2]=consulta.getJSONObject(0).get("apellidoPaciente").toString();
-            mierda[3]=consulta.getJSONObject(0).get("tlfpaciente").toString();
+            mierda[3]=consulta.getJSONObject(0).get("numero").toString();
             mierda[4]=consulta.getJSONObject(0).get("fecha_nac").toString();
             mierda[5]=consulta.getJSONObject(0).get("tipoSangre").toString();
             mierda[6]=consulta.getJSONObject(0).get("direPaciente").toString();                    
-            mierda[7]=consulta.getJSONObject(0).get("correo").toString();                    
+            mierda[7]=consulta.getJSONObject(0).get("correoPaciente").toString();                    
             
             
-           consul=new Object[consulta.length()][6];
+           consul=new Object[consulta.length()][5];
            for(int i=0;i<consulta.length();i++){               
-                    consul[i][0]=consulta.getJSONObject(i).getJSONObject("idCita");
-                    consul[i][1]=consulta.getJSONObject(i).getJSONObject("fecha");
-                    consul[i][2]=consulta.getJSONObject(i).getJSONObject("hora");
-                    consul[i][3]=consulta.getJSONObject(i).getJSONObject("motivo");
-                    consul[i][4]=consulta.getJSONObject(i).getJSONObject("diagnostico");
-                    consul[i][5]=consulta.getJSONObject(i).getJSONObject("tratamiento");
+                    consul[i][0]=consulta.getJSONObject(i).getJSONObject("id");// id de cita
+                    consul[i][1]=consulta.getJSONObject(i).getJSONObject("fechaHora");
+                    consul[i][2]=consulta.getJSONObject(i).getJSONObject("porque");
+                    consul[i][3]=consulta.getJSONObject(i).getJSONObject("diagnostico");
+                    consul[i][4]=consulta.getJSONObject(i).getJSONObject("tratamiento");
                     
-           }//fin for consulta.length()
+           }
             
             
-        }//fin if (consulta!=null)
-        else{
-        if(citas!=null){
+        }
+        if((citas!=null)){
+            if((bandera==0)){
             mierda[0]=citas.getJSONObject(0).get("ciPaciente").toString();
             mierda[1]=citas.getJSONObject(0).get("nombrePaciente").toString();
             mierda[2]=citas.getJSONObject(0).get("apellidoPaciente").toString();
             mierda[3]=citas.getJSONObject(0).get("tlfpaciente").toString();
             mierda[4]=citas.getJSONObject(0).get("fecha_nac").toString();
             mierda[5]=citas.getJSONObject(0).get("tipoSangre").toString();
-            mierda[6]=citas.getJSONObject(0).get("direPaciente").toString();                  
-            mierda[7]=consulta.getJSONObject(0).get("correo").toString();         
-            
+            mierda[6]=citas.getJSONObject(0).get("direPaciente").toString();                 
+            mierda[7]=consulta.getJSONObject(0).get("correoPaciente").toString();   
+            }
             cit=new Object[citas.length()][6];
-            for(int i=0;i<citas.length();i++){            
-                    cit[i][0]=citas.getJSONObject(i).getJSONObject("idCita");
-                    cit[i][1]=citas.getJSONObject(i).getJSONObject("fechahora");
-                    cit[i][2]=citas.getJSONObject(i).getJSONObject("porque");
-                    cit[i][3]=citas.getJSONObject(i).getJSONObject("diagnostico");
-                    cit[i][4]=citas.getJSONObject(i).getJSONObject("tratamiento");
+            for(int i=0;i<consulta.length();i++){               
+                    cit[i][0]=citas.getJSONObject(i).getJSONObject("id"); //id de cita
+                    cit[i][1]=citas.getJSONObject(i).getJSONObject("fechahora");// fecha y hoira
                     
-            }//fin for citas.length()
+            }
 
-        } //finn if (citas!=null)
-        }// fin else
-        
+            }
         
          this.jTcipaciente.setText(mierda[0].toString());
          this.jTnombrepaciente.setText(mierda[1].toString());
@@ -127,27 +121,31 @@ public Panel_Historial_pato(String cedula, int day, int moth, int year) throws J
          this.jTAdireccionpaciente.setText(mierda[6].toString());
          this.jTemailpaciente.setText(mierda[7].toString());
          
-         int fecha=0;
-         for (int j=0; ((j<citas.length()) || (day==fecha)); j++){ //pendiente de cambiar la fecha y no solo el day
-                if ( day == (Integer) cit[j][1] ){
-                    fecha=day;
-                    this.jTidcita.setText(cit[j][0].toString());
-                    this.jFfcita.setText(cit[j][1].toString());
-                    this.jTmedico.setText(cit[j][2].toString());
-                    this.jTAmotivo.setText(cit[j][3].toString());
-                    this.jTAdescripcion.setText(cit[j][4].toString());
-                    this.jTAtratamiento.setText(cit[j][5].toString());
-            }
-            
-         }   
+//         int fecha=0;
+//         for (int j=0; ((j<citas.length()) || (day==fecha)); j++){ //pendiente de cambiar la fecha y no solo el day
+//                if ( day == (Integer) cit[j][1] ){
+//                    fecha=day;
+//                    this.jTidcita.setText(cit[j][0].toString());
+//                    this.jFfcita.setText(cit[j][1].toString());
+//                    this.jTmedico.setText(cit[j][2].toString());
+//                    this.jTAmotivo.setText(cit[j][3].toString());
+//                    this.jTAdescripcion.setText(cit[j][4].toString());
+//                    this.jTAtratamiento.setText(cit[j][5].toString());
+//            }
+//            
+//         }   
          
         
         DefaultTableModel modelo = new DefaultTableModel();
         List fila = new ArrayList();
-         for(int j=cit.length;j<cit.length;j--){
+         for(int j=cit.length;j>=0;j--){
             fila.add(cit[j][0].toString()); //idcita
             fila.add(cit[j][1].toString()); //fecha
-            fila.add(cit[j][3].toString()); //motivo
+            for (int i=0;i<consul.length;i++){
+                if (consul[i][2]==cit[j][0]){
+                    fila.add(consul[i][2].toString()); //motivo
+                }
+            }
             modelo.addRow(fila.toArray());
             fila.clear();
         }
@@ -173,15 +171,22 @@ public Panel_Historial_pato(String cedula, int day, int moth, int year) throws J
             x=(int) modelo.getValueAt(row, 0);
         
             for (int j=0; ((j<citas.length()) || (y==x)); j++){ //pendiente de cambiar la fecha y no solo el day
-                    if ( x == (Integer) cit[j][0] ){
+          //  for (int j=0; j<citas.length(); j++){
+                if ( x == (Integer) cit[j][0] ){
                         
                         // editar los campos de motivo,diagnostico,etcetc
-                        this.jTidcita.setText(cit[j][0].toString());
-                        this.jFfcita.setText(cit[j][1].toString());
-                        this.jTmedico.setText(cit[j][2].toString());
-                        this.jTAmotivo.setText(cit[j][3].toString());
-                        this.jTAdescripcion.setText(cit[j][4].toString());
-                        this.jTAtratamiento.setText(cit[j][5].toString());
+                        this.jTidcita.setText(cit[j][0].toString()); //id
+                        this.jFfcita.setText(cit[j][1].toString()); //fechahora
+                       // this.jTmedico.setText(cit[j][2].toString());
+                       
+                       for (int i=0;i<consul.length;i++){
+                            if (consul[i][2]==cit[j][0]){
+                                this.jTAmotivo.setText(consul[i][2].toString()); //motivo
+                                this.jTAdescripcion.setText(consul[i][3].toString());//diagnostico
+                                this.jTAtratamiento.setText(consul[i][4].toString()); //tratamiento
+                            }
+                        }
+                        
                         y=x;
                 }
             }
@@ -213,8 +218,8 @@ public Panel_Historial_pato(String cedula, int day, int moth, int year) throws J
             /******************************/
 
 public Panel_Historial_pato(String cedula) throws JSONException {
-        
-        
+         initComponents();
+         System.out.println("hola mundito");
          this.jTcipaciente.setEditable(false);
          this.jTnombrepaciente.setEditable(false);
          this.jTapellidopaciente.setEditable(false);

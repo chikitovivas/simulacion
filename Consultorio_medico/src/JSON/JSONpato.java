@@ -125,38 +125,39 @@ public class JSONpato {
         // POSICION 0 TIENE CONSULTAS POSICION 1 TIENE CITAS
         JSONArray consulta=arreglo[0]
                 ,citas=arreglo[1];        
-        String[]titulo_pacientes = {"ciPaciente","nombrePaciente","apellidoPaciente","tlfpaciente","fecha_nac","tipoSangre","direPaciente","correo"};
+        String[]titulo_pacientes = {"ciPaciente","nombrePaciente","apellidoPaciente","numero","fecha_nac","tipoSangre","direPaciente","correoPaciente"};
         Object[] mierda={"","","","","","","","",null,null};
-        
+        int bandera=0;
         if((consulta==null) && (citas==null))
              return null;
         Object[][] consul=null,cit=null;
         
         if(consulta!=null){
+            bandera++;
             mierda[0]=consulta.getJSONObject(0).get("ciPaciente").toString();
             mierda[1]=consulta.getJSONObject(0).get("nombrePaciente").toString();
             mierda[2]=consulta.getJSONObject(0).get("apellidoPaciente").toString();
-            mierda[3]=consulta.getJSONObject(0).get("tlfpaciente").toString();
+            mierda[3]=consulta.getJSONObject(0).get("numero").toString();
             mierda[4]=consulta.getJSONObject(0).get("fecha_nac").toString();
             mierda[5]=consulta.getJSONObject(0).get("tipoSangre").toString();
             mierda[6]=consulta.getJSONObject(0).get("direPaciente").toString();                    
-            mierda[7]=consulta.getJSONObject(0).get("correo").toString();                    
+            mierda[7]=consulta.getJSONObject(0).get("correoPaciente").toString();                    
             
             
-           consul=new Object[consulta.length()][6];
+           consul=new Object[consulta.length()][5];
            for(int i=0;i<consulta.length();i++){               
-                    consul[i][0]=consulta.getJSONObject(i).getJSONObject("idCita");
-                    consul[i][1]=consulta.getJSONObject(i).getJSONObject("fecha");
-                    consul[i][2]=consulta.getJSONObject(i).getJSONObject("hora");
-                    consul[i][3]=consulta.getJSONObject(i).getJSONObject("motivo");
-                    consul[i][4]=consulta.getJSONObject(i).getJSONObject("diagnostico");
-                    consul[i][5]=consulta.getJSONObject(i).getJSONObject("tratamiento");
+                    consul[i][0]=consulta.getJSONObject(i).getJSONObject("id");
+                    consul[i][1]=consulta.getJSONObject(i).getJSONObject("fechaHora");
+                    consul[i][2]=consulta.getJSONObject(i).getJSONObject("porque");
+                    consul[i][3]=consulta.getJSONObject(i).getJSONObject("diagnostico");
+                    consul[i][4]=consulta.getJSONObject(i).getJSONObject("tratamiento");
                     
            }
             
             
-        }else
-        if(citas!=null){
+        }
+        if((citas!=null)){
+            if((bandera==0)){
             mierda[0]=citas.getJSONObject(0).get("ciPaciente").toString();
             mierda[1]=citas.getJSONObject(0).get("nombrePaciente").toString();
             mierda[2]=citas.getJSONObject(0).get("apellidoPaciente").toString();
@@ -164,14 +165,11 @@ public class JSONpato {
             mierda[4]=citas.getJSONObject(0).get("fecha_nac").toString();
             mierda[5]=citas.getJSONObject(0).get("tipoSangre").toString();
             mierda[6]=citas.getJSONObject(0).get("direPaciente").toString(); 
-            
+            }
             cit=new Object[citas.length()][6];
             for(int i=0;i<consulta.length();i++){               
-                    cit[i][0]=citas.getJSONObject(i).getJSONObject("idCita");
+                    cit[i][0]=citas.getJSONObject(i).getJSONObject("id");
                     cit[i][1]=citas.getJSONObject(i).getJSONObject("fechahora");
-                    cit[i][2]=citas.getJSONObject(i).getJSONObject("porque");
-                    cit[i][3]=citas.getJSONObject(i).getJSONObject("diagnostico");
-                    cit[i][4]=citas.getJSONObject(i).getJSONObject("tratamiento");
                     
             }
 
