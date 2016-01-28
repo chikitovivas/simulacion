@@ -7,11 +7,8 @@ package Login;
 
 
 import consultorio_medico.MenuPrincipal;
-import java.awt.Dimension;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.json.JSONException;
 
 /**
  *
@@ -229,10 +226,28 @@ public class Ven_login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    private boolean check_intro(){
+        try{
+            Integer.parseInt(this.T_nick.getText());            
+        }catch(Exception e){
+            this.L_warn.setVisible(true);
+            Ven_error err=new Ven_error();
+            err.setVisible(true);
+            return false;
+        }
+        return true;
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       if(this.check_intro()==false)
+           return;
+       
        String nick=T_nick.getText();
        String pass=T_pass.getText();
        this.log=new Cod_login(nick,pass);
+       
        
        
         try {

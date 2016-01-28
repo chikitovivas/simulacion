@@ -6,6 +6,8 @@
 package Login;
 
 import JSON.JSON;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JCheckBox;
 
 /**
@@ -90,6 +92,37 @@ public class Pan_registro extends javax.swing.JPanel {
         
         return "";
     } 
+    
+    private boolean check_string(String palabra){
+            Pattern p=Pattern.compile("[^a-z]",Pattern.CASE_INSENSITIVE);
+            Matcher m=p.matcher(palabra);
+            boolean b=m.find();
+            if(b==false)
+                return true;
+            
+        return false;
+    }
+    
+    private boolean check_intro(){
+        try{
+            Exception Throa = null;
+            if(check_string(this.apellido.getText())==false)
+                throw Throa;
+            if(check_string(this.nombre.getText())==false)
+                throw Throa;                        
+            if(this.hini.getSelectedIndex()>=this.hfin.getSelectedIndex())
+                throw Throa;
+            Integer.parseInt(this.ci.getText());
+            
+        }catch(Exception e){            
+            return false;
+        }
+        
+        
+        return true;
+    }
+    
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -340,8 +373,15 @@ public class Pan_registro extends javax.swing.JPanel {
     }//GEN-LAST:event_BorrarActionPerformed
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+
+        
         if(this.check_radio()==false)
             return;
+        
+        
+        if(this.check_intro()==false)
+            return;
+        
                 
         this.get_variables();  
         reg=new Cod_registro(this.cedula,this.nom,this.ape,
