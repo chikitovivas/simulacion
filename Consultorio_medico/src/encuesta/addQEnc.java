@@ -65,7 +65,7 @@ public class addQEnc extends javax.swing.JPanel {
          
          //Aqui finjo que traigo las preguntas de un tipo y las asigno a la variable global que las usara
          JSONArray aux= 
-          jsonchan.JSON_view_general( "preguntas",( ciMedic+"/"+jComboBox1.getSelectedItem().toString()) );  //Mando medico
+          jsonchan.JSON_view_general( "preguntas/",( ciMedic+"/"+jComboBox1.getSelectedItem().toString()) );  //Mando medico
           auxQuestions= new String[aux.length()+1]; 
           
           for (int xi=0; xi<aux.length(); xi++) {
@@ -85,7 +85,7 @@ public class addQEnc extends javax.swing.JPanel {
          //auxS= new String[] {"hueso","cabeza","pierna","coxi","prostata"};        //Aqui finjo que creo el arreglo de tipos con datos de la base de datos :c
           
         JSONArray aux= 
-          jsonchan.JSON_view_general( "tipos",ciMedic );  //Mando medico
+          jsonchan.JSON_view_general( "tipos/",ciMedic );  //Mando medico
           auxS= new String[aux.length()]; 
           
           for (int xi=0; xi<aux.length(); xi++) {

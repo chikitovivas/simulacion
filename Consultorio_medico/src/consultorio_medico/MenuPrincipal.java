@@ -24,7 +24,7 @@ import org.json.JSONException;
 public class MenuPrincipal extends javax.swing.JFrame {
     Dimension dim;
     PanelPrincipal panelPrin;
-    static public String ci="";
+    static public String ci="25620021";
     Ven_login logg=null;
     /**
      * Creates new form PruebaDePanel
@@ -185,6 +185,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         try {
           addType tipos=  new addType( Integer.parseInt(MenuPrincipal.ci) );
+      
+           dim=jPanel1.getSize();
+          jPanel1.setVisible(false);
+          tipos.setSize(dim);
+       
+        tipos.setVisible(true);
+        this.add(tipos);
           //agreguen el panel al menu principal donde gusten
         } catch (JSONException ex) {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -193,11 +200,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         addQEnc encq=  new addQEnc( Integer.parseInt(MenuPrincipal.ci) );
+          dim=jPanel1.getSize();
+          jPanel1.setVisible(false);
+          encq.setSize(dim);
+       
+        encq.setVisible(true);
+        this.add(encq);
         //agreguen el panel al menu principal donde gusten
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         viewEnc enc_resp=  new viewEnc( Integer.parseInt(MenuPrincipal.ci) );
+        dim=jPanel1.getSize();
+          jPanel1.setVisible(false);
+          enc_resp.setSize(dim);
+       
+        enc_resp.setVisible(true);
+        this.add(enc_resp);
         //agreguen el panel al menu principal donde gusten
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 

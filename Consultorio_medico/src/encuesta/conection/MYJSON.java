@@ -31,8 +31,9 @@ import org.json.JSONObject;
  */
 public class MYJSON {
      
-    String urlPrincipal="http://miconsultoriocal.no-ip.org:8000/";
+    //String urlPrincipal="http://miconsultoriocal.no-ip.org:8000/";
     
+    String urlPrincipal="http://localhost:8000/";
     
     public JSONArray JSON_view_general (String direccion, String cadena){
         JSONArray json=null;

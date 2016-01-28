@@ -28,6 +28,10 @@ public class addType extends javax.swing.JPanel {
     MYJSON jsonchan= new MYJSON();
     String ciMedic;
     
+    
+     public addType() throws JSONException {
+         initComponents();
+     }
     public addType(int ci) throws JSONException {
         ciMedic= Integer.toString(ci);
         initComponents();
@@ -60,7 +64,7 @@ public class addType extends javax.swing.JPanel {
       void initData() {
           
           JSONArray aux= 
-          jsonchan.JSON_view_general( "tipos",ciMedic );  //Mando medico
+          jsonchan.JSON_view_general("tipos/",ciMedic);  //Mando medico
           String[][] auxS= new String[aux.length()][2]; 
           
           for (int xi=0; xi<aux.length(); xi++) {
@@ -70,12 +74,14 @@ public class addType extends javax.swing.JPanel {
                 } catch (JSONException ex) {Logger.getLogger(addType.class.getName()).log(Level.SEVERE, null, ex);
                   }
           }
-          //String[] asignador0= {"hueso","para los huesos"};
+        
+         // String[] asignador0= {"hueso","para los huesos"};
           //String[] asignador1= {"cabeza","para los cabeza"};
           //String[] asignador2= {"pierna","para los pierna"};
           //String [][] asignador= {asignador0, asignador1, asignador2 };
           
           String [][]asignador=auxS;
+        
           tipos= new comboItem[asignador.length];
           //System.out.println(asignador.length);
           
@@ -282,7 +288,9 @@ public class addType extends javax.swing.JPanel {
               
               if (jComboBox1.getSelectedIndex()< tipos.length) {
                       editData (selected, newselected,jComboBox1.getSelectedIndex());
-              } else { addData (newselected,jComboBox1.getSelectedIndex()) ;}
+                      
+              } else {
+                  addData (newselected,jComboBox1.getSelectedIndex()) ;}
                      
               jComboBox1.removeAllItems();
               initData();
