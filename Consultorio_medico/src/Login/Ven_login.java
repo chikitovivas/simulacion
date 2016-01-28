@@ -18,7 +18,7 @@ public class Ven_login extends javax.swing.JFrame {
     
    
     Cod_login log;
-    public static String nickname;
+    public static String ci_user;
     public static String password;
     public final static String url=
                              //"http://192.168.153.171:8000/";
@@ -75,7 +75,7 @@ public class Ven_login extends javax.swing.JFrame {
     }
     
     private void Iniciar_menu_medico(String nick){
-               Ven_login.nickname=nick;
+               Ven_login.ci_user=nick;
                MenuPrincipal men=new MenuPrincipal(nick);
                men.setVisible(true);
                this.setVisible(false);
