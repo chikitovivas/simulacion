@@ -228,7 +228,7 @@ public class viewEnc extends javax.swing.JPanel {
             JSONArray auxJ=null;
             
             for ( int ixx=0; ixx<auxA.length; ixx++) {
-                    JSONObject jsonchin= new JSONObject();
+                  JSONObject jsonchin= new JSONObject();
                     
                     for ( int ix=0; ix<3; ix++) {
                         try {
@@ -237,9 +237,8 @@ public class viewEnc extends javax.swing.JPanel {
                             Logger.getLogger(viewEnc.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }    
-                
-                    auxJ.put(jsonchin);
-                }
+                  auxJ.put(jsonchin);
+            }
            
             try {
                 jsonchan.JSON_agregarArray(auxJ,"respuesta/pregunta");
