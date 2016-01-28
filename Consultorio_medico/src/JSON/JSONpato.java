@@ -57,7 +57,7 @@ public class JSONpato {
              Object[] arr={null,null};
              switch(json.get("mensaje").toString()){
                  case "no":System.out.println("no esta registrado"); return null;
-                 case "historia": 
+                 case "historial": 
                           arreglo[0]=new JSONArray();//ASIGNANDO CONSULTAS
                           arr[0]=json.get("datos1");
                           arreglo[0]=(JSONArray)arr[0];
@@ -168,11 +168,10 @@ public class JSONpato {
             cit=new Object[citas.length()][6];
             for(int i=0;i<consulta.length();i++){               
                     cit[i][0]=citas.getJSONObject(i).getJSONObject("idCita");
-                    cit[i][1]=citas.getJSONObject(i).getJSONObject("fecha");
-                    cit[i][2]=citas.getJSONObject(i).getJSONObject("hora");
-                    cit[i][3]=citas.getJSONObject(i).getJSONObject("motivo");
-                    cit[i][4]=citas.getJSONObject(i).getJSONObject("diagnostico");
-                    cit[i][5]=citas.getJSONObject(i).getJSONObject("tratamiento");
+                    cit[i][1]=citas.getJSONObject(i).getJSONObject("fechahora");
+                    cit[i][2]=citas.getJSONObject(i).getJSONObject("porque");
+                    cit[i][3]=citas.getJSONObject(i).getJSONObject("diagnostico");
+                    cit[i][4]=citas.getJSONObject(i).getJSONObject("tratamiento");
                     
             }
 

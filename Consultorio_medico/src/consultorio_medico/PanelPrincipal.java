@@ -101,13 +101,24 @@ public class PanelPrincipal extends javax.swing.JPanel {
 // funcion que hace la logica de nicolas de llamar a cabral. no se por que me la treaje para aca jaja
          private void llamar_cabral(String day, Date aux, Object[][] mierda_para_cabral) {
              panelLista.setVisible(false);
-                panelLista=new Panel_registrocita_1(  //Constructor que debemos utilizar
+             
+           if (mierda_para_cabral==null)  {
+               panelLista=new Panel_registrocita_1(  //Constructor que debemos utilizar
+                                                                         day,           //el dia si te pierdes puede mirar arriba cabron
+                                                                         aux.getDate(), // numero del dia
+                                                                         aux.getMonth()+1, // numero del mes
+                                                                         aux.getYear()+1900// numero del año
+                                        );
+           }    else {
+               panelLista=new Panel_registrocita_1(  //Constructor que debemos utilizar
                                                                          day,           //el dia si te pierdes puede mirar arriba cabron
                                                                          aux.getDate(), // numero del dia
                                                                          aux.getMonth()+1, // numero del mes
                                                                          aux.getYear()+1900,// numero del año
                                                                          mierda_para_cabral// tabla con las tuplas que te importan         
                                         );
+                }
+           
         panelLista.setVisible(true);
         panelLista.setBounds(0, (largo/2)+11, (ancho/2), (largo/2) );
          panelLista.getList().addListSelectionListener (

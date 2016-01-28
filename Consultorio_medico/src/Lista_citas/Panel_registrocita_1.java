@@ -109,7 +109,7 @@ public class Panel_registrocita_1 extends javax.swing.JPanel {
         fecha_mostrar= sday + "  " + Integer.toString(day) +  "/" + Integer.toString(moth) + "/" + Integer.toString(year);
         fecha_pato= Integer.toString(year) + "-" + Integer.toString(moth) + "-" + Integer.toString(day) + " ";
       
-        horario= new String[] {"08:00","09:33","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"};
+        horario= new String[] {"08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"};
           
         imprimir= new String [horario.length];
         for(int zi=0; zi<horario.length; zi++) {
@@ -144,9 +144,9 @@ public class Panel_registrocita_1 extends javax.swing.JPanel {
                }
            casex[zi][0]= casex[zi][0]+ ":";
            if (Integer.valueOf( ((Date)ocus_pocus[zi][0]).getMinutes())<=9 ) {
-               casex[zi][0]= casex[zi][0]+String.valueOf(((Date)ocus_pocus[zi][0]).getMinutes())+"0";
+               casex[zi][0]= casex[zi][0]+"0"+String.valueOf(((Date)ocus_pocus[zi][0]).getMinutes());
            }   else {
-               casex[zi][0]= String.valueOf(((Date)ocus_pocus[zi][0]).getMinutes());
+               casex[zi][0]= casex[zi][0]+String.valueOf(((Date)ocus_pocus[zi][0]).getMinutes());
                }
               for(int zxz=1; zxz<=ocus_pocus[zi].length-2; zxz++) {                //   No llego hasta la fecha de nacimiento
                   casex[zi][zxz]=(ocus_pocus[zi][zxz].toString()); 
